@@ -28,17 +28,22 @@ export default function HomePage() {
             </span>
           </Link>
 
-          {/* Documente — coming soon */}
-          <div className="bg-white rounded-2xl border border-dashed border-gray-200 p-6 text-left opacity-60">
-            <div className="w-10 h-10 bg-gray-100 rounded-xl flex items-center justify-center mb-4">
-              <FileText className="w-5 h-5 text-gray-400" />
+          {/* Documente */}
+          <Link
+            href="/documente"
+            className="group bg-white rounded-2xl border border-gray-200 p-6 text-left hover:border-blue-300 hover:shadow-md transition-all"
+          >
+            <div className="w-10 h-10 bg-green-100 rounded-xl flex items-center justify-center mb-4">
+              <FileText className="w-5 h-5 text-green-600" />
             </div>
             <h2 className="font-bold text-gray-900 mb-1">Generator Contracte</h2>
             <p className="text-sm text-gray-500 mb-4">
               Contracte de vanzare-cumparare, inchiriere, procuri si altele.
             </p>
-            <span className="text-gray-400 text-sm font-medium">In curand</span>
-          </div>
+            <span className="text-green-600 text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
+              Vezi documente <ArrowRight className="w-4 h-4" />
+            </span>
+          </Link>
         </div>
       </div>
     </main>
