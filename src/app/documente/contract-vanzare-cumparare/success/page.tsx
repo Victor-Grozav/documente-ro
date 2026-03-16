@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { ContractVanzareData } from "@/lib/types";
 import PDFDownloadButton from "@/components/PDFDownloadButton";
@@ -8,7 +8,7 @@ import { CheckCircle, AlertCircle } from "lucide-react";
 
 type Status = "loading" | "success" | "error";
 
-export default function SuccessPage() {
+function SuccessContent() {
   const searchParams = useSearchParams();
   const sessionId = searchParams.get("session_id");
   const [status, setStatus] = useState<Status>("loading");
@@ -124,5 +124,17 @@ export default function SuccessPage() {
         </a>
       </div>
     </main>
+  );
+}
+
+export default function SuccessPage() {
+  return (
+    <Suspense fallback={
+      <main className="min-h-screen flex items-center justify-center">
+        <div className="w-10 h-10 border-4 border-blue-500 border-t-transparent rounded-full animate-spin" />
+      </main>
+    }>
+      <SuccessContent />
+    </Suspense>
   );
 }
