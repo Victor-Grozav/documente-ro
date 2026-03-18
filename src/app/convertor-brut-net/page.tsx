@@ -39,7 +39,7 @@ export default function ConvertorPage() {
           Cum se calculeaza salariul net in Romania 2025?
         </h2>
         <div className="bg-white rounded-2xl border border-gray-200 p-6 space-y-3 text-sm text-gray-600">
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
             <div className="bg-gray-50 rounded-lg p-3">
               <p className="font-semibold text-gray-800">1. CAS (Pensie)</p>
               <p>25% din salariul brut</p>

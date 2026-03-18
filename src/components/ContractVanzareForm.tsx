@@ -8,14 +8,18 @@ const today = new Date().toLocaleDateString("ro-RO");
 const defaultData: ContractVanzareData = {
   vanzatorNume: "",
   vanzatorCNP: "",
+  vanzatorCI: "",
   vanzatorAdresa: "",
   cumparatorNume: "",
   cumparatorCNP: "",
+  cumparatorCI: "",
   cumparatorAdresa: "",
   bunDescriere: "",
   bunSerie: "",
   pret: "",
   moneda: "RON",
+  modalitataPlata: "numerar",
+  locPredare: "",
   data: today,
   locul: "",
 };
@@ -104,6 +108,13 @@ export default function ContractVanzareForm() {
           placeholder="1234567890123"
           required
         />
+        <Field
+          label="Serie si nr. CI (optional)"
+          name="vanzatorCI"
+          value={formData.vanzatorCI}
+          onChange={handleChange}
+          placeholder="ex: AB 123456"
+        />
         <div className="sm:col-span-2">
           <Field
             label="Adresa domiciliu"
@@ -133,6 +144,13 @@ export default function ContractVanzareForm() {
           onChange={handleChange}
           placeholder="2345678901234"
           required
+        />
+        <Field
+          label="Serie si nr. CI (optional)"
+          name="cumparatorCI"
+          value={formData.cumparatorCI}
+          onChange={handleChange}
+          placeholder="ex: CJ 654321"
         />
         <div className="sm:col-span-2">
           <Field
@@ -194,6 +212,28 @@ export default function ContractVanzareForm() {
             <option value="USD">USD</option>
           </select>
         </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Modalitate plata <span className="text-red-400">*</span>
+          </label>
+          <select
+            value={formData.modalitataPlata}
+            onChange={(e) => handleChange("modalitataPlata", e.target.value as ContractVanzareData["modalitataPlata"])}
+            className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 bg-white"
+          >
+            <option value="numerar">Numerar</option>
+            <option value="transfer bancar">Transfer bancar</option>
+            <option value="alta modalitate">Alta modalitate</option>
+          </select>
+        </div>
+        <Field
+          label="Locul predarii bunului"
+          name="locPredare"
+          value={formData.locPredare}
+          onChange={handleChange}
+          placeholder="ex: Cluj-Napoca, str. Exemplu nr. 1"
+          required
+        />
         <Field
           label="Data contractului"
           name="data"
@@ -226,7 +266,7 @@ export default function ContractVanzareForm() {
             <p className="text-sm text-gray-500">PDF profesional, gata de semnat</p>
           </div>
           <div className="text-right">
-            <p className="text-2xl font-bold text-gray-900">$1</p>
+            <p className="text-2xl font-bold text-gray-900">10 lei</p>
             <p className="text-xs text-gray-400">plata unica</p>
           </div>
         </div>

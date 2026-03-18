@@ -5,7 +5,7 @@ import { FileText, ArrowRight, Clock } from "lucide-react";
 export const metadata: Metadata = {
   title: "Generator Documente Legale Romania — Documente.ro",
   description:
-    "Genereaza contracte si documente legale pentru Romania. Contract de vanzare-cumparare, inchiriere, procuri si altele. PDF instant, $1/document.",
+    "Genereaza contracte si documente legale pentru Romania. Contract de vanzare-cumparare, inchiriere, procuri si altele. PDF instant, de la 10 lei/document.",
 };
 
 const documente = [
@@ -13,29 +13,29 @@ const documente = [
     slug: "contract-vanzare-cumparare",
     titlu: "Contract de Vanzare-Cumparare",
     descriere: "Pentru vanzarea oricarui bun mobil: masini, electronice, bunuri personale.",
-    pret: "$1",
+    pret: "10 lei",
+    disponibil: true,
+  },
+  {
+    slug: "imputernicire",
+    titlu: "Imputernicire / Procura",
+    descriere: "Delegarea dreptului de a actiona in numele tau.",
+    pret: "15 lei",
+    disponibil: true,
+  },
+  {
+    slug: "acord-confidentialitate",
+    titlu: "Acord de Confidentialitate (NDA)",
+    descriere: "Protejarea informatiilor confidentiale intre doua parti.",
+    pret: "20 lei",
     disponibil: true,
   },
   {
     slug: "contract-inchiriere",
     titlu: "Contract de Inchiriere",
     descriere: "Contract de inchiriere pentru spatii locative sau comerciale.",
-    pret: "$1",
-    disponibil: false,
-  },
-  {
-    slug: "acord-confidentialitate",
-    titlu: "Acord de Confidentialitate (NDA)",
-    descriere: "Protejarea informatiilor confidentiale intre doua parti.",
-    pret: "$1",
-    disponibil: false,
-  },
-  {
-    slug: "imputernicire",
-    titlu: "Imputernicire / Procura",
-    descriere: "Delegarea dreptului de a actiona in numele tau.",
-    pret: "$1",
-    disponibil: false,
+    pret: "25 lei",
+    disponibil: true,
   },
 ];
 
@@ -51,7 +51,7 @@ export default function DocumenrePage() {
             Generator Documente
           </h1>
           <p className="text-gray-500">
-            Documente legale romanesti · PDF instant · $1 per document
+            Documente legale romanesti · PDF instant · de la 10 lei
           </p>
         </div>
 

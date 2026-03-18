@@ -84,10 +84,10 @@ export default function SalaryCalculator() {
             inputMode="numeric"
             value={inputValue}
             onChange={handleInput}
-            className="flex-1 text-3xl font-bold text-gray-900 border-b-2 border-blue-500 pb-1 bg-transparent outline-none focus:border-blue-600"
+            className="min-w-0 flex-1 text-3xl font-bold text-gray-900 border-b-2 border-blue-500 pb-1 bg-transparent outline-none focus:border-blue-600"
             placeholder="0"
           />
-          <span className="text-xl font-semibold text-gray-400">RON</span>
+          <span className="text-xl font-semibold text-gray-400 shrink-0">RON</span>
         </div>
         <input
           type="range"
@@ -100,7 +100,7 @@ export default function SalaryCalculator() {
         />
         <div className="flex justify-between text-xs text-gray-400 mt-1">
           <span>1.000 RON</span>
-          <span className="text-gray-500 font-medium">Salariu minim: 4.050 RON</span>
+          <span className="text-gray-500 font-medium hidden sm:inline">Salariu minim: 4.050 RON</span>
           <span>50.000 RON</span>
         </div>
       </div>
@@ -132,7 +132,7 @@ export default function SalaryCalculator() {
       {/* Result principal */}
       <div className="bg-blue-600 rounded-2xl p-6 mb-4 text-white text-center shadow-md">
         <p className="text-blue-200 text-sm font-medium mb-1">Salariu net {view}</p>
-        <p className="text-5xl font-bold tracking-tight">
+        <p className="text-4xl sm:text-5xl font-bold tracking-tight">
           {formatRON(result.net * mult)}
         </p>
         <p className="text-blue-200 text-sm mt-2">
@@ -182,12 +182,13 @@ export default function SalaryCalculator() {
 
         {/* Impozit */}
         <div className="space-y-1">
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-start">
             <div>
-              <span className="text-sm font-medium text-gray-700">Impozit venit </span>
-              <span className="text-xs text-gray-400">(10% din {formatRON(result.venitImpozabil)})</span>
+              <span className="text-sm font-medium text-gray-700">Impozit venit</span>
+              <br />
+              <span className="text-xs text-gray-400">10% din {formatRON(result.venitImpozabil)}</span>
             </div>
-            <span className="text-sm font-semibold text-yellow-600">
+            <span className="text-sm font-semibold text-yellow-600 shrink-0 ml-2">
               -{formatRON(result.impozit * mult)}
             </span>
           </div>

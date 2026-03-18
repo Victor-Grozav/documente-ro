@@ -4,7 +4,19 @@ import { getStripe } from "@/lib/stripe";
 const PRODUSE: Record<string, { name: string; price: number }> = {
   "contract-vanzare-cumparare": {
     name: "Contract de Vanzare-Cumparare",
-    price: 100, // $1.00 in cents
+    price: 1000, // 10 RON in bani
+  },
+  "imputernicire": {
+    name: "Imputernicire / Procura",
+    price: 1500, // 15 RON in bani
+  },
+  "acord-confidentialitate": {
+    name: "Acord de Confidentialitate (NDA)",
+    price: 2000, // 20 RON in bani
+  },
+  "contract-inchiriere": {
+    name: "Contract de Inchiriere",
+    price: 2500, // 25 RON in bani
   },
 };
 
@@ -24,7 +36,7 @@ export async function POST(req: NextRequest) {
       line_items: [
         {
           price_data: {
-            currency: "usd",
+            currency: "ron",
             product_data: {
               name: produs.name,
               description: "Document PDF generat instant dupa plata",

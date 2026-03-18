@@ -159,6 +159,12 @@ export default function ContractVanzareCumparare({ data }: Props) {
             <Text style={styles.label}>CNP:</Text>
             <Text style={styles.value}>{data.vanzatorCNP}</Text>
           </View>
+          {data.vanzatorCI && (
+            <View style={styles.row}>
+              <Text style={styles.label}>Serie si nr. CI:</Text>
+              <Text style={styles.value}>{data.vanzatorCI}</Text>
+            </View>
+          )}
           <View style={[styles.row, { marginBottom: 12 }]}>
             <Text style={styles.label}>Domiciliu:</Text>
             <Text style={styles.value}>{data.vanzatorAdresa}</Text>
@@ -175,6 +181,12 @@ export default function ContractVanzareCumparare({ data }: Props) {
             <Text style={styles.label}>CNP:</Text>
             <Text style={styles.value}>{data.cumparatorCNP}</Text>
           </View>
+          {data.cumparatorCI && (
+            <View style={styles.row}>
+              <Text style={styles.label}>Serie si nr. CI:</Text>
+              <Text style={styles.value}>{data.cumparatorCI}</Text>
+            </View>
+          )}
           <View style={styles.row}>
             <Text style={styles.label}>Domiciliu:</Text>
             <Text style={styles.value}>{data.cumparatorAdresa}</Text>
@@ -208,40 +220,70 @@ export default function ContractVanzareCumparare({ data }: Props) {
               {data.pret} {data.moneda}
             </Text>{" "}
             ({pretLitere} {data.moneda.toLowerCase()}), suma achitata integral la
-            data semnarii prezentului contract.
+            data semnarii prezentului contract, prin{" "}
+            <Text style={{ fontFamily: "Helvetica-Bold" }}>{data.modalitataPlata}</Text>.
+          </Text>
+        </View>
+
+        {/* Predarea bunului */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>IV. Predarea Bunului</Text>
+          <Text style={styles.paragraph}>
+            Predarea bunului se va efectua la data semnarii prezentului contract,
+            la urmatoarea locatie:{" "}
+            <Text style={{ fontFamily: "Helvetica-Bold" }}>{data.locPredare}</Text>.
+            Predarea se considera efectuata la momentul in care Cumparatorul intra
+            in posesia efectiva a bunului.
+          </Text>
+          <Text style={styles.paragraph}>
+            Bunul se vinde si se cumpara in starea tehnica si estetica vazuta si
+            acceptata de Cumparator la data incheierii prezentului contract.
+          </Text>
+        </View>
+
+        {/* Declaratia vanzatorului */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>V. Declaratia Vanzatorului</Text>
+          <Text style={styles.paragraph}>
+            Vanzatorul declara pe propria raspundere ca bunul descris la Art. II
+            este proprietatea sa exclusiva, nu este grevat de sarcini, gajuri,
+            ipoteci sau orice alte drepturi ale tertilor, nu face obiectul vreunui
+            litigiu, nu este urmarit sau sechestrat si ca are dreptul deplin de
+            a-l instraina.
           </Text>
         </View>
 
         {/* Obligatiile partilor */}
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>IV. Obligatiile Partilor</Text>
+          <Text style={styles.sectionTitle}>VI. Obligatiile Partilor</Text>
           <Text style={styles.paragraph}>
             <Text style={{ fontFamily: "Helvetica-Bold" }}>Vanzatorul</Text> se
-            obliga sa predea bunul descris mai sus in starea in care se afla la
-            data semnarii contractului, libera de orice sarcini sau drepturi ale
-            tertilor, si sa garanteze cumparatorul contra evictiunii si viciilor
-            ascunse.
+            obliga sa predea bunul la locatia si in conditiile stabilite prin
+            prezentul contract si sa garanteze Cumparatorul contra evictiunii si
+            viciilor ascunse, conform dispozitiilor Codului Civil roman.
           </Text>
           <Text style={styles.paragraph}>
             <Text style={{ fontFamily: "Helvetica-Bold" }}>Cumparatorul</Text> se
-            obliga sa achite pretul convenit si sa preia bunul la data si in
-            conditiile stabilite prin prezentul contract.
+            obliga sa achite pretul convenit la data semnarii si sa preia bunul
+            in conditiile stabilite prin prezentul contract.
           </Text>
         </View>
 
         {/* Clauze finale */}
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>V. Clauze Finale</Text>
+          <Text style={styles.sectionTitle}>VII. Clauze Finale</Text>
           <Text style={styles.paragraph}>
-            Prezentul contract reprezinta vointa libera a partilor si a fost
-            incheiat in doua exemplare originale, cate unul pentru fiecare parte.
-            Orice modificare a acestuia se va face numai prin acordul scris al
-            ambelor parti.
+            Prezentul contract este incheiat sub semnatura privata si este valabil
+            fara autentificare notariala pentru bunurile mobile, conform art. 1674
+            din Codul Civil roman. Contractul reprezinta vointa libera si
+            neviciata a partilor si a fost incheiat in doua exemplare originale,
+            cate unul pentru fiecare parte.
           </Text>
           <Text style={styles.paragraph}>
-            Litigiile izvorand din prezentul contract vor fi solutionate pe cale
-            amiabila, iar in caz de neintelegere, de catre instantele judecatoresti
-            competente din Romania.
+            Orice modificare a prezentului contract se va face numai prin acordul
+            scris al ambelor parti. Litigiile izvorand din prezentul contract vor
+            fi solutionate pe cale amiabila, iar in caz de neintelegere, de catre
+            instantele judecatoresti competente din Romania.
           </Text>
         </View>
 
