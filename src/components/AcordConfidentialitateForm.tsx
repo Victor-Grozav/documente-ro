@@ -18,8 +18,21 @@ const defaultData: AcordConfidentialitateData = {
   locul: "",
 };
 
+const testData: AcordConfidentialitateData = {
+  parte1Nume: "SC Exemplu Tech SRL",
+  parte1Calitate: "Persoană juridică",
+  parte1Adresa: "Str. Inovației nr. 1, Cluj-Napoca, Cluj",
+  parte2Nume: "Ionescu Mihai",
+  parte2Calitate: "Persoană fizică",
+  parte2Adresa: "Str. Victoriei nr. 20, București, Sector 2",
+  obiectConfidentialitate: "Informații tehnice, coduri sursă, date financiare și planuri de afaceri.",
+  durataAni: "2",
+  data: today,
+  locul: "Cluj-Napoca",
+};
+
 function Field({
-  label, name, value, onChange, placeholder, required,
+  label, name, value, onChange, placeholder, required, error,
 }: {
   label: string;
   name: keyof AcordConfidentialitateData;
@@ -27,6 +40,7 @@ function Field({
   onChange: (name: keyof AcordConfidentialitateData, value: string) => void;
   placeholder?: string;
   required?: boolean;
+  error?: string;
 }) {
   return (
     <div>
@@ -39,8 +53,13 @@ function Field({
         onChange={(e) => onChange(name, e.target.value)}
         placeholder={placeholder}
         required={required}
-        className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 bg-white"
+        className={`w-full border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 bg-white transition-colors ${
+          error
+            ? "border-red-400 focus:border-red-400 focus:ring-red-400"
+            : "border-gray-200 focus:border-blue-400 focus:ring-blue-400"
+        }`}
       />
+      {error && <p className="text-xs text-red-500 mt-1">{error}</p>}
     </div>
   );
 }
@@ -81,21 +100,49 @@ export default function AcordConfidentialitateForm() {
   const [formData, setFormData] = useState<AcordConfidentialitateData>(defaultData);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   const handleChange = (name: keyof AcordConfidentialitateData, value: string) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const validateAll = (): boolean => {
+    const newErrors: Record<string, string> = {};
+    if (!formData.obiectConfidentialitate || formData.obiectConfidentialitate.trim().length < 10) {
+      newErrors.obiectConfidentialitate = "Descrierea trebuie să conțină cel puțin 10 caractere";
+    }
+    setErrors(newErrors);
+    return Object.values(newErrors).every((e) => !e);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError("");
+
+    if (!validateAll()) {
+      setLoading(false);
+      return;
+    }
+
     sessionStorage.setItem("acordNDAData", JSON.stringify(formData));
     window.location.href = "/documente/acord-confidentialitate/success?session_id=test";
   };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
+      {/* TEST MODE - de șters înainte de deploy */}
+      <div className="bg-orange-50 border border-dashed border-orange-200 rounded-xl p-3 flex items-center justify-between">
+        <p className="text-xs text-orange-600 font-medium">Mod testare</p>
+        <button
+          type="button"
+          onClick={() => { setFormData(testData); setErrors({}); }}
+          className="text-xs bg-orange-100 hover:bg-orange-200 text-orange-700 font-medium px-3 py-1.5 rounded-lg transition-colors"
+        >
+          Completează automat
+        </button>
+      </div>
+
       {/* Partea 1 */}
       <Section title="Partea 1">
         <Field label="Nume / Denumire firmă" name="parte1Nume" value={formData.parte1Nume} onChange={handleChange} placeholder="ex: Popescu Ion / SC Exemplu SRL" required />
@@ -126,8 +173,15 @@ export default function AcordConfidentialitateForm() {
             placeholder="ex: Informații tehnice, financiare, comerciale, planuri de afaceri, date despre clienți, coduri sursă și orice alte informații marcate ca confidențiale de către părțile divulgatoare."
             required
             rows={4}
-            className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 bg-white resize-none"
+            className={`w-full border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 bg-white resize-none transition-colors ${
+              errors.obiectConfidentialitate
+                ? "border-red-400 focus:border-red-400 focus:ring-red-400"
+                : "border-gray-200 focus:border-blue-400 focus:ring-blue-400"
+            }`}
           />
+          {errors.obiectConfidentialitate && (
+            <p className="text-xs text-red-500 mt-1">{errors.obiectConfidentialitate}</p>
+          )}
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">

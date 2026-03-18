@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ContractVanzareData } from "@/lib/types";
+import { validateCNP, validateCI, validatePret } from "@/lib/validation";
 
 const today = new Date().toLocaleDateString("ro-RO");
 
@@ -24,6 +25,25 @@ const defaultData: ContractVanzareData = {
   locul: "",
 };
 
+const testData: ContractVanzareData = {
+  vanzatorNume: "Popescu Ion",
+  vanzatorCNP: "1850315120003",
+  vanzatorCI: "AB 123456",
+  vanzatorAdresa: "Str. Libertății nr. 10, Cluj-Napoca, Cluj",
+  cumparatorNume: "Ionescu Maria",
+  cumparatorCNP: "2920520400005",
+  cumparatorCI: "CJ 654321",
+  cumparatorAdresa: "Str. Victoriei nr. 5, București, Sector 1",
+  bunDescriere: "Autoturism marca Dacia Logan, an fabricație 2018, culoare albă",
+  bunSerie: "VIN: ROJFA1GE7J0123456",
+  pret: "15000",
+  moneda: "RON",
+  modalitataPlata: "transfer bancar",
+  locPredare: "Cluj-Napoca, Str. Libertății nr. 10",
+  data: today,
+  locul: "Cluj-Napoca",
+};
+
 function Field({
   label,
   name,
@@ -32,6 +52,8 @@ function Field({
   placeholder,
   required,
   type = "text",
+  error,
+  onBlur,
 }: {
   label: string;
   name: keyof ContractVanzareData;
@@ -40,6 +62,8 @@ function Field({
   placeholder?: string;
   required?: boolean;
   type?: string;
+  error?: string;
+  onBlur?: () => void;
 }) {
   return (
     <div>
@@ -50,10 +74,16 @@ function Field({
         type={type}
         value={value}
         onChange={(e) => onChange(name, e.target.value)}
+        onBlur={onBlur}
         placeholder={placeholder}
         required={required}
-        className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 bg-white"
+        className={`w-full border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 bg-white transition-colors ${
+          error
+            ? "border-red-400 focus:border-red-400 focus:ring-red-400"
+            : "border-gray-200 focus:border-blue-400 focus:ring-blue-400"
+        }`}
       />
+      {error && <p className="text-xs text-red-500 mt-1">{error}</p>}
     </div>
   );
 }
@@ -73,15 +103,44 @@ export default function ContractVanzareForm() {
   const [formData, setFormData] = useState<ContractVanzareData>(defaultData);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   const handleChange = (name: keyof ContractVanzareData, value: string) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleBlur = (name: string, value: string) => {
+    let fieldError: string | null = null;
+    if (name.includes("CNP")) fieldError = validateCNP(value);
+    else if (name.includes("CI")) fieldError = validateCI(value);
+    setErrors((prev) => ({ ...prev, [name]: fieldError || "" }));
+  };
+
+  const validateAll = (): boolean => {
+    const newErrors: Record<string, string> = {};
+    const vanzatorCNPError = validateCNP(formData.vanzatorCNP);
+    if (vanzatorCNPError) newErrors.vanzatorCNP = vanzatorCNPError;
+    const cumparatorCNPError = validateCNP(formData.cumparatorCNP);
+    if (cumparatorCNPError) newErrors.cumparatorCNP = cumparatorCNPError;
+    const vanzatorCIError = validateCI(formData.vanzatorCI);
+    if (vanzatorCIError) newErrors.vanzatorCI = vanzatorCIError;
+    const cumparatorCIError = validateCI(formData.cumparatorCI);
+    if (cumparatorCIError) newErrors.cumparatorCI = cumparatorCIError;
+    const pretError = validatePret(formData.pret);
+    if (pretError) newErrors.pret = pretError;
+    setErrors(newErrors);
+    return Object.values(newErrors).every((e) => !e);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError("");
+
+    if (!validateAll()) {
+      setLoading(false);
+      return;
+    }
 
     // TEST MODE: sarim peste plata, mergem direct la download
     sessionStorage.setItem("contractData", JSON.stringify(formData));
@@ -90,6 +149,18 @@ export default function ContractVanzareForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
+      {/* TEST MODE - de șters înainte de deploy */}
+      <div className="bg-orange-50 border border-dashed border-orange-200 rounded-xl p-3 flex items-center justify-between">
+        <p className="text-xs text-orange-600 font-medium">Mod testare</p>
+        <button
+          type="button"
+          onClick={() => { setFormData(testData); setErrors({}); }}
+          className="text-xs bg-orange-100 hover:bg-orange-200 text-orange-700 font-medium px-3 py-1.5 rounded-lg transition-colors"
+        >
+          Completează automat
+        </button>
+      </div>
+
       {/* Vânzător */}
       <Section title="Vânzător">
         <Field
@@ -107,6 +178,8 @@ export default function ContractVanzareForm() {
           onChange={handleChange}
           placeholder="1234567890123"
           required
+          error={errors.vanzatorCNP}
+          onBlur={() => handleBlur("vanzatorCNP", formData.vanzatorCNP)}
         />
         <Field
           label="Serie și nr. CI (opțional)"
@@ -114,6 +187,8 @@ export default function ContractVanzareForm() {
           value={formData.vanzatorCI}
           onChange={handleChange}
           placeholder="ex: AB 123456"
+          error={errors.vanzatorCI}
+          onBlur={() => handleBlur("vanzatorCI", formData.vanzatorCI)}
         />
         <div className="sm:col-span-2">
           <Field
@@ -144,6 +219,8 @@ export default function ContractVanzareForm() {
           onChange={handleChange}
           placeholder="2345678901234"
           required
+          error={errors.cumparatorCNP}
+          onBlur={() => handleBlur("cumparatorCNP", formData.cumparatorCNP)}
         />
         <Field
           label="Serie și nr. CI (opțional)"
@@ -151,6 +228,8 @@ export default function ContractVanzareForm() {
           value={formData.cumparatorCI}
           onChange={handleChange}
           placeholder="ex: CJ 654321"
+          error={errors.cumparatorCI}
+          onBlur={() => handleBlur("cumparatorCI", formData.cumparatorCI)}
         />
         <div className="sm:col-span-2">
           <Field
@@ -197,6 +276,7 @@ export default function ContractVanzareForm() {
           placeholder="5000"
           required
           type="number"
+          error={errors.pret}
         />
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">

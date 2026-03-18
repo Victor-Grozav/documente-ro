@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ImputernicireData } from "@/lib/types";
+import { validateCNP, validateCI, validateFutureDate } from "@/lib/validation";
 
 const today = new Date().toLocaleDateString("ro-RO");
 
@@ -20,8 +21,23 @@ const defaultData: ImputernicireData = {
   locul: "",
 };
 
+const testData: ImputernicireData = {
+  mandantNume: "Popescu Ion",
+  mandantCNP: "1850315120003",
+  mandantCI: "AB 123456",
+  mandantAdresa: "Str. Libertății nr. 10, Cluj-Napoca, Cluj",
+  mandatarNume: "Ionescu Maria",
+  mandatarCNP: "2920520400005",
+  mandatarCI: "CJ 654321",
+  mandatarAdresa: "Str. Victoriei nr. 5, București, Sector 1",
+  obiect: "Să mă reprezinte în fața ANAF pentru depunerea declarației de venit pe anul 2025 și semnarea oricăror documente necesare în acest scop.",
+  dataExpirare: "31.12.2026",
+  data: today,
+  locul: "Cluj-Napoca",
+};
+
 function Field({
-  label, name, value, onChange, placeholder, required, type = "text",
+  label, name, value, onChange, placeholder, required, type = "text", error, onBlur,
 }: {
   label: string;
   name: keyof ImputernicireData;
@@ -30,6 +46,8 @@ function Field({
   placeholder?: string;
   required?: boolean;
   type?: string;
+  error?: string;
+  onBlur?: () => void;
 }) {
   return (
     <div>
@@ -40,10 +58,16 @@ function Field({
         type={type}
         value={value}
         onChange={(e) => onChange(name, e.target.value)}
+        onBlur={onBlur}
         placeholder={placeholder}
         required={required}
-        className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 bg-white"
+        className={`w-full border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 bg-white transition-colors ${
+          error
+            ? "border-red-400 focus:border-red-400 focus:ring-red-400"
+            : "border-gray-200 focus:border-blue-400 focus:ring-blue-400"
+        }`}
       />
+      {error && <p className="text-xs text-red-500 mt-1">{error}</p>}
     </div>
   );
 }
@@ -61,26 +85,85 @@ export default function ImputernicireForm() {
   const [formData, setFormData] = useState<ImputernicireData>(defaultData);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   const handleChange = (name: keyof ImputernicireData, value: string) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleBlur = (name: string, value: string) => {
+    let fieldError: string | null = null;
+    if (name.includes("CNP")) fieldError = validateCNP(value);
+    else if (name.includes("CI")) fieldError = validateCI(value);
+    setErrors((prev) => ({ ...prev, [name]: fieldError || "" }));
+  };
+
+  const validateAll = (): boolean => {
+    const newErrors: Record<string, string> = {};
+    const mandantCNPError = validateCNP(formData.mandantCNP);
+    if (mandantCNPError) newErrors.mandantCNP = mandantCNPError;
+    const mandatarCNPError = validateCNP(formData.mandatarCNP);
+    if (mandatarCNPError) newErrors.mandatarCNP = mandatarCNPError;
+    const mandantCIError = validateCI(formData.mandantCI);
+    if (mandantCIError) newErrors.mandantCI = mandantCIError;
+    const mandatarCIError = validateCI(formData.mandatarCI);
+    if (mandatarCIError) newErrors.mandatarCI = mandatarCIError;
+    const dataExpirareError = validateFutureDate(formData.dataExpirare);
+    if (dataExpirareError) newErrors.dataExpirare = dataExpirareError;
+    setErrors(newErrors);
+    return Object.values(newErrors).every((e) => !e);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError("");
+
+    if (!validateAll()) {
+      setLoading(false);
+      return;
+    }
+
     sessionStorage.setItem("imputernicireData", JSON.stringify(formData));
     window.location.href = "/documente/imputernicire/success?session_id=test";
   };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
+      {/* TEST MODE - de șters înainte de deploy */}
+      <div className="bg-orange-50 border border-dashed border-orange-200 rounded-xl p-3 flex items-center justify-between">
+        <p className="text-xs text-orange-600 font-medium">Mod testare</p>
+        <button
+          type="button"
+          onClick={() => { setFormData(testData); setErrors({}); }}
+          className="text-xs bg-orange-100 hover:bg-orange-200 text-orange-700 font-medium px-3 py-1.5 rounded-lg transition-colors"
+        >
+          Completează automat
+        </button>
+      </div>
+
       {/* Mandant */}
       <Section title="Mandant (cel care împuternicește)">
         <Field label="Nume și prenume" name="mandantNume" value={formData.mandantNume} onChange={handleChange} placeholder="ex: Popescu Ion" required />
-        <Field label="CNP" name="mandantCNP" value={formData.mandantCNP} onChange={handleChange} placeholder="1234567890123" required />
-        <Field label="Serie și nr. CI (opțional)" name="mandantCI" value={formData.mandantCI} onChange={handleChange} placeholder="ex: AB 123456" />
+        <Field
+          label="CNP"
+          name="mandantCNP"
+          value={formData.mandantCNP}
+          onChange={handleChange}
+          placeholder="1234567890123"
+          required
+          error={errors.mandantCNP}
+          onBlur={() => handleBlur("mandantCNP", formData.mandantCNP)}
+        />
+        <Field
+          label="Serie și nr. CI (opțional)"
+          name="mandantCI"
+          value={formData.mandantCI}
+          onChange={handleChange}
+          placeholder="ex: AB 123456"
+          error={errors.mandantCI}
+          onBlur={() => handleBlur("mandantCI", formData.mandantCI)}
+        />
         <div className="sm:col-span-2">
           <Field label="Adresă domiciliu" name="mandantAdresa" value={formData.mandantAdresa} onChange={handleChange} placeholder="Str. Exemplu nr. 1, Cluj-Napoca, Cluj" required />
         </div>
@@ -89,8 +172,25 @@ export default function ImputernicireForm() {
       {/* Mandatar */}
       <Section title="Mandatar (împuternicitul)">
         <Field label="Nume și prenume" name="mandatarNume" value={formData.mandatarNume} onChange={handleChange} placeholder="ex: Ionescu Maria" required />
-        <Field label="CNP" name="mandatarCNP" value={formData.mandatarCNP} onChange={handleChange} placeholder="2345678901234" required />
-        <Field label="Serie și nr. CI (opțional)" name="mandatarCI" value={formData.mandatarCI} onChange={handleChange} placeholder="ex: CJ 654321" />
+        <Field
+          label="CNP"
+          name="mandatarCNP"
+          value={formData.mandatarCNP}
+          onChange={handleChange}
+          placeholder="2345678901234"
+          required
+          error={errors.mandatarCNP}
+          onBlur={() => handleBlur("mandatarCNP", formData.mandatarCNP)}
+        />
+        <Field
+          label="Serie și nr. CI (opțional)"
+          name="mandatarCI"
+          value={formData.mandatarCI}
+          onChange={handleChange}
+          placeholder="ex: CJ 654321"
+          error={errors.mandatarCI}
+          onBlur={() => handleBlur("mandatarCI", formData.mandatarCI)}
+        />
         <div className="sm:col-span-2">
           <Field label="Adresă domiciliu" name="mandatarAdresa" value={formData.mandatarAdresa} onChange={handleChange} placeholder="Str. Exemplu nr. 2, București, Ilfov" required />
         </div>
@@ -111,7 +211,15 @@ export default function ImputernicireForm() {
             className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 bg-white resize-none"
           />
         </div>
-        <Field label="Valabilă până la" name="dataExpirare" value={formData.dataExpirare} onChange={handleChange} placeholder="ex: 31.12.2026" required />
+        <Field
+          label="Valabilă până la"
+          name="dataExpirare"
+          value={formData.dataExpirare}
+          onChange={handleChange}
+          placeholder="ex: 31.12.2026"
+          required
+          error={errors.dataExpirare}
+        />
         <Field label="Data împuternicirii" name="data" value={formData.data} onChange={handleChange} placeholder="16.03.2026" required />
         <div className="sm:col-span-2">
           <Field label="Locul încheierii" name="locul" value={formData.locul} onChange={handleChange} placeholder="ex: Cluj-Napoca" required />

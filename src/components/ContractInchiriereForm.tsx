@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ContractInchiriereData } from "@/lib/types";
+import { validateCNP, validateCI, validatePret, validateDate } from "@/lib/validation";
 
 const today = new Date().toLocaleDateString("ro-RO");
 
@@ -27,8 +28,30 @@ const defaultData: ContractInchiriereData = {
   locul: "",
 };
 
+const testData: ContractInchiriereData = {
+  locatorNume: "Popescu Ion",
+  locatorCNP: "1850315120003",
+  locatorCI: "AB 123456",
+  locatorAdresa: "Str. Libertății nr. 10, Cluj-Napoca, Cluj",
+  locatarNume: "Ionescu Maria",
+  locatarCNP: "2920520400005",
+  locatarCI: "CJ 654321",
+  locatarAdresa: "Str. Victoriei nr. 5, București, Sector 1",
+  proprietateAdresa: "Str. Dorobanților nr. 25, ap. 4, Cluj-Napoca, Cluj",
+  proprietateTip: "apartament",
+  proprietateSuprafata: "65",
+  chiria: "2500",
+  moneda: "RON",
+  modalitataPlata: "transfer bancar",
+  garantie: "2",
+  dataIncepere: "01.04.2026",
+  durataLuni: "12",
+  data: today,
+  locul: "Cluj-Napoca",
+};
+
 function Field({
-  label, name, value, onChange, placeholder, required, type = "text",
+  label, name, value, onChange, placeholder, required, type = "text", error, onBlur,
 }: {
   label: string;
   name: keyof ContractInchiriereData;
@@ -37,6 +60,8 @@ function Field({
   placeholder?: string;
   required?: boolean;
   type?: string;
+  error?: string;
+  onBlur?: () => void;
 }) {
   return (
     <div>
@@ -47,10 +72,16 @@ function Field({
         type={type}
         value={value}
         onChange={(e) => onChange(name, e.target.value)}
+        onBlur={onBlur}
         placeholder={placeholder}
         required={required}
-        className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 bg-white"
+        className={`w-full border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 bg-white transition-colors ${
+          error
+            ? "border-red-400 focus:border-red-400 focus:ring-red-400"
+            : "border-gray-200 focus:border-blue-400 focus:ring-blue-400"
+        }`}
       />
+      {error && <p className="text-xs text-red-500 mt-1">{error}</p>}
     </div>
   );
 }
@@ -96,26 +127,87 @@ export default function ContractInchiriereForm() {
   const [formData, setFormData] = useState<ContractInchiriereData>(defaultData);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   const handleChange = (name: keyof ContractInchiriereData, value: string) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleBlur = (name: string, value: string) => {
+    let fieldError: string | null = null;
+    if (name.includes("CNP")) fieldError = validateCNP(value);
+    else if (name.includes("CI")) fieldError = validateCI(value);
+    setErrors((prev) => ({ ...prev, [name]: fieldError || "" }));
+  };
+
+  const validateAll = (): boolean => {
+    const newErrors: Record<string, string> = {};
+    const locatorCNPError = validateCNP(formData.locatorCNP);
+    if (locatorCNPError) newErrors.locatorCNP = locatorCNPError;
+    const locatarCNPError = validateCNP(formData.locatarCNP);
+    if (locatarCNPError) newErrors.locatarCNP = locatarCNPError;
+    const locatorCIError = validateCI(formData.locatorCI);
+    if (locatorCIError) newErrors.locatorCI = locatorCIError;
+    const locatarCIError = validateCI(formData.locatarCI);
+    if (locatarCIError) newErrors.locatarCI = locatarCIError;
+    const chiriaError = validatePret(formData.chiria);
+    if (chiriaError) newErrors.chiria = chiriaError;
+    const dataIncepereError = validateDate(formData.dataIncepere);
+    if (dataIncepereError) newErrors.dataIncepere = dataIncepereError;
+    setErrors(newErrors);
+    return Object.values(newErrors).every((e) => !e);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError("");
+
+    if (!validateAll()) {
+      setLoading(false);
+      return;
+    }
+
     sessionStorage.setItem("contractInchiriereData", JSON.stringify(formData));
     window.location.href = "/documente/contract-inchiriere/success?session_id=test";
   };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
+      {/* TEST MODE - de șters înainte de deploy */}
+      <div className="bg-orange-50 border border-dashed border-orange-200 rounded-xl p-3 flex items-center justify-between">
+        <p className="text-xs text-orange-600 font-medium">Mod testare</p>
+        <button
+          type="button"
+          onClick={() => { setFormData(testData); setErrors({}); }}
+          className="text-xs bg-orange-100 hover:bg-orange-200 text-orange-700 font-medium px-3 py-1.5 rounded-lg transition-colors"
+        >
+          Completează automat
+        </button>
+      </div>
+
       {/* Locator */}
       <Section title="Locator (Proprietar)">
         <Field label="Nume și prenume" name="locatorNume" value={formData.locatorNume} onChange={handleChange} placeholder="ex: Popescu Ion" required />
-        <Field label="CNP" name="locatorCNP" value={formData.locatorCNP} onChange={handleChange} placeholder="1234567890123" required />
-        <Field label="Serie și nr. CI (opțional)" name="locatorCI" value={formData.locatorCI} onChange={handleChange} placeholder="ex: AB 123456" />
+        <Field
+          label="CNP"
+          name="locatorCNP"
+          value={formData.locatorCNP}
+          onChange={handleChange}
+          placeholder="1234567890123"
+          required
+          error={errors.locatorCNP}
+          onBlur={() => handleBlur("locatorCNP", formData.locatorCNP)}
+        />
+        <Field
+          label="Serie și nr. CI (opțional)"
+          name="locatorCI"
+          value={formData.locatorCI}
+          onChange={handleChange}
+          placeholder="ex: AB 123456"
+          error={errors.locatorCI}
+          onBlur={() => handleBlur("locatorCI", formData.locatorCI)}
+        />
         <div className="sm:col-span-2">
           <Field label="Adresă domiciliu" name="locatorAdresa" value={formData.locatorAdresa} onChange={handleChange} placeholder="Str. Exemplu nr. 1, Cluj-Napoca, Cluj" required />
         </div>
@@ -124,8 +216,25 @@ export default function ContractInchiriereForm() {
       {/* Locatar */}
       <Section title="Locatar (Chiriaș)">
         <Field label="Nume și prenume" name="locatarNume" value={formData.locatarNume} onChange={handleChange} placeholder="ex: Ionescu Maria" required />
-        <Field label="CNP" name="locatarCNP" value={formData.locatarCNP} onChange={handleChange} placeholder="2345678901234" required />
-        <Field label="Serie și nr. CI (opțional)" name="locatarCI" value={formData.locatarCI} onChange={handleChange} placeholder="ex: CJ 654321" />
+        <Field
+          label="CNP"
+          name="locatarCNP"
+          value={formData.locatarCNP}
+          onChange={handleChange}
+          placeholder="2345678901234"
+          required
+          error={errors.locatarCNP}
+          onBlur={() => handleBlur("locatarCNP", formData.locatarCNP)}
+        />
+        <Field
+          label="Serie și nr. CI (opțional)"
+          name="locatarCI"
+          value={formData.locatarCI}
+          onChange={handleChange}
+          placeholder="ex: CJ 654321"
+          error={errors.locatarCI}
+          onBlur={() => handleBlur("locatarCI", formData.locatarCI)}
+        />
         <div className="sm:col-span-2">
           <Field label="Adresă domiciliu" name="locatarAdresa" value={formData.locatarAdresa} onChange={handleChange} placeholder="Str. Exemplu nr. 2, București, Ilfov" required />
         </div>
@@ -155,7 +264,16 @@ export default function ContractInchiriereForm() {
 
       {/* Financiar */}
       <Section title="Chirie și Condiții Financiare">
-        <Field label="Chirie lunară" name="chiria" value={formData.chiria} onChange={handleChange} placeholder="ex: 2500" required type="number" />
+        <Field
+          label="Chirie lunară"
+          name="chiria"
+          value={formData.chiria}
+          onChange={handleChange}
+          placeholder="ex: 2500"
+          required
+          type="number"
+          error={errors.chiria}
+        />
         <SelectField
           label="Moneda"
           name="moneda"
@@ -178,7 +296,15 @@ export default function ContractInchiriereForm() {
 
       {/* Durata */}
       <Section title="Durată și Detalii Contract">
-        <Field label="Data începerii" name="dataIncepere" value={formData.dataIncepere} onChange={handleChange} placeholder="ex: 01.04.2026" required />
+        <Field
+          label="Data începerii"
+          name="dataIncepere"
+          value={formData.dataIncepere}
+          onChange={handleChange}
+          placeholder="ex: 01.04.2026"
+          required
+          error={errors.dataIncepere}
+        />
         <SelectField
           label="Durata (luni)"
           name="durataLuni"
