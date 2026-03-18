@@ -7,7 +7,7 @@ export default function HomePage() {
       <div className="max-w-2xl w-full text-center">
         <h1 className="text-4xl font-bold text-gray-900 mb-3">Documente.ro</h1>
         <p className="text-gray-500 text-lg mb-12">
-          Calculatoare si documente legale pentru Romania
+          Calculatoare și documente legale pentru România
         </p>
 
         <div className="grid gap-4 sm:grid-cols-2">
@@ -21,10 +21,10 @@ export default function HomePage() {
             </div>
             <h2 className="font-bold text-gray-900 mb-1">Calculator Brut → Net</h2>
             <p className="text-sm text-gray-500 mb-4">
-              Calculeaza salariul net, retinerile si costul angajatorului pentru 2025.
+              Calculează salariul net, reținerile și costul angajatorului pentru 2025.
             </p>
             <span className="text-blue-600 text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
-              Calculeaza gratuit <ArrowRight className="w-4 h-4" />
+              Calculează gratuit <ArrowRight className="w-4 h-4" />
             </span>
           </Link>
 
@@ -38,7 +38,7 @@ export default function HomePage() {
             </div>
             <h2 className="font-bold text-gray-900 mb-1">Generator Contracte</h2>
             <p className="text-sm text-gray-500 mb-4">
-              Contracte de vanzare-cumparare, inchiriere, procuri si altele.
+              Contracte de vânzare-cumpărare, închiriere, procuri și altele.
             </p>
             <span className="text-green-600 text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
               Vezi documente <ArrowRight className="w-4 h-4" />

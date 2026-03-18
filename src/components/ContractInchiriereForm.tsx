@@ -113,28 +113,28 @@ export default function ContractInchiriereForm() {
     <form onSubmit={handleSubmit} className="space-y-4">
       {/* Locator */}
       <Section title="Locator (Proprietar)">
-        <Field label="Nume si prenume" name="locatorNume" value={formData.locatorNume} onChange={handleChange} placeholder="ex: Popescu Ion" required />
+        <Field label="Nume și prenume" name="locatorNume" value={formData.locatorNume} onChange={handleChange} placeholder="ex: Popescu Ion" required />
         <Field label="CNP" name="locatorCNP" value={formData.locatorCNP} onChange={handleChange} placeholder="1234567890123" required />
-        <Field label="Serie si nr. CI (optional)" name="locatorCI" value={formData.locatorCI} onChange={handleChange} placeholder="ex: AB 123456" />
+        <Field label="Serie și nr. CI (opțional)" name="locatorCI" value={formData.locatorCI} onChange={handleChange} placeholder="ex: AB 123456" />
         <div className="sm:col-span-2">
-          <Field label="Adresa domiciliu" name="locatorAdresa" value={formData.locatorAdresa} onChange={handleChange} placeholder="Str. Exemplu nr. 1, Cluj-Napoca, Cluj" required />
+          <Field label="Adresă domiciliu" name="locatorAdresa" value={formData.locatorAdresa} onChange={handleChange} placeholder="Str. Exemplu nr. 1, Cluj-Napoca, Cluj" required />
         </div>
       </Section>
 
       {/* Locatar */}
-      <Section title="Locatar (Chirias)">
-        <Field label="Nume si prenume" name="locatarNume" value={formData.locatarNume} onChange={handleChange} placeholder="ex: Ionescu Maria" required />
+      <Section title="Locatar (Chiriaș)">
+        <Field label="Nume și prenume" name="locatarNume" value={formData.locatarNume} onChange={handleChange} placeholder="ex: Ionescu Maria" required />
         <Field label="CNP" name="locatarCNP" value={formData.locatarCNP} onChange={handleChange} placeholder="2345678901234" required />
-        <Field label="Serie si nr. CI (optional)" name="locatarCI" value={formData.locatarCI} onChange={handleChange} placeholder="ex: CJ 654321" />
+        <Field label="Serie și nr. CI (opțional)" name="locatarCI" value={formData.locatarCI} onChange={handleChange} placeholder="ex: CJ 654321" />
         <div className="sm:col-span-2">
-          <Field label="Adresa domiciliu" name="locatarAdresa" value={formData.locatarAdresa} onChange={handleChange} placeholder="Str. Exemplu nr. 2, Bucuresti, Ilfov" required />
+          <Field label="Adresă domiciliu" name="locatarAdresa" value={formData.locatarAdresa} onChange={handleChange} placeholder="Str. Exemplu nr. 2, București, Ilfov" required />
         </div>
       </Section>
 
       {/* Proprietate */}
-      <Section title="Proprietatea Inchiriata">
+      <Section title="Proprietatea Închiriată">
         <div className="sm:col-span-2">
-          <Field label="Adresa proprietatii" name="proprietateAdresa" value={formData.proprietateAdresa} onChange={handleChange} placeholder="Str. Victoriei nr. 10, ap. 5, Cluj-Napoca, Cluj" required />
+          <Field label="Adresa proprietății" name="proprietateAdresa" value={formData.proprietateAdresa} onChange={handleChange} placeholder="Str. Victoriei nr. 10, ap. 5, Cluj-Napoca, Cluj" required />
         </div>
         <SelectField
           label="Tip proprietate"
@@ -143,19 +143,19 @@ export default function ContractInchiriereForm() {
           onChange={handleChange}
           options={[
             { value: "apartament", label: "Apartament" },
-            { value: "garsoniera", label: "Garsoniera" },
-            { value: "casa", label: "Casa" },
-            { value: "spatiu comercial", label: "Spatiu comercial" },
+            { value: "garsoniera", label: "Garsonieră" },
+            { value: "casa", label: "Casă" },
+            { value: "spatiu comercial", label: "Spațiu comercial" },
             { value: "birou", label: "Birou" },
           ]}
           required
         />
-        <Field label="Suprafata (mp, optional)" name="proprietateSuprafata" value={formData.proprietateSuprafata} onChange={handleChange} placeholder="ex: 65" />
+        <Field label="Suprafață (mp, opțional)" name="proprietateSuprafata" value={formData.proprietateSuprafata} onChange={handleChange} placeholder="ex: 65" />
       </Section>
 
       {/* Financiar */}
-      <Section title="Chirie si Conditii Financiare">
-        <Field label="Chirie lunara" name="chiria" value={formData.chiria} onChange={handleChange} placeholder="ex: 2500" required type="number" />
+      <Section title="Chirie și Condiții Financiare">
+        <Field label="Chirie lunară" name="chiria" value={formData.chiria} onChange={handleChange} placeholder="ex: 2500" required type="number" />
         <SelectField
           label="Moneda"
           name="moneda"
@@ -164,7 +164,7 @@ export default function ContractInchiriereForm() {
           options={[{ value: "RON", label: "RON" }, { value: "EUR", label: "EUR" }]}
         />
         <SelectField
-          label="Modalitate plata"
+          label="Modalitate plată"
           name="modalitataPlata"
           value={formData.modalitataPlata}
           onChange={handleChange}
@@ -173,12 +173,12 @@ export default function ContractInchiriereForm() {
             { value: "numerar", label: "Numerar" },
           ]}
         />
-        <Field label="Garantie (nr. chirii, optional)" name="garantie" value={formData.garantie} onChange={handleChange} placeholder="ex: 2" />
+        <Field label="Garanție (nr. chirii, opțional)" name="garantie" value={formData.garantie} onChange={handleChange} placeholder="ex: 2" />
       </Section>
 
       {/* Durata */}
-      <Section title="Durata si Detalii Contract">
-        <Field label="Data incepere" name="dataIncepere" value={formData.dataIncepere} onChange={handleChange} placeholder="ex: 01.04.2026" required />
+      <Section title="Durată și Detalii Contract">
+        <Field label="Data începerii" name="dataIncepere" value={formData.dataIncepere} onChange={handleChange} placeholder="ex: 01.04.2026" required />
         <SelectField
           label="Durata (luni)"
           name="durataLuni"
@@ -192,7 +192,7 @@ export default function ContractInchiriereForm() {
           ]}
         />
         <Field label="Data contractului" name="data" value={formData.data} onChange={handleChange} placeholder="16.03.2026" required />
-        <Field label="Locul incheierii" name="locul" value={formData.locul} onChange={handleChange} placeholder="ex: Cluj-Napoca" required />
+        <Field label="Locul încheierii" name="locul" value={formData.locul} onChange={handleChange} placeholder="ex: Cluj-Napoca" required />
       </Section>
 
       {error && (
@@ -202,12 +202,12 @@ export default function ContractInchiriereForm() {
       <div className="bg-white rounded-2xl border border-gray-200 p-6">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <p className="font-semibold text-gray-900">Contract de Inchiriere</p>
+            <p className="font-semibold text-gray-900">Contract de Închiriere</p>
             <p className="text-sm text-gray-500">PDF profesional, gata de semnat</p>
           </div>
           <div className="text-right">
             <p className="text-2xl font-bold text-gray-900">25 lei</p>
-            <p className="text-xs text-gray-400">plata unica</p>
+            <p className="text-xs text-gray-400">plată unică</p>
           </div>
         </div>
         <button
@@ -215,10 +215,10 @@ export default function ContractInchiriereForm() {
           disabled={loading}
           className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-semibold py-3 rounded-xl transition-colors text-base"
         >
-          {loading ? "Se proceseaza..." : "Continua spre plata →"}
+          {loading ? "Se procesează..." : "Continuă spre plată →"}
         </button>
         <p className="text-xs text-gray-400 text-center mt-3">
-          Plata securizata prin Stripe · PDF disponibil instant dupa plata
+          Plată securizată prin Stripe · PDF disponibil instant după plată
         </p>
       </div>
     </form>

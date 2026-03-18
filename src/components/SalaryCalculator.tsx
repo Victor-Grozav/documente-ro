@@ -136,7 +136,7 @@ export default function SalaryCalculator() {
           {formatRON(result.net * mult)}
         </p>
         <p className="text-blue-200 text-sm mt-2">
-          {netPercent}% din brut • Retineri: {formatRON((result.brut - result.net) * mult)}
+          {netPercent}% din brut • Rețineri: {formatRON((result.brut - result.net) * mult)}
         </p>
       </div>
 
@@ -171,7 +171,7 @@ export default function SalaryCalculator() {
           <div className="flex justify-between items-center">
             <div>
               <span className="text-sm font-medium text-gray-700">CASS </span>
-              <span className="text-xs text-gray-400">(sanatate, 10%)</span>
+              <span className="text-xs text-gray-400">(sănătate, 10%)</span>
             </div>
             <span className="text-sm font-semibold text-orange-500">
               -{formatRON(result.cass * mult)}
@@ -216,7 +216,7 @@ export default function SalaryCalculator() {
         <div className="flex justify-between items-center mb-3">
           <div>
             <span className="text-sm text-gray-600">CAM </span>
-            <span className="text-xs text-gray-400">(asigurare munca, 2.25%)</span>
+            <span className="text-xs text-gray-400">(asigurare muncă, 2.25%)</span>
           </div>
           <span className="text-sm font-medium text-red-500">+{formatRON(result.cam * mult)}</span>
         </div>
@@ -227,7 +227,7 @@ export default function SalaryCalculator() {
           </span>
         </div>
         <p className="text-xs text-gray-400 mt-3">
-          * Calculele sunt orientative pentru 2025. Deducerea personala nu este inclusa.
+          * Calculele sunt orientative pentru 2025. Deducerea personală nu este inclusă.
         </p>
       </div>
     </div>

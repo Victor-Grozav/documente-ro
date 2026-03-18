@@ -90,10 +90,10 @@ export default function ContractVanzareForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      {/* Vanzator */}
-      <Section title="Vanzator">
+      {/* Vânzător */}
+      <Section title="Vânzător">
         <Field
-          label="Nume si prenume"
+          label="Nume și prenume"
           name="vanzatorNume"
           value={formData.vanzatorNume}
           onChange={handleChange}
@@ -109,7 +109,7 @@ export default function ContractVanzareForm() {
           required
         />
         <Field
-          label="Serie si nr. CI (optional)"
+          label="Serie și nr. CI (opțional)"
           name="vanzatorCI"
           value={formData.vanzatorCI}
           onChange={handleChange}
@@ -117,7 +117,7 @@ export default function ContractVanzareForm() {
         />
         <div className="sm:col-span-2">
           <Field
-            label="Adresa domiciliu"
+            label="Adresă domiciliu"
             name="vanzatorAdresa"
             value={formData.vanzatorAdresa}
             onChange={handleChange}
@@ -127,10 +127,10 @@ export default function ContractVanzareForm() {
         </div>
       </Section>
 
-      {/* Cumparator */}
-      <Section title="Cumparator">
+      {/* Cumpărător */}
+      <Section title="Cumpărător">
         <Field
-          label="Nume si prenume"
+          label="Nume și prenume"
           name="cumparatorNume"
           value={formData.cumparatorNume}
           onChange={handleChange}
@@ -146,7 +146,7 @@ export default function ContractVanzareForm() {
           required
         />
         <Field
-          label="Serie si nr. CI (optional)"
+          label="Serie și nr. CI (opțional)"
           name="cumparatorCI"
           value={formData.cumparatorCI}
           onChange={handleChange}
@@ -154,31 +154,31 @@ export default function ContractVanzareForm() {
         />
         <div className="sm:col-span-2">
           <Field
-            label="Adresa domiciliu"
+            label="Adresă domiciliu"
             name="cumparatorAdresa"
             value={formData.cumparatorAdresa}
             onChange={handleChange}
-            placeholder="Str. Exemplu nr. 2, Bucuresti, Ilfov"
+            placeholder="Str. Exemplu nr. 2, București, Ilfov"
             required
           />
         </div>
       </Section>
 
-      {/* Bunul vandut */}
-      <Section title="Bunul Vandut">
+      {/* Bunul vândut */}
+      <Section title="Bunul Vândut">
         <div className="sm:col-span-2">
           <Field
             label="Descriere bun"
             name="bunDescriere"
             value={formData.bunDescriere}
             onChange={handleChange}
-            placeholder="ex: Autoturism marca Dacia Logan, an fabricatie 2018, culoare alba"
+            placeholder="ex: Autoturism marca Dacia Logan, an fabricație 2018, culoare albă"
             required
           />
         </div>
         <div className="sm:col-span-2">
           <Field
-            label="Serie / Numar identificare (optional)"
+            label="Serie / Număr identificare (opțional)"
             name="bunSerie"
             value={formData.bunSerie}
             onChange={handleChange}
@@ -187,10 +187,10 @@ export default function ContractVanzareForm() {
         </div>
       </Section>
 
-      {/* Pret si detalii */}
-      <Section title="Pret si Detalii Contract">
+      {/* Preț și detalii */}
+      <Section title="Preț și Detalii Contract">
         <Field
-          label="Pret"
+          label="Preț"
           name="pret"
           value={formData.pret}
           onChange={handleChange}
@@ -214,7 +214,7 @@ export default function ContractVanzareForm() {
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
-            Modalitate plata <span className="text-red-400">*</span>
+            Modalitate plată <span className="text-red-400">*</span>
           </label>
           <select
             value={formData.modalitataPlata}
@@ -223,11 +223,11 @@ export default function ContractVanzareForm() {
           >
             <option value="numerar">Numerar</option>
             <option value="transfer bancar">Transfer bancar</option>
-            <option value="alta modalitate">Alta modalitate</option>
+            <option value="alta modalitate">Altă modalitate</option>
           </select>
         </div>
         <Field
-          label="Locul predarii bunului"
+          label="Locul predării bunului"
           name="locPredare"
           value={formData.locPredare}
           onChange={handleChange}
@@ -243,7 +243,7 @@ export default function ContractVanzareForm() {
           required
         />
         <Field
-          label="Locul incheierii"
+          label="Locul încheierii"
           name="locul"
           value={formData.locul}
           onChange={handleChange}
@@ -262,12 +262,12 @@ export default function ContractVanzareForm() {
       <div className="bg-white rounded-2xl border border-gray-200 p-6">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <p className="font-semibold text-gray-900">Contract de Vanzare-Cumparare</p>
+            <p className="font-semibold text-gray-900">Contract de Vânzare-Cumpărare</p>
             <p className="text-sm text-gray-500">PDF profesional, gata de semnat</p>
           </div>
           <div className="text-right">
             <p className="text-2xl font-bold text-gray-900">10 lei</p>
-            <p className="text-xs text-gray-400">plata unica</p>
+            <p className="text-xs text-gray-400">plată unică</p>
           </div>
         </div>
         <button
@@ -275,10 +275,10 @@ export default function ContractVanzareForm() {
           disabled={loading}
           className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-semibold py-3 rounded-xl transition-colors text-base"
         >
-          {loading ? "Se proceseaza..." : "Continua spre plata →"}
+          {loading ? "Se procesează..." : "Continuă spre plată →"}
         </button>
         <p className="text-xs text-gray-400 text-center mt-3">
-          Plata securizata prin Stripe · PDF disponibil instant dupa plata
+          Plată securizată prin Stripe · PDF disponibil instant după plată
         </p>
       </div>
     </form>

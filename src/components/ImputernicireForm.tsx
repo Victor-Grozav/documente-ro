@@ -77,44 +77,44 @@ export default function ImputernicireForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       {/* Mandant */}
-      <Section title="Mandant (cel care imputerniceste)">
-        <Field label="Nume si prenume" name="mandantNume" value={formData.mandantNume} onChange={handleChange} placeholder="ex: Popescu Ion" required />
+      <Section title="Mandant (cel care împuternicește)">
+        <Field label="Nume și prenume" name="mandantNume" value={formData.mandantNume} onChange={handleChange} placeholder="ex: Popescu Ion" required />
         <Field label="CNP" name="mandantCNP" value={formData.mandantCNP} onChange={handleChange} placeholder="1234567890123" required />
-        <Field label="Serie si nr. CI (optional)" name="mandantCI" value={formData.mandantCI} onChange={handleChange} placeholder="ex: AB 123456" />
+        <Field label="Serie și nr. CI (opțional)" name="mandantCI" value={formData.mandantCI} onChange={handleChange} placeholder="ex: AB 123456" />
         <div className="sm:col-span-2">
-          <Field label="Adresa domiciliu" name="mandantAdresa" value={formData.mandantAdresa} onChange={handleChange} placeholder="Str. Exemplu nr. 1, Cluj-Napoca, Cluj" required />
+          <Field label="Adresă domiciliu" name="mandantAdresa" value={formData.mandantAdresa} onChange={handleChange} placeholder="Str. Exemplu nr. 1, Cluj-Napoca, Cluj" required />
         </div>
       </Section>
 
       {/* Mandatar */}
-      <Section title="Mandatar (imputernicitul)">
-        <Field label="Nume si prenume" name="mandatarNume" value={formData.mandatarNume} onChange={handleChange} placeholder="ex: Ionescu Maria" required />
+      <Section title="Mandatar (împuternicitul)">
+        <Field label="Nume și prenume" name="mandatarNume" value={formData.mandatarNume} onChange={handleChange} placeholder="ex: Ionescu Maria" required />
         <Field label="CNP" name="mandatarCNP" value={formData.mandatarCNP} onChange={handleChange} placeholder="2345678901234" required />
-        <Field label="Serie si nr. CI (optional)" name="mandatarCI" value={formData.mandatarCI} onChange={handleChange} placeholder="ex: CJ 654321" />
+        <Field label="Serie și nr. CI (opțional)" name="mandatarCI" value={formData.mandatarCI} onChange={handleChange} placeholder="ex: CJ 654321" />
         <div className="sm:col-span-2">
-          <Field label="Adresa domiciliu" name="mandatarAdresa" value={formData.mandatarAdresa} onChange={handleChange} placeholder="Str. Exemplu nr. 2, Bucuresti, Ilfov" required />
+          <Field label="Adresă domiciliu" name="mandatarAdresa" value={formData.mandatarAdresa} onChange={handleChange} placeholder="Str. Exemplu nr. 2, București, Ilfov" required />
         </div>
       </Section>
 
-      {/* Obiect si detalii */}
-      <Section title="Obiect si Detalii">
+      {/* Obiect și detalii */}
+      <Section title="Obiect și Detalii">
         <div className="sm:col-span-2">
           <label className="block text-sm font-medium text-gray-700 mb-1">
-            Obiectul imputernicirii <span className="text-red-400">*</span>
+            Obiectul împuternicirii <span className="text-red-400">*</span>
           </label>
           <textarea
             value={formData.obiect}
             onChange={(e) => handleChange("obiect", e.target.value)}
-            placeholder="ex: Sa ma reprezinte in fata ANAF pentru depunerea declaratiei de venit pe anul 2025, sa semneze orice documente necesare in acest scop."
+            placeholder="ex: Să mă reprezinte în fața ANAF pentru depunerea declarației de venit pe anul 2025, să semneze orice documente necesare în acest scop."
             required
             rows={4}
             className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 bg-white resize-none"
           />
         </div>
-        <Field label="Valabila pana la" name="dataExpirare" value={formData.dataExpirare} onChange={handleChange} placeholder="ex: 31.12.2026" required />
-        <Field label="Data imputernicirii" name="data" value={formData.data} onChange={handleChange} placeholder="16.03.2026" required />
+        <Field label="Valabilă până la" name="dataExpirare" value={formData.dataExpirare} onChange={handleChange} placeholder="ex: 31.12.2026" required />
+        <Field label="Data împuternicirii" name="data" value={formData.data} onChange={handleChange} placeholder="16.03.2026" required />
         <div className="sm:col-span-2">
-          <Field label="Locul incheierii" name="locul" value={formData.locul} onChange={handleChange} placeholder="ex: Cluj-Napoca" required />
+          <Field label="Locul încheierii" name="locul" value={formData.locul} onChange={handleChange} placeholder="ex: Cluj-Napoca" required />
         </div>
       </Section>
 
@@ -125,12 +125,12 @@ export default function ImputernicireForm() {
       <div className="bg-white rounded-2xl border border-gray-200 p-6">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <p className="font-semibold text-gray-900">Imputernicire / Procura</p>
+            <p className="font-semibold text-gray-900">Împuternicire / Procură</p>
             <p className="text-sm text-gray-500">PDF profesional, gata de semnat</p>
           </div>
           <div className="text-right">
             <p className="text-2xl font-bold text-gray-900">15 lei</p>
-            <p className="text-xs text-gray-400">plata unica</p>
+            <p className="text-xs text-gray-400">plată unică</p>
           </div>
         </div>
         <button
@@ -138,10 +138,10 @@ export default function ImputernicireForm() {
           disabled={loading}
           className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-semibold py-3 rounded-xl transition-colors text-base"
         >
-          {loading ? "Se proceseaza..." : "Continua spre plata →"}
+          {loading ? "Se procesează..." : "Continuă spre plată →"}
         </button>
         <p className="text-xs text-gray-400 text-center mt-3">
-          Plata securizata prin Stripe · PDF disponibil instant dupa plata
+          Plată securizată prin Stripe · PDF disponibil instant după plată
         </p>
       </div>
     </form>

@@ -2,15 +2,15 @@ import type { Metadata } from "next";
 import SalaryCalculator from "@/components/SalaryCalculator";
 
 export const metadata: Metadata = {
-  title: "Calculator Salariu Brut-Net Romania 2025 — Gratuit",
+  title: "Calculator Salariu Brut-Net România 2025 — Gratuit",
   description:
-    "Calculeaza instant salariul net din brut in Romania 2025. Include CAS 25%, CASS 10%, impozit venit 10% si costul total al angajatorului.",
+    "Calculează instant salariul net din brut în România 2025. Include CAS 25%, CASS 10%, impozit venit 10% și costul total al angajatorului.",
   keywords:
     "calculator salariu brut net romania 2025, convertor brut net, salariu net din brut, cas cass impozit",
   openGraph: {
-    title: "Calculator Salariu Brut-Net Romania 2025",
+    title: "Calculator Salariu Brut-Net România 2025",
     description:
-      "Calculeaza instant salariul net din brut. CAS, CASS, impozit venit — tot ce trebuie sa stii.",
+      "Calculează instant salariul net din brut. CAS, CASS, impozit venit — tot ce trebuie să știi.",
   },
 };
 
@@ -26,7 +26,7 @@ export default function ConvertorPage() {
           Calculator Salariu Brut → Net
         </h1>
         <p className="text-gray-500">
-          Romania 2025 · CAS 25% · CASS 10% · Impozit venit 10%
+          România 2025 · CAS 25% · CASS 10% · Impozit venit 10%
         </p>
       </div>
 
@@ -36,19 +36,19 @@ export default function ConvertorPage() {
       {/* SEO content */}
       <div className="max-w-2xl mx-auto mt-12 prose prose-gray">
         <h2 className="text-xl font-bold text-gray-800 mb-4">
-          Cum se calculeaza salariul net in Romania 2025?
+          Cum se calculează salariul net în România 2025?
         </h2>
         <div className="bg-white rounded-2xl border border-gray-200 p-6 space-y-3 text-sm text-gray-600">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
             <div className="bg-gray-50 rounded-lg p-3">
               <p className="font-semibold text-gray-800">1. CAS (Pensie)</p>
               <p>25% din salariul brut</p>
-              <p className="text-xs text-gray-400">Contributia la pilonul 1 de pensie</p>
+              <p className="text-xs text-gray-400">Contribuția la pilonul 1 de pensie</p>
             </div>
             <div className="bg-gray-50 rounded-lg p-3">
-              <p className="font-semibold text-gray-800">2. CASS (Sanatate)</p>
+              <p className="font-semibold text-gray-800">2. CASS (Sănătate)</p>
               <p>10% din salariul brut</p>
-              <p className="text-xs text-gray-400">Contributia la sanatate</p>
+              <p className="text-xs text-gray-400">Contribuția la sănătate</p>
             </div>
             <div className="bg-gray-50 rounded-lg p-3">
               <p className="font-semibold text-gray-800">3. Impozit venit</p>
@@ -58,11 +58,11 @@ export default function ConvertorPage() {
             <div className="bg-gray-50 rounded-lg p-3">
               <p className="font-semibold text-gray-800">4. CAM (Angajator)</p>
               <p>2.25% din brut</p>
-              <p className="text-xs text-gray-400">Asigurare accidente munca</p>
+              <p className="text-xs text-gray-400">Asigurare accidente muncă</p>
             </div>
           </div>
           <div className="pt-2 border-t border-gray-100">
-            <p className="font-semibold text-gray-800">Formula finala:</p>
+            <p className="font-semibold text-gray-800">Formulă finală:</p>
             <code className="text-blue-600 font-mono text-xs bg-blue-50 px-2 py-1 rounded">
               Net = Brut − CAS − CASS − Impozit venit
             </code>

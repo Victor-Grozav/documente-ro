@@ -74,20 +74,20 @@ export default function ContractInchiriere({ data }: Props) {
   })();
 
   return (
-    <Document title="Contract de Inchiriere" author="Documente.ro" creator="Documente.ro">
+    <Document title="Contract de Închiriere" author="Documente.ro" creator="Documente.ro">
       <Page size="A4" style={styles.page}>
-        <Text style={styles.title}>Contract de Inchiriere</Text>
+        <Text style={styles.title}>Contract de Închiriere</Text>
         <Text style={styles.subtitle}>
-          Incheiat astazi, {data.data}, in {data.locul}
+          Încheiat astăzi, {data.data}, în {data.locul}
         </Text>
 
-        {/* Parti */}
+        {/* Părți */}
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>I. Partile Contractante</Text>
+          <Text style={styles.sectionTitle}>I. Părțile Contractante</Text>
 
           <Text style={[styles.paragraph, { fontFamily: "Helvetica-Bold" }]}>Locatorul (proprietarul):</Text>
           <View style={styles.row}>
-            <Text style={styles.label}>Nume si prenume:</Text>
+            <Text style={styles.label}>Nume și prenume:</Text>
             <Text style={styles.value}>{data.locatorNume}</Text>
           </View>
           <View style={styles.row}>
@@ -96,7 +96,7 @@ export default function ContractInchiriere({ data }: Props) {
           </View>
           {data.locatorCI && (
             <View style={styles.row}>
-              <Text style={styles.label}>Serie si nr. CI:</Text>
+              <Text style={styles.label}>Serie și nr. CI:</Text>
               <Text style={styles.value}>{data.locatorCI}</Text>
             </View>
           )}
@@ -105,9 +105,9 @@ export default function ContractInchiriere({ data }: Props) {
             <Text style={styles.value}>{data.locatorAdresa}</Text>
           </View>
 
-          <Text style={[styles.paragraph, { fontFamily: "Helvetica-Bold" }]}>Locatarul (chiriasul):</Text>
+          <Text style={[styles.paragraph, { fontFamily: "Helvetica-Bold" }]}>Locatarul (chiriașul):</Text>
           <View style={styles.row}>
-            <Text style={styles.label}>Nume si prenume:</Text>
+            <Text style={styles.label}>Nume și prenume:</Text>
             <Text style={styles.value}>{data.locatarNume}</Text>
           </View>
           <View style={styles.row}>
@@ -116,7 +116,7 @@ export default function ContractInchiriere({ data }: Props) {
           </View>
           {data.locatarCI && (
             <View style={styles.row}>
-              <Text style={styles.label}>Serie si nr. CI:</Text>
+              <Text style={styles.label}>Serie și nr. CI:</Text>
               <Text style={styles.value}>{data.locatarCI}</Text>
             </View>
           )}
@@ -130,89 +130,89 @@ export default function ContractInchiriere({ data }: Props) {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>II. Obiectul Contractului</Text>
           <Text style={styles.paragraph}>
-            Locatorul da in locatiune Locatarului urmatoarea proprietate:
+            Locatorul dă în locațiune Locatarului următoarea proprietate:
           </Text>
           <View style={styles.row}>
             <Text style={styles.label}>Tip proprietate:</Text>
             <Text style={styles.value}>{data.proprietateTip}</Text>
           </View>
           <View style={styles.row}>
-            <Text style={styles.label}>Adresa:</Text>
+            <Text style={styles.label}>Adresă:</Text>
             <Text style={styles.value}>{data.proprietateAdresa}</Text>
           </View>
           {data.proprietateSuprafata && (
             <View style={styles.row}>
-              <Text style={styles.label}>Suprafata:</Text>
+              <Text style={styles.label}>Suprafață:</Text>
               <Text style={styles.value}>{data.proprietateSuprafata} mp</Text>
             </View>
           )}
           <Text style={[styles.paragraph, { marginTop: 8 }]}>
-            Locatorul declara ca este proprietarul de drept al imobilului, ca
-            acesta nu este grevat de sarcini si ca are dreptul deplin de a-l da
-            in locatiune.
+            Locatorul declară că este proprietarul de drept al imobilului, că
+            acesta nu este grevat de sarcini și că are dreptul deplin de a-l da
+            în locațiune.
           </Text>
         </View>
 
         {/* Durata */}
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>III. Durata Inchirierii</Text>
+          <Text style={styles.sectionTitle}>III. Durata Închirierii</Text>
           <Text style={styles.paragraph}>
-            Prezentul contract se incheie pe o durata de{" "}
+            Prezentul contract se încheie pe o durată de{" "}
             <Text style={{ fontFamily: "Helvetica-Bold" }}>{data.durataLuni} luni</Text>,
-            incepand cu{" "}
+            începând cu{" "}
             <Text style={{ fontFamily: "Helvetica-Bold" }}>{data.dataIncepere}</Text>{" "}
-            si pana la{" "}
+            și până la{" "}
             <Text style={{ fontFamily: "Helvetica-Bold" }}>{dataIncetare}</Text>.
           </Text>
         </View>
 
         {/* Chiria */}
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>IV. Chiria si Modalitatea de Plata</Text>
+          <Text style={styles.sectionTitle}>IV. Chiria și Modalitatea de Plată</Text>
           <Text style={styles.paragraph}>
-            Chiria lunara convenita este de{" "}
+            Chiria lunară convenită este de{" "}
             <Text style={{ fontFamily: "Helvetica-Bold" }}>
               {data.chiria} {data.moneda}
             </Text>
-            , achitata prin{" "}
-            <Text style={{ fontFamily: "Helvetica-Bold" }}>{data.modalitataPlata}</Text>,
-            pana la data de 5 a fiecarei luni pentru luna in curs.
+            , achitată prin{" "}
+            <Text style={{ fontFamily: "Helvetica-Bold" }}>{data.modalitataPlata}</Text>
+            , până la data de 5 a fiecărei luni pentru luna în curs.
           </Text>
           {data.garantie && (
             <Text style={styles.paragraph}>
-              La semnarea prezentului contract, Locatarul achita o garantie
-              echivalenta cu{" "}
+              La semnarea prezentului contract, Locatarul achită o garanție
+              echivalentă cu{" "}
               <Text style={{ fontFamily: "Helvetica-Bold" }}>
-                {data.garantie} chirie lunara
+                {data.garantie} chirie lunară
               </Text>
-              , suma ce va fi restituita la incetarea contractului, daca nu
-              exista prejudicii sau restante.
+              , sumă ce va fi restituită la încetarea contractului, dacă nu
+              există prejudicii sau restanțe.
             </Text>
           )}
         </View>
 
-        {/* Obligatii locator */}
+        {/* Obligații locator */}
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>V. Obligatiile Locatorului</Text>
+          <Text style={styles.sectionTitle}>V. Obligațiile Locatorului</Text>
           <Text style={styles.paragraph}>
-            Locatorul se obliga: sa predea proprietatea in stare corespunzatoare
-            folosintei convenite; sa asigure folosinta linistita si utila a
-            proprietatii pe toata durata contractului; sa efectueze reparatiile
-            majore necesare; sa nu impiedice sau sa tulbure folosinta normala a
-            proprietatii.
+            Locatorul se obligă: să predea proprietatea în stare corespunzătoare
+            folosinței convenite; să asigure folosința liniștită și utilă a
+            proprietății pe toată durata contractului; să efectueze reparațiile
+            majore necesare; să nu împiedice sau să tulbure folosința normală a
+            proprietății.
           </Text>
         </View>
 
-        {/* Obligatii locatar */}
+        {/* Obligații locatar */}
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>VI. Obligatiile Locatarului</Text>
+          <Text style={styles.sectionTitle}>VI. Obligațiile Locatarului</Text>
           <Text style={styles.paragraph}>
-            Locatarul se obliga: sa plateasca chiria la termenele stabilite; sa
-            foloseasca proprietatea cu diligenta unui bun proprietar, conform
-            destinatiei sale; sa nu subinchirieze fara acordul scris al
-            Locatorului; sa restituie proprietatea la incetarea contractului in
-            starea in care a primit-o, cu exceptia uzurii normale; sa suporte
-            costurile utilitatilor pe durata contractului.
+            Locatarul se obligă: să plătească chiria la termenele stabilite; să
+            folosească proprietatea cu diligența unui bun proprietar, conform
+            destinației sale; să nu subînchirieze fără acordul scris al
+            Locatorului; să restituie proprietatea la încetarea contractului în
+            starea în care a primit-o, cu excepția uzurii normale; să suporte
+            costurile utilităților pe durata contractului.
           </Text>
         </View>
 
@@ -220,27 +220,27 @@ export default function ContractInchiriere({ data }: Props) {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>VII. Clauze Finale</Text>
           <Text style={styles.paragraph}>
-            Prezentul contract este guvernat de dispozitiile art. 1777-1850 din
-            Codul Civil roman. Este incheiat sub semnatura privata, in doua
-            exemplare originale. Orice modificare se face prin act aditional
-            semnat de ambele parti. Litigiile vor fi solutionate de instantele
-            competente din Romania.
+            Prezentul contract este guvernat de dispozițiile art. 1777-1850 din
+            Codul Civil român. Este încheiat sub semnătură privată, în două
+            exemplare originale. Orice modificare se face prin act adițional
+            semnat de ambele părți. Litigiile vor fi soluționate de instanțele
+            competente din România.
           </Text>
         </View>
 
-        {/* Semnaturi */}
+        {/* Semnături */}
         <View style={styles.signatureSection}>
           <View style={styles.signatureBox}>
             <Text style={styles.signatureLabel}>Locator (Proprietar)</Text>
             <Text style={styles.signatureName}>{data.locatorNume}</Text>
             <View style={styles.signatureLine} />
-            <Text style={styles.signatureHint}>Semnatura</Text>
+            <Text style={styles.signatureHint}>Semnătură</Text>
           </View>
           <View style={styles.signatureBox}>
-            <Text style={styles.signatureLabel}>Locatar (Chirias)</Text>
+            <Text style={styles.signatureLabel}>Locatar (Chiriaș)</Text>
             <Text style={styles.signatureName}>{data.locatarNume}</Text>
             <View style={styles.signatureLine} />
-            <Text style={styles.signatureHint}>Semnatura</Text>
+            <Text style={styles.signatureHint}>Semnătură</Text>
           </View>
         </View>
 

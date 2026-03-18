@@ -72,17 +72,17 @@ interface Props {
 
 export default function AcordConfidentialitate({ data }: Props) {
   return (
-    <Document title="Acord de Confidentialitate (NDA)" author="Documente.ro" creator="Documente.ro">
+    <Document title="Acord de Confidențialitate (NDA)" author="Documente.ro" creator="Documente.ro">
       <Page size="A4" style={styles.page}>
-        <Text style={styles.title}>Acord de Confidentialitate</Text>
+        <Text style={styles.title}>Acord de Confidențialitate</Text>
         <Text style={styles.titleSub}>(Non-Disclosure Agreement)</Text>
         <Text style={styles.subtitle}>
-          Incheiat astazi, {data.data}, in {data.locul}
+          Încheiat astăzi, {data.data}, în {data.locul}
         </Text>
 
-        {/* Parti */}
+        {/* Părți */}
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>I. Partile Contractante</Text>
+          <Text style={styles.sectionTitle}>I. Părțile Contractante</Text>
 
           <Text style={[styles.paragraph, { fontFamily: "Helvetica-Bold" }]}>Partea 1:</Text>
           <View style={styles.row}>
@@ -94,7 +94,7 @@ export default function AcordConfidentialitate({ data }: Props) {
             <Text style={styles.value}>{data.parte1Calitate}</Text>
           </View>
           <View style={[styles.row, { marginBottom: 12 }]}>
-            <Text style={styles.label}>Adresa / Sediu:</Text>
+            <Text style={styles.label}>Adresă / Sediu:</Text>
             <Text style={styles.value}>{data.parte1Adresa}</Text>
           </View>
 
@@ -108,7 +108,7 @@ export default function AcordConfidentialitate({ data }: Props) {
             <Text style={styles.value}>{data.parte2Calitate}</Text>
           </View>
           <View style={styles.row}>
-            <Text style={styles.label}>Adresa / Sediu:</Text>
+            <Text style={styles.label}>Adresă / Sediu:</Text>
             <Text style={styles.value}>{data.parte2Adresa}</Text>
           </View>
         </View>
@@ -117,38 +117,38 @@ export default function AcordConfidentialitate({ data }: Props) {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>II. Obiectul Acordului</Text>
           <Text style={styles.paragraph}>
-            Partile convin ca urmatoarele categorii de informatii sa fie tratate
-            ca strict confidentiale:
+            Părțile convin ca următoarele categorii de informații să fie tratate
+            ca strict confidențiale:
           </Text>
           <Text style={styles.paragraph}>{data.obiectConfidentialitate}</Text>
         </View>
 
-        {/* Obligatia de confidentialitate */}
+        {/* Obligația de confidențialitate */}
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>III. Obligatia de Confidentialitate</Text>
+          <Text style={styles.sectionTitle}>III. Obligația de Confidențialitate</Text>
           <Text style={styles.paragraph}>
-            Fiecare parte se obliga sa nu divulge, sa nu transmita si sa nu
-            utilizeze informatiile confidentiale ale celeilalte parti in niciun
-            alt scop decat cel agreat in mod expres, fara acordul prealabil
-            scris al partii divulgatoare.
+            Fiecare parte se obligă să nu divulge, să nu transmită și să nu
+            utilizeze informațiile confidențiale ale celeilalte părți în niciun
+            alt scop decât cel agreat în mod expres, fără acordul prealabil
+            scris al părții divulgatoare.
           </Text>
           <Text style={styles.paragraph}>
-            Obligatia de confidentialitate se aplica tuturor angajatilor,
-            colaboratorilor si reprezentantilor fiecarei parti care au acces
-            la informatiile confidentiale.
+            Obligația de confidențialitate se aplică tuturor angajaților,
+            colaboratorilor și reprezentanților fiecărei părți care au acces
+            la informațiile confidențiale.
           </Text>
         </View>
 
-        {/* Exceptii */}
+        {/* Excepții */}
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>IV. Exceptii</Text>
+          <Text style={styles.sectionTitle}>IV. Excepții</Text>
           <Text style={styles.paragraph}>
-            Obligatia de confidentialitate nu se aplica informatiilor care: (a)
-            sunt sau devin publice fara culpa partii receptoare; (b) erau deja
-            cunoscute partii receptoare la data divulgarii; (c) sunt furnizate
-            de o terta parte fara restrictii de confidentialitate; (d) trebuie
-            divulgate prin lege sau ordin judecatoresc, cu notificarea prealabila
-            a partii divulgatoare.
+            Obligația de confidențialitate nu se aplică informațiilor care: (a)
+            sunt sau devin publice fără culpa părții receptoare; (b) erau deja
+            cunoscute părții receptoare la data divulgării; (c) sunt furnizate
+            de o terță parte fără restricții de confidențialitate; (d) trebuie
+            divulgate prin lege sau ordin judecătoresc, cu notificarea prealabilă
+            a părții divulgatoare.
           </Text>
         </View>
 
@@ -156,10 +156,10 @@ export default function AcordConfidentialitate({ data }: Props) {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>V. Durata</Text>
           <Text style={styles.paragraph}>
-            Prezentul acord este valabil pentru o perioada de{" "}
+            Prezentul acord este valabil pentru o perioadă de{" "}
             <Text style={{ fontFamily: "Helvetica-Bold" }}>{data.durataAni} ani</Text>{" "}
-            de la data semnarii. Obligatiile de confidentialitate supravietuiesc
-            incetarii acordului pe aceeasi perioada.
+            de la data semnării. Obligațiile de confidențialitate supraviețuiesc
+            încetării acordului pe aceeași perioadă.
           </Text>
         </View>
 
@@ -167,30 +167,30 @@ export default function AcordConfidentialitate({ data }: Props) {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>VI. Clauze Finale</Text>
           <Text style={styles.paragraph}>
-            Incalcarea prezentului acord da dreptul partii lezate la despagubiri
-            pentru prejudiciul cauzat, inclusiv daune indirecte si pierderi de
-            profit. Prezentul acord este guvernat de legislatia romana. Litigiile
-            vor fi solutionate de instantele competente din Romania.
+            Încălcarea prezentului acord dă dreptul părții lezate la despăgubiri
+            pentru prejudiciul cauzat, inclusiv daune indirecte și pierderi de
+            profit. Prezentul acord este guvernat de legislația română. Litigiile
+            vor fi soluționate de instanțele competente din România.
           </Text>
           <Text style={styles.paragraph}>
-            Prezentul act este incheiat sub semnatura privata, in doua exemplare
-            originale, cate unul pentru fiecare parte.
+            Prezentul act este încheiat sub semnătură privată, în două exemplare
+            originale, câte unul pentru fiecare parte.
           </Text>
         </View>
 
-        {/* Semnaturi */}
+        {/* Semnături */}
         <View style={styles.signatureSection}>
           <View style={styles.signatureBox}>
             <Text style={styles.signatureLabel}>Partea 1</Text>
             <Text style={styles.signatureName}>{data.parte1Nume}</Text>
             <View style={styles.signatureLine} />
-            <Text style={styles.signatureHint}>Semnatura / Stampila</Text>
+            <Text style={styles.signatureHint}>Semnătură / Ștampilă</Text>
           </View>
           <View style={styles.signatureBox}>
             <Text style={styles.signatureLabel}>Partea 2</Text>
             <Text style={styles.signatureName}>{data.parte2Nume}</Text>
             <View style={styles.signatureLine} />
-            <Text style={styles.signatureHint}>Semnatura / Stampila</Text>
+            <Text style={styles.signatureHint}>Semnătură / Ștampilă</Text>
           </View>
         </View>
 

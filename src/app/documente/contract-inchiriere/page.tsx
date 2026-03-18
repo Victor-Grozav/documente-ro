@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import ContractInchiriereForm from "@/components/ContractInchiriereForm";
+import DocumentDisclaimer from "@/components/DocumentDisclaimer";
 
 export const metadata: Metadata = {
-  title: "Contract de Inchiriere Romania 2025 — PDF instant",
+  title: "Contract de Închiriere România 2025 — PDF instant",
   description:
-    "Genereaza un contract de inchiriere conform legislatiei romane. Completeaza formularul, plateste 25 lei si descarca PDF-ul instant.",
+    "Generează un contract de închiriere conform legislației române. Completează formularul, plătești 25 lei și descarcă PDF-ul instant.",
   keywords:
     "contract inchiriere romania, model contract chirie, generator contract inchiriere pdf",
 };
@@ -18,11 +19,18 @@ export default function ContractInchirierePage() {
             ← Documente
           </a>
           <h1 className="text-3xl font-bold text-gray-900 mt-4 mb-2">
-            Contract de Inchiriere
+            Contract de Închiriere
           </h1>
           <p className="text-gray-500">
-            Completeaza datele de mai jos · PDF gata de semnat · 25 lei
+            Completează datele de mai jos · PDF gata de semnat · 25 lei
           </p>
+        </div>
+
+        <div className="mb-6">
+          <DocumentDisclaimer
+            valid="Contractul de închiriere este valabil sub semnătură privată conform art. 1777-1850 Cod Civil, indiferent de durată sau valoarea chiriei. Nu necesită autentificare notarială."
+            atentie="Înregistrarea la ANAF este obligatorie dacă realizezi venituri din chirii. Poți înregistra contractul online pe portalul ANAF în termen de 30 de zile de la semnare."
+          />
         </div>
 
         <ContractInchiriereForm />
