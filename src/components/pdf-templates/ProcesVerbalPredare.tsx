@@ -1,5 +1,5 @@
 import { Document, Page, Text, View, StyleSheet } from "@react-pdf/renderer";
-import "@/lib/pdfFonts";
+import { fixData } from "@/lib/pdfFonts";
 import { ProcesVerbalData } from "@/lib/types";
 
 const styles = StyleSheet.create({
@@ -102,7 +102,8 @@ interface Props {
 
 const EMPTY_ROWS = 5;
 
-export default function ProcesVerbalPredare({ data }: Props) {
+export default function ProcesVerbalPredare({ data: rawData }: Props) {
+  const data = fixData(rawData);
   return (
     <Document title="Proces Verbal de Predare-Primire" author="FaraNotar.ro" creator="FaraNotar.ro">
       <Page size="A4" style={styles.page}>
@@ -194,7 +195,14 @@ export default function ProcesVerbalPredare({ data }: Props) {
           </View>
         </View>
 
-        {/* VI. Semnături */}
+        {/* VI. Mențiune exemplare */}
+        <View style={styles.section}>
+          <Text style={styles.paragraph}>
+            Prezentul proces verbal s-a încheiat în două exemplare originale, câte unul pentru fiecare parte.
+          </Text>
+        </View>
+
+        {/* VII. Semnături */}
         <View style={styles.signatureSection}>
           <View style={styles.signatureBox}>
             <Text style={styles.signatureLabel}>Locator</Text>

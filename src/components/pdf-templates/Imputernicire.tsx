@@ -1,6 +1,8 @@
 import { Document, Page, Text, View, StyleSheet } from "@react-pdf/renderer";
-import "@/lib/pdfFonts";
+import { fixData, fixLigatures } from "@/lib/pdfFonts";
 import { ImputernicireData } from "@/lib/types";
+
+const f = fixLigatures;
 
 const styles = StyleSheet.create({
   page: {
@@ -68,7 +70,8 @@ interface Props {
   data: ImputernicireData;
 }
 
-export default function Imputernicire({ data }: Props) {
+export default function Imputernicire({ data: rawData }: Props) {
+  const data = fixData(rawData);
   return (
     <Document title="Împuternicire" author="FaraNotar.ro" creator="FaraNotar.ro">
       <Page size="A4" style={styles.page}>
@@ -168,10 +171,7 @@ export default function Imputernicire({ data }: Props) {
             art. 2009-2071 din Codul Civil român.
           </Text>
           <Text style={styles.paragraph}>
-            Prezentul act este încheiat sub semnătură privată, în două exemplare
-            originale, câte unul pentru fiecare parte. Mandantul își rezervă
-            dreptul de a revoca prezenta împuternicire oricând, prin notificare
-            scrisă către Mandatar.
+            {f("Prezentul act este încheiat sub semnătură privată, în două exemplare originale, câte unul pentru fiecare parte. Mandantul își rezervă dreptul de a revoca prezenta împuternicire oricând, prin notificare scrisă către Mandatar.")}
           </Text>
         </View>
 

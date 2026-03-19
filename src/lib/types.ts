@@ -68,6 +68,8 @@ export interface ContractVanzareData {
   bunDescriere: string;
   bunSerie: string;
   // Câmpuri specifice vehicul
+  vehiculNrInmatriculare: string;
+  vehiculSerieCIV: string;
   vehiculKm: string;
   vehiculItpPanaLa: string;
   vehiculDocumente: string; // ex: "Certificat înmatriculare, CIV, Chei (2 seturi)"

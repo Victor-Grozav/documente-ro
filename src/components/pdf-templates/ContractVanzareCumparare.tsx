@@ -5,8 +5,10 @@ import {
   View,
   StyleSheet,
 } from "@react-pdf/renderer";
-import "@/lib/pdfFonts";
+import { fixData, fixLigatures } from "@/lib/pdfFonts";
 import { ContractVanzareData } from "@/lib/types";
+
+const f = fixLigatures;
 
 const TIPURI_BUN: Record<string, string> = {
   "vehicul": "Autoturism / motocicletă / vehicul",
@@ -168,7 +170,8 @@ interface Props {
   data: ContractVanzareData;
 }
 
-export default function ContractVanzareCumparare({ data }: Props) {
+export default function ContractVanzareCumparare({ data: rawData }: Props) {
+  const data = fixData(rawData);
   const pretNumar = parseFloat(data.pret) || 0;
   const pretLitere = numarInLitere(Math.floor(pretNumar));
 
@@ -252,8 +255,20 @@ export default function ContractVanzareCumparare({ data }: Props) {
           )}
           {data.bunSerie && (
             <View style={styles.row}>
-              <Text style={styles.label}>Serie / Nr.:</Text>
+              <Text style={styles.label}>Serie / Nr. șasiu:</Text>
               <Text style={styles.value}>{data.bunSerie}</Text>
+            </View>
+          )}
+          {data.vehiculNrInmatriculare && (
+            <View style={styles.row}>
+              <Text style={styles.label}>Nr. înmatriculare:</Text>
+              <Text style={styles.value}>{data.vehiculNrInmatriculare}</Text>
+            </View>
+          )}
+          {data.vehiculSerieCIV && (
+            <View style={styles.row}>
+              <Text style={styles.label}>Serie CIV:</Text>
+              <Text style={styles.value}>{data.vehiculSerieCIV}</Text>
             </View>
           )}
         </View>
@@ -343,10 +358,7 @@ export default function ContractVanzareCumparare({ data }: Props) {
             câte unul pentru fiecare parte.
           </Text>
           <Text style={styles.paragraph}>
-            Orice modificare a prezentului contract se va face numai prin acordul
-            scris al ambelor părți. Litigiile izvorând din prezentul contract vor
-            fi soluționate pe cale amiabilă, iar în caz de neînțelegere, de către
-            instanțele judecătorești competente din România.
+            {f("Orice modificare a prezentului contract se va face numai prin acordul scris al ambelor părți. Litigiile izvorând din prezentul contract vor fi soluționate pe cale amiabilă, iar în caz de neînțelegere, de către instanțele judecătorești competente din România.")}
           </Text>
         </View>
 

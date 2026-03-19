@@ -10,6 +10,23 @@ Font.register({
   ],
 });
 
-// Prevents fi/fl/ffi ligature substitution by treating each character as a
-// separate shaping unit — the font shaping engine never sees adjacent "fi"
-Font.registerHyphenationCallback((word) => [...word]);
+/**
+ * Inserts Zero-Width Non-Joiner (U+200C) between 'f' and 'i'/'l' to prevent
+ * OpenType GSUB ligature substitution in fontkit (used by @react-pdf/renderer).
+ * The GSUB pipeline runs before line-breaking, so Font.registerHyphenationCallback
+ * cannot prevent it — ZWNJ at the character level is the correct fix.
+ */
+export function fixLigatures(text: string): string {
+  if (!text) return text;
+  return text.replace(/([fF])([ilL])/g, "$1\u200C$2");
+}
+
+/**
+ * Applies fixLigatures to all string values in a data object.
+ * Use this at the top of every PDF template component.
+ */
+export function fixData<T extends Record<string, unknown>>(obj: T): T {
+  return Object.fromEntries(
+    Object.entries(obj).map(([k, v]) => [k, typeof v === "string" ? fixLigatures(v) : v])
+  ) as T;
+}

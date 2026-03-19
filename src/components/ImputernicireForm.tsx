@@ -19,7 +19,7 @@ const testData: ImputernicireData = {
   mandatarNume: "Ionescu Maria", mandatarCNP: "2920520400005", mandatarCI: "CJ 654321",
   mandatarAdresa: "Str. Victoriei nr. 5, București, Sector 1",
   mandatarContact: "0722 123 456 / ionescu.maria@email.ro",
-  obiect: "Să mă reprezinte în fața ANAF pentru depunerea declarației de venit pe anul 2025 și semnarea oricăror documente necesare în acest scop.",
+  obiect: "Să-l reprezinte pe Mandant în fața ANAF pentru depunerea declarației de venit pe anul 2025 și semnarea oricăror documente necesare în numele Mandantului în acest scop.",
   poateDelegaTert: false,
   dataExpirare: "31.12.2026", data: today, locul: "Cluj-Napoca",
 };

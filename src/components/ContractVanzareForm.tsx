@@ -19,6 +19,7 @@ const defaultData: ContractVanzareData = {
   vanzatorNume: "", vanzatorCNP: "", vanzatorCI: "", vanzatorAdresa: "",
   cumparatorNume: "", cumparatorCNP: "", cumparatorCI: "", cumparatorAdresa: "",
   tipBun: "vehicul", bunDescriere: "", bunSerie: "",
+  vehiculNrInmatriculare: "", vehiculSerieCIV: "",
   vehiculKm: "", vehiculItpPanaLa: "", vehiculDocumente: "",
   pret: "", moneda: "RON", modalitataPlata: "numerar",
   locPredare: "", data: today, locul: "",
@@ -31,7 +32,9 @@ const testData: ContractVanzareData = {
   cumparatorAdresa: "Str. Victoriei nr. 5, București, Sector 1",
   tipBun: "vehicul",
   bunDescriere: "Dacia Logan, an fabricație 2018, culoare albă",
-  bunSerie: "VIN: ROJFA1GE7J0123456",
+  bunSerie: "ROJFA1GE7J0123456",
+  vehiculNrInmatriculare: "CJ 01 ABC",
+  vehiculSerieCIV: "S1234567890",
   vehiculKm: "98500",
   vehiculItpPanaLa: "15.09.2026",
   vehiculDocumente: "Certificat de înmatriculare, Carte identitate vehicul (CIV), Chei (2 seturi)",
@@ -174,6 +177,8 @@ export default function ContractVanzareForm() {
         {/* Câmpuri specifice vehicul */}
         {isVehicul && (
           <>
+            <Field label="Nr. înmatriculare" name="vehiculNrInmatriculare" value={formData.vehiculNrInmatriculare} onChange={handleChange} placeholder="ex: CJ 01 ABC" />
+            <Field label="Serie CIV" name="vehiculSerieCIV" value={formData.vehiculSerieCIV} onChange={handleChange} placeholder="ex: S1234567890" />
             <Field label="Kilometraj la bord" name="vehiculKm" value={formData.vehiculKm} onChange={handleChange} placeholder="ex: 98500" type="number" />
             <Field label="ITP valabil până la" name="vehiculItpPanaLa" value={formData.vehiculItpPanaLa} onChange={handleChange} placeholder="ex: 15.09.2026" />
             <div className="sm:col-span-2">

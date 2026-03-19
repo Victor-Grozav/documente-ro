@@ -1,6 +1,8 @@
 import { Document, Page, Text, View, StyleSheet } from "@react-pdf/renderer";
-import "@/lib/pdfFonts";
+import { fixData, fixLigatures } from "@/lib/pdfFonts";
 import { AcordConfidentialitateData } from "@/lib/types";
+
+const f = fixLigatures;
 
 const styles = StyleSheet.create({
   page: {
@@ -74,7 +76,8 @@ interface Props {
   data: AcordConfidentialitateData;
 }
 
-export default function AcordConfidentialitate({ data }: Props) {
+export default function AcordConfidentialitate({ data: rawData }: Props) {
+  const data = fixData(rawData);
   return (
     <Document title="Acord de Confidențialitate (NDA)" author="FaraNotar.ro" creator="FaraNotar.ro">
       <Page size="A4" style={styles.page}>
@@ -121,8 +124,7 @@ export default function AcordConfidentialitate({ data }: Props) {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>II. Obiectul Acordului</Text>
           <Text style={styles.paragraph}>
-            Părțile convin ca următoarele categorii de informații să fie tratate
-            ca strict confidențiale:
+            {f("Părțile convin ca următoarele categorii de informații să fie tratate ca strict confidențiale:")}
           </Text>
           <Text style={styles.paragraph}>{data.obiectConfidentialitate}</Text>
         </View>
@@ -148,15 +150,10 @@ export default function AcordConfidentialitate({ data }: Props) {
           ) : (
             <>
               <Text style={styles.paragraph}>
-                Fiecare parte se obligă să nu divulge, să nu transmită și să nu
-                utilizeze informațiile confidențiale ale celeilalte părți în
-                niciun alt scop decât cel agreat în mod expres, fără acordul
-                prealabil scris al părții divulgatoare.
+                {f("Fiecare parte se obligă să nu divulge, să nu transmită și să nu utilizeze informațiile confidențiale ale celeilalte părți în niciun alt scop decât cel agreat în mod expres, fără acordul prealabil scris al părții divulgatoare.")}
               </Text>
               <Text style={styles.paragraph}>
-                Obligația de confidențialitate se aplică tuturor angajaților,
-                colaboratorilor și reprezentanților fiecărei părți care au acces
-                la informațiile confidențiale.
+                {f("Obligația de confidențialitate se aplică tuturor angajaților, colaboratorilor și reprezentanților fiecărei părți care au acces la informațiile confidențiale.")}
               </Text>
             </>
           )}
@@ -184,21 +181,22 @@ export default function AcordConfidentialitate({ data }: Props) {
             de la data semnării. Obligațiile de confidențialitate supraviețuiesc
             încetării acordului pe aceeași perioadă.
           </Text>
-          <Text style={styles.paragraph}>
-            La încetarea prezentului acord, fiecare parte se obligă să returneze
-            sau să distrugă, la cerere, toate documentele și suporturile
-            conținând informații confidențiale ale celeilalte părți.
-          </Text>
+          {data.tipNDA === "unilateral" ? (
+            <Text style={styles.paragraph}>
+              {f("La încetarea prezentului acord, Partea 2 se obligă să returneze sau să distrugă, la cerere, toate documentele și suporturile conținând informații confidențiale ale Părții 1.")}
+            </Text>
+          ) : (
+            <Text style={styles.paragraph}>
+              {f("La încetarea prezentului acord, fiecare parte se obligă să returneze sau să distrugă, la cerere, toate documentele și suporturile conținând informații confidențiale ale celeilalte părți.")}
+            </Text>
+          )}
         </View>
 
         {/* Clauze finale */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>VI. Clauze Finale</Text>
           <Text style={styles.paragraph}>
-            Încălcarea prezentului acord dă dreptul părții lezate la despăgubiri
-            pentru prejudiciul cauzat, inclusiv daune indirecte și pierderi de
-            profit. Prezentul acord este guvernat de legislația română. Litigiile
-            vor fi soluționate de instanțele competente din România.
+            {f("Încălcarea prezentului acord dă dreptul părții lezate la despăgubiri pentru prejudiciul cauzat, inclusiv daune indirecte și pierderi de profit. Prezentul acord este guvernat de legislația română. Litigiile vor fi soluționate de instanțele competente din România.")}
           </Text>
           {data.penalitate && (
             <Text style={styles.paragraph}>
@@ -209,8 +207,7 @@ export default function AcordConfidentialitate({ data }: Props) {
             </Text>
           )}
           <Text style={styles.paragraph}>
-            Prezentul act este încheiat sub semnătură privată, în două exemplare
-            originale, câte unul pentru fiecare parte.
+            {f("Prezentul act este încheiat sub semnătură privată, în două exemplare originale, câte unul pentru fiecare parte.")}
           </Text>
         </View>
 

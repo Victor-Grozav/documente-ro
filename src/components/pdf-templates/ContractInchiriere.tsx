@@ -1,6 +1,8 @@
 import { Document, Page, Text, View, StyleSheet } from "@react-pdf/renderer";
-import "@/lib/pdfFonts";
+import { fixData, fixLigatures } from "@/lib/pdfFonts";
 import { ContractInchiriereData } from "@/lib/types";
+
+const f = fixLigatures;
 
 const styles = StyleSheet.create({
   page: {
@@ -68,7 +70,8 @@ interface Props {
   data: ContractInchiriereData;
 }
 
-export default function ContractInchiriere({ data }: Props) {
+export default function ContractInchiriere({ data: rawData }: Props) {
+  const data = fixData(rawData);
   const dataIncetare = (() => {
     const luni = parseInt(data.durataLuni) || 0;
     const [zi, luna, an] = data.dataIncepere.split(".").map(Number);
@@ -180,7 +183,7 @@ export default function ContractInchiriere({ data }: Props) {
             </Text>
             , achitată prin{" "}
             <Text style={styles.bold}>{data.modalitataPlata}</Text>
-            , până la data de 5 a fiecărei luni pentru luna în curs.
+            {f(", până la data de 5 a fiecărei luni pentru luna în curs.")}
           </Text>
           {data.garantie && (
             <Text style={styles.paragraph}>
@@ -212,11 +215,7 @@ export default function ContractInchiriere({ data }: Props) {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>V. Obligațiile Locatorului</Text>
           <Text style={styles.paragraph}>
-            Locatorul se obligă: să predea proprietatea în stare corespunzătoare
-            folosinței convenite; să asigure folosința liniștită și utilă a
-            proprietății pe toată durata contractului; să efectueze reparațiile
-            majore necesare; să nu împiedice sau să tulbure folosința normală a
-            proprietății.
+            {f("Locatorul se obligă: să predea proprietatea în stare corespunzătoare folosinței convenite; să asigure folosința liniștită și utilă a proprietății pe toată durata contractului; să efectueze reparațiile capitale (structurale și majore) necesare, conform art. 1788 Cod Civil; să nu împiedice sau să tulbure folosința normală a proprietății.")}
           </Text>
         </View>
 
@@ -224,12 +223,7 @@ export default function ContractInchiriere({ data }: Props) {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>VI. Obligațiile Locatarului</Text>
           <Text style={styles.paragraph}>
-            Locatarul se obligă: să plătească chiria la termenele stabilite; să
-            folosească proprietatea cu diligența unui bun proprietar, conform
-            destinației sale; să nu subînchirieze fără acordul scris al
-            Locatorului; să restituie proprietatea la încetarea contractului în
-            starea în care a primit-o, cu excepția uzurii normale; să suporte
-            costurile utilităților pe durata contractului.
+            {f("Locatarul se obligă: să plătească chiria la termenele stabilite; să folosească proprietatea cu diligența unui bun proprietar, conform destinației sale; să efectueze reparațiile curente (de întreținere zilnică) pe cheltuiala sa; să nu subînchirieze fără acordul scris al Locatorului; să restituie proprietatea la încetarea contractului în starea în care a primit-o, cu excepția uzurii normale; să suporte costurile utilităților pe durata contractului.")}
           </Text>
         </View>
 
@@ -237,11 +231,10 @@ export default function ContractInchiriere({ data }: Props) {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>VII. Clauze Finale</Text>
           <Text style={styles.paragraph}>
-            Prezentul contract este guvernat de dispozițiile art. 1777-1850 din
-            Codul Civil român. Este încheiat sub semnătură privată, în două
-            exemplare originale. Orice modificare se face prin act adițional
-            semnat de ambele părți. Litigiile vor fi soluționate de instanțele
-            competente din România.
+            {f("Locatorul are obligația legală de a înregistra prezentul contract la organul fiscal competent (ANAF) în termen de 30 de zile de la data semnării și de a declara veniturile din chirii, conform art. 120 din Codul Fiscal.")}
+          </Text>
+          <Text style={styles.paragraph}>
+            {f("Prezentul contract este guvernat de dispozițiile art. 1777-1850 din Codul Civil român. Este încheiat sub semnătură privată, în două exemplare originale, câte unul pentru fiecare parte. Orice modificare se face prin act adițional semnat de ambele părți. Litigiile vor fi soluționate de instanțele competente din România.")}
           </Text>
         </View>
 
