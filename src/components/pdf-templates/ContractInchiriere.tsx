@@ -230,7 +230,7 @@ export default function ContractInchiriere({ data: rawData }: Props) {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>VI. Obligațiile Locatarului</Text>
           <Text style={styles.paragraph}>
-            {f("Locatarul se obligă: să plătească chiria la termenele stabilite; să folosească proprietatea cu diligența unui bun proprietar, conform destinației sale; să efectueze reparațiile curente (de întreținere curentă) pe cheltuiala sa; să nu subînchirieze fără acordul scris al Locatorului; să restituie proprietatea la încetarea contractului în starea în care a primit-o, cu excepția uzurii normale (deteriorare graduală prin utilizare normală și uzura în timp, fără neglijență sau daune); să suporte costurile utilităților pe durata contractului.")}
+            {f("Locatarul se obligă: să plătească chiria la termenele stabilite; să folosească proprietatea cu diligența unui bun proprietar, conform destinației sale; să efectueze reparațiile de întreținere curentă pe cheltuiala sa; să nu subînchirieze fără acordul scris al Locatorului; să restituie proprietatea la încetarea contractului în starea în care a primit-o, cu excepția uzurii normale (deteriorare graduală prin utilizare normală și uzura în timp, fără neglijență sau daune); să suporte costurile utilităților pe durata contractului.")}
           </Text>
         </View>
 

@@ -186,6 +186,8 @@ export default function ContractVanzareCumparare({ data: rawData }: Props) {
   const pretInt = Math.floor(pretNumar);
   const pretLitere = numarInLitere(pretInt);
   const pretDe = pretInt >= 20 ? " de" : ""; // "de" particle for numerals >= 20
+  // RON: singular "leu" for 1, plural "lei" for 2+; EUR/USD: invariable code
+  const monedaLitere = data.moneda === "RON" ? (pretInt === 1 ? "leu" : "lei") : data.moneda;
   const modalitateDisplay = MODALITATE_PLATA_DISPLAY[data.modalitataPlata] ?? `prin ${data.modalitataPlata}`;
 
   return (
@@ -294,7 +296,7 @@ export default function ContractVanzareCumparare({ data: rawData }: Props) {
             <Text style={styles.bold}>
               {data.pret} {data.moneda}
             </Text>{" "}
-            ({pretLitere}{pretDe} {data.moneda === "RON" ? "lei" : data.moneda}), sumă achitată integral la
+            ({pretLitere}{pretDe} {monedaLitere}), sumă achitată integral la
             data semnării prezentului contract,{" "}
             <Text style={styles.bold}>{modalitateDisplay}</Text>.
           </Text>
