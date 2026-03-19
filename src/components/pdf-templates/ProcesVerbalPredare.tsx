@@ -205,7 +205,7 @@ export default function ProcesVerbalPredare({ data: rawData }: Props) {
             <View style={styles.contorLine} />
           </View>
           <View style={styles.contor}>
-            <Text style={styles.contorLabel}>Carduri/ecusoane acces:</Text>
+            <Text style={styles.contorLabel}>Carduri/ecusoane de acces:</Text>
             <View style={styles.contorLine} />
           </View>
         </View>
@@ -223,7 +223,7 @@ export default function ProcesVerbalPredare({ data: rawData }: Props) {
         {/* VII. Mențiune exemplare */}
         <View style={styles.section}>
           <Text style={styles.paragraph}>
-            Prezentul proces verbal face parte integrantă din Contractul de Închiriere
+            Prezentul proces verbal face parte integrantă din contractul de închiriere
             încheiat la data de <Text style={styles.bold}>{data.dataContract}</Text> și
             s-a întocmit în două exemplare originale, câte unul pentru fiecare parte.
           </Text>

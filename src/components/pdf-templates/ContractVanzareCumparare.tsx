@@ -330,10 +330,10 @@ export default function ContractVanzareCumparare({ data: rawData }: Props) {
           <Text style={styles.sectionTitle}>V. Declarația Vânzătorului</Text>
           <Text style={styles.paragraph}>
             Vânzătorul declară pe propria răspundere că bunul descris la Art. II
-            este proprietatea sa exclusivă, nu este grevat de sarcini, gajuri,
-            ipoteci sau orice alte drepturi ale terților, nu face obiectul vreunui
-            litigiu, nu este urmărit sau sechestrat și că are dreptul deplin de
-            a-l înstrăina.
+            este proprietatea sa exclusivă, nu este grevat de sarcini, gajuri
+            sau orice alte drepturi reale ale terților, nu face obiectul vreunui
+            litigiu, nu este urmărit silit sau sechestrat și că are dreptul deplin
+            de a-l înstrăina.
           </Text>
         </View>
 

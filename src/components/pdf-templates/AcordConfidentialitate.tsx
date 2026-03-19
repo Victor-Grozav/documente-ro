@@ -246,7 +246,7 @@ export default function AcordConfidentialitate({ data: rawData }: Props) {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>VI. Clauze Finale</Text>
           <Text style={styles.paragraph}>
-            {f("Încălcarea prezentului acord dă dreptul părții lezate la despăgubiri pentru prejudiciile directe și previzibile cauzate, inclusiv pierdere de profit, conform art. 1530 Cod Civil. Prezentul acord este guvernat de legislația română. Litigiile vor fi soluționate de instanțele competente din România.")}
+            {f("Încălcarea prezentului acord dă dreptul părții lezate la despăgubiri pentru prejudiciile directe și previzibile cauzate, inclusiv beneficiul nerealizat (lucrum cessans), conform art. 1530 Cod Civil. Prezentul acord este guvernat de legislația română. Litigiile vor fi soluționate de instanțele competente din România.")}
           </Text>
           {data.penalitate && (
             <Text style={styles.paragraph}>
