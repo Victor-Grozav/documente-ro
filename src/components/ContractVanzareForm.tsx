@@ -55,7 +55,7 @@ function Field({
         {label} {required && <span className="text-red-400">*</span>}
       </label>
       <input
-        type={type} value={value}
+        type={type} value={value ?? ""}
         onChange={(e) => onChange(name, e.target.value)}
         onBlur={onBlur} placeholder={placeholder} required={required}
         className={`w-full border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 bg-white transition-colors ${
