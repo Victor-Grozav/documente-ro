@@ -215,8 +215,8 @@ export default function AcordConfidentialitate({ data: rawData }: Props) {
             sunt sau devin publice fără culpa părții receptoare; (b) erau deja
             cunoscute părții receptoare la data divulgării; (c) sunt furnizate
             de o terță parte fără restricții de confidențialitate; (d) trebuie
-            divulgate prin lege sau ordin judecătoresc, cu notificarea prealabilă
-            a părții divulgatoare.
+            divulgate prin lege sau hotărâre judecătorească, cu notificarea
+            prealabilă a părții divulgatoare.
           </Text>
         </View>
 
@@ -227,7 +227,9 @@ export default function AcordConfidentialitate({ data: rawData }: Props) {
             Prezentul acord este valabil pentru o perioadă de{" "}
             <Text style={styles.bold}>{data.durataAni} ani</Text>{" "}
             de la data semnării. Obligațiile de confidențialitate supraviețuiesc
-            încetării acordului pe aceeași perioadă.
+            încetării acordului și rămân în vigoare pentru o perioadă egală de{" "}
+            <Text style={styles.bold}>{data.durataAni} ani</Text>{" "}
+            calculată de la data încetării.
           </Text>
           {data.tipNDA === "unilateral" ? (
             <Text style={styles.paragraph}>

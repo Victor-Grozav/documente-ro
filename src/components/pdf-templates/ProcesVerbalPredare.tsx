@@ -148,7 +148,7 @@ export default function ProcesVerbalPredare({ data: rawData }: Props) {
             <Text style={styles.value}>{data.stareGenerala || "____________________________"}</Text>
           </View>
           <Text style={[styles.paragraph, { marginTop: 8 }]}>
-            Contoare (valorile la data predării):
+            Contoare (valorile înregistrate la data predării):
           </Text>
           <View style={styles.contor}>
             <Text style={styles.contorLabel}>Energie electrică:</Text>
@@ -193,7 +193,7 @@ export default function ProcesVerbalPredare({ data: rawData }: Props) {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>V. Chei și Accesorii Predate</Text>
           <View style={styles.contor}>
-            <Text style={styles.contorLabel}>Seturi chei intrare:</Text>
+            <Text style={styles.contorLabel}>Seturi de chei de intrare:</Text>
             <View style={styles.contorLine} />
           </View>
           <View style={styles.contor}>
@@ -212,7 +212,7 @@ export default function ProcesVerbalPredare({ data: rawData }: Props) {
 
         {/* VI. Declarație utilități */}
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>VI. Declarație Utilități</Text>
+          <Text style={styles.sectionTitle}>VI. Declarație privind Utilitățile</Text>
           <Text style={styles.paragraph}>
             Locatorul declară că la data prezentei predări nu există facturi restante sau datorii
             neachitate la furnizorii de utilități (energie electrică, gaz, apă, internet, televiziune)
@@ -223,7 +223,9 @@ export default function ProcesVerbalPredare({ data: rawData }: Props) {
         {/* VII. Mențiune exemplare */}
         <View style={styles.section}>
           <Text style={styles.paragraph}>
-            Prezentul proces verbal s-a încheiat în două exemplare originale, câte unul pentru fiecare parte.
+            Prezentul proces verbal face parte integrantă din Contractul de Închiriere
+            încheiat la data de <Text style={styles.bold}>{data.dataContract}</Text> și
+            s-a întocmit în două exemplare originale, câte unul pentru fiecare parte.
           </Text>
         </View>
 

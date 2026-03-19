@@ -140,7 +140,7 @@ export default function Imputernicire({ data: rawData }: Props) {
             <Text style={styles.bold}>{data.mandantNume}</Text>{" "}
             împuternicește pe Mandatarul{" "}
             <Text style={styles.bold}>{data.mandatarNume}</Text>{" "}
-            să efectueze următoarele acte și operațiuni în numele său:
+            să efectueze următoarele acte și operațiuni în numele și pe seama Mandantului:
           </Text>
           <Text style={styles.paragraph}>{data.obiect}</Text>
           {data.poateDelegaTert && (
@@ -166,12 +166,15 @@ export default function Imputernicire({ data: rawData }: Props) {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>V. Clauze Finale</Text>
           <Text style={styles.paragraph}>
-            Mandantul declară că împuternicește Mandatarul cu toate drepturile
-            necesare pentru îndeplinirea obiectului prezentului mandat, conform
-            art. 2009-2071 din Codul Civil român.
+            Prezenta împuternicire constituie un mandat special, acordat cu titlu
+            gratuit, pentru actele și operațiunile expres indicate la Art. III,
+            conform art. 2010 și art. 2016 din Codul Civil român.
           </Text>
           <Text style={styles.paragraph}>
-            {f("Prezentul act este încheiat sub semnătură privată, în două exemplare originale, câte unul pentru fiecare parte. Mandantul își rezervă dreptul de a revoca prezenta împuternicire oricând, prin notificare scrisă către Mandatar.")}
+            {f("Mandatarul este obligat să acționeze în limitele împuternicirii și exclusiv în interesul Mandantului, să dea socoteală de îndeplinirea mandatului și să remită Mandantului tot ceea ce a primit în executarea mandatului (art. 2019 Cod Civil).")}
+          </Text>
+          <Text style={styles.paragraph}>
+            {f("Prezentul act este încheiat sub semnătură privată, în două exemplare originale, câte unul pentru fiecare parte. Mandantul își rezervă dreptul de a revoca prezenta împuternicire oricând, prin notificare scrisă către Mandatar (art. 2031 Cod Civil).")}
           </Text>
         </View>
 

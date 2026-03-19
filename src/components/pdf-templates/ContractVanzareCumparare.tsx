@@ -132,8 +132,11 @@ const styles = StyleSheet.create({
   },
 });
 
+// Particle "de" required in Romanian before nouns for numerals >= 20
+// e.g.: "douăzeci de lei", "o sută de lei", "o mie de lei", "douăzeci și unu de lei"
 function numarInLitere(n: number): string {
   if (n === 0) return "zero";
+  if (n === 1) return "un"; // "un leu" not "unu lei"
 
   function sub20(x: number): string {
     return [
@@ -166,6 +169,13 @@ function numarInLitere(n: number): string {
   return miiText + (rest !== 0 ? " " + sub1000(rest) : "");
 }
 
+// Correct Romanian preposition per payment type
+const MODALITATE_PLATA_DISPLAY: Record<string, string> = {
+  "numerar": "în numerar",
+  "transfer bancar": "prin transfer bancar",
+  "alta modalitate": "prin altă modalitate",
+};
+
 interface Props {
   data: ContractVanzareData;
 }
@@ -173,7 +183,10 @@ interface Props {
 export default function ContractVanzareCumparare({ data: rawData }: Props) {
   const data = fixData(rawData);
   const pretNumar = parseFloat(data.pret) || 0;
-  const pretLitere = numarInLitere(Math.floor(pretNumar));
+  const pretInt = Math.floor(pretNumar);
+  const pretLitere = numarInLitere(pretInt);
+  const pretDe = pretInt >= 20 ? " de" : ""; // "de" particle for numerals >= 20
+  const modalitateDisplay = MODALITATE_PLATA_DISPLAY[data.modalitataPlata] ?? `prin ${data.modalitataPlata}`;
 
   return (
     <Document
@@ -281,9 +294,9 @@ export default function ContractVanzareCumparare({ data: rawData }: Props) {
             <Text style={styles.bold}>
               {data.pret} {data.moneda}
             </Text>{" "}
-            ({pretLitere} {data.moneda === "RON" ? "lei" : data.moneda}), sumă achitată integral la
-            data semnării prezentului contract, prin{" "}
-            <Text style={styles.bold}>{data.modalitataPlata}</Text>.
+            ({pretLitere}{pretDe} {data.moneda === "RON" ? "lei" : data.moneda}), sumă achitată integral la
+            data semnării prezentului contract,{" "}
+            <Text style={styles.bold}>{modalitateDisplay}</Text>.
           </Text>
         </View>
 

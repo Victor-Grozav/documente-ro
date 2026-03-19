@@ -70,8 +70,14 @@ interface Props {
   data: ContractInchiriereData;
 }
 
+const MODALITATE_INCHIRIERE_DISPLAY: Record<string, string> = {
+  "numerar": "în numerar",
+  "transfer bancar": "prin transfer bancar",
+};
+
 export default function ContractInchiriere({ data: rawData }: Props) {
   const data = fixData(rawData);
+  const modalitateDisplay = MODALITATE_INCHIRIERE_DISPLAY[data.modalitataPlata] ?? `prin ${data.modalitataPlata}`;
   const dataIncetare = (() => {
     const luni = parseInt(data.durataLuni) || 0;
     const [zi, luna, an] = data.dataIncepere.split(".").map(Number);
@@ -156,7 +162,9 @@ export default function ContractInchiriere({ data: rawData }: Props) {
           <Text style={[styles.paragraph, { marginTop: 8 }]}>
             Locatorul declară că este proprietarul de drept al imobilului, că
             acesta nu este grevat de sarcini și că are dreptul deplin de a-l da
-            în locațiune.
+            în locațiune. Predarea efectivă a proprietății se va face la data
+            începerii contractului, pe baza unui proces-verbal de predare-primire
+            semnat de ambele părți.
           </Text>
         </View>
 
@@ -181,8 +189,8 @@ export default function ContractInchiriere({ data: rawData }: Props) {
             <Text style={styles.bold}>
               {data.chiria} {data.moneda}
             </Text>
-            , achitată prin{" "}
-            <Text style={styles.bold}>{data.modalitataPlata}</Text>
+            ,{" "}
+            <Text style={styles.bold}>{modalitateDisplay}</Text>
             {f(", până la data de 5 a fiecărei luni pentru luna în curs.")}
           </Text>
           {data.garantie && (
@@ -246,6 +254,9 @@ export default function ContractInchiriere({ data: rawData }: Props) {
           <Text style={styles.sectionTitle}>VIII. Clauze Finale</Text>
           <Text style={styles.paragraph}>
             {f("Locatorul are obligația legală de a înregistra prezentul contract la organul fiscal competent (ANAF) în termen de 30 de zile de la data semnării și de a declara veniturile din chirii, conform art. 120 din Codul Fiscal.")}
+          </Text>
+          <Text style={styles.paragraph}>
+            {f("La expirarea duratei contractului, dacă Locatarul continuă să folosească proprietatea fără obiecție din partea Locatorului timp de 30 de zile, contractul se consideră reînnoit pe perioadă nedeterminată, în condițiile art. 1828 din Codul Civil (tacita reconducțiune).")}
           </Text>
           <Text style={styles.paragraph}>
             {f("Prezentul contract este guvernat de dispozițiile art. 1777-1850 din Codul Civil român. Este încheiat sub semnătură privată, în două exemplare originale, câte unul pentru fiecare parte. Orice modificare se face prin act adițional semnat de ambele părți. Litigiile vor fi soluționate de instanțele competente din România.")}

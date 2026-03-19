@@ -25,8 +25,8 @@ export function fixLigatures(text: string): string {
  * Applies fixLigatures to all string values in a data object.
  * Use this at the top of every PDF template component.
  */
-export function fixData<T extends Record<string, unknown>>(obj: T): T {
+export function fixData<T>(obj: T): T {
   return Object.fromEntries(
-    Object.entries(obj).map(([k, v]) => [k, typeof v === "string" ? fixLigatures(v) : v])
+    Object.entries(obj as Record<string, unknown>).map(([k, v]) => [k, typeof v === "string" ? fixLigatures(v) : v])
   ) as T;
 }
