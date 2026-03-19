@@ -1,9 +1,10 @@
 import { Document, Page, Text, View, StyleSheet } from "@react-pdf/renderer";
+import "@/lib/pdfFonts";
 import { ImputernicireData } from "@/lib/types";
 
 const styles = StyleSheet.create({
   page: {
-    fontFamily: "Helvetica",
+    fontFamily: "Roboto",
     fontSize: 11,
     paddingTop: 60,
     paddingBottom: 60,
@@ -13,7 +14,8 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 16,
-    fontFamily: "Helvetica-Bold",
+    fontFamily: "Roboto",
+    fontWeight: "bold",
     textAlign: "center",
     marginBottom: 6,
     textTransform: "uppercase",
@@ -28,7 +30,8 @@ const styles = StyleSheet.create({
   section: { marginBottom: 18 },
   sectionTitle: {
     fontSize: 11,
-    fontFamily: "Helvetica-Bold",
+    fontFamily: "Roboto",
+    fontWeight: "bold",
     marginBottom: 8,
     textTransform: "uppercase",
     letterSpacing: 0.5,
@@ -37,12 +40,13 @@ const styles = StyleSheet.create({
     paddingBottom: 4,
   },
   row: { flexDirection: "row", marginBottom: 4 },
-  label: { width: 140, fontFamily: "Helvetica-Bold", fontSize: 10, color: "#444" },
+  label: { width: 140, fontFamily: "Roboto", fontWeight: "bold", fontSize: 10, color: "#444" },
   value: { flex: 1, fontSize: 10 },
   paragraph: { fontSize: 10, marginBottom: 8, textAlign: "justify" },
+  bold: { fontFamily: "Roboto", fontWeight: "bold" },
   signatureSection: { flexDirection: "row", justifyContent: "space-between", marginTop: 50 },
   signatureBox: { width: "45%", alignItems: "center" },
-  signatureLabel: { fontSize: 10, fontFamily: "Helvetica-Bold", marginBottom: 4, textTransform: "uppercase" },
+  signatureLabel: { fontSize: 10, fontFamily: "Roboto", fontWeight: "bold", marginBottom: 4, textTransform: "uppercase" },
   signatureName: { fontSize: 10, marginBottom: 30 },
   signatureLine: { borderTopWidth: 1, borderTopColor: "#333", width: "100%", marginTop: 40 },
   signatureHint: { fontSize: 8, color: "#888", marginTop: 4 },
@@ -66,7 +70,7 @@ interface Props {
 
 export default function Imputernicire({ data }: Props) {
   return (
-    <Document title="Împuternicire" author="Documente.ro" creator="Documente.ro">
+    <Document title="Împuternicire" author="FaraNotar.ro" creator="FaraNotar.ro">
       <Page size="A4" style={styles.page}>
         <Text style={styles.title}>Împuternicire</Text>
         <Text style={styles.subtitle}>
@@ -117,6 +121,12 @@ export default function Imputernicire({ data }: Props) {
             <Text style={styles.label}>Domiciliu:</Text>
             <Text style={styles.value}>{data.mandatarAdresa}</Text>
           </View>
+          {data.mandatarContact && (
+            <View style={styles.row}>
+              <Text style={styles.label}>Contact:</Text>
+              <Text style={styles.value}>{data.mandatarContact}</Text>
+            </View>
+          )}
         </View>
 
         {/* Obiect */}
@@ -124,12 +134,19 @@ export default function Imputernicire({ data }: Props) {
           <Text style={styles.sectionTitle}>III. Obiectul Mandatului</Text>
           <Text style={styles.paragraph}>
             Prin prezenta împuternicire, Mandantul{" "}
-            <Text style={{ fontFamily: "Helvetica-Bold" }}>{data.mandantNume}</Text>{" "}
+            <Text style={styles.bold}>{data.mandantNume}</Text>{" "}
             împuternicește pe Mandatarul{" "}
-            <Text style={{ fontFamily: "Helvetica-Bold" }}>{data.mandatarNume}</Text>{" "}
+            <Text style={styles.bold}>{data.mandatarNume}</Text>{" "}
             să efectueze următoarele acte și operațiuni în numele său:
           </Text>
           <Text style={styles.paragraph}>{data.obiect}</Text>
+          {data.poateDelegaTert && (
+            <Text style={styles.paragraph}>
+              Mandatarul este autorizat să substituie un terț pentru
+              îndeplinirea prezentului mandat, conform art. 2023 din Codul
+              Civil român.
+            </Text>
+          )}
         </View>
 
         {/* Durata */}
@@ -137,7 +154,7 @@ export default function Imputernicire({ data }: Props) {
           <Text style={styles.sectionTitle}>IV. Durata Împuternicirii</Text>
           <Text style={styles.paragraph}>
             Prezenta împuternicire este valabilă până la data de{" "}
-            <Text style={{ fontFamily: "Helvetica-Bold" }}>{data.dataExpirare}</Text>,
+            <Text style={styles.bold}>{data.dataExpirare}</Text>,
             dacă nu este revocată anterior de către Mandant.
           </Text>
         </View>
@@ -175,7 +192,7 @@ export default function Imputernicire({ data }: Props) {
         </View>
 
         <View style={styles.footer} fixed>
-          <Text style={styles.footerText}>Generat prin Documente.ro</Text>
+          <Text style={styles.footerText}>Generat prin FaraNotar.ro</Text>
           <Text style={styles.footerText}>{data.data}</Text>
         </View>
       </Page>

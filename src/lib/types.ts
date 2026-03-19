@@ -7,7 +7,9 @@ export interface ImputernicireData {
   mandatarCNP: string;
   mandatarCI: string;
   mandatarAdresa: string;
+  mandatarContact: string; // tel/email opțional
   obiect: string;
+  poateDelegaTert: boolean;
   dataExpirare: string;
   data: string;
   locul: string;
@@ -22,6 +24,8 @@ export interface AcordConfidentialitateData {
   parte2Adresa: string;
   obiectConfidentialitate: string;
   durataAni: string;
+  tipNDA: "bilateral" | "unilateral";
+  penalitate: string; // sumă RON, opțional
   data: string;
   locul: string;
 }
@@ -31,6 +35,7 @@ export interface ContractInchiriereData {
   locatorCNP: string;
   locatorCI: string;
   locatorAdresa: string;
+  locatorIBAN: string; // opțional
   locatarNume: string;
   locatarCNP: string;
   locatarCI: string;
@@ -44,31 +49,42 @@ export interface ContractInchiriereData {
   garantie: string;
   dataIncepere: string;
   durataLuni: string;
+  indexareAnuala: boolean;
+  procentIndexare: string;
   data: string;
   locul: string;
 }
 
 export interface ContractVanzareData {
-  // Vanzator
   vanzatorNume: string;
   vanzatorCNP: string;
   vanzatorCI: string;
   vanzatorAdresa: string;
-  // Cumparator
   cumparatorNume: string;
   cumparatorCNP: string;
   cumparatorCI: string;
   cumparatorAdresa: string;
-  // Bunul vandut
+  tipBun: string;
   bunDescriere: string;
   bunSerie: string;
-  // Pret
+  // Câmpuri specifice vehicul
+  vehiculKm: string;
+  vehiculItpPanaLa: string;
+  vehiculDocumente: string; // ex: "Certificat înmatriculare, CIV, Chei (2 seturi)"
   pret: string;
   moneda: "RON" | "EUR" | "USD";
   modalitataPlata: "numerar" | "transfer bancar" | "alta modalitate";
-  // Predare
   locPredare: string;
-  // Contract
+  data: string;
+  locul: string;
+}
+
+export interface ProcesVerbalData {
+  locatorNume: string;
+  locatarNume: string;
+  proprietateAdresa: string;
+  dataContract: string;
+  stareGenerala: string;
   data: string;
   locul: string;
 }

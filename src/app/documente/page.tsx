@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import DocumentListClient from "@/components/DocumentListClient";
 
 export const metadata: Metadata = {
-  title: "Generator Documente Legale România — Documente.ro",
+  title: "Generator Documente Legale România — FaraNotar.ro",
   description:
     "Generează contracte și documente legale pentru România. Contract de vânzare-cumpărare, închiriere, procuri și altele. PDF instant, de la 10 lei/document.",
 };

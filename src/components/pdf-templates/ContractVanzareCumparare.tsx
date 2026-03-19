@@ -5,11 +5,23 @@ import {
   View,
   StyleSheet,
 } from "@react-pdf/renderer";
+import "@/lib/pdfFonts";
 import { ContractVanzareData } from "@/lib/types";
+
+const TIPURI_BUN: Record<string, string> = {
+  "vehicul": "Autoturism / motocicletă / vehicul",
+  "electronice": "Electronice și electrocasnice",
+  "mobila": "Mobilă și obiecte de uz casnic",
+  "utilaje": "Utilaje și echipamente",
+  "animale": "Animale",
+  "alte": "Alte bunuri mobile",
+};
+
+const isVehicul = (tip: string) => tip === "vehicul";
 
 const styles = StyleSheet.create({
   page: {
-    fontFamily: "Helvetica",
+    fontFamily: "Roboto",
     fontSize: 11,
     paddingTop: 60,
     paddingBottom: 60,
@@ -19,7 +31,8 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 16,
-    fontFamily: "Helvetica-Bold",
+    fontFamily: "Roboto",
+    fontWeight: "bold",
     textAlign: "center",
     marginBottom: 6,
     textTransform: "uppercase",
@@ -36,7 +49,8 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontSize: 11,
-    fontFamily: "Helvetica-Bold",
+    fontFamily: "Roboto",
+    fontWeight: "bold",
     marginBottom: 8,
     textTransform: "uppercase",
     letterSpacing: 0.5,
@@ -50,7 +64,8 @@ const styles = StyleSheet.create({
   },
   label: {
     width: 140,
-    fontFamily: "Helvetica-Bold",
+    fontFamily: "Roboto",
+    fontWeight: "bold",
     fontSize: 10,
     color: "#444",
   },
@@ -63,6 +78,10 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     textAlign: "justify",
   },
+  bold: {
+    fontFamily: "Roboto",
+    fontWeight: "bold",
+  },
   signatureSection: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -74,7 +93,8 @@ const styles = StyleSheet.create({
   },
   signatureLabel: {
     fontSize: 10,
-    fontFamily: "Helvetica-Bold",
+    fontFamily: "Roboto",
+    fontWeight: "bold",
     marginBottom: 4,
     textTransform: "uppercase",
   },
@@ -111,16 +131,37 @@ const styles = StyleSheet.create({
 });
 
 function numarInLitere(n: number): string {
-  const unitati = ["", "unu", "doi", "trei", "patru", "cinci", "șase", "șapte", "opt", "nouă",
-    "zece", "unsprezece", "doisprezece", "treisprezece", "paisprezece", "cincisprezece",
-    "șaisprezece", "șaptesprezece", "optsprezece", "nouăsprezece"];
-  const zeci = ["", "", "douăzeci", "treizeci", "patruzeci", "cincizeci",
-    "șaizeci", "șaptezeci", "optzeci", "nouăzeci"];
   if (n === 0) return "zero";
-  if (n < 20) return unitati[n];
-  if (n < 100) return zeci[Math.floor(n / 10)] + (n % 10 !== 0 ? " și " + unitati[n % 10] : "");
-  if (n < 1000) return unitati[Math.floor(n / 100)] + " sute" + (n % 100 !== 0 ? " " + numarInLitere(n % 100) : "");
-  return n.toString();
+
+  function sub20(x: number): string {
+    return [
+      "", "unu", "doi", "trei", "patru", "cinci", "șase", "șapte", "opt", "nouă",
+      "zece", "unsprezece", "doisprezece", "treisprezece", "paisprezece", "cincisprezece",
+      "șaisprezece", "șaptesprezece", "optsprezece", "nouăsprezece",
+    ][x];
+  }
+
+  function sub100(x: number): string {
+    if (x < 20) return sub20(x);
+    const zeci = ["", "", "douăzeci", "treizeci", "patruzeci", "cincizeci",
+      "șaizeci", "șaptezeci", "optzeci", "nouăzeci"][Math.floor(x / 10)];
+    return zeci + (x % 10 !== 0 ? " și " + sub20(x % 10) : "");
+  }
+
+  function sub1000(x: number): string {
+    if (x < 100) return sub100(x);
+    const sute = Math.floor(x / 100);
+    const rest = x % 100;
+    const suteText = sute === 1 ? "o sută" : sute === 2 ? "două sute" : sub20(sute) + " sute";
+    return suteText + (rest !== 0 ? " " + sub100(rest) : "");
+  }
+
+  if (n < 1000) return sub1000(n);
+
+  const mii = Math.floor(n / 1000);
+  const rest = n % 1000;
+  const miiText = mii === 1 ? "o mie" : mii === 2 ? "două mii" : sub1000(mii) + " mii";
+  return miiText + (rest !== 0 ? " " + sub1000(rest) : "");
 }
 
 interface Props {
@@ -134,8 +175,8 @@ export default function ContractVanzareCumparare({ data }: Props) {
   return (
     <Document
       title="Contract de Vânzare-Cumpărare"
-      author="Documente.ro"
-      creator="Documente.ro"
+      author="FaraNotar.ro"
+      creator="FaraNotar.ro"
     >
       <Page size="A4" style={styles.page}>
         {/* Titlu */}
@@ -148,7 +189,7 @@ export default function ContractVanzareCumparare({ data }: Props) {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>I. Părțile Contractante</Text>
 
-          <Text style={[styles.paragraph, { fontFamily: "Helvetica-Bold" }]}>
+          <Text style={[styles.paragraph, styles.bold]}>
             Vânzătorul:
           </Text>
           <View style={styles.row}>
@@ -170,7 +211,7 @@ export default function ContractVanzareCumparare({ data }: Props) {
             <Text style={styles.value}>{data.vanzatorAdresa}</Text>
           </View>
 
-          <Text style={[styles.paragraph, { fontFamily: "Helvetica-Bold" }]}>
+          <Text style={[styles.paragraph, styles.bold]}>
             Cumpărătorul:
           </Text>
           <View style={styles.row}>
@@ -200,9 +241,15 @@ export default function ContractVanzareCumparare({ data }: Props) {
             Vânzătorul vinde, iar Cumpărătorul cumpără următorul bun:
           </Text>
           <View style={styles.row}>
-            <Text style={styles.label}>Descriere bun:</Text>
-            <Text style={styles.value}>{data.bunDescriere}</Text>
+            <Text style={styles.label}>Categorie bun:</Text>
+            <Text style={styles.value}>{TIPURI_BUN[data.tipBun] || data.tipBun}</Text>
           </View>
+          {data.bunDescriere && (
+            <View style={styles.row}>
+              <Text style={styles.label}>Descriere:</Text>
+              <Text style={styles.value}>{data.bunDescriere}</Text>
+            </View>
+          )}
           {data.bunSerie && (
             <View style={styles.row}>
               <Text style={styles.label}>Serie / Nr.:</Text>
@@ -216,12 +263,12 @@ export default function ContractVanzareCumparare({ data }: Props) {
           <Text style={styles.sectionTitle}>III. Prețul</Text>
           <Text style={styles.paragraph}>
             Prețul convenit de părți pentru bunul menționat este de{" "}
-            <Text style={{ fontFamily: "Helvetica-Bold" }}>
+            <Text style={styles.bold}>
               {data.pret} {data.moneda}
             </Text>{" "}
-            ({pretLitere} {data.moneda.toLowerCase()}), sumă achitată integral la
+            ({pretLitere} {data.moneda === "RON" ? "lei" : data.moneda}), sumă achitată integral la
             data semnării prezentului contract, prin{" "}
-            <Text style={{ fontFamily: "Helvetica-Bold" }}>{data.modalitataPlata}</Text>.
+            <Text style={styles.bold}>{data.modalitataPlata}</Text>.
           </Text>
         </View>
 
@@ -231,7 +278,7 @@ export default function ContractVanzareCumparare({ data }: Props) {
           <Text style={styles.paragraph}>
             Predarea bunului se va efectua la data semnării prezentului contract,
             la următoarea locație:{" "}
-            <Text style={{ fontFamily: "Helvetica-Bold" }}>{data.locPredare}</Text>.
+            <Text style={styles.bold}>{data.locPredare}</Text>.
             Predarea se consideră efectuată la momentul în care Cumpărătorul intră
             în posesia efectivă a bunului.
           </Text>
@@ -239,6 +286,15 @@ export default function ContractVanzareCumparare({ data }: Props) {
             Bunul se vinde și se cumpără în starea tehnică și estetică văzută și
             acceptată de Cumpărător la data încheierii prezentului contract.
           </Text>
+          {isVehicul(data.tipBun) && (data.vehiculKm || data.vehiculItpPanaLa || data.vehiculDocumente) && (
+            <Text style={styles.paragraph}>
+              {data.vehiculKm ? `La data predării, vehiculul are ${data.vehiculKm} km la bord` : ""}
+              {data.vehiculKm && data.vehiculItpPanaLa ? " și " : ""}
+              {data.vehiculItpPanaLa ? `ITP valabil până la ${data.vehiculItpPanaLa}` : ""}
+              {(data.vehiculKm || data.vehiculItpPanaLa) ? ". " : ""}
+              {data.vehiculDocumente ? `Vânzătorul predă Cumpărătorului următoarele documente: ${data.vehiculDocumente}.` : ""}
+            </Text>
+          )}
         </View>
 
         {/* Declarația vânzătorului */}
@@ -257,16 +313,23 @@ export default function ContractVanzareCumparare({ data }: Props) {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>VI. Obligațiile Părților</Text>
           <Text style={styles.paragraph}>
-            <Text style={{ fontFamily: "Helvetica-Bold" }}>Vânzătorul</Text> se
+            <Text style={styles.bold}>Vânzătorul</Text> se
             obligă să predea bunul la locația și în condițiile stabilite prin
             prezentul contract și să garanteze Cumpărătorul contra evicțiunii și
             viciilor ascunse, conform dispozițiilor Codului Civil român.
           </Text>
           <Text style={styles.paragraph}>
-            <Text style={{ fontFamily: "Helvetica-Bold" }}>Cumpărătorul</Text> se
+            <Text style={styles.bold}>Cumpărătorul</Text> se
             obligă să achite prețul convenit la data semnării și să preia bunul
             în condițiile stabilite prin prezentul contract.
           </Text>
+          {isVehicul(data.tipBun) && (
+            <Text style={styles.paragraph}>
+              Cumpărătorul se obligă să efectueze transcrierea vehiculului în
+              evidențele DRPCIV în termen de 30 de zile de la data prezentului
+              contract.
+            </Text>
+          )}
         </View>
 
         {/* Clauze finale */}
@@ -305,7 +368,7 @@ export default function ContractVanzareCumparare({ data }: Props) {
 
         {/* Footer */}
         <View style={styles.footer} fixed>
-          <Text style={styles.footerText}>Generat prin Documente.ro</Text>
+          <Text style={styles.footerText}>Generat prin FaraNotar.ro</Text>
           <Text style={styles.footerText}>{data.data}</Text>
         </View>
       </Page>

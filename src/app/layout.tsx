@@ -8,15 +8,15 @@ const geist = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "Documente.ro — Contracte & Calculatoare pentru Romania",
+  title: "FaraNotar.ro — Contracte & Calculatoare pentru România",
   description:
-    "Calculeaza salariul net din brut, genereaza contracte si documente legale in Romania. Rapid, gratuit si corect pentru 2025.",
+    "Generează contracte și documente legale fără notar. Calculatoare de salariu, pensie, șomaj și altele. Rapid, corect, 100% legal.",
   keywords:
-    "convertor brut net, calculator salariu romania, contract vanzare cumparare, documente legale romania",
+    "fara notar, contracte online, documente legale romania, calculator salariu brut net, calculator pensie, contract vanzare cumparare",
   openGraph: {
-    title: "Documente.ro — Contracte & Calculatoare pentru Romania",
+    title: "FaraNotar.ro — Contracte & Calculatoare pentru România",
     description:
-      "Calculator salariu brut-net si generator de documente legale pentru Romania.",
+      "Documente legale și calculatoare financiare pentru români. Fără notar, fără birou, fără așteptare.",
     locale: "ro_RO",
     type: "website",
   },

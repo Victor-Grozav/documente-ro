@@ -24,6 +24,7 @@ const TITLURI: Record<PreviewDocumentType, string> = {
   "imputernicire": "Împuternicire / Procură",
   "acord-confidentialitate": "Acord de Confidențialitate (NDA)",
   "contract-inchiriere": "Contract de Închiriere",
+  "proces-verbal-predare": "Proces Verbal de Predare-Primire",
 };
 
 const documente = [
@@ -31,7 +32,7 @@ const documente = [
     slug: "contract-vanzare-cumparare" as PreviewDocumentType,
     titlu: "Contract de Vânzare-Cumpărare",
     descriere: "Pentru vânzarea oricărui bun mobil: mașini, electronice, bunuri personale.",
-    pret: "10 lei",
+    pret: "25 lei",
     disponibil: true,
   },
   {
@@ -55,6 +56,13 @@ const documente = [
     pret: "25 lei",
     disponibil: true,
   },
+  {
+    slug: "proces-verbal-predare" as PreviewDocumentType,
+    titlu: "Proces Verbal de Predare-Primire",
+    descriere: "Document la predarea locuinței — stare proprietate, contoare, chei.",
+    pret: "10 lei",
+    disponibil: true,
+  },
 ];
 
 export default function DocumentListClient() {
@@ -65,37 +73,36 @@ export default function DocumentListClient() {
       <div className="space-y-3">
         {documente.map((doc) =>
           doc.disponibil ? (
-            <div key={doc.slug} className="relative group/card">
+            <div key={doc.slug} className="group/card flex items-center bg-white rounded-2xl border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all">
               <Link
                 href={`/documente/${doc.slug}`}
-                className="flex items-center justify-between bg-white rounded-2xl border border-gray-200 p-5 hover:border-blue-300 hover:shadow-md transition-all pr-16"
+                className="flex-1 flex items-center gap-4 p-5 min-w-0"
               >
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center shrink-0">
-                    <FileText className="w-5 h-5 text-blue-600" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-gray-900">{doc.titlu}</p>
-                    <p className="text-sm text-gray-500 mt-0.5">{doc.descriere}</p>
-                  </div>
+                <div className="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center shrink-0">
+                  <FileText className="w-5 h-5 text-blue-600" />
                 </div>
-                <div className="flex items-center gap-3 shrink-0 ml-4">
-                  <span className="font-bold text-gray-900">{doc.pret}</span>
-                  <ArrowRight className="w-4 h-4 text-blue-400 group-hover/card:translate-x-1 transition-transform" />
+                <div className="min-w-0">
+                  <p className="font-semibold text-gray-900">{doc.titlu}</p>
+                  <p className="text-sm text-gray-500 mt-0.5">{doc.descriere}</p>
                 </div>
               </Link>
 
-              {/* Buton previzualizare */}
-              <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  setPreview(doc.slug);
-                }}
-                className="absolute right-[52px] top-1/2 -translate-y-1/2 p-2 text-gray-300 hover:text-blue-500 hover:bg-blue-50 rounded-lg transition-colors"
-                title="Vezi model document"
-              >
-                <Eye className="w-4 h-4" />
-              </button>
+              <div className="flex items-center gap-1 pr-4 shrink-0">
+                <span className="font-bold text-gray-900 mr-1">{doc.pret}</span>
+                <button
+                  onClick={() => setPreview(doc.slug)}
+                  className="p-2 text-gray-300 hover:text-blue-500 hover:bg-blue-50 rounded-lg transition-colors"
+                  title="Vezi model document"
+                >
+                  <Eye className="w-4 h-4" />
+                </button>
+                <Link
+                  href={`/documente/${doc.slug}`}
+                  className="p-2 text-blue-400 hover:text-blue-600 rounded-lg transition-colors"
+                >
+                  <ArrowRight className="w-4 h-4 group-hover/card:translate-x-1 transition-transform" />
+                </Link>
+              </div>
             </div>
           ) : (
             <div

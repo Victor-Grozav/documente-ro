@@ -1,9 +1,10 @@
 import { Document, Page, Text, View, StyleSheet } from "@react-pdf/renderer";
+import "@/lib/pdfFonts";
 import { ContractInchiriereData } from "@/lib/types";
 
 const styles = StyleSheet.create({
   page: {
-    fontFamily: "Helvetica",
+    fontFamily: "Roboto",
     fontSize: 11,
     paddingTop: 60,
     paddingBottom: 60,
@@ -13,7 +14,8 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 16,
-    fontFamily: "Helvetica-Bold",
+    fontFamily: "Roboto",
+    fontWeight: "bold",
     textAlign: "center",
     marginBottom: 6,
     textTransform: "uppercase",
@@ -28,7 +30,8 @@ const styles = StyleSheet.create({
   section: { marginBottom: 16 },
   sectionTitle: {
     fontSize: 11,
-    fontFamily: "Helvetica-Bold",
+    fontFamily: "Roboto",
+    fontWeight: "bold",
     marginBottom: 8,
     textTransform: "uppercase",
     letterSpacing: 0.5,
@@ -37,12 +40,13 @@ const styles = StyleSheet.create({
     paddingBottom: 4,
   },
   row: { flexDirection: "row", marginBottom: 4 },
-  label: { width: 140, fontFamily: "Helvetica-Bold", fontSize: 10, color: "#444" },
+  label: { width: 140, fontFamily: "Roboto", fontWeight: "bold", fontSize: 10, color: "#444" },
   value: { flex: 1, fontSize: 10 },
   paragraph: { fontSize: 10, marginBottom: 8, textAlign: "justify" },
+  bold: { fontFamily: "Roboto", fontWeight: "bold" },
   signatureSection: { flexDirection: "row", justifyContent: "space-between", marginTop: 40 },
   signatureBox: { width: "45%", alignItems: "center" },
-  signatureLabel: { fontSize: 10, fontFamily: "Helvetica-Bold", marginBottom: 4, textTransform: "uppercase" },
+  signatureLabel: { fontSize: 10, fontFamily: "Roboto", fontWeight: "bold", marginBottom: 4, textTransform: "uppercase" },
   signatureName: { fontSize: 10, marginBottom: 30 },
   signatureLine: { borderTopWidth: 1, borderTopColor: "#333", width: "100%", marginTop: 40 },
   signatureHint: { fontSize: 8, color: "#888", marginTop: 4 },
@@ -74,7 +78,7 @@ export default function ContractInchiriere({ data }: Props) {
   })();
 
   return (
-    <Document title="Contract de Închiriere" author="Documente.ro" creator="Documente.ro">
+    <Document title="Contract de Închiriere" author="FaraNotar.ro" creator="FaraNotar.ro">
       <Page size="A4" style={styles.page}>
         <Text style={styles.title}>Contract de Închiriere</Text>
         <Text style={styles.subtitle}>
@@ -85,7 +89,7 @@ export default function ContractInchiriere({ data }: Props) {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>I. Părțile Contractante</Text>
 
-          <Text style={[styles.paragraph, { fontFamily: "Helvetica-Bold" }]}>Locatorul (proprietarul):</Text>
+          <Text style={[styles.paragraph, styles.bold]}>Locatorul (proprietarul):</Text>
           <View style={styles.row}>
             <Text style={styles.label}>Nume și prenume:</Text>
             <Text style={styles.value}>{data.locatorNume}</Text>
@@ -105,7 +109,7 @@ export default function ContractInchiriere({ data }: Props) {
             <Text style={styles.value}>{data.locatorAdresa}</Text>
           </View>
 
-          <Text style={[styles.paragraph, { fontFamily: "Helvetica-Bold" }]}>Locatarul (chiriașul):</Text>
+          <Text style={[styles.paragraph, styles.bold]}>Locatarul (chiriașul):</Text>
           <View style={styles.row}>
             <Text style={styles.label}>Nume și prenume:</Text>
             <Text style={styles.value}>{data.locatarNume}</Text>
@@ -158,11 +162,11 @@ export default function ContractInchiriere({ data }: Props) {
           <Text style={styles.sectionTitle}>III. Durata Închirierii</Text>
           <Text style={styles.paragraph}>
             Prezentul contract se încheie pe o durată de{" "}
-            <Text style={{ fontFamily: "Helvetica-Bold" }}>{data.durataLuni} luni</Text>,
+            <Text style={styles.bold}>{data.durataLuni} luni</Text>,
             începând cu{" "}
-            <Text style={{ fontFamily: "Helvetica-Bold" }}>{data.dataIncepere}</Text>{" "}
+            <Text style={styles.bold}>{data.dataIncepere}</Text>{" "}
             și până la{" "}
-            <Text style={{ fontFamily: "Helvetica-Bold" }}>{dataIncetare}</Text>.
+            <Text style={styles.bold}>{dataIncetare}</Text>.
           </Text>
         </View>
 
@@ -171,22 +175,35 @@ export default function ContractInchiriere({ data }: Props) {
           <Text style={styles.sectionTitle}>IV. Chiria și Modalitatea de Plată</Text>
           <Text style={styles.paragraph}>
             Chiria lunară convenită este de{" "}
-            <Text style={{ fontFamily: "Helvetica-Bold" }}>
+            <Text style={styles.bold}>
               {data.chiria} {data.moneda}
             </Text>
             , achitată prin{" "}
-            <Text style={{ fontFamily: "Helvetica-Bold" }}>{data.modalitataPlata}</Text>
+            <Text style={styles.bold}>{data.modalitataPlata}</Text>
             , până la data de 5 a fiecărei luni pentru luna în curs.
           </Text>
           {data.garantie && (
             <Text style={styles.paragraph}>
               La semnarea prezentului contract, Locatarul achită o garanție
               echivalentă cu{" "}
-              <Text style={{ fontFamily: "Helvetica-Bold" }}>
-                {data.garantie} chirie lunară
+              <Text style={styles.bold}>
+                {data.garantie} {data.garantie === "1" ? "chirie lunară" : "chirii lunare"}
               </Text>
               , sumă ce va fi restituită la încetarea contractului, dacă nu
               există prejudicii sau restanțe.
+            </Text>
+          )}
+          {data.locatorIBAN && (
+            <Text style={styles.paragraph}>
+              Plata chiriei se efectuează în contul Locatorului, IBAN:{" "}
+              <Text style={styles.bold}>{data.locatorIBAN}</Text>.
+            </Text>
+          )}
+          {data.indexareAnuala && data.procentIndexare && (
+            <Text style={styles.paragraph}>
+              Chiria se indexează anual cu{" "}
+              <Text style={styles.bold}>{data.procentIndexare}%</Text>{" "}
+              începând cu al doilea an de contract.
             </Text>
           )}
         </View>
@@ -245,7 +262,7 @@ export default function ContractInchiriere({ data }: Props) {
         </View>
 
         <View style={styles.footer} fixed>
-          <Text style={styles.footerText}>Generat prin Documente.ro</Text>
+          <Text style={styles.footerText}>Generat prin FaraNotar.ro</Text>
           <Text style={styles.footerText}>{data.data}</Text>
         </View>
       </Page>

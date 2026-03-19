@@ -4,7 +4,7 @@ import { getStripe } from "@/lib/stripe";
 const PRODUSE: Record<string, { name: string; price: number }> = {
   "contract-vanzare-cumparare": {
     name: "Contract de Vanzare-Cumparare",
-    price: 1000, // 10 RON in bani
+    price: 2500, // 25 RON in bani
   },
   "imputernicire": {
     name: "Imputernicire / Procura",
@@ -17,6 +17,10 @@ const PRODUSE: Record<string, { name: string; price: number }> = {
   "contract-inchiriere": {
     name: "Contract de Inchiriere",
     price: 2500, // 25 RON in bani
+  },
+  "proces-verbal-predare": {
+    name: "Proces Verbal de Predare-Primire",
+    price: 1000, // 10 RON in bani
   },
 };
 

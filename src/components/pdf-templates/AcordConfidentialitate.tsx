@@ -1,9 +1,10 @@
 import { Document, Page, Text, View, StyleSheet } from "@react-pdf/renderer";
+import "@/lib/pdfFonts";
 import { AcordConfidentialitateData } from "@/lib/types";
 
 const styles = StyleSheet.create({
   page: {
-    fontFamily: "Helvetica",
+    fontFamily: "Roboto",
     fontSize: 11,
     paddingTop: 60,
     paddingBottom: 60,
@@ -13,7 +14,8 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 16,
-    fontFamily: "Helvetica-Bold",
+    fontFamily: "Roboto",
+    fontWeight: "bold",
     textAlign: "center",
     marginBottom: 4,
     textTransform: "uppercase",
@@ -34,7 +36,8 @@ const styles = StyleSheet.create({
   section: { marginBottom: 18 },
   sectionTitle: {
     fontSize: 11,
-    fontFamily: "Helvetica-Bold",
+    fontFamily: "Roboto",
+    fontWeight: "bold",
     marginBottom: 8,
     textTransform: "uppercase",
     letterSpacing: 0.5,
@@ -43,12 +46,13 @@ const styles = StyleSheet.create({
     paddingBottom: 4,
   },
   row: { flexDirection: "row", marginBottom: 4 },
-  label: { width: 140, fontFamily: "Helvetica-Bold", fontSize: 10, color: "#444" },
+  label: { width: 140, fontFamily: "Roboto", fontWeight: "bold", fontSize: 10, color: "#444" },
   value: { flex: 1, fontSize: 10 },
   paragraph: { fontSize: 10, marginBottom: 8, textAlign: "justify" },
+  bold: { fontFamily: "Roboto", fontWeight: "bold" },
   signatureSection: { flexDirection: "row", justifyContent: "space-between", marginTop: 50 },
   signatureBox: { width: "45%", alignItems: "center" },
-  signatureLabel: { fontSize: 10, fontFamily: "Helvetica-Bold", marginBottom: 4, textTransform: "uppercase" },
+  signatureLabel: { fontSize: 10, fontFamily: "Roboto", fontWeight: "bold", marginBottom: 4, textTransform: "uppercase" },
   signatureName: { fontSize: 10, marginBottom: 30 },
   signatureLine: { borderTopWidth: 1, borderTopColor: "#333", width: "100%", marginTop: 40 },
   signatureHint: { fontSize: 8, color: "#888", marginTop: 4 },
@@ -72,7 +76,7 @@ interface Props {
 
 export default function AcordConfidentialitate({ data }: Props) {
   return (
-    <Document title="Acord de Confidențialitate (NDA)" author="Documente.ro" creator="Documente.ro">
+    <Document title="Acord de Confidențialitate (NDA)" author="FaraNotar.ro" creator="FaraNotar.ro">
       <Page size="A4" style={styles.page}>
         <Text style={styles.title}>Acord de Confidențialitate</Text>
         <Text style={styles.titleSub}>(Non-Disclosure Agreement)</Text>
@@ -84,7 +88,7 @@ export default function AcordConfidentialitate({ data }: Props) {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>I. Părțile Contractante</Text>
 
-          <Text style={[styles.paragraph, { fontFamily: "Helvetica-Bold" }]}>Partea 1:</Text>
+          <Text style={[styles.paragraph, styles.bold]}>Partea 1:</Text>
           <View style={styles.row}>
             <Text style={styles.label}>Denumire / Nume:</Text>
             <Text style={styles.value}>{data.parte1Nume}</Text>
@@ -98,7 +102,7 @@ export default function AcordConfidentialitate({ data }: Props) {
             <Text style={styles.value}>{data.parte1Adresa}</Text>
           </View>
 
-          <Text style={[styles.paragraph, { fontFamily: "Helvetica-Bold" }]}>Partea 2:</Text>
+          <Text style={[styles.paragraph, styles.bold]}>Partea 2:</Text>
           <View style={styles.row}>
             <Text style={styles.label}>Denumire / Nume:</Text>
             <Text style={styles.value}>{data.parte2Nume}</Text>
@@ -126,17 +130,36 @@ export default function AcordConfidentialitate({ data }: Props) {
         {/* Obligația de confidențialitate */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>III. Obligația de Confidențialitate</Text>
-          <Text style={styles.paragraph}>
-            Fiecare parte se obligă să nu divulge, să nu transmită și să nu
-            utilizeze informațiile confidențiale ale celeilalte părți în niciun
-            alt scop decât cel agreat în mod expres, fără acordul prealabil
-            scris al părții divulgatoare.
-          </Text>
-          <Text style={styles.paragraph}>
-            Obligația de confidențialitate se aplică tuturor angajaților,
-            colaboratorilor și reprezentanților fiecărei părți care au acces
-            la informațiile confidențiale.
-          </Text>
+          {data.tipNDA === "unilateral" ? (
+            <>
+              <Text style={styles.paragraph}>
+                Prezentul acord este unilateral. Numai{" "}
+                <Text style={styles.bold}>{data.parte2Nume}</Text> (Partea 2)
+                are obligații de confidențialitate față de{" "}
+                <Text style={styles.bold}>{data.parte1Nume}</Text> (Partea 1).
+              </Text>
+              <Text style={styles.paragraph}>
+                Partea 2 se obligă să nu divulge, să nu transmită și să nu
+                utilizeze informațiile confidențiale ale Părții 1 în niciun
+                alt scop decât cel agreat în mod expres, fără acordul prealabil
+                scris al Părții 1.
+              </Text>
+            </>
+          ) : (
+            <>
+              <Text style={styles.paragraph}>
+                Fiecare parte se obligă să nu divulge, să nu transmită și să nu
+                utilizeze informațiile confidențiale ale celeilalte părți în
+                niciun alt scop decât cel agreat în mod expres, fără acordul
+                prealabil scris al părții divulgatoare.
+              </Text>
+              <Text style={styles.paragraph}>
+                Obligația de confidențialitate se aplică tuturor angajaților,
+                colaboratorilor și reprezentanților fiecărei părți care au acces
+                la informațiile confidențiale.
+              </Text>
+            </>
+          )}
         </View>
 
         {/* Excepții */}
@@ -157,9 +180,14 @@ export default function AcordConfidentialitate({ data }: Props) {
           <Text style={styles.sectionTitle}>V. Durata</Text>
           <Text style={styles.paragraph}>
             Prezentul acord este valabil pentru o perioadă de{" "}
-            <Text style={{ fontFamily: "Helvetica-Bold" }}>{data.durataAni} ani</Text>{" "}
+            <Text style={styles.bold}>{data.durataAni} ani</Text>{" "}
             de la data semnării. Obligațiile de confidențialitate supraviețuiesc
             încetării acordului pe aceeași perioadă.
+          </Text>
+          <Text style={styles.paragraph}>
+            La încetarea prezentului acord, fiecare parte se obligă să returneze
+            sau să distrugă, la cerere, toate documentele și suporturile
+            conținând informații confidențiale ale celeilalte părți.
           </Text>
         </View>
 
@@ -172,6 +200,14 @@ export default function AcordConfidentialitate({ data }: Props) {
             profit. Prezentul acord este guvernat de legislația română. Litigiile
             vor fi soluționate de instanțele competente din România.
           </Text>
+          {data.penalitate && (
+            <Text style={styles.paragraph}>
+              În cazul încălcării obligațiilor de confidențialitate, partea în
+              culpă datorează celeilalte părți o penalitate de{" "}
+              <Text style={styles.bold}>{data.penalitate} RON</Text>,
+              indiferent de prejudiciul efectiv suferit.
+            </Text>
+          )}
           <Text style={styles.paragraph}>
             Prezentul act este încheiat sub semnătură privată, în două exemplare
             originale, câte unul pentru fiecare parte.
@@ -195,7 +231,7 @@ export default function AcordConfidentialitate({ data }: Props) {
         </View>
 
         <View style={styles.footer} fixed>
-          <Text style={styles.footerText}>Generat prin Documente.ro</Text>
+          <Text style={styles.footerText}>Generat prin FaraNotar.ro</Text>
           <Text style={styles.footerText}>{data.data}</Text>
         </View>
       </Page>

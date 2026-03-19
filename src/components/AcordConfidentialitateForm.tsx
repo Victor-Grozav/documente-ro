@@ -6,41 +6,29 @@ import { AcordConfidentialitateData } from "@/lib/types";
 const today = new Date().toLocaleDateString("ro-RO");
 
 const defaultData: AcordConfidentialitateData = {
-  parte1Nume: "",
-  parte1Calitate: "Persoană fizică",
-  parte1Adresa: "",
-  parte2Nume: "",
-  parte2Calitate: "Persoană fizică",
-  parte2Adresa: "",
-  obiectConfidentialitate: "",
-  durataAni: "2",
-  data: today,
-  locul: "",
+  parte1Nume: "", parte1Calitate: "Persoană fizică", parte1Adresa: "",
+  parte2Nume: "", parte2Calitate: "Persoană fizică", parte2Adresa: "",
+  obiectConfidentialitate: "", durataAni: "2",
+  tipNDA: "bilateral", penalitate: "",
+  data: today, locul: "",
 };
 
 const testData: AcordConfidentialitateData = {
-  parte1Nume: "SC Exemplu Tech SRL",
-  parte1Calitate: "Persoană juridică",
+  parte1Nume: "SC Exemplu Tech SRL", parte1Calitate: "Persoană juridică",
   parte1Adresa: "Str. Inovației nr. 1, Cluj-Napoca, Cluj",
-  parte2Nume: "Ionescu Mihai",
-  parte2Calitate: "Persoană fizică",
+  parte2Nume: "Ionescu Mihai", parte2Calitate: "Persoană fizică",
   parte2Adresa: "Str. Victoriei nr. 20, București, Sector 2",
   obiectConfidentialitate: "Informații tehnice, coduri sursă, date financiare și planuri de afaceri.",
-  durataAni: "2",
-  data: today,
-  locul: "Cluj-Napoca",
+  durataAni: "2", tipNDA: "bilateral", penalitate: "5000",
+  data: today, locul: "Cluj-Napoca",
 };
 
 function Field({
   label, name, value, onChange, placeholder, required, error,
 }: {
-  label: string;
-  name: keyof AcordConfidentialitateData;
-  value: string;
+  label: string; name: keyof AcordConfidentialitateData; value: string;
   onChange: (name: keyof AcordConfidentialitateData, value: string) => void;
-  placeholder?: string;
-  required?: boolean;
-  error?: string;
+  placeholder?: string; required?: boolean; error?: string;
 }) {
   return (
     <div>
@@ -48,15 +36,12 @@ function Field({
         {label} {required && <span className="text-red-400">*</span>}
       </label>
       <input
-        type="text"
-        value={value}
+        type="text" value={value}
         onChange={(e) => onChange(name, e.target.value)}
-        placeholder={placeholder}
-        required={required}
+        placeholder={placeholder} required={required}
         className={`w-full border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 bg-white transition-colors ${
-          error
-            ? "border-red-400 focus:border-red-400 focus:ring-red-400"
-            : "border-gray-200 focus:border-blue-400 focus:ring-blue-400"
+          error ? "border-red-400 focus:border-red-400 focus:ring-red-400"
+                : "border-gray-200 focus:border-blue-400 focus:ring-blue-400"
         }`}
       />
       {error && <p className="text-xs text-red-500 mt-1">{error}</p>}
@@ -64,22 +49,15 @@ function Field({
   );
 }
 
-function CalitateSelect({
-  label, name, value, onChange,
-}: {
-  label: string;
-  name: keyof AcordConfidentialitateData;
-  value: string;
+function CalitateSelect({ label, name, value, onChange }: {
+  label: string; name: keyof AcordConfidentialitateData; value: string;
   onChange: (name: keyof AcordConfidentialitateData, value: string) => void;
 }) {
   return (
     <div>
       <label className="block text-sm font-medium text-gray-700 mb-1">{label}</label>
-      <select
-        value={value}
-        onChange={(e) => onChange(name, e.target.value)}
-        className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 bg-white"
-      >
+      <select value={value} onChange={(e) => onChange(name, e.target.value)}
+        className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 bg-white">
         <option value="Persoană fizică">Persoană fizică</option>
         <option value="Persoană juridică">Persoană juridică</option>
       </select>
@@ -119,28 +97,42 @@ export default function AcordConfidentialitateForm() {
     e.preventDefault();
     setLoading(true);
     setError("");
-
-    if (!validateAll()) {
-      setLoading(false);
-      return;
-    }
-
+    if (!validateAll()) { setLoading(false); return; }
     sessionStorage.setItem("acordNDAData", JSON.stringify(formData));
     window.location.href = "/documente/acord-confidentialitate/success?session_id=test";
   };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      {/* TEST MODE - de șters înainte de deploy */}
       <div className="bg-orange-50 border border-dashed border-orange-200 rounded-xl p-3 flex items-center justify-between">
         <p className="text-xs text-orange-600 font-medium">Mod testare</p>
-        <button
-          type="button"
-          onClick={() => { setFormData(testData); setErrors({}); }}
-          className="text-xs bg-orange-100 hover:bg-orange-200 text-orange-700 font-medium px-3 py-1.5 rounded-lg transition-colors"
-        >
+        <button type="button" onClick={() => { setFormData(testData); setErrors({}); }}
+          className="text-xs bg-orange-100 hover:bg-orange-200 text-orange-700 font-medium px-3 py-1.5 rounded-lg transition-colors">
           Completează automat
         </button>
+      </div>
+
+      {/* Tip NDA */}
+      <div className="bg-white rounded-2xl border border-gray-200 p-6">
+        <h3 className="text-sm font-bold text-gray-500 uppercase tracking-wide mb-4">Tipul acordului</h3>
+        <div className="grid grid-cols-2 gap-3">
+          {(["bilateral", "unilateral"] as const).map((tip) => (
+            <label key={tip} className={`flex items-start gap-3 p-4 rounded-xl border-2 cursor-pointer transition-colors ${
+              formData.tipNDA === tip ? "border-blue-500 bg-blue-50" : "border-gray-200 hover:border-gray-300"
+            }`}>
+              <input type="radio" name="tipNDA" value={tip} checked={formData.tipNDA === tip}
+                onChange={() => handleChange("tipNDA", tip)} className="mt-0.5" />
+              <div>
+                <p className="text-sm font-semibold text-gray-900 capitalize">{tip}</p>
+                <p className="text-xs text-gray-400 mt-0.5">
+                  {tip === "bilateral"
+                    ? "Ambele părți au obligații de confidențialitate"
+                    : "Doar Partea 2 are obligații față de Partea 1"}
+                </p>
+              </div>
+            </label>
+          ))}
+        </div>
       </div>
 
       {/* Partea 1 */}
@@ -161,7 +153,7 @@ export default function AcordConfidentialitateForm() {
         </div>
       </Section>
 
-      {/* Detalii */}
+      {/* Informații și durată */}
       <Section title="Informații Confidențiale și Durată">
         <div className="sm:col-span-2">
           <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -170,9 +162,8 @@ export default function AcordConfidentialitateForm() {
           <textarea
             value={formData.obiectConfidentialitate}
             onChange={(e) => handleChange("obiectConfidentialitate", e.target.value)}
-            placeholder="ex: Informații tehnice, financiare, comerciale, planuri de afaceri, date despre clienți, coduri sursă și orice alte informații marcate ca confidențiale de către părțile divulgatoare."
-            required
-            rows={4}
+            placeholder="ex: Informații tehnice, financiare, comerciale, planuri de afaceri, date despre clienți, coduri sursă și orice alte informații marcate ca confidențiale."
+            required rows={4}
             className={`w-full border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 bg-white resize-none transition-colors ${
               errors.obiectConfidentialitate
                 ? "border-red-400 focus:border-red-400 focus:ring-red-400"
@@ -187,11 +178,8 @@ export default function AcordConfidentialitateForm() {
           <label className="block text-sm font-medium text-gray-700 mb-1">
             Durata acordului <span className="text-red-400">*</span>
           </label>
-          <select
-            value={formData.durataAni}
-            onChange={(e) => handleChange("durataAni", e.target.value)}
-            className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 bg-white"
-          >
+          <select value={formData.durataAni} onChange={(e) => handleChange("durataAni", e.target.value)}
+            className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 bg-white">
             <option value="1">1 an</option>
             <option value="2">2 ani</option>
             <option value="3">3 ani</option>
@@ -199,15 +187,27 @@ export default function AcordConfidentialitateForm() {
             <option value="10">10 ani</option>
           </select>
         </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Clauză penală (RON, opțional)
+          </label>
+          <input
+            type="number" value={formData.penalitate}
+            onChange={(e) => handleChange("penalitate", e.target.value)}
+            placeholder="ex: 5000"
+            className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 bg-white"
+          />
+          <p className="text-xs text-gray-400 mt-1">
+            Penalitate fixă în caz de încălcare a acordului
+          </p>
+        </div>
         <Field label="Data acordului" name="data" value={formData.data} onChange={handleChange} placeholder="16.03.2026" required />
         <div className="sm:col-span-2">
           <Field label="Locul încheierii" name="locul" value={formData.locul} onChange={handleChange} placeholder="ex: Cluj-Napoca" required />
         </div>
       </Section>
 
-      {error && (
-        <div className="bg-red-50 border border-red-200 text-red-700 rounded-xl px-4 py-3 text-sm">{error}</div>
-      )}
+      {error && <div className="bg-red-50 border border-red-200 text-red-700 rounded-xl px-4 py-3 text-sm">{error}</div>}
 
       <div className="bg-white rounded-2xl border border-gray-200 p-6">
         <div className="flex items-center justify-between mb-4">
@@ -220,11 +220,8 @@ export default function AcordConfidentialitateForm() {
             <p className="text-xs text-gray-400">plată unică</p>
           </div>
         </div>
-        <button
-          type="submit"
-          disabled={loading}
-          className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-semibold py-3 rounded-xl transition-colors text-base"
-        >
+        <button type="submit" disabled={loading}
+          className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-semibold py-3 rounded-xl transition-colors text-base">
           {loading ? "Se procesează..." : "Continuă spre plată →"}
         </button>
         <p className="text-xs text-gray-400 text-center mt-3">

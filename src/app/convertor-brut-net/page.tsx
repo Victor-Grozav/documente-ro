@@ -20,7 +20,7 @@ export default function ConvertorPage() {
       {/* Header */}
       <div className="max-w-2xl mx-auto text-center mb-8">
         <a href="/" className="text-blue-600 text-sm font-medium hover:underline">
-          ← Documente.ro
+          ← FaraNotar.ro
         </a>
         <h1 className="text-3xl font-bold text-gray-900 mt-4 mb-2">
           Calculator Salariu Brut → Net
