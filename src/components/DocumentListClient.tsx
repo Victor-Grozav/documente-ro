@@ -61,6 +61,7 @@ const documente = [
     titlu: "Proces Verbal de Predare-Primire",
     descriere: "Document la predarea locuinței — stare proprietate, contoare, chei.",
     pret: "10 lei",
+    gratuitCu: "contract-inchiriere",
     disponibil: true,
   },
 ];
@@ -84,6 +85,11 @@ export default function DocumentListClient() {
                 <div className="min-w-0">
                   <p className="font-semibold text-gray-900">{doc.titlu}</p>
                   <p className="text-sm text-gray-500 mt-0.5">{doc.descriere}</p>
+                  {"gratuitCu" in doc && (
+                    <p className="text-xs text-green-600 font-medium mt-1">
+                      🎁 Gratuit cu Contract de Închiriere
+                    </p>
+                  )}
                 </div>
               </Link>
 
