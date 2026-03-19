@@ -19,13 +19,21 @@ export interface AcordConfidentialitateData {
   parte1Nume: string;
   parte1Calitate: string;
   parte1Adresa: string;
+  parte1CUI?: string;               // dacă PJ
+  parte1ReprezentantLegal?: string; // dacă PJ
+  parte1CNP?: string;               // dacă PF
+  parte1CI?: string;                // dacă PF
   parte2Nume: string;
   parte2Calitate: string;
   parte2Adresa: string;
+  parte2CUI?: string;
+  parte2ReprezentantLegal?: string;
+  parte2CNP?: string;
+  parte2CI?: string;
   obiectConfidentialitate: string;
   durataAni: string;
   tipNDA: "bilateral" | "unilateral";
-  penalitate: string; // sumă RON, opțional
+  penalitate: string;
   data: string;
   locul: string;
 }

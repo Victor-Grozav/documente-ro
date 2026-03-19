@@ -109,6 +109,9 @@ export default function ProcesVerbalPredare({ data: rawData }: Props) {
       <Page size="A4" style={styles.page}>
         <Text style={styles.title}>Proces Verbal de Predare-Primire</Text>
         <Text style={styles.subtitle}>
+          Anexă la Contractul de Închiriere din {data.dataContract} · {data.proprietateAdresa}
+        </Text>
+        <Text style={styles.subtitle}>
           Încheiat astăzi, {data.data}, în {data.locul}
         </Text>
 

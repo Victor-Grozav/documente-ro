@@ -227,9 +227,23 @@ export default function ContractInchiriere({ data: rawData }: Props) {
           </Text>
         </View>
 
+        {/* Reziliere anticipată */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>VII. Reziliere Anticipată</Text>
+          <Text style={styles.paragraph}>
+            {f("Oricare dintre părți poate rezilia prezentul contract înainte de termen, cu un preaviz scris de minimum 30 de zile transmis celeilalte părți.")}
+          </Text>
+          <Text style={styles.paragraph}>
+            {f("Rezilierea de drept (fără preaviz) intervine în cazul: neachitării chiriei timp de 2 luni consecutive; utilizării proprietății contrar destinației sau fără acordul Locatorului; producerii de degradări grave ale proprietății; subînchirierii fără acord scris.")}
+          </Text>
+          <Text style={styles.paragraph}>
+            {f("La data rezilierii, Locatarul este obligat să elibereze proprietatea și să o predea Locatorului pe baza unui proces-verbal de predare-primire.")}
+          </Text>
+        </View>
+
         {/* Clauze finale */}
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>VII. Clauze Finale</Text>
+          <Text style={styles.sectionTitle}>VIII. Clauze Finale</Text>
           <Text style={styles.paragraph}>
             {f("Locatorul are obligația legală de a înregistra prezentul contract la organul fiscal competent (ANAF) în termen de 30 de zile de la data semnării și de a declara veniturile din chirii, conform art. 120 din Codul Fiscal.")}
           </Text>

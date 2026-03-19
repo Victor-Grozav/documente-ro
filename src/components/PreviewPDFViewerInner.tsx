@@ -42,8 +42,10 @@ const SAMPLE_IMPUTERNICIRE: ImputernicireData = {
 const SAMPLE_ACORD: AcordConfidentialitateData = {
   parte1Nume: "SC Exemplu Tech SRL", parte1Calitate: "Persoană juridică",
   parte1Adresa: "Str. Inovației nr. 1, Cluj-Napoca, Cluj",
+  parte1CUI: "RO12345678", parte1ReprezentantLegal: "Popescu Ion, Administrator",
   parte2Nume: "Ionescu Mihai", parte2Calitate: "Persoană fizică",
   parte2Adresa: "Str. Victoriei nr. 20, București, Sector 2",
+  parte2CNP: "1850315120003", parte2CI: "RX 123456",
   obiectConfidentialitate: "Informații tehnice, coduri sursă, algoritmi, date financiare, planuri de afaceri, liste de clienți și orice alte informații marcate drept confidențiale de către oricare dintre părți pe durata colaborării.",
   durataAni: "3", tipNDA: "bilateral", penalitate: "",
   data: "18.03.2026", locul: "Cluj-Napoca",

@@ -16,8 +16,10 @@ const defaultData: AcordConfidentialitateData = {
 const testData: AcordConfidentialitateData = {
   parte1Nume: "SC Exemplu Tech SRL", parte1Calitate: "Persoană juridică",
   parte1Adresa: "Str. Inovației nr. 1, Cluj-Napoca, Cluj",
+  parte1CUI: "RO12345678", parte1ReprezentantLegal: "Popescu Ion, Administrator",
   parte2Nume: "Ionescu Mihai", parte2Calitate: "Persoană fizică",
   parte2Adresa: "Str. Victoriei nr. 20, București, Sector 2",
+  parte2CNP: "1850315120003", parte2CI: "RX 123456",
   obiectConfidentialitate: "Informații tehnice, coduri sursă, date financiare și planuri de afaceri.",
   durataAni: "2", tipNDA: "bilateral", penalitate: "5000",
   data: today, locul: "Cluj-Napoca",
@@ -142,6 +144,19 @@ export default function AcordConfidentialitateForm() {
         <div className="sm:col-span-2">
           <Field label="Adresă / Sediu social" name="parte1Adresa" value={formData.parte1Adresa} onChange={handleChange} placeholder="Str. Exemplu nr. 1, Cluj-Napoca, Cluj" required />
         </div>
+        {formData.parte1Calitate === "Persoană juridică" ? (
+          <>
+            <Field label="CUI / CIF" name="parte1CUI" value={formData.parte1CUI ?? ""} onChange={handleChange} placeholder="ex: RO12345678" required />
+            <div className="sm:col-span-2">
+              <Field label="Reprezentant legal (nume + funcție)" name="parte1ReprezentantLegal" value={formData.parte1ReprezentantLegal ?? ""} onChange={handleChange} placeholder="ex: Popescu Ion, Administrator" required />
+            </div>
+          </>
+        ) : (
+          <>
+            <Field label="CNP" name="parte1CNP" value={formData.parte1CNP ?? ""} onChange={handleChange} placeholder="ex: 1850315120003" required />
+            <Field label="Serie și nr. CI" name="parte1CI" value={formData.parte1CI ?? ""} onChange={handleChange} placeholder="ex: AB 123456" />
+          </>
+        )}
       </Section>
 
       {/* Partea 2 */}
@@ -151,6 +166,19 @@ export default function AcordConfidentialitateForm() {
         <div className="sm:col-span-2">
           <Field label="Adresă / Sediu social" name="parte2Adresa" value={formData.parte2Adresa} onChange={handleChange} placeholder="Str. Exemplu nr. 2, București, Ilfov" required />
         </div>
+        {formData.parte2Calitate === "Persoană juridică" ? (
+          <>
+            <Field label="CUI / CIF" name="parte2CUI" value={formData.parte2CUI ?? ""} onChange={handleChange} placeholder="ex: RO87654321" required />
+            <div className="sm:col-span-2">
+              <Field label="Reprezentant legal (nume + funcție)" name="parte2ReprezentantLegal" value={formData.parte2ReprezentantLegal ?? ""} onChange={handleChange} placeholder="ex: Ionescu Maria, Director General" required />
+            </div>
+          </>
+        ) : (
+          <>
+            <Field label="CNP" name="parte2CNP" value={formData.parte2CNP ?? ""} onChange={handleChange} placeholder="ex: 2920520400005" required />
+            <Field label="Serie și nr. CI" name="parte2CI" value={formData.parte2CI ?? ""} onChange={handleChange} placeholder="ex: CJ 654321" />
+          </>
+        )}
       </Section>
 
       {/* Informații și durată */}

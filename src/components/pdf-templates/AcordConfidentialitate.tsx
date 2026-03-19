@@ -100,6 +100,30 @@ export default function AcordConfidentialitate({ data: rawData }: Props) {
             <Text style={styles.label}>Calitate:</Text>
             <Text style={styles.value}>{data.parte1Calitate}</Text>
           </View>
+          {data.parte1CUI && (
+            <View style={styles.row}>
+              <Text style={styles.label}>CUI / CIF:</Text>
+              <Text style={styles.value}>{data.parte1CUI}</Text>
+            </View>
+          )}
+          {data.parte1ReprezentantLegal && (
+            <View style={styles.row}>
+              <Text style={styles.label}>Reprezentant legal:</Text>
+              <Text style={styles.value}>{data.parte1ReprezentantLegal}</Text>
+            </View>
+          )}
+          {data.parte1CNP && (
+            <View style={styles.row}>
+              <Text style={styles.label}>CNP:</Text>
+              <Text style={styles.value}>{data.parte1CNP}</Text>
+            </View>
+          )}
+          {data.parte1CI && (
+            <View style={styles.row}>
+              <Text style={styles.label}>Serie și nr. CI:</Text>
+              <Text style={styles.value}>{data.parte1CI}</Text>
+            </View>
+          )}
           <View style={[styles.row, { marginBottom: 12 }]}>
             <Text style={styles.label}>Adresă / Sediu:</Text>
             <Text style={styles.value}>{data.parte1Adresa}</Text>
@@ -114,6 +138,30 @@ export default function AcordConfidentialitate({ data: rawData }: Props) {
             <Text style={styles.label}>Calitate:</Text>
             <Text style={styles.value}>{data.parte2Calitate}</Text>
           </View>
+          {data.parte2CUI && (
+            <View style={styles.row}>
+              <Text style={styles.label}>CUI / CIF:</Text>
+              <Text style={styles.value}>{data.parte2CUI}</Text>
+            </View>
+          )}
+          {data.parte2ReprezentantLegal && (
+            <View style={styles.row}>
+              <Text style={styles.label}>Reprezentant legal:</Text>
+              <Text style={styles.value}>{data.parte2ReprezentantLegal}</Text>
+            </View>
+          )}
+          {data.parte2CNP && (
+            <View style={styles.row}>
+              <Text style={styles.label}>CNP:</Text>
+              <Text style={styles.value}>{data.parte2CNP}</Text>
+            </View>
+          )}
+          {data.parte2CI && (
+            <View style={styles.row}>
+              <Text style={styles.label}>Serie și nr. CI:</Text>
+              <Text style={styles.value}>{data.parte2CI}</Text>
+            </View>
+          )}
           <View style={styles.row}>
             <Text style={styles.label}>Adresă / Sediu:</Text>
             <Text style={styles.value}>{data.parte2Adresa}</Text>
