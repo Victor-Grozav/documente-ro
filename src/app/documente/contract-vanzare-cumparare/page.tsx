@@ -5,7 +5,7 @@ import DocumentDisclaimer from "@/components/DocumentDisclaimer";
 export const metadata: Metadata = {
   title: "Contract de Vânzare-Cumpărare România 2025 — PDF instant",
   description:
-    "Generează un contract de vânzare-cumpărare conform legislației române. Completează formularul, plătește 10 lei și descarcă PDF-ul instant.",
+    "Generează un contract de vânzare-cumpărare conform legislației române. Completează formularul, plătește 25 lei și descarcă PDF-ul instant.",
   keywords:
     "contract vanzare cumparare romania, model contract vanzare, generator contract pdf romania",
 };
@@ -22,7 +22,7 @@ export default function ContractVanzarePage() {
             Contract de Vânzare-Cumpărare
           </h1>
           <p className="text-gray-500">
-            Completează datele de mai jos · PDF gata de semnat · 10 lei
+            Completează datele de mai jos · PDF gata de semnat · 25 lei
           </p>
         </div>
 

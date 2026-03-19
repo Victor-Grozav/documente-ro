@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     "Generează contracte și documente legale pentru România. Contract de vânzare-cumpărare, închiriere, procuri și altele. PDF instant, de la 10 lei/document.",
 };
 
-export default function DocumenrePage() {
+export default function DocumentePage() {
   return (
     <main className="min-h-screen py-10 px-4">
       <div className="max-w-2xl mx-auto">

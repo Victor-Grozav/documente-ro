@@ -328,10 +328,7 @@ export default function ContractVanzareCumparare({ data: rawData }: Props) {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>VI. Obligațiile Părților</Text>
           <Text style={styles.paragraph}>
-            <Text style={styles.bold}>Vânzătorul</Text> se
-            obligă să predea bunul la locația și în condițiile stabilite prin
-            prezentul contract și să garanteze Cumpărătorul contra evicțiunii și
-            viciilor ascunse, conform dispozițiilor Codului Civil român.
+            <Text style={styles.bold}>{f("Vânzătorul")}</Text>{f(" se obligă să predea bunul la locația și în condițiile stabilite prin prezentul contract și să garanteze Cumpărătorul contra evicțiunii și viciilor ascunse, conform dispozițiilor Codului Civil român. Cumpărătorul este obligat să denunțe viciile ascunse în termen de 6 luni de la descoperire, conform art. 1713 Cod Civil. Riscul pieirii fortuite a bunului trece la Cumpărător la momentul predării efective (art. 1274 Cod Civil).")}
           </Text>
           <Text style={styles.paragraph}>
             <Text style={styles.bold}>Cumpărătorul</Text> se

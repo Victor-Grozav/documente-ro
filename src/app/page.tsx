@@ -47,8 +47,8 @@ export default function HomePage() {
         </div>
 
         <p className="text-xs text-gray-400 mt-10">
-          Documentele generate sunt valabile legal fără autentificare notarială,
-          conform Codului Civil român.
+          Documentele pentru bunuri mobile sunt valabile sub semnătură privată, conform Codului Civil român.
+          Notarul rămâne obligatoriu pentru imobile, succesiuni și procuri autentice.
         </p>
       </div>
     </main>

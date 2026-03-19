@@ -100,7 +100,7 @@ interface Props {
   data: ProcesVerbalData;
 }
 
-const EMPTY_ROWS = 5;
+const EMPTY_ROWS = 10;
 
 export default function ProcesVerbalPredare({ data: rawData }: Props) {
   const data = fixData(rawData);
@@ -189,23 +189,45 @@ export default function ProcesVerbalPredare({ data: rawData }: Props) {
           ))}
         </View>
 
-        {/* V. Chei predate */}
+        {/* V. Chei și accesorii predate */}
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>V. Chei Predate</Text>
+          <Text style={styles.sectionTitle}>V. Chei și Accesorii Predate</Text>
           <View style={styles.contor}>
-            <Text style={styles.contorLabel}>Număr seturi chei predate:</Text>
+            <Text style={styles.contorLabel}>Seturi chei intrare:</Text>
+            <View style={styles.contorLine} />
+          </View>
+          <View style={styles.contor}>
+            <Text style={styles.contorLabel}>Chei cutie poștală:</Text>
+            <View style={styles.contorLine} />
+          </View>
+          <View style={styles.contor}>
+            <Text style={styles.contorLabel}>Telecomenzi garaj/interfon:</Text>
+            <View style={styles.contorLine} />
+          </View>
+          <View style={styles.contor}>
+            <Text style={styles.contorLabel}>Carduri/ecusoane acces:</Text>
             <View style={styles.contorLine} />
           </View>
         </View>
 
-        {/* VI. Mențiune exemplare */}
+        {/* VI. Declarație utilități */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>VI. Declarație Utilități</Text>
+          <Text style={styles.paragraph}>
+            Locatorul declară că la data prezentei predări nu există facturi restante sau datorii
+            neachitate la furnizorii de utilități (energie electrică, gaz, apă, internet, televiziune)
+            aferente proprietății mai sus menționate.
+          </Text>
+        </View>
+
+        {/* VII. Mențiune exemplare */}
         <View style={styles.section}>
           <Text style={styles.paragraph}>
             Prezentul proces verbal s-a încheiat în două exemplare originale, câte unul pentru fiecare parte.
           </Text>
         </View>
 
-        {/* VII. Semnături */}
+        {/* VIII. Semnături */}
         <View style={styles.signatureSection}>
           <View style={styles.signatureBox}>
             <Text style={styles.signatureLabel}>Locator</Text>
