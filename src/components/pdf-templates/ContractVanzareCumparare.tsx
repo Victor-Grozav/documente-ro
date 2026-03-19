@@ -341,7 +341,7 @@ export default function ContractVanzareCumparare({ data: rawData }: Props) {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>VI. Obligațiile Părților</Text>
           <Text style={styles.paragraph}>
-            <Text style={styles.bold}>{f("Vânzătorul")}</Text>{f(" se obligă să predea bunul la locația și în condițiile stabilite prin prezentul contract și să garanteze Cumpărătorul contra evicțiunii și viciilor ascunse, conform dispozițiilor Codului Civil român. Cumpărătorul este obligat să denunțe viciile ascunse în termen de 6 luni de la descoperire, conform art. 1713 Cod Civil. Riscul pieirii fortuite a bunului trece la Cumpărător la momentul predării efective (art. 1274 Cod Civil).")}
+            <Text style={styles.bold}>{f("Vânzătorul")}</Text>{f(" se obligă să predea bunul la locația și în condițiile stabilite prin prezentul contract și să îl garanteze pe Cumpărător contra evicțiunii și viciilor ascunse, conform dispozițiilor Codului Civil român. Cumpărătorul este obligat să denunțe viciile ascunse în termen de 6 luni de la descoperire, termen rezonabil în sensul art. 1713 Cod Civil. Riscul pieirii fortuite a bunului trece la Cumpărător la momentul predării efective (art. 1274 și art. 1755 Cod Civil).")}
           </Text>
           <Text style={styles.paragraph}>
             <Text style={styles.bold}>Cumpărătorul</Text> se
@@ -362,8 +362,9 @@ export default function ContractVanzareCumparare({ data: rawData }: Props) {
           <Text style={styles.sectionTitle}>VII. Clauze Finale</Text>
           <Text style={styles.paragraph}>
             Prezentul contract este încheiat sub semnătură privată și este valabil
-            fără autentificare notarială pentru bunurile mobile, conform art. 1674
-            din Codul Civil român. Contractul reprezintă voința liberă și
+            fără autentificare notarială pentru bunurile mobile, conform principiului
+            consensualismului (art. 1178 Cod Civil), transferul proprietății
+            operând la data semnării (art. 1674 Cod Civil). Contractul reprezintă voința liberă și
             neviciată a părților și a fost încheiat în două exemplare originale,
             câte unul pentru fiecare parte.
           </Text>

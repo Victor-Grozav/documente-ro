@@ -78,6 +78,7 @@ interface Props {
 
 export default function AcordConfidentialitate({ data: rawData }: Props) {
   const data = fixData(rawData);
+  const unitateTiMP = data.durataAni === "1" ? "an" : "ani";
   return (
     <Document title="Acord de Confidențialitate (NDA)" author="FaraNotar.ro" creator="FaraNotar.ro">
       <Page size="A4" style={styles.page}>
@@ -191,14 +192,14 @@ export default function AcordConfidentialitate({ data: rawData }: Props) {
               <Text style={styles.paragraph}>
                 Partea 2 se obligă să nu divulge, să nu transmită și să nu
                 utilizeze informațiile confidențiale ale Părții 1 în niciun
-                alt scop decât cel agreat în mod expres, fără acordul prealabil
+                alt scop decât cel convenit în mod expres, fără acordul prealabil
                 scris al Părții 1.
               </Text>
             </>
           ) : (
             <>
               <Text style={styles.paragraph}>
-                {f("Fiecare parte se obligă să nu divulge, să nu transmită și să nu utilizeze informațiile confidențiale ale celeilalte părți în niciun alt scop decât cel agreat în mod expres, fără acordul prealabil scris al părții divulgatoare.")}
+                {f("Fiecare parte se obligă să nu divulge, să nu transmită și să nu utilizeze informațiile confidențiale ale celeilalte părți în niciun alt scop decât cel convenit în mod expres, fără acordul prealabil scris al părții divulgatoare.")}
               </Text>
               <Text style={styles.paragraph}>
                 {f("Obligația de confidențialitate se aplică tuturor angajaților, colaboratorilor și reprezentanților fiecărei părți care au acces la informațiile confidențiale.")}
@@ -225,10 +226,10 @@ export default function AcordConfidentialitate({ data: rawData }: Props) {
           <Text style={styles.sectionTitle}>V. Durata</Text>
           <Text style={styles.paragraph}>
             Prezentul acord este valabil pentru o perioadă de{" "}
-            <Text style={styles.bold}>{data.durataAni} ani</Text>{" "}
+            <Text style={styles.bold}>{data.durataAni} {unitateTiMP}</Text>{" "}
             de la data semnării. Obligațiile de confidențialitate supraviețuiesc
             încetării acordului și rămân în vigoare pentru o perioadă egală de{" "}
-            <Text style={styles.bold}>{data.durataAni} ani</Text>{" "}
+            <Text style={styles.bold}>{data.durataAni} {unitateTiMP}</Text>{" "}
             calculată de la data încetării.
           </Text>
           {data.tipNDA === "unilateral" ? (

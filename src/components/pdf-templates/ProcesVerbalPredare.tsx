@@ -197,7 +197,7 @@ export default function ProcesVerbalPredare({ data: rawData }: Props) {
             <View style={styles.contorLine} />
           </View>
           <View style={styles.contor}>
-            <Text style={styles.contorLabel}>Chei cutie poștală:</Text>
+            <Text style={styles.contorLabel}>Chei de la cutia poștală:</Text>
             <View style={styles.contorLine} />
           </View>
           <View style={styles.contor}>

@@ -189,8 +189,7 @@ export default function ContractInchiriere({ data: rawData }: Props) {
             <Text style={styles.bold}>
               {data.chiria} {data.moneda}
             </Text>
-            ,{" "}
-            <Text style={styles.bold}>{modalitateDisplay}</Text>
+            {f(" și se achită ")}<Text style={styles.bold}>{modalitateDisplay}</Text>
             {f(", până la data de 5 a fiecărei luni pentru luna în curs.")}
           </Text>
           {data.garantie && (
