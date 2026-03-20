@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 import CalculatorConcediuMedical from "@/components/CalculatorConcediuMedical";
 
 export const metadata: Metadata = {
-  title: "Calculator Concediu Medical România 2025 — Indemnizație CNAS",
+  title: "Calculator Concediu Medical România 2026 — Indemnizație CNAS",
   description:
-    "Calculează câți bani primești pe concediu medical în România 2025. Formula OUG 158/2005: baza de calcul, zilele plătite de angajator vs CNAS, rețineri.",
+    "Calculează câți bani primești pe concediu medical în România 2026. Formula OUG 158/2005: baza de calcul, zilele plătite de angajator vs CNAS, rețineri.",
   keywords:
-    "calculator concediu medical romania 2025, indemnizatie concediu medical, cnas concediu medical, oug 158 2005, cat primesc pe concediu medical",
+    "calculator concediu medical romania 2026, indemnizatie concediu medical, cnas concediu medical, oug 158 2005, cat primesc pe concediu medical",
   openGraph: {
-    title: "Calculator Concediu Medical România 2025",
+    title: "Calculator Concediu Medical România 2026",
     description:
       "Calculează indemnizația de concediu medical. Angajator (zilele 1–5) vs CNAS (zilele 6+), rețineri, net în mână.",
   },
@@ -26,7 +26,7 @@ export default function ConcediuMedicalPage() {
           Calculator Concediu Medical
         </h1>
         <p className="text-gray-500">
-          România 2025 · OUG 158/2005 · Indemnizație CNAS
+          România 2026 · OUG 158/2005 · Indemnizație CNAS
         </p>
       </div>
 
@@ -36,7 +36,7 @@ export default function ConcediuMedicalPage() {
       {/* SEO content */}
       <div className="max-w-2xl mx-auto mt-12">
         <h2 className="text-xl font-bold text-gray-800 mb-4">
-          Cum se calculează indemnizația de concediu medical în România 2025?
+          Cum se calculează indemnizația de concediu medical în România 2026?
         </h2>
         <div className="bg-white rounded-2xl border border-gray-200 p-6 space-y-4 text-sm text-gray-600">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">

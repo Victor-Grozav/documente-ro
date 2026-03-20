@@ -3,8 +3,9 @@
 import { useState } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import { FileText, ArrowRight, Clock, Eye, X } from "lucide-react";
+import { ArrowRight, Clock, Eye, X, Handshake, UserCheck, Lock, Home, ClipboardList } from "lucide-react";
 import type { PreviewDocumentType } from "@/components/PreviewPDFViewerInner";
+import type { LucideIcon } from "lucide-react";
 
 const PreviewPDFViewerInner = dynamic(
   () => import("@/components/PreviewPDFViewerInner"),
@@ -27,42 +28,115 @@ const TITLURI: Record<PreviewDocumentType, string> = {
   "proces-verbal-predare": "Proces Verbal de Predare-Primire",
 };
 
-const documente = [
+interface DocConfig {
+  slug: PreviewDocumentType;
+  titlu: string;
+  descriere: string;
+  pret: string;
+  gratuitCu?: string;
+  icon: LucideIcon;
+  iconBg: string;
+  iconColor: string;
+  hoverBorder: string;
+  priceBg: string;
+  priceColor: string;
+  ctaColor: string;
+  disponibil: boolean;
+  badge?: string;
+}
+
+interface Categorie {
+  label: string;
+  items: DocConfig[];
+}
+
+const CATEGORII: Categorie[] = [
   {
-    slug: "contract-vanzare-cumparare" as PreviewDocumentType,
-    titlu: "Contract de Vânzare-Cumpărare",
-    descriere: "Pentru vânzarea oricărui bun mobil: mașini, electronice, bunuri personale.",
-    pret: "25 lei",
-    disponibil: true,
+    label: "Vânzare & Cumpărare",
+    items: [
+      {
+        slug: "contract-vanzare-cumparare",
+        titlu: "Contract de Vânzare-Cumpărare",
+        descriere: "Pentru vânzarea oricărui bun mobil: mașini, electronice, bunuri personale.",
+        pret: "25 lei",
+        icon: Handshake,
+        iconBg: "bg-green-100",
+        iconColor: "text-green-600",
+        hoverBorder: "hover:border-green-300",
+        priceBg: "bg-green-50",
+        priceColor: "text-green-700",
+        ctaColor: "text-green-600",
+        disponibil: true,
+        badge: "Cel mai folosit",
+      },
+    ],
   },
   {
-    slug: "imputernicire" as PreviewDocumentType,
-    titlu: "Împuternicire / Procură",
-    descriere: "Delegarea dreptului de a acționa în numele tău.",
-    pret: "15 lei",
-    disponibil: true,
+    label: "Proprietăți",
+    items: [
+      {
+        slug: "contract-inchiriere",
+        titlu: "Contract de Închiriere",
+        descriere: "Contract de închiriere pentru spații locative sau comerciale.",
+        pret: "25 lei",
+        icon: Home,
+        iconBg: "bg-orange-100",
+        iconColor: "text-orange-600",
+        hoverBorder: "hover:border-orange-300",
+        priceBg: "bg-orange-50",
+        priceColor: "text-orange-700",
+        ctaColor: "text-orange-600",
+        disponibil: true,
+      },
+      {
+        slug: "proces-verbal-predare",
+        titlu: "Proces Verbal de Predare-Primire",
+        descriere: "Document la predarea locuinței — stare proprietate, contoare, chei.",
+        pret: "10 lei",
+        gratuitCu: "contract-inchiriere",
+        icon: ClipboardList,
+        iconBg: "bg-slate-100",
+        iconColor: "text-slate-500",
+        hoverBorder: "hover:border-slate-300",
+        priceBg: "bg-slate-50",
+        priceColor: "text-slate-600",
+        ctaColor: "text-slate-600",
+        disponibil: true,
+      },
+    ],
   },
   {
-    slug: "acord-confidentialitate" as PreviewDocumentType,
-    titlu: "Acord de Confidențialitate (NDA)",
-    descriere: "Protejarea informațiilor confidențiale între două părți.",
-    pret: "20 lei",
-    disponibil: true,
-  },
-  {
-    slug: "contract-inchiriere" as PreviewDocumentType,
-    titlu: "Contract de Închiriere",
-    descriere: "Contract de închiriere pentru spații locative sau comerciale.",
-    pret: "25 lei",
-    disponibil: true,
-  },
-  {
-    slug: "proces-verbal-predare" as PreviewDocumentType,
-    titlu: "Proces Verbal de Predare-Primire",
-    descriere: "Document la predarea locuinței — stare proprietate, contoare, chei.",
-    pret: "10 lei",
-    gratuitCu: "contract-inchiriere",
-    disponibil: true,
+    label: "Business & Protecție",
+    items: [
+      {
+        slug: "acord-confidentialitate",
+        titlu: "Acord de Confidențialitate (NDA)",
+        descriere: "Protejarea informațiilor confidențiale între două părți.",
+        pret: "20 lei",
+        icon: Lock,
+        iconBg: "bg-rose-100",
+        iconColor: "text-rose-600",
+        hoverBorder: "hover:border-rose-300",
+        priceBg: "bg-rose-50",
+        priceColor: "text-rose-700",
+        ctaColor: "text-rose-600",
+        disponibil: true,
+      },
+      {
+        slug: "imputernicire",
+        titlu: "Împuternicire / Procură",
+        descriere: "Delegarea dreptului de a acționa în numele tău pentru o perioadă determinată.",
+        pret: "15 lei",
+        icon: UserCheck,
+        iconBg: "bg-violet-100",
+        iconColor: "text-violet-600",
+        hoverBorder: "hover:border-violet-300",
+        priceBg: "bg-violet-50",
+        priceColor: "text-violet-700",
+        ctaColor: "text-violet-600",
+        disponibil: true,
+      },
+    ],
   },
 ];
 
@@ -71,66 +145,88 @@ export default function DocumentListClient() {
 
   return (
     <>
-      <div className="space-y-3">
-        {documente.map((doc) =>
-          doc.disponibil ? (
-            <div key={doc.slug} className="group/card flex items-center bg-white rounded-2xl border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all">
-              <Link
-                href={`/documente/${doc.slug}`}
-                className="flex-1 flex items-center gap-4 p-5 min-w-0"
-              >
-                <div className="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center shrink-0">
-                  <FileText className="w-5 h-5 text-blue-600" />
-                </div>
-                <div className="min-w-0">
-                  <p className="font-semibold text-gray-900">{doc.titlu}</p>
-                  <p className="text-sm text-gray-500 mt-0.5">{doc.descriere}</p>
-                  {"gratuitCu" in doc && (
-                    <p className="text-xs text-green-600 font-medium mt-1">
-                      🎁 Gratuit cu Contract de Închiriere
-                    </p>
-                  )}
-                </div>
-              </Link>
+      <div className="space-y-6">
+        {CATEGORII.map((cat) => (
+          <div key={cat.label}>
+            <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-3 px-1">
+              {cat.label}
+            </p>
+            <div className="space-y-3">
+              {cat.items.map((doc) =>
+                doc.disponibil ? (
+                  <div
+                    key={doc.slug}
+                    className={`group/card flex items-center bg-white rounded-2xl border border-gray-200 ${doc.hoverBorder} hover:shadow-md transition-all`}
+                  >
+                    <Link
+                      href={`/documente/${doc.slug}`}
+                      className="flex-1 flex items-center gap-4 p-5 min-w-0"
+                    >
+                      <div className={`w-10 h-10 ${doc.iconBg} rounded-xl flex items-center justify-center shrink-0`}>
+                        <doc.icon className={`w-5 h-5 ${doc.iconColor}`} />
+                      </div>
+                      <div className="min-w-0">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <p className="font-semibold text-gray-900">{doc.titlu}</p>
+                          {doc.badge && (
+                            <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${doc.priceBg} ${doc.priceColor}`}>
+                              {doc.badge}
+                            </span>
+                          )}
+                        </div>
+                        <p className="text-sm text-gray-500 mt-0.5">{doc.descriere}</p>
+                        {doc.gratuitCu && (
+                          <p className="text-xs text-green-600 font-medium mt-1">
+                            Gratuit cu Contract de Închiriere
+                          </p>
+                        )}
+                      </div>
+                    </Link>
 
-              <div className="flex items-center gap-1 pr-4 shrink-0">
-                <span className="font-bold text-gray-900 mr-1">{doc.pret}</span>
-                <button
-                  onClick={() => setPreview(doc.slug)}
-                  className="p-2 text-gray-300 hover:text-blue-500 hover:bg-blue-50 rounded-lg transition-colors"
-                  title="Vezi model document"
-                >
-                  <Eye className="w-4 h-4" />
-                </button>
-                <Link
-                  href={`/documente/${doc.slug}`}
-                  className="p-2 text-blue-400 hover:text-blue-600 rounded-lg transition-colors"
-                >
-                  <ArrowRight className="w-4 h-4 group-hover/card:translate-x-1 transition-transform" />
-                </Link>
-              </div>
+                    <div className="flex items-center gap-2 pr-4 shrink-0">
+                      <span className={`text-sm font-bold px-3 py-1 rounded-full ${doc.priceBg} ${doc.priceColor}`}>
+                        {doc.gratuitCu ? "10 lei / gratuit" : doc.pret}
+                      </span>
+                      <button
+                        onClick={() => setPreview(doc.slug)}
+                        className="p-2 text-gray-300 hover:text-gray-500 hover:bg-gray-50 rounded-lg transition-colors"
+                        title="Previzualizează documentul"
+                      >
+                        <Eye className="w-4 h-4" />
+                      </button>
+                      <Link
+                        href={`/documente/${doc.slug}`}
+                        className={`flex items-center gap-1 text-sm font-medium ${doc.ctaColor} whitespace-nowrap`}
+                      >
+                        Generează PDF
+                        <ArrowRight className="w-4 h-4 group-hover/card:translate-x-1 transition-transform" />
+                      </Link>
+                    </div>
+                  </div>
+                ) : (
+                  <div
+                    key={doc.slug}
+                    className="flex items-center justify-between bg-white rounded-2xl border border-dashed border-gray-200 p-5 opacity-50"
+                  >
+                    <div className="flex items-start gap-4">
+                      <div className="w-10 h-10 bg-gray-100 rounded-xl flex items-center justify-center shrink-0">
+                        <doc.icon className="w-5 h-5 text-gray-400" />
+                      </div>
+                      <div>
+                        <p className="font-semibold text-gray-700">{doc.titlu}</p>
+                        <p className="text-sm text-gray-400 mt-0.5">{doc.descriere}</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2 shrink-0 ml-4">
+                      <Clock className="w-4 h-4 text-gray-300" />
+                      <span className="text-sm text-gray-400">În curând</span>
+                    </div>
+                  </div>
+                )
+              )}
             </div>
-          ) : (
-            <div
-              key={doc.slug}
-              className="flex items-center justify-between bg-white rounded-2xl border border-dashed border-gray-200 p-5 opacity-50"
-            >
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 bg-gray-100 rounded-xl flex items-center justify-center shrink-0">
-                  <FileText className="w-5 h-5 text-gray-400" />
-                </div>
-                <div>
-                  <p className="font-semibold text-gray-700">{doc.titlu}</p>
-                  <p className="text-sm text-gray-400 mt-0.5">{doc.descriere}</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-2 shrink-0 ml-4">
-                <Clock className="w-4 h-4 text-gray-300" />
-                <span className="text-sm text-gray-400">În curând</span>
-              </div>
-            </div>
-          )
-        )}
+          </div>
+        ))}
       </div>
 
       {/* Preview Modal */}
@@ -144,7 +240,6 @@ export default function DocumentListClient() {
             style={{ height: "88vh" }}
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Header modal */}
             <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100 shrink-0">
               <div>
                 <p className="text-xs text-gray-400 uppercase tracking-wide font-medium mb-0.5">Model document</p>
@@ -158,12 +253,10 @@ export default function DocumentListClient() {
               </button>
             </div>
 
-            {/* PDF Viewer */}
             <div className="flex-1 overflow-hidden rounded-b-none">
               <PreviewPDFViewerInner documentType={preview} />
             </div>
 
-            {/* Footer modal */}
             <div className="px-5 py-4 border-t border-gray-100 flex items-center justify-between shrink-0">
               <p className="text-xs text-gray-400">Document generat cu date de exemplu</p>
               <Link

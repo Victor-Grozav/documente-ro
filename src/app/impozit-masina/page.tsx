@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 import CalculatorImpozitAuto from "@/components/CalculatorImpozitAuto";
 
 export const metadata: Metadata = {
-  title: "Calculator Impozit Mașină România 2025 — Taxa Auto pe Județ",
+  title: "Calculator Impozit Mașină România 2026 — Taxa Auto pe Județ",
   description:
-    "Calculează impozitul anual pe mașină în România 2025, pe județ. Formula Codul Fiscal art. 470: bandă capacitate cilindrică × coeficient local. Autoturisme, motociclete, hibrid, electric.",
+    "Calculează impozitul anual pe mașină în România 2026, pe județ. Formula Codul Fiscal art. 470: bandă capacitate cilindrică × coeficient local. Autoturisme, motociclete, hibrid, electric.",
   keywords:
-    "calculator impozit masina romania 2025, taxa auto judet, impozit auto capacitate cilindrica, impozit vehicul 2025, taxa auto bucuresti",
+    "calculator impozit masina romania 2026, taxa auto judet, impozit auto capacitate cilindrica, impozit vehicul 2026, taxa auto bucuresti",
   openGraph: {
-    title: "Calculator Impozit Mașină România 2025",
+    title: "Calculator Impozit Mașină România 2026",
     description:
       "Află cât plătești impozit pe mașină în funcție de județ și capacitate cilindrică. Autoturisme, motociclete, hibrid, electric.",
   },
@@ -26,7 +26,7 @@ export default function ImpozitMasinaPage() {
           Calculator Impozit Mașină
         </h1>
         <p className="text-gray-500">
-          România 2025 · Codul Fiscal art. 470 · Per județ
+          România 2026 · Codul Fiscal art. 470 · Per județ
         </p>
       </div>
 
@@ -36,7 +36,7 @@ export default function ImpozitMasinaPage() {
       {/* SEO content */}
       <div className="max-w-2xl mx-auto mt-12">
         <h2 className="text-xl font-bold text-gray-800 mb-4">
-          Cum se calculează impozitul pe mașină în România 2025?
+          Cum se calculează impozitul pe mașină în România 2026?
         </h2>
         <div className="bg-white rounded-2xl border border-gray-200 p-6 space-y-4 text-sm text-gray-600">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">

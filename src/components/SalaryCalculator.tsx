@@ -227,7 +227,7 @@ export default function SalaryCalculator() {
           </span>
         </div>
         <p className="text-xs text-gray-400 mt-3">
-          * Calculele sunt orientative pentru 2025. Deducerea personală nu este inclusă.
+          * Calculele sunt orientative pentru 2026. Deducerea personală nu este inclusă.
         </p>
       </div>
     </div>

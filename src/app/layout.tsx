@@ -31,6 +31,13 @@ export default function RootLayout({
     <html lang="ro">
       <body className={`${geist.variable} antialiased bg-gray-50 text-gray-900`}>
         {children}
+        <footer className="text-center py-6 px-4 border-t border-gray-100 mt-4">
+          <p className="text-xs text-gray-400">
+            FaraNotar.ro oferă modele de documente precompletate, nu consultanță juridică. Nu răspundem pentru
+            modul de completare, corectitudinea datelor sau capacitatea juridică a semnatarilor.{" "}
+            <a href="/termeni" className="underline hover:text-gray-600">Termeni și Condiții</a>
+          </p>
+        </footer>
       </body>
     </html>
   );

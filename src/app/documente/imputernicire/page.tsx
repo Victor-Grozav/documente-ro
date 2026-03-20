@@ -3,7 +3,7 @@ import ImputernicireForm from "@/components/ImputernicireForm";
 import DocumentDisclaimer from "@/components/DocumentDisclaimer";
 
 export const metadata: Metadata = {
-  title: "Împuternicire / Procură România 2025 — PDF instant",
+  title: "Împuternicire / Procură România 2026 — PDF instant",
   description:
     "Generează o împuternicire sau procură conform legislației române. Completează formularul, plătește 15 lei și descarcă PDF-ul instant.",
   keywords:

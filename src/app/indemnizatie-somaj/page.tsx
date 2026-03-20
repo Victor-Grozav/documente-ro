@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 import CalculatorSomaj from "@/components/CalculatorSomaj";
 
 export const metadata: Metadata = {
-  title: "Calculator Indemnizație Șomaj România 2025 — Câți Bani Primești",
+  title: "Calculator Indemnizație Șomaj România 2026 — Câți Bani Primești",
   description:
-    "Calculează indemnizația de șomaj în România 2025 per Legea 76/2002. Component fix 375 RON + procent din salariu în funcție de stagiu. Durată 6, 9 sau 12 luni.",
+    "Calculează indemnizația de șomaj în România 2026 per Legea 76/2002. Component fix 375 RON + procent din salariu în funcție de stagiu. Durată 6, 9 sau 12 luni.",
   keywords:
-    "calculator indemnizatie somaj romania 2025, cat primesc somaj, legea 76 2002, indemnizatie somaj calcul, ajofm somaj",
+    "calculator indemnizatie somaj romania 2026, cat primesc somaj, legea 76 2002, indemnizatie somaj calcul, ajofm somaj",
   openGraph: {
-    title: "Calculator Indemnizație Șomaj România 2025",
+    title: "Calculator Indemnizație Șomaj România 2026",
     description:
       "Calculează câți bani primești pe șomaj în funcție de salariu și stagiu de cotizare. Component fix + variabilă, durată, deduceri, net în mână.",
   },
@@ -25,7 +25,7 @@ export default function IndemnizatieSomajPage() {
           Calculator Indemnizație Șomaj
         </h1>
         <p className="text-gray-500">
-          România 2025 · Legea 76/2002 · Component fix + variabilă
+          România 2026 · Legea 76/2002 · Component fix + variabilă
         </p>
       </div>
 
@@ -33,7 +33,7 @@ export default function IndemnizatieSomajPage() {
 
       <div className="max-w-2xl mx-auto mt-12">
         <h2 className="text-xl font-bold text-gray-800 mb-4">
-          Cum se calculează indemnizația de șomaj în România 2025?
+          Cum se calculează indemnizația de șomaj în România 2026?
         </h2>
         <div className="bg-white rounded-2xl border border-gray-200 p-6 space-y-4 text-sm text-gray-600">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">

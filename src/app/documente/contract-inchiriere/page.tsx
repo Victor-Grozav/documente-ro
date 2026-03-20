@@ -3,7 +3,7 @@ import ContractInchiriereForm from "@/components/ContractInchiriereForm";
 import DocumentDisclaimer from "@/components/DocumentDisclaimer";
 
 export const metadata: Metadata = {
-  title: "Contract de Închiriere România 2025 — PDF instant",
+  title: "Contract de Închiriere România 2026 — PDF instant",
   description:
     "Generează un contract de închiriere conform legislației române. Completează formularul, plătești 25 lei și descarcă PDF-ul instant.",
   keywords:

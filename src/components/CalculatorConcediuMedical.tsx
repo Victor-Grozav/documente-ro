@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 // OUG 158/2005 — parametri 2025
-const SALARIU_MINIM_BRUT = 4050; // RON, valabil 2025
+const SALARIU_MINIM_BRUT = 4050; // RON, valabil 2026
 const PLAFON_BAZA = 12 * SALARIU_MINIM_BRUT; // 48.600 RON/lună
 const ZILE_LUNA = 30; // zile calendaristice standard pentru baza de calcul
 

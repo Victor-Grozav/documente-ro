@@ -3,7 +3,7 @@ import AcordConfidentialitateForm from "@/components/AcordConfidentialitateForm"
 import DocumentDisclaimer from "@/components/DocumentDisclaimer";
 
 export const metadata: Metadata = {
-  title: "Acord de Confidențialitate (NDA) România 2025 — PDF instant",
+  title: "Acord de Confidențialitate (NDA) România 2026 — PDF instant",
   description:
     "Generează un acord de confidențialitate (NDA) conform legislației române. Completează formularul, plătește 20 lei și descarcă PDF-ul instant.",
   keywords:

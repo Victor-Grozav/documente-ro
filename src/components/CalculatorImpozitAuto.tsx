@@ -36,7 +36,7 @@ interface Judet {
   nota?: string;
 }
 
-// Sursa: hotărâri ale consiliilor locale publicate pe site-urile DITL județene (2025)
+// Sursa: hotărâri ale consiliilor locale publicate pe site-urile DITL județene (2026)
 // Toate județele aplică cota minimă din Codul Fiscal, cu excepția celor marcate explicit.
 // București: confirmat cota maximă (50% peste minim) prin HCGMB anuale.
 const JUDETE: Judet[] = [

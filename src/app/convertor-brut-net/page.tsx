@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 import SalaryCalculator from "@/components/SalaryCalculator";
 
 export const metadata: Metadata = {
-  title: "Calculator Salariu Brut-Net România 2025 — Gratuit",
+  title: "Calculator Salariu Brut-Net România 2026 — Gratuit",
   description:
-    "Calculează instant salariul net din brut în România 2025. Include CAS 25%, CASS 10%, impozit venit 10% și costul total al angajatorului.",
+    "Calculează instant salariul net din brut în România 2026. Include CAS 25%, CASS 10%, impozit venit 10% și costul total al angajatorului.",
   keywords:
-    "calculator salariu brut net romania 2025, convertor brut net, salariu net din brut, cas cass impozit",
+    "calculator salariu brut net romania 2026, convertor brut net, salariu net din brut, cas cass impozit",
   openGraph: {
-    title: "Calculator Salariu Brut-Net România 2025",
+    title: "Calculator Salariu Brut-Net România 2026",
     description:
       "Calculează instant salariul net din brut. CAS, CASS, impozit venit — tot ce trebuie să știi.",
   },
@@ -26,7 +26,7 @@ export default function ConvertorPage() {
           Calculator Salariu Brut → Net
         </h1>
         <p className="text-gray-500">
-          România 2025 · CAS 25% · CASS 10% · Impozit venit 10%
+          România 2026 · CAS 25% · CASS 10% · Impozit venit 10%
         </p>
       </div>
 
@@ -36,7 +36,7 @@ export default function ConvertorPage() {
       {/* SEO content */}
       <div className="max-w-2xl mx-auto mt-12 prose prose-gray">
         <h2 className="text-xl font-bold text-gray-800 mb-4">
-          Cum se calculează salariul net în România 2025?
+          Cum se calculează salariul net în România 2026?
         </h2>
         <div className="bg-white rounded-2xl border border-gray-200 p-6 space-y-3 text-sm text-gray-600">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">

@@ -394,6 +394,7 @@ export default function ContractVanzareCumparare({ data: rawData }: Props) {
         {/* Footer */}
         <View style={styles.footer} fixed>
           <Text style={styles.footerText}>Generat prin FaraNotar.ro</Text>
+          <Text style={[styles.footerText, { flex: 1, textAlign: "center" }]}>Model document · utilizatorul răspunde pentru corectitudinea datelor și capacitatea semnatarilor</Text>
           <Text style={styles.footerText}>{data.data}</Text>
         </View>
       </Page>
