@@ -22,8 +22,8 @@ export default function HomePage() {
         {/* Stats */}
         <div className="flex justify-center gap-8 mb-10">
           <div className="text-center">
-            <p className="text-2xl font-bold text-gray-900">12.400+</p>
-            <p className="text-xs text-gray-400 mt-0.5">documente generate</p>
+            <p className="text-2xl font-bold text-gray-900">9</p>
+            <p className="text-xs text-gray-400 mt-0.5">unelte gratuite</p>
           </div>
           <div className="w-px bg-gray-200" />
           <div className="text-center">

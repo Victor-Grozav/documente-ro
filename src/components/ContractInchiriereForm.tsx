@@ -125,8 +125,20 @@ export default function ContractInchiriereForm() {
     setLoading(true);
     setError("");
     if (!validateAll()) { setLoading(false); return; }
-    sessionStorage.setItem("contractInchiriereData", JSON.stringify(formData));
-    window.location.href = "/documente/contract-inchiriere/success?session_id=test";
+    try {
+      const res = await fetch("/api/create-checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ tip: "contract-inchiriere" }),
+      });
+      const json = await res.json();
+      if (!res.ok || !json.url) throw new Error(json.error || "Eroare la inițializarea plății");
+      sessionStorage.setItem("contractInchiriereData", JSON.stringify(formData));
+      window.location.href = json.url;
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Eroare neașteptată");
+      setLoading(false);
+    }
   };
 
   return (
