@@ -24,10 +24,23 @@ export default function TermeniPage() {
 
         <div className="space-y-8 text-sm text-gray-700 leading-relaxed">
 
+          {/* 0 */}
+          <section>
+            <h2 className="text-base font-bold text-gray-900 mb-3">
+              1. Identitatea operatorului
+            </h2>
+            <p>
+              Platforma FaraNotar.ro este operată de o persoană fizică autorizată (PFA) cu sediul
+              în România. Datele complete de identificare (denumire, CUI, adresă) vor fi publicate
+              după finalizarea înregistrării. Pentru orice întrebare sau reclamație, ne puteți
+              contacta la adresa de email din footer-ul site-ului.
+            </p>
+          </section>
+
           {/* 1 */}
           <section>
             <h2 className="text-base font-bold text-gray-900 mb-3">
-              1. Natura serviciului
+              2. Natura serviciului
             </h2>
             <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-3">
               <p className="font-semibold text-amber-900 mb-1">Atenție importantă</p>
@@ -48,7 +61,7 @@ export default function TermeniPage() {
           {/* 2 */}
           <section>
             <h2 className="text-base font-bold text-gray-900 mb-3">
-              2. Limitarea răspunderii
+              3. Limitarea răspunderii
             </h2>
             <p className="mb-3">
               FaraNotar.ro, operatorul platformei și colaboratorii săi <strong>nu răspund</strong>, în nicio
@@ -79,7 +92,7 @@ export default function TermeniPage() {
           {/* 3 */}
           <section>
             <h2 className="text-base font-bold text-gray-900 mb-3">
-              3. Obligațiile și responsabilitățile utilizatorului
+              4. Obligațiile și responsabilitățile utilizatorului
             </h2>
             <p className="mb-3">Prin utilizarea platformei, utilizatorul confirmă că:</p>
             <ul className="space-y-2 list-none">
@@ -101,7 +114,7 @@ export default function TermeniPage() {
           {/* 4 */}
           <section>
             <h2 className="text-base font-bold text-gray-900 mb-3">
-              4. Când este obligatoriu notarul
+              5. Când este obligatoriu notarul
             </h2>
             <p className="mb-3">
               Conform Codului Civil român, forma autentică notarială este obligatorie pentru:
@@ -119,10 +132,58 @@ export default function TermeniPage() {
             </p>
           </section>
 
+          {/* drept retragere */}
+          <section>
+            <h2 className="text-base font-bold text-gray-900 mb-3">
+              6. Dreptul de retragere — conținut digital
+            </h2>
+            <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-3">
+              <p className="font-semibold text-blue-900 mb-1">
+                Renunțarea la dreptul de retragere de 14 zile
+              </p>
+              <p className="text-blue-800">
+                Conform art. 16 lit. m din OG nr. 34/2014 privind drepturile consumatorilor,
+                dreptul de retragere de 14 zile <strong>nu se aplică</strong> contractelor pentru
+                furnizarea de conținut digital care nu este livrat pe un suport material, dacă
+                executarea a început cu acordul expres al consumatorului.
+              </p>
+            </div>
+            <p>
+              Prin apăsarea butonului <strong>„Continuă spre plată"</strong> și finalizarea
+              tranzacției, utilizatorul confirmă că solicită livrarea imediată a conținutului
+              digital (fișier PDF) și că înțelege că, odată livrat documentul, nu mai poate
+              exercita dreptul de retragere. În cazul în care documentul nu a fost livrat din
+              cauza unui defect tehnic al platformei, utilizatorul poate solicita rambursarea
+              sumei achitate contactând operatorul.
+            </p>
+          </section>
+
+          {/* plata Stripe */}
+          <section>
+            <h2 className="text-base font-bold text-gray-900 mb-3">
+              7. Procesarea plăților — Stripe
+            </h2>
+            <p>
+              Plățile sunt procesate prin <strong>Stripe Payments Europe, Ltd.</strong> FaraNotar.ro
+              nu stochează și nu are acces la datele cardului dumneavoastră. Prin finalizarea plății,
+              acceptați și Termenii de Serviciu Stripe. Stripe poate crea un profil de client asociat
+              adresei de email utilizate la plată. Consultați{" "}
+              <a
+                href="https://stripe.com/en-ro/privacy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:underline"
+              >
+                Politica de Confidențialitate Stripe
+              </a>{" "}
+              pentru detalii.
+            </p>
+          </section>
+
           {/* 5 */}
           <section>
             <h2 className="text-base font-bold text-gray-900 mb-3">
-              5. Proprietatea intelectuală
+              8. Proprietatea intelectuală
             </h2>
             <p>
               Modelele de documente, textele, structura și codul platformei sunt proprietatea
@@ -135,7 +196,7 @@ export default function TermeniPage() {
           {/* 6 */}
           <section>
             <h2 className="text-base font-bold text-gray-900 mb-3">
-              6. Protecția datelor
+              9. Protecția datelor
             </h2>
             <p>
               Datele introduse în formularele de generare a documentelor sunt procesate exclusiv
@@ -148,7 +209,7 @@ export default function TermeniPage() {
           {/* 7 */}
           <section>
             <h2 className="text-base font-bold text-gray-900 mb-3">
-              7. Modificarea termenilor
+              10. Modificarea termenilor
             </h2>
             <p>
               FaraNotar.ro își rezervă dreptul de a modifica oricând acești termeni. Continuarea
@@ -160,7 +221,7 @@ export default function TermeniPage() {
           {/* 8 */}
           <section>
             <h2 className="text-base font-bold text-gray-900 mb-3">
-              8. Legea aplicabilă
+              11. Legea aplicabilă
             </h2>
             <p>
               Prezenții termeni sunt guvernați de legislația română. Orice litigiu izvorând din

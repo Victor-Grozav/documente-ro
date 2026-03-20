@@ -19,13 +19,19 @@ function SuccessContent() {
     if (!sessionId) { setStatus("error"); return; }
     const raw = sessionStorage.getItem("acordNDAData");
     if (!raw) { setStatus("error"); return; }
-    try {
-      setData(JSON.parse(raw) as AcordConfidentialitateData);
-      setStatus("success");
-      sessionStorage.removeItem("acordNDAData");
-    } catch {
-      setStatus("error");
-    }
+    fetch(`/api/verify-session?session_id=${sessionId}`)
+      .then((r) => r.json())
+      .then(({ paid }) => {
+        if (!paid) { setStatus("error"); return; }
+        try {
+          setData(JSON.parse(raw) as AcordConfidentialitateData);
+          setStatus("success");
+          sessionStorage.removeItem("acordNDAData");
+        } catch {
+          setStatus("error");
+        }
+      })
+      .catch(() => setStatus("error"));
   }, [sessionId]);
 
   if (status === "loading") {

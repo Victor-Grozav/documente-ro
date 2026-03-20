@@ -334,7 +334,7 @@ export default function CalculatorConcediuMedical() {
         </div>
 
         <p className="text-xs text-gray-400 pt-1">
-          * Calcul orientativ 2025 per OUG 158/2005. Baza = media ultimelor 6 luni / 30 zile.
+          * Calcul orientativ 2026 per OUG 158/2005. Baza = media ultimelor 6 luni / 30 zile.
           Plafon maxim: 12 × salariul minim = 48.600 RON/lună. Deducerea personală nu este inclusă.
         </p>
       </div>

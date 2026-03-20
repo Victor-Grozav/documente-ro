@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import "./globals.css";
+import CookieBanner from "@/components/CookieBanner";
 
 const geist = Geist({
   variable: "--font-geist-sans",
@@ -36,8 +37,11 @@ export default function RootLayout({
             FaraNotar.ro oferă modele de documente precompletate, nu consultanță juridică. Nu răspundem pentru
             modul de completare, corectitudinea datelor sau capacitatea juridică a semnatarilor.{" "}
             <a href="/termeni" className="underline hover:text-gray-600">Termeni și Condiții</a>
+            {" "}·{" "}
+            <a href="/confidentialitate" className="underline hover:text-gray-600">Confidențialitate</a>
           </p>
         </footer>
+        <CookieBanner />
       </body>
     </html>
   );

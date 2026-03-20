@@ -244,7 +244,7 @@ export default function ContractVanzareForm() {
           </select>
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Modalitate plată <span className="text-red-400">*</span></label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Modalitate de plată <span className="text-red-400">*</span></label>
           <select value={formData.modalitataPlata} onChange={(e) => handleChange("modalitataPlata", e.target.value as ContractVanzareData["modalitataPlata"])}
             className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 bg-white">
             <option value="numerar">Numerar</option>
@@ -276,6 +276,9 @@ export default function ContractVanzareForm() {
         </button>
         <p className="text-xs text-gray-400 text-center mt-3">
           Plată securizată prin Stripe · PDF disponibil instant după plată
+        </p>
+        <p className="text-xs text-gray-400 text-center mt-2">
+          Prin continuare confirmi livrarea imediată și renunți la dreptul de retragere de 14 zile (OG 34/2014 art. 16).
         </p>
       </div>
     </form>

@@ -278,7 +278,7 @@ export default function CalculatorSomaj() {
           </div>
 
           <p className="text-xs text-gray-400 pt-1">
-            * Calcul orientativ 2025 per Legea 76/2002. ISR = 500 RON. Deduceri: CASS 10% + impozit venit 10%.
+            * Calcul orientativ 2026 per Legea 76/2002. ISR = 500 RON. Deduceri: CASS 10% + impozit venit 10%.
             CAS nu se reține din indemnizația de șomaj. Valoarea reală poate diferi în funcție de venitul lunar
             exact din fiecare din ultimele 12 luni.
           </p>

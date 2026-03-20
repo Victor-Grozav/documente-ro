@@ -267,6 +267,9 @@ export default function AcordConfidentialitateForm() {
         <p className="text-xs text-gray-400 text-center mt-3">
           Plată securizată prin Stripe · PDF disponibil instant după plată
         </p>
+        <p className="text-xs text-gray-400 text-center mt-2">
+          Prin continuare confirmi livrarea imediată și renunți la dreptul de retragere de 14 zile (OG 34/2014 art. 16).
+        </p>
       </div>
     </form>
   );

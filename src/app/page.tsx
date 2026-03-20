@@ -23,11 +23,11 @@ export default function HomePage() {
         <div className="flex justify-center gap-8 mb-10">
           <div className="text-center">
             <p className="text-2xl font-bold text-gray-900">9</p>
-            <p className="text-xs text-gray-400 mt-0.5">unelte gratuite</p>
+            <p className="text-xs text-gray-400 mt-0.5">unelte disponibile</p>
           </div>
           <div className="w-px bg-gray-200" />
           <div className="text-center">
-            <p className="text-2xl font-bold text-gray-900">8</p>
+            <p className="text-2xl font-bold text-gray-900">5</p>
             <p className="text-xs text-gray-400 mt-0.5">tipuri de contracte</p>
           </div>
           <div className="w-px bg-gray-200" />
@@ -143,7 +143,7 @@ export default function HomePage() {
         {/* Trust bar */}
         <div className="flex flex-wrap justify-center items-center gap-x-4 gap-y-2 mt-8 text-xs text-gray-400">
           <span className="flex items-center gap-1">
-            <span className="text-green-500 font-bold">✓</span> Conform Codului Civil 2025
+            <span className="text-green-500 font-bold">✓</span> Conform Codului Civil 2026
           </span>
           <span className="text-gray-200">•</span>
           <span className="flex items-center gap-1">

@@ -195,7 +195,7 @@ export default function ContractInchiriereForm() {
         <SelectField label="Moneda" name="moneda" value={formData.moneda} onChange={handleChange} options={[
           { value: "RON", label: "RON" }, { value: "EUR", label: "EUR" },
         ]} />
-        <SelectField label="Modalitate plată" name="modalitataPlata" value={formData.modalitataPlata} onChange={handleChange} options={[
+        <SelectField label="Modalitate de plată" name="modalitataPlata" value={formData.modalitataPlata} onChange={handleChange} options={[
           { value: "transfer bancar", label: "Transfer bancar" },
           { value: "numerar", label: "Numerar" },
         ]} />
@@ -266,6 +266,9 @@ export default function ContractInchiriereForm() {
         </button>
         <p className="text-xs text-gray-400 text-center mt-3">
           Plată securizată prin Stripe · PDF disponibil instant după plată
+        </p>
+        <p className="text-xs text-gray-400 text-center mt-2">
+          Prin continuare confirmi livrarea imediată și renunți la dreptul de retragere de 14 zile (OG 34/2014 art. 16).
         </p>
       </div>
     </form>

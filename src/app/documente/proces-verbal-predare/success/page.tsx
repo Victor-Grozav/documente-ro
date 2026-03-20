@@ -19,13 +19,19 @@ function SuccessContent() {
     if (!sessionId) { setStatus("error"); return; }
     const raw = sessionStorage.getItem("procesVerbalData");
     if (!raw) { setStatus("error"); return; }
-    try {
-      setData(JSON.parse(raw) as ProcesVerbalData);
-      setStatus("success");
-      sessionStorage.removeItem("procesVerbalData");
-    } catch {
-      setStatus("error");
-    }
+    fetch(`/api/verify-session?session_id=${sessionId}`)
+      .then((r) => r.json())
+      .then(({ paid }) => {
+        if (!paid) { setStatus("error"); return; }
+        try {
+          setData(JSON.parse(raw) as ProcesVerbalData);
+          setStatus("success");
+          sessionStorage.removeItem("procesVerbalData");
+        } catch {
+          setStatus("error");
+        }
+      })
+      .catch(() => setStatus("error"));
   }, [sessionId]);
 
   if (status === "loading") {

@@ -16,27 +16,23 @@ function SuccessContent() {
   const [contractData, setContractData] = useState<ContractVanzareData | null>(null);
 
   useEffect(() => {
-    if (!sessionId) {
-      setStatus("error");
-      return;
-    }
-
-    // Citim datele din sessionStorage
+    if (!sessionId) { setStatus("error"); return; }
     const raw = sessionStorage.getItem("contractData");
-    if (!raw) {
-      setStatus("error");
-      return;
-    }
-
-    try {
-      const data = JSON.parse(raw) as ContractVanzareData;
-      setContractData(data);
-      setStatus("success");
-      // Stergem datele dupa ce le-am folosit
-      sessionStorage.removeItem("contractData");
-    } catch {
-      setStatus("error");
-    }
+    if (!raw) { setStatus("error"); return; }
+    fetch(`/api/verify-session?session_id=${sessionId}`)
+      .then((r) => r.json())
+      .then(({ paid }) => {
+        if (!paid) { setStatus("error"); return; }
+        try {
+          const data = JSON.parse(raw) as ContractVanzareData;
+          setContractData(data);
+          setStatus("success");
+          sessionStorage.removeItem("contractData");
+        } catch {
+          setStatus("error");
+        }
+      })
+      .catch(() => setStatus("error"));
   }, [sessionId]);
 
   if (status === "loading") {

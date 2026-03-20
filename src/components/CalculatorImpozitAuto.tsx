@@ -370,7 +370,7 @@ export default function CalculatorImpozitAuto() {
           </div>
 
           <p className="text-xs text-gray-400 pt-1">
-            * Calcul orientativ 2025 per Codul Fiscal art. 470. Formula: ⌈cm³ ÷ 200⌉ × rată/200cm³ × coeficient local.
+            * Calcul orientativ 2026 per Codul Fiscal art. 470. Formula: ⌈cm³ ÷ 200⌉ × rată/200cm³ × coeficient local.
             Impozitul se plătește în două rate egale: 31 martie și 30 septembrie.
             Reducerea pentru hibrid se aplică vehiculelor cu motor termic + electric, conform hotărârilor locale.
           </p>
@@ -422,7 +422,7 @@ export default function CalculatorImpozitAuto() {
           </table>
         </div>
         <p className="text-xs text-gray-400 mt-3">
-          Rate minime Codul Fiscal 2025. Exemplele sunt pentru județul cu cotă minimă.
+          Rate minime Codul Fiscal 2026. Exemplele sunt pentru județul cu cotă minimă.
           București: ×1,5 față de valorile de mai sus.
         </p>
       </div>
