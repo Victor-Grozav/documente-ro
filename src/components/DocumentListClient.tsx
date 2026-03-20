@@ -156,13 +156,13 @@ export default function DocumentListClient() {
                 doc.disponibil ? (
                   <div
                     key={doc.slug}
-                    className={`group/card flex items-center bg-white rounded-2xl border border-gray-200 ${doc.hoverBorder} hover:shadow-md transition-all`}
+                    className={`group/card bg-white rounded-2xl border border-gray-200 ${doc.hoverBorder} hover:shadow-md transition-all flex flex-col sm:flex-row sm:items-center`}
                   >
                     <Link
                       href={`/documente/${doc.slug}`}
-                      className="flex-1 flex items-center gap-4 p-5 min-w-0"
+                      className="flex items-start gap-4 p-5 flex-1 min-w-0"
                     >
-                      <div className={`w-10 h-10 ${doc.iconBg} rounded-xl flex items-center justify-center shrink-0`}>
+                      <div className={`w-10 h-10 ${doc.iconBg} rounded-xl flex items-center justify-center shrink-0 mt-0.5`}>
                         <doc.icon className={`w-5 h-5 ${doc.iconColor}`} />
                       </div>
                       <div className="min-w-0">
@@ -183,7 +183,7 @@ export default function DocumentListClient() {
                       </div>
                     </Link>
 
-                    <div className="flex items-center gap-2 pr-4 shrink-0">
+                    <div className="flex items-center gap-2 px-5 pb-4 sm:pb-0 sm:pr-4 shrink-0">
                       <span className={`text-sm font-bold px-3 py-1 rounded-full ${doc.priceBg} ${doc.priceColor}`}>
                         {doc.gratuitCu ? "10 lei / gratuit" : doc.pret}
                       </span>
