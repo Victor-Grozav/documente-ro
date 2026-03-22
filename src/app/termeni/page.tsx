@@ -30,10 +30,12 @@ export default function TermeniPage() {
               1. Identitatea operatorului
             </h2>
             <p>
-              Platforma FaraNotar.ro este operată de o persoană fizică autorizată (PFA) cu sediul
-              în România. Datele complete de identificare (denumire, CUI, adresă) vor fi publicate
-              după finalizarea înregistrării. Pentru orice întrebare sau reclamație, ne puteți
-              contacta la adresa de email din footer-ul site-ului.
+              Platforma FaraNotar.ro este operată de <strong>Victor Grozav</strong>, persoană
+              fizică cu domiciliul în România. Pentru orice întrebare sau reclamație, ne puteți
+              contacta la:{" "}
+              <a href="mailto:faranotar@gmail.com" className="text-blue-600 hover:underline">
+                faranotar@gmail.com
+              </a>
             </p>
           </section>
 
