@@ -3,6 +3,7 @@ import { Geist } from "next/font/google";
 import "./globals.css";
 import CookieBanner from "@/components/CookieBanner";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const geist = Geist({
   variable: "--font-geist-sans",
@@ -44,6 +45,7 @@ export default function RootLayout({
         </footer>
         <CookieBanner />
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
