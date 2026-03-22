@@ -13,7 +13,7 @@ const geist = Geist({
 export const metadata: Metadata = {
   title: "FaraNotar.ro — Contracte & Calculatoare pentru România",
   description:
-    "Generează contracte și documente legale fără notar. Calculatoare de salariu, pensie, șomaj și altele. Rapid, corect, 100% legal.",
+    "Generează contracte legale PDF instant — vânzare, închiriere, împrumut, procuri. Calculatoare de salariu brut-net, impozit mașină, șomaj și concediu medical. Fără notar, fără cont.",
   keywords:
     "fara notar, contracte online, documente legale romania, calculator salariu brut net, calculator pensie, contract vanzare cumparare",
   openGraph: {
