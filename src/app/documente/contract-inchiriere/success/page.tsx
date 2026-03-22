@@ -18,7 +18,7 @@ function SuccessContent() {
 
   useEffect(() => {
     if (!sessionId) { setStatus("error"); return; }
-    const raw = sessionStorage.getItem("contractInchiriereData");
+    const raw = localStorage.getItem("contractInchiriereData");
     if (!raw) { setStatus("error"); return; }
     fetch(`/api/verify-session?session_id=${sessionId}`)
       .then((r) => r.json())
@@ -27,7 +27,7 @@ function SuccessContent() {
         try {
           setData(JSON.parse(raw) as ContractInchiriereData);
           setStatus("success");
-          sessionStorage.removeItem("contractInchiriereData");
+          localStorage.removeItem("contractInchiriereData");
         } catch {
           setStatus("error");
         }

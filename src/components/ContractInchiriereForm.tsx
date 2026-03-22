@@ -133,7 +133,7 @@ export default function ContractInchiriereForm() {
       });
       const json = await res.json();
       if (!res.ok || !json.url) throw new Error(json.error || "Eroare la inițializarea plății");
-      sessionStorage.setItem("contractInchiriereData", JSON.stringify(formData));
+      localStorage.setItem("contractInchiriereData", JSON.stringify(formData));
       window.location.href = json.url;
     } catch (err) {
       setError(err instanceof Error ? err.message : "Eroare neașteptată");

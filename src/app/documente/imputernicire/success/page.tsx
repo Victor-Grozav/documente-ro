@@ -17,7 +17,7 @@ function SuccessContent() {
 
   useEffect(() => {
     if (!sessionId) { setStatus("error"); return; }
-    const raw = sessionStorage.getItem("imputernicireData");
+    const raw = localStorage.getItem("imputernicireData");
     if (!raw) { setStatus("error"); return; }
     fetch(`/api/verify-session?session_id=${sessionId}`)
       .then((r) => r.json())
@@ -26,7 +26,7 @@ function SuccessContent() {
         try {
           setData(JSON.parse(raw) as ImputernicireData);
           setStatus("success");
-          sessionStorage.removeItem("imputernicireData");
+          localStorage.removeItem("imputernicireData");
         } catch {
           setStatus("error");
         }

@@ -17,7 +17,7 @@ function SuccessContent() {
 
   useEffect(() => {
     if (!sessionId) { setStatus("error"); return; }
-    const raw = sessionStorage.getItem("acordNDAData");
+    const raw = localStorage.getItem("acordNDAData");
     if (!raw) { setStatus("error"); return; }
     fetch(`/api/verify-session?session_id=${sessionId}`)
       .then((r) => r.json())
@@ -26,7 +26,7 @@ function SuccessContent() {
         try {
           setData(JSON.parse(raw) as AcordConfidentialitateData);
           setStatus("success");
-          sessionStorage.removeItem("acordNDAData");
+          localStorage.removeItem("acordNDAData");
         } catch {
           setStatus("error");
         }

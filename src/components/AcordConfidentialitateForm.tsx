@@ -108,7 +108,7 @@ export default function AcordConfidentialitateForm() {
       });
       const json = await res.json();
       if (!res.ok || !json.url) throw new Error(json.error || "Eroare la inițializarea plății");
-      sessionStorage.setItem("acordNDAData", JSON.stringify(formData));
+      localStorage.setItem("acordNDAData", JSON.stringify(formData));
       window.location.href = json.url;
     } catch (err) {
       setError(err instanceof Error ? err.message : "Eroare neașteptată");
