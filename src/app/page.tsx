@@ -26,17 +26,17 @@ export default function HomePage() {
         <div className="flex justify-center gap-8 mb-10">
           <div className="text-center">
             <p className="text-2xl font-bold text-gray-900">9</p>
-            <p className="text-xs text-gray-400 mt-0.5">unelte disponibile</p>
+            <p className="text-xs text-gray-500 mt-0.5">unelte disponibile</p>
           </div>
           <div className="w-px bg-gray-200" />
           <div className="text-center">
             <p className="text-2xl font-bold text-gray-900">5</p>
-            <p className="text-xs text-gray-400 mt-0.5">tipuri de contracte</p>
+            <p className="text-xs text-gray-500 mt-0.5">tipuri de contracte</p>
           </div>
           <div className="w-px bg-gray-200" />
           <div className="text-center">
             <p className="text-2xl font-bold text-gray-900">Fără cont</p>
-            <p className="text-xs text-gray-400 mt-0.5">necesar</p>
+            <p className="text-xs text-gray-500 mt-0.5">necesar</p>
           </div>
         </div>
 
@@ -119,7 +119,7 @@ export default function HomePage() {
             <p className="text-sm text-gray-500 mb-4">
               Câți bani primești pe șomaj în funcție de salariu și stagiu de cotizare.
             </p>
-            <span className="text-teal-600 text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
+            <span className="text-teal-700 text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
               Calculează gratuit <ArrowRight className="w-4 h-4" />
             </span>
           </Link>
@@ -136,7 +136,7 @@ export default function HomePage() {
             <p className="text-sm text-gray-500 mb-4">
               Indemnizație CNAS zilnică și totală în funcție de veniturile anterioare.
             </p>
-            <span className="text-orange-600 text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
+            <span className="text-orange-700 text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
               Calculează gratuit <ArrowRight className="w-4 h-4" />
             </span>
           </Link>
@@ -144,7 +144,7 @@ export default function HomePage() {
         </div>
 
         {/* Trust bar */}
-        <div className="flex flex-wrap justify-center items-center gap-x-4 gap-y-2 mt-8 text-xs text-gray-400">
+        <div className="flex flex-wrap justify-center items-center gap-x-4 gap-y-2 mt-8 text-xs text-gray-500">
           <span className="flex items-center gap-1">
             <span className="text-green-500 font-bold">✓</span> Conform Codului Civil 2026
           </span>
