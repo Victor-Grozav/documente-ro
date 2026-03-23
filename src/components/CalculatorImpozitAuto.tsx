@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Car, Bike } from "lucide-react";
 
 // Codul Fiscal art. 470 — impozit minim pe mijloace de transport 2025
 // Rata se aplică per 200 cm³ (sau fracție) la ÎNTREAGA capacitate cilindrică
@@ -191,7 +192,11 @@ export default function CalculatorImpozitAuto() {
                   : "border-gray-200 text-gray-600 hover:border-gray-300"
               }`}
             >
-              {t === "autoturism" ? "🚗 Autoturism" : "🏍️ Motocicletă"}
+              {t === "autoturism" ? (
+                <span className="flex items-center justify-center gap-2"><Car className="w-4 h-4" /> Autoturism</span>
+              ) : (
+                <span className="flex items-center justify-center gap-2"><Bike className="w-4 h-4" /> Motocicletă</span>
+              )}
             </button>
           ))}
         </div>

@@ -94,7 +94,7 @@ function SuccessContent() {
           </div>
         </div>
 
-        <a href="/documente" className="inline-block mt-6 text-gray-400 text-sm hover:text-gray-600">← Inapoi la documente</a>
+        <a href="/documente" className="inline-block mt-6 text-gray-400 text-sm hover:text-gray-600">← Înapoi la documente</a>
       </div>
     </main>
   );

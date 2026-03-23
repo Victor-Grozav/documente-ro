@@ -13,10 +13,13 @@ export default function HomePage() {
         </div>
 
         {/* Hero */}
-        <h1 className="text-4xl font-bold text-gray-900 mb-3">FaraNotar.ro</h1>
+        <h1 className="text-4xl font-bold text-gray-900 mb-3">
+          Contracte fără notar,{" "}
+          <span className="text-green-600">în 5 minute.</span>
+        </h1>
         <p className="text-gray-500 text-lg mb-8">
           Contracte legale și calculatoare financiare pentru România —{" "}
-          <span className="text-gray-700 font-medium">simplu, conform legii, fără notar.</span>
+          <span className="text-gray-700 font-medium">simplu, conform legii, fără deplasări.</span>
         </p>
 
         {/* Stats */}

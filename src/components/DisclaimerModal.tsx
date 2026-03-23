@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { AlertTriangle } from "lucide-react";
 
 const SESSION_KEY = "fn_disclaimer_accepted";
 
@@ -29,7 +30,7 @@ export default function DisclaimerModal() {
         {/* Header */}
         <div className="px-6 pt-6 pb-4 border-b border-gray-100">
           <div className="flex items-center gap-3 mb-1">
-            <span className="text-2xl">⚠️</span>
+            <AlertTriangle className="w-6 h-6 text-amber-500" />
             <h2 className="text-lg font-bold text-gray-900">Înainte de a continua</h2>
           </div>
           <p className="text-sm text-gray-500 ml-9">

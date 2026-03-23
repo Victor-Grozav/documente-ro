@@ -1,0 +1,18 @@
+<svg width="290" height="74" viewBox="0 0 290 74" xmlns="http://www.w3.org/2000/svg">
+  <rect width="290" height="74" fill="#0F1318"/>
+  <g transform="translate(2,5)">
+    <path d="M30 4 L56 13 L56 36 Q56 54 30 63 Q4 54 4 36 L4 13 Z" fill="#2452A0"/>
+    <path d="M30 8 L52 16 L52 36 Q52 51 30 59 Q8 51 8 36 L8 16 Z" fill="#2E5FC0"/>
+    <path d="M30 12 L48 19 L48 36 Q48 49 30 56 Q12 49 12 36 L12 19 Z" fill="#3A6FD8"/>
+    <rect x="20" y="20" width="20" height="26" rx="2.5" fill="white" opacity="0.97"/>
+    <path d="M23.5 27 L36.5 27" stroke="#2452A0" stroke-width="2" stroke-linecap="round"/>
+    <path d="M23.5 32 L36.5 32" stroke="#2452A0" stroke-width="2" stroke-linecap="round"/>
+    <path d="M23.5 37 L31 37" stroke="#2452A0" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="43" cy="48" r="10" fill="#22C97A"/>
+    <path d="M37.5 48 L42 52.5 L49 42.5" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  </g>
+  <text x="74" y="33" font-family="Georgia,'Times New Roman',serif" font-size="26" font-weight="700" fill="white">Fara</text>
+  <text x="127" y="33" font-family="Georgia,'Times New Roman',serif" font-size="26" font-weight="700" fill="white" opacity="0.2">·</text>
+  <text x="138" y="33" font-family="Georgia,'Times New Roman',serif" font-size="26" font-weight="700" fill="#22C97A">Notar</text>
+  <text x="74" y="52" font-family="Arial,sans-serif" font-size="10.5" fill="#6A7A90" letter-spacing="0.2">Documente legale. Instant.</text>
+</svg>

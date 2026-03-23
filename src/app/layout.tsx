@@ -3,6 +3,7 @@ import { Geist } from "next/font/google";
 import "./globals.css";
 import CookieBanner from "@/components/CookieBanner";
 import { Analytics } from "@vercel/analytics/next";
+import Header from "@/components/Header";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const geist = Geist({
@@ -33,6 +34,7 @@ export default function RootLayout({
   return (
     <html lang="ro">
       <body className={`${geist.variable} antialiased bg-gray-50 text-gray-900`}>
+        <Header />
         {children}
         <footer className="text-center py-6 px-4 border-t border-gray-100 mt-4">
           <p className="text-xs text-gray-400">

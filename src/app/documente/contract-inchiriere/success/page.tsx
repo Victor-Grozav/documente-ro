@@ -6,7 +6,7 @@ import { ContractInchiriereData, ProcesVerbalData } from "@/lib/types";
 import PDFDownloadButton from "@/components/PDFDownloadButton";
 import ContractInchiriere from "@/components/pdf-templates/ContractInchiriere";
 import ProcesVerbalPredare from "@/components/pdf-templates/ProcesVerbalPredare";
-import { CheckCircle, AlertCircle, FileText } from "lucide-react";
+import { CheckCircle, AlertCircle, FileText, Gift } from "lucide-react";
 
 type Status = "loading" | "success" | "error";
 
@@ -89,7 +89,7 @@ function SuccessContent() {
         {/* Card proces verbal companion */}
         <div className="bg-green-50 rounded-2xl border border-green-200 p-5 mb-6 text-left">
           <div className="flex items-start gap-3 mb-3">
-            <span className="text-2xl">🎁</span>
+            <Gift className="w-6 h-6 text-green-600 shrink-0" />
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2 flex-wrap">
                 <p className="font-semibold text-gray-900 text-sm">Cadou din partea noastră!</p>
@@ -137,7 +137,7 @@ function SuccessContent() {
         </div>
 
         <a href="/documente" className="inline-block mt-6 text-gray-400 text-sm hover:text-gray-600">
-          ← Inapoi la documente
+          ← Înapoi la documente
         </a>
       </div>
     </main>

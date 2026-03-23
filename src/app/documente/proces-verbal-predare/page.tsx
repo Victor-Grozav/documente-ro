@@ -13,7 +13,7 @@ export default function ProcesVerbalPage() {
       <div className="max-w-2xl mx-auto">
         <div className="text-center mb-8">
           <a href="/documente" className="text-blue-600 text-sm font-medium hover:underline">
-            ← Înapoi la documente
+            ← Documente
           </a>
           <h1 className="text-3xl font-bold text-gray-900 mt-4 mb-2">
             Proces Verbal de Predare-Primire

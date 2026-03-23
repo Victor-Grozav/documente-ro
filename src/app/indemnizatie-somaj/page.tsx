@@ -19,7 +19,7 @@ export default function IndemnizatieSomajPage() {
     <main className="min-h-screen py-10 px-4">
       <div className="max-w-2xl mx-auto text-center mb-8">
         <a href="/" className="text-blue-600 text-sm font-medium hover:underline">
-          ← FaraNotar.ro
+          ← Acasă
         </a>
         <h1 className="text-3xl font-bold text-gray-900 mt-4 mb-2">
           Calculator Indemnizație Șomaj
