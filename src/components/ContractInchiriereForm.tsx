@@ -143,14 +143,6 @@ export default function ContractInchiriereForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      <div className="bg-orange-50 border border-dashed border-orange-200 rounded-xl p-3 flex items-center justify-between">
-        <p className="text-xs text-orange-600 font-medium">Mod testare</p>
-        <button type="button" onClick={() => { setFormData(testData); setErrors({}); }}
-          className="text-xs bg-orange-100 hover:bg-orange-200 text-orange-700 font-medium px-3 py-1.5 rounded-lg transition-colors">
-          Completează automat
-        </button>
-      </div>
-
       {/* Locator */}
       <Section title="Locator (Proprietar)">
         <Field label="Nume și prenume" name="locatorNume" value={formData.locatorNume} onChange={handleChange} placeholder="ex: Popescu Ion" required />
