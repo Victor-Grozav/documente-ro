@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import DocumentListClient from "@/components/DocumentListClient";
-import DisclaimerModal from "@/components/DisclaimerModal";
 
 export const metadata: Metadata = {
   title: "Generator Documente Legale România — FaraNotar.ro",
@@ -11,7 +10,6 @@ export const metadata: Metadata = {
 export default function DocumentePage() {
   return (
     <main className="min-h-screen py-10 px-4">
-      <DisclaimerModal />
 
       <div className="max-w-2xl mx-auto">
 
