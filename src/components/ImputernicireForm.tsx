@@ -33,16 +33,52 @@ function Field({
 }) {
   return (
     <div>
-      <label className="block text-sm font-medium text-gray-700 mb-1">
+      <label className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">
         {label} {required && <span className="text-red-400">*</span>}
       </label>
       <input
         type={type} value={value}
         onChange={(e) => onChange(name, e.target.value)}
         onBlur={onBlur} placeholder={placeholder} required={required}
-        className={`w-full border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 bg-white transition-colors ${
+        className={`w-full border rounded-lg px-3 py-2 text-sm text-gray-900 dark:text-white focus:outline-none focus:ring-1 bg-white dark:bg-slate-800 placeholder:text-gray-400 dark:placeholder:text-slate-500 transition-colors ${
           error ? "border-red-400 focus:border-red-400 focus:ring-red-400"
-                : "border-gray-200 focus:border-blue-400 focus:ring-blue-400"
+                : "border-gray-200 dark:border-slate-600 focus:border-blue-400 focus:ring-blue-400"
+        }`}
+      />
+      {error && <p className="text-xs text-red-500 mt-1">{error}</p>}
+    </div>
+  );
+}
+
+function DateField({
+  label, name, value, onChange, required, error,
+}: {
+  label: string; name: keyof ImputernicireData; value: string;
+  onChange: (name: keyof ImputernicireData, value: string) => void;
+  required?: boolean; error?: string;
+}) {
+  const toIso = (ro: string) => {
+    if (!/^\d{2}\.\d{2}\.\d{4}$/.test(ro)) return "";
+    const [d, m, y] = ro.split(".");
+    return `${y}-${m}-${d}`;
+  };
+  const toRo = (iso: string) => {
+    if (!iso) return "";
+    const [y, m, d] = iso.split("-");
+    return `${d}.${m}.${y}`;
+  };
+  return (
+    <div>
+      <label className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">
+        {label} {required && <span className="text-red-400">*</span>}
+      </label>
+      <input
+        type="date" value={toIso(value)}
+        onChange={(e) => onChange(name, toRo(e.target.value))}
+        required={required}
+        className={`w-full border rounded-lg px-3 py-2 text-sm text-gray-900 dark:text-white focus:outline-none focus:ring-1 bg-white dark:bg-slate-800 transition-colors ${
+          error ? "border-red-400 focus:border-red-400 focus:ring-red-400"
+                : "border-gray-200 dark:border-slate-600 focus:border-blue-400 focus:ring-blue-400"
         }`}
       />
       {error && <p className="text-xs text-red-500 mt-1">{error}</p>}
@@ -52,8 +88,8 @@ function Field({
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div className="bg-white rounded-2xl border border-gray-200 p-6">
-      <h3 className="text-sm font-bold text-gray-500 uppercase tracking-wide mb-4">{title}</h3>
+    <div className="bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6">
+      <h3 className="text-sm font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wide mb-4">{title}</h3>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">{children}</div>
     </div>
   );
@@ -97,18 +133,18 @@ export default function ImputernicireForm() {
     setLoading(true);
     setError("");
     if (!validateAll()) { setLoading(false); return; }
+    localStorage.setItem("imputernicireData", JSON.stringify(formData));
     try {
       const res = await fetch("/api/create-checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ tip: "imputernicire" }),
       });
-      const json = await res.json();
-      if (!res.ok || !json.url) throw new Error(json.error || "Eroare la inițializarea plății");
-      localStorage.setItem("imputernicireData", JSON.stringify(formData));
-      window.location.href = json.url;
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Eroare neașteptată");
+      const { url, error: apiError } = await res.json();
+      if (apiError || !url) { setError("Eroare la procesarea plății. Încearcă din nou."); setLoading(false); return; }
+      window.location.href = url;
+    } catch {
+      setError("Eroare la procesarea plății. Încearcă din nou.");
       setLoading(false);
     }
   };
@@ -141,7 +177,7 @@ export default function ImputernicireForm() {
       {/* Obiect și detalii */}
       <Section title="Obiect și Detalii">
         <div className="sm:col-span-2">
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">
             Obiectul împuternicirii <span className="text-red-400">*</span>
           </label>
           <textarea
@@ -149,7 +185,7 @@ export default function ImputernicireForm() {
             onChange={(e) => handleChange("obiect", e.target.value)}
             placeholder="ex: Să mă reprezinte în fața ANAF pentru depunerea declarației de venit pe anul 2025, să semneze orice documente necesare în acest scop."
             required rows={4}
-            className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 bg-white resize-none"
+            className="w-full border border-gray-200 dark:border-slate-600 rounded-lg px-3 py-2 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 bg-white dark:bg-slate-800 placeholder:text-gray-400 dark:placeholder:text-slate-500 resize-none"
           />
         </div>
 
@@ -163,16 +199,16 @@ export default function ImputernicireForm() {
               className="mt-0.5 rounded border-gray-300"
             />
             <div>
-              <p className="text-sm font-medium text-gray-700">Drept de substituire</p>
-              <p className="text-xs text-gray-400 mt-0.5">
+              <p className="text-sm font-medium text-gray-700 dark:text-slate-300">Drept de substituire</p>
+              <p className="text-xs text-gray-400 dark:text-slate-500 mt-0.5">
                 Mandatarul poate delega unui terț (art. 2023 Cod Civil)
               </p>
             </div>
           </label>
         </div>
 
-        <Field label="Valabilă până la" name="dataExpirare" value={formData.dataExpirare} onChange={handleChange} placeholder="ex: 31.12.2026" required error={errors.dataExpirare} />
-        <Field label="Data împuternicirii" name="data" value={formData.data} onChange={handleChange} placeholder="16.03.2026" required />
+        <DateField label="Valabilă până la" name="dataExpirare" value={formData.dataExpirare} onChange={handleChange} required error={errors.dataExpirare} />
+        <DateField label="Data împuternicirii" name="data" value={formData.data} onChange={handleChange} required />
         <div className="sm:col-span-2">
           <Field label="Locul încheierii" name="locul" value={formData.locul} onChange={handleChange} placeholder="ex: Cluj-Napoca" required />
         </div>
@@ -180,25 +216,25 @@ export default function ImputernicireForm() {
 
       {error && <div className="bg-red-50 border border-red-200 text-red-700 rounded-xl px-4 py-3 text-sm">{error}</div>}
 
-      <div className="bg-white rounded-2xl border border-gray-200 p-6">
+      <div className="bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <p className="font-semibold text-gray-900">Împuternicire / Procură</p>
-            <p className="text-sm text-gray-500">PDF profesional, gata de semnat</p>
+            <p className="font-semibold text-gray-900 dark:text-white">Împuternicire / Procură</p>
+            <p className="text-sm text-gray-500 dark:text-slate-400">PDF profesional, gata de semnat</p>
           </div>
           <div className="text-right">
-            <p className="text-2xl font-bold text-gray-900">15 lei</p>
-            <p className="text-xs text-gray-400">plată unică</p>
+            <p className="text-2xl font-bold text-gray-900 dark:text-white">15 lei</p>
+            <p className="text-xs text-gray-400 dark:text-slate-500">plată unică</p>
           </div>
         </div>
         <button type="submit" disabled={loading}
           className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-semibold py-3 rounded-xl transition-colors text-base">
           {loading ? "Se procesează..." : "Continuă spre plată →"}
         </button>
-        <p className="text-xs text-gray-400 text-center mt-3">
+        <p className="text-xs text-gray-400 dark:text-slate-500 text-center mt-3">
           Plată securizată prin Stripe · PDF disponibil instant după plată
         </p>
-        <p className="text-xs text-gray-400 text-center mt-2">
+        <p className="text-xs text-gray-400 dark:text-slate-500 text-center mt-2">
           Prin continuare confirmi livrarea imediată și renunți la dreptul de retragere de 14 zile (OG 34/2014 art. 16).
         </p>
       </div>

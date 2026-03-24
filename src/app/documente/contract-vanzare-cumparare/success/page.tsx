@@ -27,7 +27,6 @@ function SuccessContent() {
           const data = JSON.parse(raw) as ContractVanzareData;
           setContractData(data);
           setStatus("success");
-          localStorage.removeItem("contractData");
         } catch {
           setStatus("error");
         }
@@ -40,7 +39,7 @@ function SuccessContent() {
       <main className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="w-10 h-10 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-          <p className="text-gray-500">Se verifica plata...</p>
+          <p className="text-gray-500 dark:text-slate-400">Se verifica plata...</p>
         </div>
       </main>
     );
@@ -49,10 +48,10 @@ function SuccessContent() {
   if (status === "error" || !contractData) {
     return (
       <main className="min-h-screen flex items-center justify-center px-4">
-        <div className="max-w-md w-full bg-white rounded-2xl border border-red-200 p-8 text-center">
+        <div className="max-w-md w-full bg-white dark:bg-slate-900 rounded-2xl border border-red-200 dark:border-red-800 p-8 text-center">
           <AlertCircle className="w-12 h-12 text-red-400 mx-auto mb-4" />
-          <h1 className="text-xl font-bold text-gray-900 mb-2">Ceva nu a mers</h1>
-          <p className="text-gray-500 text-sm mb-6">
+          <h1 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Ceva nu a mers</h1>
+          <p className="text-gray-500 dark:text-slate-400 text-sm mb-6">
             Nu am putut gasi datele contractului. Daca ai fost debitat, te rugam sa ne contactezi.
           </p>
           <a
@@ -70,12 +69,12 @@ function SuccessContent() {
     <main className="min-h-screen flex items-center justify-center px-4 py-16">
       <div className="max-w-lg w-full text-center">
         {/* Succes */}
-        <div className="bg-white rounded-2xl border border-green-200 p-8 mb-6">
+        <div className="bg-white dark:bg-slate-900 rounded-2xl border border-green-200 dark:border-green-700 p-8 mb-6">
           <CheckCircle className="w-14 h-14 text-green-500 mx-auto mb-4" />
-          <h1 className="text-2xl font-bold text-gray-900 mb-2">
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
             Plata confirmata!
           </h1>
-          <p className="text-gray-500 mb-6">
+          <p className="text-gray-500 dark:text-slate-400 mb-6">
             Contractul tau este gata. Descarca PDF-ul de mai jos.
           </p>
 
@@ -87,39 +86,39 @@ function SuccessContent() {
         </div>
 
         {/* Sumar contract */}
-        <div className="bg-white rounded-2xl border border-gray-200 p-6 text-left">
-          <h2 className="text-sm font-bold text-gray-500 uppercase tracking-wide mb-3">
+        <div className="bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6 text-left">
+          <h2 className="text-sm font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wide mb-3">
             Sumar contract
           </h2>
           <div className="space-y-2 text-sm">
             <div className="flex justify-between">
-              <span className="text-gray-500">Vanzator</span>
-              <span className="font-medium">{contractData.vanzatorNume}</span>
+              <span className="text-gray-500 dark:text-slate-400">Vanzator</span>
+              <span className="font-medium dark:text-white">{contractData.vanzatorNume}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-gray-500">Cumparator</span>
-              <span className="font-medium">{contractData.cumparatorNume}</span>
+              <span className="text-gray-500 dark:text-slate-400">Cumparator</span>
+              <span className="font-medium dark:text-white">{contractData.cumparatorNume}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-gray-500">Bun</span>
-              <span className="font-medium text-right max-w-[60%]">{contractData.bunDescriere}</span>
+              <span className="text-gray-500 dark:text-slate-400">Bun</span>
+              <span className="font-medium dark:text-white text-right max-w-[60%]">{contractData.bunDescriere}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-gray-500">Pret</span>
-              <span className="font-medium">
+              <span className="text-gray-500 dark:text-slate-400">Pret</span>
+              <span className="font-medium dark:text-white">
                 {contractData.pret} {contractData.moneda}
               </span>
             </div>
             <div className="flex justify-between">
-              <span className="text-gray-500">Data</span>
-              <span className="font-medium">{contractData.data}</span>
+              <span className="text-gray-500 dark:text-slate-400">Data</span>
+              <span className="font-medium dark:text-white">{contractData.data}</span>
             </div>
           </div>
         </div>
 
         <a
           href="/documente"
-          className="inline-block mt-6 text-gray-400 text-sm hover:text-gray-600"
+          className="inline-block mt-6 text-gray-400 dark:text-slate-500 text-sm hover:text-gray-600 dark:hover:text-slate-300"
         >
           ← Înapoi la documente
         </a>

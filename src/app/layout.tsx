@@ -5,6 +5,7 @@ import CookieBanner from "@/components/CookieBanner";
 import { Analytics } from "@vercel/analytics/next";
 import Header from "@/components/Header";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import ThemeProvider from "@/components/ThemeProvider";
 
 const geist = Geist({
   variable: "--font-geist-sans",
@@ -32,22 +33,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ro">
-      <body className={`${geist.variable} antialiased bg-gray-50 text-gray-900`}>
-        <Header />
-        {children}
-        <footer className="text-center py-6 px-4 border-t border-gray-100 mt-4">
-          <p className="text-xs text-gray-500">
-            FaraNotar.ro oferă modele de documente precompletate, nu consultanță juridică. Nu răspundem pentru
-            modul de completare, corectitudinea datelor sau capacitatea juridică a semnatarilor.{" "}
-            <a href="/termeni" className="underline hover:text-gray-600">Termeni și Condiții</a>
-            {" "}·{" "}
-            <a href="/confidentialitate" className="underline hover:text-gray-600">Confidențialitate</a>
-          </p>
-        </footer>
-        <CookieBanner />
-        <Analytics />
-        <SpeedInsights />
+    <html lang="ro" suppressHydrationWarning>
+      <body className={`${geist.variable} antialiased bg-gray-50 dark:bg-slate-950 text-gray-900 dark:text-slate-100`}>
+        <ThemeProvider>
+          <Header />
+{children}
+          <footer className="text-center py-6 px-4 border-t border-gray-100 dark:border-slate-800 mt-4">
+            <p className="text-xs text-gray-500 dark:text-slate-400">
+              FaraNotar.ro oferă modele de documente precompletate, nu consultanță juridică. Nu răspundem pentru
+              modul de completare, corectitudinea datelor sau capacitatea juridică a semnatarilor.{" "}
+              <a href="/termeni" className="underline hover:text-gray-600 dark:hover:text-slate-300">Termeni și Condiții</a>
+              {" "}·{" "}
+              <a href="/confidentialitate" className="underline hover:text-gray-600 dark:hover:text-slate-300">Confidențialitate</a>
+            </p>
+          </footer>
+          <CookieBanner />
+          <Analytics />
+          <SpeedInsights />
+        </ThemeProvider>
       </body>
     </html>
   );

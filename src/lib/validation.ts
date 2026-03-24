@@ -17,7 +17,7 @@ export function validateCNP(cnp: string): string | null {
   if (day < 1 || day > 31) return "Ziua de naștere este incorectă";
 
   const countyCode = parseInt(cnp.slice(7, 9));
-  if (countyCode < 1 || (countyCode > 46 && countyCode < 51) || countyCode > 52) {
+  if (countyCode < 1 || countyCode > 99) {
     return "Codul județului este incorect";
   }
 

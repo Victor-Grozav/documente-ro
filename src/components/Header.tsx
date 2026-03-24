@@ -1,11 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
+import ThemeToggle from "./ThemeToggle";
 
 export default function Header() {
   return (
-    <header className="w-full bg-white border-b border-gray-100 px-4 py-3">
-      <div className="max-w-5xl mx-auto flex justify-center">
-        <Link href="/">
+    <header className="w-full bg-white dark:bg-slate-800 border-b border-gray-100 dark:border-slate-700 px-4 py-3">
+      <div className="max-w-5xl mx-auto flex items-center justify-between">
+        <Link href="/" className="flex items-center">
           <Image
             src="/logo-light.svg"
             alt="FaraNotar.ro"
@@ -14,6 +15,7 @@ export default function Header() {
             priority
           />
         </Link>
+        <ThemeToggle />
       </div>
     </header>
   );

@@ -34,19 +34,51 @@ function Field({
 }) {
   return (
     <div>
-      <label className="block text-sm font-medium text-gray-700 mb-1">
+      <label className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">
         {label} {required && <span className="text-red-400">*</span>}
       </label>
       <input
         type="text" value={value}
         onChange={(e) => onChange(name, e.target.value)}
         placeholder={placeholder} required={required}
-        className={`w-full border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 bg-white transition-colors ${
+        className={`w-full border rounded-lg px-3 py-2 text-sm text-gray-900 dark:text-white focus:outline-none focus:ring-1 bg-white dark:bg-slate-800 placeholder:text-gray-400 dark:placeholder:text-slate-500 transition-colors ${
           error ? "border-red-400 focus:border-red-400 focus:ring-red-400"
-                : "border-gray-200 focus:border-blue-400 focus:ring-blue-400"
+                : "border-gray-200 dark:border-slate-600 focus:border-blue-400 focus:ring-blue-400"
         }`}
       />
       {error && <p className="text-xs text-red-500 mt-1">{error}</p>}
+    </div>
+  );
+}
+
+function DateField({
+  label, name, value, onChange, required,
+}: {
+  label: string; name: keyof AcordConfidentialitateData; value: string;
+  onChange: (name: keyof AcordConfidentialitateData, value: string) => void;
+  required?: boolean;
+}) {
+  const toIso = (ro: string) => {
+    if (!/^\d{2}\.\d{2}\.\d{4}$/.test(ro)) return "";
+    const [d, m, y] = ro.split(".");
+    return `${y}-${m}-${d}`;
+  };
+  const toRo = (iso: string) => {
+    if (!iso) return "";
+    const [y, m, d] = iso.split("-");
+    return `${d}.${m}.${y}`;
+  };
+  return (
+    <div>
+      <label className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">
+        {label} {required && <span className="text-red-400">*</span>}
+      </label>
+      <input
+        type="date" value={toIso(value)}
+        onChange={(e) => onChange(name, toRo(e.target.value))}
+        required={required}
+        className="w-full border border-gray-200 dark:border-slate-600 rounded-lg px-3 py-2 text-sm text-gray-900 dark:text-white focus:outline-none focus:ring-1 focus:border-blue-400 focus:ring-blue-400 bg-white dark:bg-slate-800"
+      />
     </div>
   );
 }
@@ -57,9 +89,9 @@ function CalitateSelect({ label, name, value, onChange }: {
 }) {
   return (
     <div>
-      <label className="block text-sm font-medium text-gray-700 mb-1">{label}</label>
+      <label className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">{label}</label>
       <select value={value} onChange={(e) => onChange(name, e.target.value)}
-        className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 bg-white">
+        className="w-full border border-gray-200 dark:border-slate-600 rounded-lg px-3 py-2 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 bg-white dark:bg-slate-800">
         <option value="Persoană fizică">Persoană fizică</option>
         <option value="Persoană juridică">Persoană juridică</option>
       </select>
@@ -69,8 +101,8 @@ function CalitateSelect({ label, name, value, onChange }: {
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div className="bg-white rounded-2xl border border-gray-200 p-6">
-      <h3 className="text-sm font-bold text-gray-500 uppercase tracking-wide mb-4">{title}</h3>
+    <div className="bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6">
+      <h3 className="text-sm font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wide mb-4">{title}</h3>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">{children}</div>
     </div>
   );
@@ -100,18 +132,18 @@ export default function AcordConfidentialitateForm() {
     setLoading(true);
     setError("");
     if (!validateAll()) { setLoading(false); return; }
+    localStorage.setItem("acordNDAData", JSON.stringify(formData));
     try {
       const res = await fetch("/api/create-checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ tip: "acord-confidentialitate" }),
       });
-      const json = await res.json();
-      if (!res.ok || !json.url) throw new Error(json.error || "Eroare la inițializarea plății");
-      localStorage.setItem("acordNDAData", JSON.stringify(formData));
-      window.location.href = json.url;
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Eroare neașteptată");
+      const { url, error: apiError } = await res.json();
+      if (apiError || !url) { setError("Eroare la procesarea plății. Încearcă din nou."); setLoading(false); return; }
+      window.location.href = url;
+    } catch {
+      setError("Eroare la procesarea plății. Încearcă din nou.");
       setLoading(false);
     }
   };
@@ -119,18 +151,20 @@ export default function AcordConfidentialitateForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       {/* Tip NDA */}
-      <div className="bg-white rounded-2xl border border-gray-200 p-6">
-        <h3 className="text-sm font-bold text-gray-500 uppercase tracking-wide mb-4">Tipul acordului</h3>
+      <div className="bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6">
+        <h3 className="text-sm font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wide mb-4">Tipul acordului</h3>
         <div className="grid grid-cols-2 gap-3">
           {(["bilateral", "unilateral"] as const).map((tip) => (
             <label key={tip} className={`flex items-start gap-3 p-4 rounded-xl border-2 cursor-pointer transition-colors ${
-              formData.tipNDA === tip ? "border-blue-500 bg-blue-50" : "border-gray-200 hover:border-gray-300"
+              formData.tipNDA === tip
+                ? "border-blue-500 bg-blue-50 dark:bg-blue-950"
+                : "border-gray-200 dark:border-slate-600 hover:border-gray-300 dark:hover:border-slate-500"
             }`}>
               <input type="radio" name="tipNDA" value={tip} checked={formData.tipNDA === tip}
                 onChange={() => handleChange("tipNDA", tip)} className="mt-0.5" />
               <div>
-                <p className="text-sm font-semibold text-gray-900 capitalize">{tip}</p>
-                <p className="text-xs text-gray-400 mt-0.5">
+                <p className="text-sm font-semibold text-gray-900 dark:text-white capitalize">{tip}</p>
+                <p className="text-xs text-gray-400 dark:text-slate-500 mt-0.5">
                   {tip === "bilateral"
                     ? "Ambele părți au obligații de confidențialitate"
                     : "Doar Partea 2 are obligații față de Partea 1"}
@@ -196,10 +230,10 @@ export default function AcordConfidentialitateForm() {
             onChange={(e) => handleChange("obiectConfidentialitate", e.target.value)}
             placeholder="ex: Informații tehnice, financiare, comerciale, planuri de afaceri, date despre clienți, coduri sursă și orice alte informații marcate ca confidențiale."
             required rows={4}
-            className={`w-full border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 bg-white resize-none transition-colors ${
+            className={`w-full border rounded-lg px-3 py-2 text-sm text-gray-900 dark:text-white focus:outline-none focus:ring-1 bg-white dark:bg-slate-800 placeholder:text-gray-400 dark:placeholder:text-slate-500 resize-none transition-colors ${
               errors.obiectConfidentialitate
                 ? "border-red-400 focus:border-red-400 focus:ring-red-400"
-                : "border-gray-200 focus:border-blue-400 focus:ring-blue-400"
+                : "border-gray-200 dark:border-slate-600 focus:border-blue-400 focus:ring-blue-400"
             }`}
           />
           {errors.obiectConfidentialitate && (
@@ -207,11 +241,11 @@ export default function AcordConfidentialitateForm() {
           )}
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">
             Durata acordului <span className="text-red-400">*</span>
           </label>
           <select value={formData.durataAni} onChange={(e) => handleChange("durataAni", e.target.value)}
-            className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 bg-white">
+            className="w-full border border-gray-200 dark:border-slate-600 rounded-lg px-3 py-2 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 bg-white dark:bg-slate-800">
             <option value="1">1 an</option>
             <option value="2">2 ani</option>
             <option value="3">3 ani</option>
@@ -220,20 +254,20 @@ export default function AcordConfidentialitateForm() {
           </select>
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">
             Clauză penală (RON, opțional)
           </label>
           <input
             type="number" value={formData.penalitate}
             onChange={(e) => handleChange("penalitate", e.target.value)}
             placeholder="ex: 5000"
-            className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 bg-white"
+            className="w-full border border-gray-200 dark:border-slate-600 rounded-lg px-3 py-2 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 bg-white dark:bg-slate-800 placeholder:text-gray-400 dark:placeholder:text-slate-500"
           />
-          <p className="text-xs text-gray-400 mt-1">
+          <p className="text-xs text-gray-400 dark:text-slate-500 mt-1">
             Penalitate fixă în caz de încălcare a acordului
           </p>
         </div>
-        <Field label="Data acordului" name="data" value={formData.data} onChange={handleChange} placeholder="16.03.2026" required />
+        <DateField label="Data acordului" name="data" value={formData.data} onChange={handleChange} required />
         <div className="sm:col-span-2">
           <Field label="Locul încheierii" name="locul" value={formData.locul} onChange={handleChange} placeholder="ex: Cluj-Napoca" required />
         </div>
@@ -241,25 +275,25 @@ export default function AcordConfidentialitateForm() {
 
       {error && <div className="bg-red-50 border border-red-200 text-red-700 rounded-xl px-4 py-3 text-sm">{error}</div>}
 
-      <div className="bg-white rounded-2xl border border-gray-200 p-6">
+      <div className="bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <p className="font-semibold text-gray-900">Acord de Confidențialitate (NDA)</p>
-            <p className="text-sm text-gray-500">PDF profesional, gata de semnat</p>
+            <p className="font-semibold text-gray-900 dark:text-white">Acord de Confidențialitate (NDA)</p>
+            <p className="text-sm text-gray-500 dark:text-slate-400">PDF profesional, gata de semnat</p>
           </div>
           <div className="text-right">
-            <p className="text-2xl font-bold text-gray-900">20 lei</p>
-            <p className="text-xs text-gray-400">plată unică</p>
+            <p className="text-2xl font-bold text-gray-900 dark:text-white">20 lei</p>
+            <p className="text-xs text-gray-400 dark:text-slate-500">plată unică</p>
           </div>
         </div>
         <button type="submit" disabled={loading}
           className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-semibold py-3 rounded-xl transition-colors text-base">
           {loading ? "Se procesează..." : "Continuă spre plată →"}
         </button>
-        <p className="text-xs text-gray-400 text-center mt-3">
+        <p className="text-xs text-gray-400 dark:text-slate-500 text-center mt-3">
           Plată securizată prin Stripe · PDF disponibil instant după plată
         </p>
-        <p className="text-xs text-gray-400 text-center mt-2">
+        <p className="text-xs text-gray-400 dark:text-slate-500 text-center mt-2">
           Prin continuare confirmi livrarea imediată și renunți la dreptul de retragere de 14 zile (OG 34/2014 art. 16).
         </p>
       </div>

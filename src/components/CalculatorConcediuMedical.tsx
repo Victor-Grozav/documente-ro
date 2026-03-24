@@ -39,8 +39,8 @@ interface Rezultat {
   brutAngajator: number;
   brutCNAS: number;
   brutTotal: number;
-  netAngajator: number;  // după CAS+CASS+impozit (ca salariu)
-  netCNAS: number;       // după CASS 10% (scutit impozit venit și CAS)
+  netAngajator: number;
+  netCNAS: number;
   netTotal: number;
   plafonat: boolean;
 }
@@ -64,13 +64,11 @@ function calculeaza(
   const brutCNAS = Math.round(indemnizatieZilnicaBruta * zileCNAS);
   const brutTotal = brutAngajator + brutCNAS;
 
-  // Angajator: deduceri ca salariu (CAS 25%, CASS 10%, impozit venit 10%)
   const casAng = Math.round(brutAngajator * 0.25);
   const cassAng = Math.round(brutAngajator * 0.10);
   const impAng = Math.round((brutAngajator - casAng - cassAng) * 0.10);
   const netAngajator = brutAngajator - casAng - cassAng - impAng;
 
-  // CNAS: doar CASS 10% (scutit CAS și impozit venit per art. 76 Cod Fiscal)
   const cassCNAS = Math.round(brutCNAS * 0.10);
   const netCNAS = brutCNAS - cassCNAS;
 
@@ -118,8 +116,8 @@ export default function CalculatorConcediuMedical() {
     <div className="w-full max-w-2xl mx-auto space-y-4">
 
       {/* Salariu */}
-      <div className="bg-white rounded-2xl border border-gray-200 p-6">
-        <label className="block text-sm font-medium text-gray-600 mb-1">
+      <div className="bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6">
+        <label className="block text-sm font-medium text-gray-600 dark:text-slate-400 mb-1">
           Salariu brut mediu lunar (ultimele 6 luni)
         </label>
         <div className="flex items-center gap-3 mb-4">
@@ -133,10 +131,10 @@ export default function CalculatorConcediuMedical() {
               const n = parseInt(raw, 10);
               if (!isNaN(n) && n >= 0 && n <= 200000) setSalariu(n);
             }}
-            className="min-w-0 flex-1 text-3xl font-bold text-gray-900 border-b-2 border-blue-500 pb-1 bg-transparent outline-none"
+            className="min-w-0 flex-1 text-3xl font-bold text-gray-900 dark:text-white border-b-2 border-blue-500 pb-1 bg-transparent outline-none"
             placeholder="0"
           />
-          <span className="text-xl font-semibold text-gray-400 shrink-0">RON</span>
+          <span className="text-xl font-semibold text-gray-400 dark:text-slate-500 shrink-0">RON</span>
         </div>
         <input
           type="range"
@@ -151,23 +149,23 @@ export default function CalculatorConcediuMedical() {
           }}
           className="w-full accent-blue-500"
         />
-        <div className="flex justify-between text-xs text-gray-400 mt-1">
+        <div className="flex justify-between text-xs text-gray-400 dark:text-slate-500 mt-1">
           <span>1.000 RON</span>
-          <span className="text-gray-500 font-medium hidden sm:inline">
+          <span className="text-gray-500 dark:text-slate-400 font-medium hidden sm:inline">
             Salariu minim: 4.050 RON · Plafon: 48.600 RON
           </span>
           <span>50.000 RON</span>
         </div>
         {r.plafonat && (
-          <p className="text-xs text-amber-600 bg-amber-50 rounded-lg px-3 py-2 mt-3">
+          <p className="text-xs text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950 rounded-lg px-3 py-2 mt-3">
             Salariul depășește plafonul de calcul de 48.600 RON. Indemnizația se calculează la plafonul maxim.
           </p>
         )}
       </div>
 
       {/* Zile CM */}
-      <div className="bg-white rounded-2xl border border-gray-200 p-6">
-        <label className="block text-sm font-medium text-gray-600 mb-1">
+      <div className="bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6">
+        <label className="block text-sm font-medium text-gray-600 dark:text-slate-400 mb-1">
           Număr de zile calendaristice de concediu medical
         </label>
         <div className="flex items-center gap-3 mb-4">
@@ -181,10 +179,10 @@ export default function CalculatorConcediuMedical() {
               const n = parseInt(raw, 10);
               if (!isNaN(n) && n >= 1 && n <= 183) setZile(n);
             }}
-            className="min-w-0 flex-1 text-3xl font-bold text-gray-900 border-b-2 border-green-500 pb-1 bg-transparent outline-none"
+            className="min-w-0 flex-1 text-3xl font-bold text-gray-900 dark:text-white border-b-2 border-green-500 pb-1 bg-transparent outline-none"
             placeholder="1"
           />
-          <span className="text-xl font-semibold text-gray-400 shrink-0">zile</span>
+          <span className="text-xl font-semibold text-gray-400 dark:text-slate-500 shrink-0">zile</span>
         </div>
         <input
           type="range"
@@ -199,23 +197,23 @@ export default function CalculatorConcediuMedical() {
           }}
           className="w-full accent-green-500"
         />
-        <div className="flex justify-between text-xs text-gray-400 mt-1">
+        <div className="flex justify-between text-xs text-gray-400 dark:text-slate-500 mt-1">
           <span>1 zi</span>
           <span>90 zile</span>
         </div>
       </div>
 
       {/* Tip CM */}
-      <div className="bg-white rounded-2xl border border-gray-200 p-6">
-        <p className="text-sm font-medium text-gray-600 mb-3">Tipul concediului medical</p>
+      <div className="bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6">
+        <p className="text-sm font-medium text-gray-600 dark:text-slate-400 mb-3">Tipul concediului medical</p>
         <div className="space-y-2">
           {(Object.keys(TIP_LABEL) as TipCM[]).map((t) => (
             <label
               key={t}
               className={`flex items-start gap-3 p-3 rounded-xl border-2 cursor-pointer transition-colors ${
                 tip === t
-                  ? "border-blue-500 bg-blue-50"
-                  : "border-gray-200 hover:border-gray-300"
+                  ? "border-blue-500 bg-blue-50 dark:bg-blue-950"
+                  : "border-gray-200 dark:border-slate-600 hover:border-gray-300 dark:hover:border-slate-500"
               }`}
             >
               <input
@@ -227,8 +225,8 @@ export default function CalculatorConcediuMedical() {
                 className="mt-0.5 accent-blue-600"
               />
               <div className="flex-1">
-                <p className="text-sm font-semibold text-gray-900">{TIP_LABEL[t]}</p>
-                <p className="text-xs text-gray-400 mt-0.5">
+                <p className="text-sm font-semibold text-gray-900 dark:text-white">{TIP_LABEL[t]}</p>
+                <p className="text-xs text-gray-400 dark:text-slate-500 mt-0.5">
                   {Math.round(TIP_PROCENT[t] * 100)}% din baza de calcul
                   {CNAS_DE_LA_ZI_1.includes(t)
                     ? " · CNAS plătește de la ziua 1"
@@ -255,28 +253,28 @@ export default function CalculatorConcediuMedical() {
       </div>
 
       {/* Breakdown detaliat */}
-      <div className="bg-white rounded-2xl border border-gray-200 p-6 space-y-4">
-        <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide">
+      <div className="bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6 space-y-4">
+        <h3 className="text-sm font-semibold text-gray-500 dark:text-slate-400 uppercase tracking-wide">
           Detaliu calcul
         </h3>
 
         {/* Baza */}
-        <div className="space-y-1 pb-3 border-b border-gray-100">
+        <div className="space-y-1 pb-3 border-b border-gray-100 dark:border-slate-800">
           <div className="flex justify-between text-sm">
-            <span className="text-gray-600">Salariu de calcul (plafonat)</span>
-            <span className="font-medium">{fmt(Math.min(salariu, PLAFON_BAZA))}</span>
+            <span className="text-gray-600 dark:text-slate-400">Salariu de calcul (plafonat)</span>
+            <span className="font-medium dark:text-slate-200">{fmt(Math.min(salariu, PLAFON_BAZA))}</span>
           </div>
           <div className="flex justify-between text-sm">
-            <span className="text-gray-600">Baza zilnică de calcul</span>
-            <span className="font-medium">
+            <span className="text-gray-600 dark:text-slate-400">Baza zilnică de calcul</span>
+            <span className="font-medium dark:text-slate-200">
               {new Intl.NumberFormat("ro-RO", { maximumFractionDigits: 2 }).format(r.bazaZilnica)} RON/zi
             </span>
           </div>
           <div className="flex justify-between text-sm">
-            <span className="text-gray-600">
+            <span className="text-gray-600 dark:text-slate-400">
               Indemnizație zilnică ({Math.round(r.procent * 100)}%)
             </span>
-            <span className="font-medium text-green-700">
+            <span className="font-medium text-green-700 dark:text-green-400">
               {new Intl.NumberFormat("ro-RO", { maximumFractionDigits: 2 }).format(r.indemnizatieZilnicaBruta)} RON/zi
             </span>
           </div>
@@ -284,91 +282,91 @@ export default function CalculatorConcediuMedical() {
 
         {/* Angajator */}
         {r.zileAngajator > 0 && (
-          <div className="rounded-xl bg-orange-50 border border-orange-100 p-4 space-y-2">
+          <div className="rounded-xl bg-orange-50 dark:bg-orange-950 border border-orange-100 dark:border-orange-900 p-4 space-y-2">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-semibold text-gray-800">
+                <p className="text-sm font-semibold text-gray-800 dark:text-slate-100">
                   Plătit de angajator
                 </p>
-                <p className="text-xs text-gray-500">{fmtZile(r.zileAngajator)} (zile 1–5)</p>
+                <p className="text-xs text-gray-500 dark:text-slate-400">{fmtZile(r.zileAngajator)} (zile 1–5)</p>
               </div>
-              <span className="text-sm font-bold text-orange-700">{fmt(r.brutAngajator)} brut</span>
+              <span className="text-sm font-bold text-orange-700 dark:text-orange-400">{fmt(r.brutAngajator)} brut</span>
             </div>
-            <p className="text-xs text-gray-500">
+            <p className="text-xs text-gray-500 dark:text-slate-400">
               Supus CAS 25% + CASS 10% + impozit venit 10% (ca salariu obișnuit)
             </p>
-            <div className="flex justify-between text-sm pt-1 border-t border-orange-100">
-              <span className="font-medium text-gray-700">Net estimat</span>
-              <span className="font-bold text-orange-700">{fmt(r.netAngajator)}</span>
+            <div className="flex justify-between text-sm pt-1 border-t border-orange-100 dark:border-orange-900">
+              <span className="font-medium text-gray-700 dark:text-slate-300">Net estimat</span>
+              <span className="font-bold text-orange-700 dark:text-orange-400">{fmt(r.netAngajator)}</span>
             </div>
           </div>
         )}
 
         {/* CNAS */}
         {r.zileCNAS > 0 && (
-          <div className="rounded-xl bg-blue-50 border border-blue-100 p-4 space-y-2">
+          <div className="rounded-xl bg-blue-50 dark:bg-blue-950 border border-blue-100 dark:border-blue-900 p-4 space-y-2">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-semibold text-gray-800">Plătit de CNAS</p>
-                <p className="text-xs text-gray-500">
+                <p className="text-sm font-semibold text-gray-800 dark:text-slate-100">Plătit de CNAS</p>
+                <p className="text-xs text-gray-500 dark:text-slate-400">
                   {fmtZile(r.zileCNAS)}{" "}
                   {CNAS_DE_LA_ZI_1.includes(tip) ? "(de la ziua 1)" : "(de la ziua 6)"}
                 </p>
               </div>
-              <span className="text-sm font-bold text-blue-700">{fmt(r.brutCNAS)} brut</span>
+              <span className="text-sm font-bold text-blue-700 dark:text-blue-400">{fmt(r.brutCNAS)} brut</span>
             </div>
-            <p className="text-xs text-gray-500">
+            <p className="text-xs text-gray-500 dark:text-slate-400">
               CASS 10% reținut · scutit de CAS și impozit venit (art. 76 Cod Fiscal)
             </p>
-            <div className="flex justify-between text-sm pt-1 border-t border-blue-100">
-              <span className="font-medium text-gray-700">Net estimat</span>
-              <span className="font-bold text-blue-700">{fmt(r.netCNAS)}</span>
+            <div className="flex justify-between text-sm pt-1 border-t border-blue-100 dark:border-blue-900">
+              <span className="font-medium text-gray-700 dark:text-slate-300">Net estimat</span>
+              <span className="font-bold text-blue-700 dark:text-blue-400">{fmt(r.netCNAS)}</span>
             </div>
           </div>
         )}
 
         {/* Total */}
-        <div className="flex justify-between items-center py-3 bg-green-50 rounded-xl px-4">
-          <span className="font-bold text-gray-800">Total net</span>
-          <span className="font-bold text-green-700 text-lg">{fmt(r.netTotal)}</span>
+        <div className="flex justify-between items-center py-3 bg-green-50 dark:bg-green-950 rounded-xl px-4">
+          <span className="font-bold text-gray-800 dark:text-white">Total net</span>
+          <span className="font-bold text-green-700 dark:text-green-400 text-lg">{fmt(r.netTotal)}</span>
         </div>
 
-        <p className="text-xs text-gray-400 pt-1">
+        <p className="text-xs text-gray-400 dark:text-slate-500 pt-1">
           * Calcul orientativ 2026 per OUG 158/2005. Baza = media ultimelor 6 luni / 30 zile.
           Plafon maxim: 12 × salariul minim = 48.600 RON/lună. Deducerea personală nu este inclusă.
         </p>
       </div>
 
       {/* Explicații */}
-      <div className="bg-white rounded-2xl border border-gray-200 p-6 space-y-3 text-sm text-gray-600">
-        <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">
+      <div className="bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6 space-y-3 text-sm text-gray-600 dark:text-slate-400">
+        <h3 className="text-sm font-semibold text-gray-500 dark:text-slate-400 uppercase tracking-wide mb-2">
           Cum funcționează concediul medical în România?
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <div className="bg-orange-50 rounded-xl p-3">
-            <p className="font-semibold text-gray-800 mb-1">Zile 1–5 → Angajator</p>
-            <p className="text-xs text-gray-500">
+          <div className="bg-orange-50 dark:bg-orange-950 rounded-xl p-3">
+            <p className="font-semibold text-gray-800 dark:text-slate-100 mb-1">Zile 1–5 → Angajator</p>
+            <p className="text-xs text-gray-500 dark:text-slate-400">
               Primele 5 zile de CM sunt suportate din fondurile proprii ale angajatorului.
               Se impozitează ca salariul obișnuit.
             </p>
           </div>
-          <div className="bg-blue-50 rounded-xl p-3">
-            <p className="font-semibold text-gray-800 mb-1">Ziua 6+ → CNAS</p>
-            <p className="text-xs text-gray-500">
+          <div className="bg-blue-50 dark:bg-blue-950 rounded-xl p-3">
+            <p className="font-semibold text-gray-800 dark:text-slate-100 mb-1">Ziua 6+ → CNAS</p>
+            <p className="text-xs text-gray-500 dark:text-slate-400">
               Din ziua 6, indemnizația este plătită din Fondul Național de Asigurări de
               Sănătate. Se reține doar CASS 10%.
             </p>
           </div>
-          <div className="bg-red-50 rounded-xl p-3">
-            <p className="font-semibold text-gray-800 mb-1">Excepție: CNAS de la ziua 1</p>
-            <p className="text-xs text-gray-500">
+          <div className="bg-red-50 dark:bg-red-950 rounded-xl p-3">
+            <p className="font-semibold text-gray-800 dark:text-slate-100 mb-1">Excepție: CNAS de la ziua 1</p>
+            <p className="text-xs text-gray-500 dark:text-slate-400">
               Accidente de muncă, boli profesionale, TBC, cancer, SIDA, transplant,
               urgențe medico-chirurgicale și carantină.
             </p>
           </div>
-          <div className="bg-gray-50 rounded-xl p-3">
-            <p className="font-semibold text-gray-800 mb-1">Condiție stagiu</p>
-            <p className="text-xs text-gray-500">
+          <div className="bg-gray-50 dark:bg-slate-800 rounded-xl p-3">
+            <p className="font-semibold text-gray-800 dark:text-slate-100 mb-1">Condiție stagiu</p>
+            <p className="text-xs text-gray-500 dark:text-slate-400">
               Minim 6 luni de stagiu de cotizare în ultimele 12 luni pentru a beneficia
               de indemnizație (excepție: urgențe și boli profesionale).
             </p>

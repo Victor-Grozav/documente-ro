@@ -145,14 +145,14 @@ export default function CalculatorImpozitAuto() {
     <div className="w-full max-w-2xl mx-auto space-y-4">
 
       {/* Județ */}
-      <div className="bg-white rounded-2xl border border-gray-200 p-6">
-        <label className="block text-sm font-medium text-gray-600 mb-3">
+      <div className="bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6">
+        <label className="block text-sm font-medium text-gray-600 dark:text-slate-400 mb-3">
           Județ / Oraș
         </label>
         <select
           value={judetCod}
           onChange={(e) => setJudetCod(e.target.value)}
-          className="w-full text-base font-semibold text-gray-900 border-2 border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-purple-400 bg-white"
+          className="w-full text-base font-semibold text-gray-900 dark:text-white border-2 border-gray-200 dark:border-slate-600 rounded-xl px-4 py-3 focus:outline-none focus:border-purple-400 bg-white dark:bg-slate-800"
         >
           {JUDETE.map((j) => (
             <option key={j.cod} value={j.cod}>
@@ -161,20 +161,20 @@ export default function CalculatorImpozitAuto() {
           ))}
         </select>
         {judet.multiplier > 1.0 && (
-          <p className="text-xs text-amber-600 bg-amber-50 rounded-lg px-3 py-2 mt-3">
+          <p className="text-xs text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950 rounded-lg px-3 py-2 mt-3">
             {judet.name} aplică o cotă de impozitare cu {Math.round((judet.multiplier - 1) * 100)}% peste minimul stabilit de Codul Fiscal.
           </p>
         )}
         {judet.multiplier === 1.0 && (
-          <p className="text-xs text-gray-400 mt-2">
+          <p className="text-xs text-gray-400 dark:text-slate-500 mt-2">
             Se aplică cota minimă din Codul Fiscal. Verificați la DITL-ul județului pentru rate exacte.
           </p>
         )}
       </div>
 
       {/* Tip vehicul */}
-      <div className="bg-white rounded-2xl border border-gray-200 p-6">
-        <p className="text-sm font-medium text-gray-600 mb-3">Tip vehicul</p>
+      <div className="bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6">
+        <p className="text-sm font-medium text-gray-600 dark:text-slate-400 mb-3">Tip vehicul</p>
         <div className="grid grid-cols-2 gap-3">
           {(["autoturism", "motocicleta"] as TipVehicul[]).map((t) => (
             <button
@@ -188,8 +188,8 @@ export default function CalculatorImpozitAuto() {
               }}
               className={`py-3 px-4 rounded-xl border-2 text-sm font-semibold transition-colors ${
                 tipVehicul === t
-                  ? "border-purple-500 bg-purple-50 text-purple-800"
-                  : "border-gray-200 text-gray-600 hover:border-gray-300"
+                  ? "border-purple-500 bg-purple-50 dark:bg-purple-950 text-purple-800 dark:text-purple-300"
+                  : "border-gray-200 dark:border-slate-600 text-gray-600 dark:text-slate-400 hover:border-gray-300 dark:hover:border-slate-500"
               }`}
             >
               {t === "autoturism" ? (
@@ -203,8 +203,8 @@ export default function CalculatorImpozitAuto() {
       </div>
 
       {/* Propulsie */}
-      <div className="bg-white rounded-2xl border border-gray-200 p-6">
-        <p className="text-sm font-medium text-gray-600 mb-3">Tip propulsie</p>
+      <div className="bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6">
+        <p className="text-sm font-medium text-gray-600 dark:text-slate-400 mb-3">Tip propulsie</p>
         <div className="grid grid-cols-3 gap-2">
           {([
             { val: "termica" as Propulsie, label: "Termică", sub: "Benzină / Diesel / GPL" },
@@ -216,14 +216,14 @@ export default function CalculatorImpozitAuto() {
               onClick={() => setPropulsie(val)}
               className={`py-3 px-3 rounded-xl border-2 text-left transition-colors ${
                 propulsie === val
-                  ? "border-purple-500 bg-purple-50"
-                  : "border-gray-200 hover:border-gray-300"
+                  ? "border-purple-500 bg-purple-50 dark:bg-purple-950"
+                  : "border-gray-200 dark:border-slate-600 hover:border-gray-300 dark:hover:border-slate-500"
               }`}
             >
-              <p className={`text-sm font-semibold ${propulsie === val ? "text-purple-800" : "text-gray-800"}`}>
+              <p className={`text-sm font-semibold ${propulsie === val ? "text-purple-800 dark:text-purple-300" : "text-gray-800 dark:text-slate-200"}`}>
                 {label}
               </p>
-              <p className="text-xs text-gray-400 mt-0.5">{sub}</p>
+              <p className="text-xs text-gray-400 dark:text-slate-500 mt-0.5">{sub}</p>
             </button>
           ))}
         </div>
@@ -231,8 +231,8 @@ export default function CalculatorImpozitAuto() {
 
       {/* Capacitate cilindrică */}
       {propulsie !== "electric" && (
-        <div className="bg-white rounded-2xl border border-gray-200 p-6">
-          <label className="block text-sm font-medium text-gray-600 mb-1">
+        <div className="bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6">
+          <label className="block text-sm font-medium text-gray-600 dark:text-slate-400 mb-1">
             Capacitate cilindrică
           </label>
           <div className="flex items-center gap-3 mb-4">
@@ -246,10 +246,10 @@ export default function CalculatorImpozitAuto() {
                 const n = parseInt(raw, 10);
                 if (!isNaN(n) && n >= 1 && n <= maxCC) setCc(n);
               }}
-              className="min-w-0 flex-1 text-3xl font-bold text-gray-900 border-b-2 border-purple-500 pb-1 bg-transparent outline-none"
+              className="min-w-0 flex-1 text-3xl font-bold text-gray-900 dark:text-white border-b-2 border-purple-500 pb-1 bg-transparent outline-none"
               placeholder="0"
             />
-            <span className="text-xl font-semibold text-gray-400 shrink-0">cm³</span>
+            <span className="text-xl font-semibold text-gray-400 dark:text-slate-500 shrink-0">cm³</span>
           </div>
           <input
             type="range"
@@ -264,7 +264,7 @@ export default function CalculatorImpozitAuto() {
             }}
             className="w-full accent-purple-500"
           />
-          <div className="flex justify-between text-xs text-gray-400 mt-1">
+          <div className="flex justify-between text-xs text-gray-400 dark:text-slate-500 mt-1">
             <span>{tipVehicul === "autoturism" ? "600" : "50"} cm³</span>
             <span>{maxCC.toLocaleString("ro-RO")} cm³</span>
           </div>
@@ -279,20 +279,20 @@ export default function CalculatorImpozitAuto() {
                 <div
                   key={i}
                   className={`rounded-lg p-2 text-center transition-colors ${
-                    activa ? "bg-purple-100 border-2 border-purple-400" : "bg-gray-50 border border-gray-200"
+                    activa ? "bg-purple-100 dark:bg-purple-950 border-2 border-purple-400 dark:border-purple-600" : "bg-gray-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700"
                   }`}
                 >
-                  <p className={`text-xs font-bold ${activa ? "text-purple-700" : "text-gray-500"}`}>
+                  <p className={`text-xs font-bold ${activa ? "text-purple-700 dark:text-purple-300" : "text-gray-500 dark:text-slate-400"}`}>
                     {banda.rataMinima} RON
                   </p>
-                  <p className={`text-xs mt-0.5 ${activa ? "text-purple-600" : "text-gray-400"} hidden sm:block`}>
+                  <p className={`text-xs mt-0.5 ${activa ? "text-purple-600 dark:text-purple-400" : "text-gray-400 dark:text-slate-500"} hidden sm:block`}>
                     {banda.label}
                   </p>
                 </div>
               );
             })}
           </div>
-          <p className="text-xs text-gray-400 mt-2 text-center">
+          <p className="text-xs text-gray-400 dark:text-slate-500 mt-2 text-center">
             RON per 200 cm³ · banda activă evidențiată
           </p>
         </div>
@@ -324,36 +324,36 @@ export default function CalculatorImpozitAuto() {
 
       {/* Detaliu calcul */}
       {!r.scutit && (
-        <div className="bg-white rounded-2xl border border-gray-200 p-6 space-y-3">
-          <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide">
+        <div className="bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6 space-y-3">
+          <h3 className="text-sm font-semibold text-gray-500 dark:text-slate-400 uppercase tracking-wide">
             Detaliu calcul
           </h3>
 
           <div className="space-y-2">
             <div className="flex justify-between text-sm">
-              <span className="text-gray-600">Capacitate cilindrică</span>
-              <span className="font-medium">{cc.toLocaleString("ro-RO")} cm³</span>
+              <span className="text-gray-600 dark:text-slate-400">Capacitate cilindrică</span>
+              <span className="font-medium dark:text-slate-200">{cc.toLocaleString("ro-RO")} cm³</span>
             </div>
             <div className="flex justify-between text-sm">
-              <span className="text-gray-600">Unități de 200 cm³ (⌈{cc}/200⌉)</span>
-              <span className="font-medium">{r.unitati} unități</span>
+              <span className="text-gray-600 dark:text-slate-400">Unități de 200 cm³ (⌈{cc}/200⌉)</span>
+              <span className="font-medium dark:text-slate-200">{r.unitati} unități</span>
             </div>
             <div className="flex justify-between text-sm">
-              <span className="text-gray-600">Bandă de impozitare ({r.banda.label})</span>
-              <span className="font-medium">{r.banda.rataMinima} RON / 200 cm³</span>
+              <span className="text-gray-600 dark:text-slate-400">Bandă de impozitare ({r.banda.label})</span>
+              <span className="font-medium dark:text-slate-200">{r.banda.rataMinima} RON / 200 cm³</span>
             </div>
 
-            <div className="flex justify-between text-sm border-t border-gray-100 pt-2">
-              <span className="text-gray-600">Impozit minim Codul Fiscal</span>
-              <span className="font-medium">{fmt(r.impozitBazaMinima)}</span>
+            <div className="flex justify-between text-sm border-t border-gray-100 dark:border-slate-700 pt-2">
+              <span className="text-gray-600 dark:text-slate-400">Impozit minim Codul Fiscal</span>
+              <span className="font-medium dark:text-slate-200">{fmt(r.impozitBazaMinima)}</span>
             </div>
 
             {judet.multiplier > 1.0 && (
               <div className="flex justify-between text-sm">
-                <span className="text-gray-600">
+                <span className="text-gray-600 dark:text-slate-400">
                   Majorare {judet.name} (×{judet.multiplier})
                 </span>
-                <span className="font-medium text-amber-600">
+                <span className="font-medium text-amber-600 dark:text-amber-400">
                   +{fmt(r.impozitCuMultiplicator - r.impozitBazaMinima)}
                 </span>
               </div>
@@ -361,20 +361,20 @@ export default function CalculatorImpozitAuto() {
 
             {r.hibrid && (
               <div className="flex justify-between text-sm">
-                <span className="text-gray-600">Reducere hibrid (−50%)</span>
-                <span className="font-medium text-blue-600">
+                <span className="text-gray-600 dark:text-slate-400">Reducere hibrid (−50%)</span>
+                <span className="font-medium text-blue-600 dark:text-blue-400">
                   −{fmt(Math.round(r.impozitCuMultiplicator * 0.5))}
                 </span>
               </div>
             )}
 
-            <div className="flex justify-between items-center py-3 bg-purple-50 rounded-xl px-4 mt-2">
-              <span className="font-bold text-gray-800">Total de plată / an</span>
-              <span className="font-bold text-purple-700 text-lg">{fmt(r.impozitAnual)}</span>
+            <div className="flex justify-between items-center py-3 bg-purple-50 dark:bg-purple-950 rounded-xl px-4 mt-2">
+              <span className="font-bold text-gray-800 dark:text-white">Total de plată / an</span>
+              <span className="font-bold text-purple-700 dark:text-purple-300 text-lg">{fmt(r.impozitAnual)}</span>
             </div>
           </div>
 
-          <p className="text-xs text-gray-400 pt-1">
+          <p className="text-xs text-gray-400 dark:text-slate-500 pt-1">
             * Calcul orientativ 2026 per Codul Fiscal art. 470. Formula: ⌈cm³ ÷ 200⌉ × rată/200cm³ × coeficient local.
             Impozitul se plătește în două rate egale: 31 martie și 30 septembrie.
             Reducerea pentru hibrid se aplică vehiculelor cu motor termic + electric, conform hotărârilor locale.
@@ -383,18 +383,18 @@ export default function CalculatorImpozitAuto() {
       )}
 
       {/* Tabel benzi */}
-      <div className="bg-white rounded-2xl border border-gray-200 p-6">
-        <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-4">
+      <div className="bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6">
+        <h3 className="text-sm font-semibold text-gray-500 dark:text-slate-400 uppercase tracking-wide mb-4">
           Toate benzile de impozitare — {tipVehicul === "autoturism" ? "Autoturisme" : "Motociclete"}
         </h3>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-gray-200">
-                <th className="text-left text-gray-500 font-medium py-2 pr-4">Capacitate</th>
-                <th className="text-right text-gray-500 font-medium py-2 pr-4">RON / 200 cm³</th>
-                <th className="text-right text-gray-500 font-medium py-2 pr-4">Exemplu 1.500 cm³</th>
-                <th className="text-right text-gray-500 font-medium py-2">Exemplu 2.000 cm³</th>
+              <tr className="border-b border-gray-200 dark:border-slate-700">
+                <th className="text-left text-gray-500 dark:text-slate-400 font-medium py-2 pr-4">Capacitate</th>
+                <th className="text-right text-gray-500 dark:text-slate-400 font-medium py-2 pr-4">RON / 200 cm³</th>
+                <th className="text-right text-gray-500 dark:text-slate-400 font-medium py-2 pr-4">Exemplu 1.500 cm³</th>
+                <th className="text-right text-gray-500 dark:text-slate-400 font-medium py-2">Exemplu 2.000 cm³</th>
               </tr>
             </thead>
             <tbody>
@@ -406,18 +406,18 @@ export default function CalculatorImpozitAuto() {
                 return (
                   <tr
                     key={i}
-                    className={`border-b border-gray-100 ${activa && !r.scutit ? "bg-purple-50" : ""}`}
+                    className={`border-b border-gray-100 dark:border-slate-800 ${activa && !r.scutit ? "bg-purple-50 dark:bg-purple-950" : ""}`}
                   >
-                    <td className={`py-2 pr-4 ${activa && !r.scutit ? "font-semibold text-purple-800" : "text-gray-700"}`}>
+                    <td className={`py-2 pr-4 ${activa && !r.scutit ? "font-semibold text-purple-800 dark:text-purple-300" : "text-gray-700 dark:text-slate-300"}`}>
                       {b.label}
                     </td>
-                    <td className={`py-2 pr-4 text-right ${activa && !r.scutit ? "font-bold text-purple-700" : "text-gray-700"}`}>
+                    <td className={`py-2 pr-4 text-right ${activa && !r.scutit ? "font-bold text-purple-700 dark:text-purple-300" : "text-gray-700 dark:text-slate-300"}`}>
                       {b.rataMinima}
                     </td>
-                    <td className={`py-2 pr-4 text-right text-gray-500 ${bandaEx1.maxCC === b.maxCC ? "font-semibold text-purple-700" : ""}`}>
+                    <td className={`py-2 pr-4 text-right text-gray-500 dark:text-slate-400 ${bandaEx1.maxCC === b.maxCC ? "font-semibold text-purple-700 dark:text-purple-300" : ""}`}>
                       {bandaEx1.maxCC === b.maxCC ? fmt(Math.ceil(1500 / 200) * b.rataMinima) : "—"}
                     </td>
-                    <td className={`py-2 text-right text-gray-500 ${bandaEx2.maxCC === b.maxCC ? "font-semibold text-purple-700" : ""}`}>
+                    <td className={`py-2 text-right text-gray-500 dark:text-slate-400 ${bandaEx2.maxCC === b.maxCC ? "font-semibold text-purple-700 dark:text-purple-300" : ""}`}>
                       {bandaEx2.maxCC === b.maxCC ? fmt(Math.ceil(2000 / 200) * b.rataMinima) : "—"}
                     </td>
                   </tr>
@@ -426,7 +426,7 @@ export default function CalculatorImpozitAuto() {
             </tbody>
           </table>
         </div>
-        <p className="text-xs text-gray-400 mt-3">
+        <p className="text-xs text-gray-400 dark:text-slate-500 mt-3">
           Rate minime Codul Fiscal 2026. Exemplele sunt pentru județul cu cotă minimă.
           București: ×1,5 față de valorile de mai sus.
         </p>

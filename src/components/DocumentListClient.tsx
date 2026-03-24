@@ -148,7 +148,7 @@ export default function DocumentListClient() {
       <div className="space-y-6">
         {CATEGORII.map((cat) => (
           <div key={cat.label}>
-            <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-3 px-1">
+            <p className="text-xs font-semibold text-gray-400 dark:text-slate-500 uppercase tracking-widest mb-3 px-1">
               {cat.label}
             </p>
             <div className="space-y-3">
@@ -156,7 +156,7 @@ export default function DocumentListClient() {
                 doc.disponibil ? (
                   <div
                     key={doc.slug}
-                    className={`group/card bg-white rounded-2xl border border-gray-200 ${doc.hoverBorder} hover:shadow-md transition-all flex flex-col sm:flex-row sm:items-center`}
+                    className={`group/card bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 ${doc.hoverBorder} hover:shadow-md transition-all flex flex-col sm:flex-row sm:items-center`}
                   >
                     <Link
                       href={`/documente/${doc.slug}`}
@@ -167,16 +167,16 @@ export default function DocumentListClient() {
                       </div>
                       <div className="min-w-0">
                         <div className="flex items-center gap-2 flex-wrap">
-                          <p className="font-semibold text-gray-900">{doc.titlu}</p>
+                          <p className="font-semibold text-gray-900 dark:text-white">{doc.titlu}</p>
                           {doc.badge && (
                             <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${doc.priceBg} ${doc.priceColor}`}>
                               {doc.badge}
                             </span>
                           )}
                         </div>
-                        <p className="text-sm text-gray-500 mt-0.5">{doc.descriere}</p>
+                        <p className="text-sm text-gray-500 dark:text-slate-400 mt-0.5">{doc.descriere}</p>
                         {doc.gratuitCu && (
-                          <p className="text-xs text-green-600 font-medium mt-1">
+                          <p className="text-xs text-green-600 dark:text-green-400 font-medium mt-1">
                             Gratuit cu Contract de Închiriere
                           </p>
                         )}
@@ -189,7 +189,7 @@ export default function DocumentListClient() {
                       </span>
                       <button
                         onClick={() => setPreview(doc.slug)}
-                        className="p-2 text-gray-300 hover:text-gray-500 hover:bg-gray-50 rounded-lg transition-colors"
+                        className="p-2 text-gray-300 dark:text-slate-600 hover:text-gray-500 dark:hover:text-slate-300 hover:bg-gray-50 dark:hover:bg-slate-800 rounded-lg transition-colors"
                         title="Previzualizează documentul"
                       >
                         <Eye className="w-4 h-4" />
@@ -206,20 +206,20 @@ export default function DocumentListClient() {
                 ) : (
                   <div
                     key={doc.slug}
-                    className="flex items-center justify-between bg-white rounded-2xl border border-dashed border-gray-200 p-5 opacity-50"
+                    className="flex items-center justify-between bg-white dark:bg-slate-900 rounded-2xl border border-dashed border-gray-200 dark:border-slate-700 p-5 opacity-50"
                   >
                     <div className="flex items-start gap-4">
-                      <div className="w-10 h-10 bg-gray-100 rounded-xl flex items-center justify-center shrink-0">
-                        <doc.icon className="w-5 h-5 text-gray-400" />
+                      <div className="w-10 h-10 bg-gray-100 dark:bg-slate-800 rounded-xl flex items-center justify-center shrink-0">
+                        <doc.icon className="w-5 h-5 text-gray-400 dark:text-slate-500" />
                       </div>
                       <div>
-                        <p className="font-semibold text-gray-700">{doc.titlu}</p>
-                        <p className="text-sm text-gray-400 mt-0.5">{doc.descriere}</p>
+                        <p className="font-semibold text-gray-700 dark:text-slate-300">{doc.titlu}</p>
+                        <p className="text-sm text-gray-400 dark:text-slate-500 mt-0.5">{doc.descriere}</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-2 shrink-0 ml-4">
-                      <Clock className="w-4 h-4 text-gray-300" />
-                      <span className="text-sm text-gray-400">În curând</span>
+                      <Clock className="w-4 h-4 text-gray-300 dark:text-slate-600" />
+                      <span className="text-sm text-gray-400 dark:text-slate-500">În curând</span>
                     </div>
                   </div>
                 )
@@ -236,18 +236,18 @@ export default function DocumentListClient() {
           onClick={() => setPreview(null)}
         >
           <div
-            className="bg-white rounded-2xl w-full max-w-3xl flex flex-col shadow-2xl"
+            className="bg-white dark:bg-slate-900 rounded-2xl w-full max-w-3xl flex flex-col shadow-2xl"
             style={{ height: "88vh" }}
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100 shrink-0">
+            <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100 dark:border-slate-800 shrink-0">
               <div>
-                <p className="text-xs text-gray-400 uppercase tracking-wide font-medium mb-0.5">Model document</p>
-                <h2 className="font-bold text-gray-900 text-sm">{TITLURI[preview]}</h2>
+                <p className="text-xs text-gray-400 dark:text-slate-500 uppercase tracking-wide font-medium mb-0.5">Model document</p>
+                <h2 className="font-bold text-gray-900 dark:text-white text-sm">{TITLURI[preview]}</h2>
               </div>
               <button
                 onClick={() => setPreview(null)}
-                className="p-2 text-gray-400 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+                className="p-2 text-gray-400 dark:text-slate-500 hover:text-gray-700 dark:hover:text-slate-200 hover:bg-gray-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -257,8 +257,8 @@ export default function DocumentListClient() {
               <PreviewPDFViewerInner documentType={preview} />
             </div>
 
-            <div className="px-5 py-4 border-t border-gray-100 flex items-center justify-between shrink-0">
-              <p className="text-xs text-gray-400">Document generat cu date de exemplu</p>
+            <div className="px-5 py-4 border-t border-gray-100 dark:border-slate-800 flex items-center justify-between shrink-0">
+              <p className="text-xs text-gray-400 dark:text-slate-500">Document generat cu date de exemplu</p>
               <Link
                 href={`/documente/${preview}`}
                 className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition-colors"

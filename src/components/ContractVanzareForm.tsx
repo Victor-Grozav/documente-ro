@@ -51,16 +51,16 @@ function Field({
 }) {
   return (
     <div>
-      <label className="block text-sm font-medium text-gray-700 mb-1">
+      <label className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">
         {label} {required && <span className="text-red-400">*</span>}
       </label>
       <input
         type={type} value={value ?? ""}
         onChange={(e) => onChange(name, e.target.value)}
         onBlur={onBlur} placeholder={placeholder} required={required}
-        className={`w-full border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 bg-white transition-colors ${
+        className={`w-full border rounded-lg px-3 py-2 text-sm text-gray-900 dark:text-white focus:outline-none focus:ring-1 bg-white dark:bg-slate-800 placeholder:text-gray-400 dark:placeholder:text-slate-500 transition-colors ${
           error ? "border-red-400 focus:border-red-400 focus:ring-red-400"
-                : "border-gray-200 focus:border-blue-400 focus:ring-blue-400"
+                : "border-gray-200 dark:border-slate-600 focus:border-blue-400 focus:ring-blue-400"
         }`}
       />
       {error && <p className="text-xs text-red-500 mt-1">{error}</p>}
@@ -68,10 +68,42 @@ function Field({
   );
 }
 
+function DateField({
+  label, name, value, onChange, required,
+}: {
+  label: string; name: keyof ContractVanzareData; value: string;
+  onChange: (name: keyof ContractVanzareData, value: string) => void;
+  required?: boolean;
+}) {
+  const toIso = (ro: string) => {
+    if (!/^\d{2}\.\d{2}\.\d{4}$/.test(ro)) return "";
+    const [d, m, y] = ro.split(".");
+    return `${y}-${m}-${d}`;
+  };
+  const toRo = (iso: string) => {
+    if (!iso) return "";
+    const [y, m, d] = iso.split("-");
+    return `${d}.${m}.${y}`;
+  };
+  return (
+    <div>
+      <label className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">
+        {label} {required && <span className="text-red-400">*</span>}
+      </label>
+      <input
+        type="date" value={toIso(value ?? "")}
+        onChange={(e) => onChange(name, toRo(e.target.value))}
+        required={required}
+        className="w-full border border-gray-200 dark:border-slate-600 rounded-lg px-3 py-2 text-sm text-gray-900 dark:text-white focus:outline-none focus:ring-1 focus:border-blue-400 focus:ring-blue-400 bg-white dark:bg-slate-800"
+      />
+    </div>
+  );
+}
+
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div className="bg-white rounded-2xl border border-gray-200 p-6">
-      <h3 className="text-sm font-bold text-gray-500 uppercase tracking-wide mb-4">{title}</h3>
+    <div className="bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6">
+      <h3 className="text-sm font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wide mb-4">{title}</h3>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">{children}</div>
     </div>
   );
@@ -115,18 +147,18 @@ export default function ContractVanzareForm() {
     setLoading(true);
     setError("");
     if (!validateAll()) { setLoading(false); return; }
+    localStorage.setItem("contractData", JSON.stringify(formData));
     try {
       const res = await fetch("/api/create-checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ tip: "contract-vanzare-cumparare" }),
       });
-      const json = await res.json();
-      if (!res.ok || !json.url) throw new Error(json.error || "Eroare la inițializarea plății");
-      localStorage.setItem("contractData", JSON.stringify(formData));
-      window.location.href = json.url;
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Eroare neașteptată");
+      const { url, error: apiError } = await res.json();
+      if (apiError || !url) { setError("Eroare la procesarea plății. Încearcă din nou."); setLoading(false); return; }
+      window.location.href = url;
+    } catch {
+      setError("Eroare la procesarea plății. Încearcă din nou.");
       setLoading(false);
     }
   };
@@ -158,13 +190,13 @@ export default function ContractVanzareForm() {
       {/* Bunul vândut */}
       <Section title="Bunul Vândut">
         <div className="sm:col-span-2">
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">
             Tipul bunului vândut <span className="text-red-400">*</span>
           </label>
           <select
             value={formData.tipBun}
             onChange={(e) => handleChange("tipBun", e.target.value)}
-            className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 bg-white"
+            className="w-full border border-gray-200 dark:border-slate-600 rounded-lg px-3 py-2 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 bg-white dark:bg-slate-800"
           >
             {TIP_BUN_OPTIONS.map((o) => (
               <option key={o.value} value={o.value}>{o.label}</option>
@@ -184,9 +216,9 @@ export default function ContractVanzareForm() {
             <Field label="Nr. înmatriculare" name="vehiculNrInmatriculare" value={formData.vehiculNrInmatriculare} onChange={handleChange} placeholder="ex: CJ 01 ABC" />
             <Field label="Serie CIV" name="vehiculSerieCIV" value={formData.vehiculSerieCIV} onChange={handleChange} placeholder="ex: S1234567890" />
             <Field label="Kilometraj la bord" name="vehiculKm" value={formData.vehiculKm} onChange={handleChange} placeholder="ex: 98500" type="number" />
-            <Field label="ITP valabil până la" name="vehiculItpPanaLa" value={formData.vehiculItpPanaLa} onChange={handleChange} placeholder="ex: 15.09.2026" />
+            <DateField label="ITP valabil până la" name="vehiculItpPanaLa" value={formData.vehiculItpPanaLa} onChange={handleChange} />
             <div className="sm:col-span-2">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">
                 Documente predate
               </label>
               <div className="space-y-2">
@@ -198,7 +230,7 @@ export default function ContractVanzareForm() {
                 ].map((doc) => {
                   const checked = formData.vehiculDocumente.includes(doc);
                   return (
-                    <label key={doc} className="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
+                    <label key={doc} className="flex items-center gap-2 text-sm text-gray-700 dark:text-slate-300 cursor-pointer">
                       <input
                         type="checkbox"
                         checked={checked}
@@ -227,46 +259,46 @@ export default function ContractVanzareForm() {
       <Section title="Preț și Detalii Contract">
         <Field label="Preț" name="pret" value={formData.pret} onChange={handleChange} placeholder="5000" required type="number" error={errors.pret} />
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Moneda <span className="text-red-400">*</span></label>
+          <label className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">Moneda <span className="text-red-400">*</span></label>
           <select value={formData.moneda} onChange={(e) => handleChange("moneda", e.target.value)}
-            className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 bg-white">
+            className="w-full border border-gray-200 dark:border-slate-600 rounded-lg px-3 py-2 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 bg-white dark:bg-slate-800">
             <option value="RON">RON</option>
             <option value="EUR">EUR</option>
             <option value="USD">USD</option>
           </select>
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Modalitate de plată <span className="text-red-400">*</span></label>
+          <label className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">Modalitate de plată <span className="text-red-400">*</span></label>
           <select value={formData.modalitataPlata} onChange={(e) => handleChange("modalitataPlata", e.target.value as ContractVanzareData["modalitataPlata"])}
-            className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 bg-white">
+            className="w-full border border-gray-200 dark:border-slate-600 rounded-lg px-3 py-2 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 bg-white dark:bg-slate-800">
             <option value="numerar">Numerar</option>
             <option value="transfer bancar">Transfer bancar</option>
             <option value="alta modalitate">Altă modalitate</option>
           </select>
         </div>
         <Field label="Locul predării bunului" name="locPredare" value={formData.locPredare} onChange={handleChange} placeholder="ex: Cluj-Napoca, str. Exemplu nr. 1" required />
-        <Field label="Data contractului" name="data" value={formData.data} onChange={handleChange} placeholder="16.03.2026" required />
+        <DateField label="Data contractului" name="data" value={formData.data} onChange={handleChange} required />
         <Field label="Locul încheierii" name="locul" value={formData.locul} onChange={handleChange} placeholder="ex: Cluj-Napoca" required />
       </Section>
 
       {error && <div className="bg-red-50 border border-red-200 text-red-700 rounded-xl px-4 py-3 text-sm">{error}</div>}
 
-      <div className="bg-white rounded-2xl border border-gray-200 p-6">
+      <div className="bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <p className="font-semibold text-gray-900">Contract de Vânzare-Cumpărare</p>
-            <p className="text-sm text-gray-500">PDF profesional, gata de semnat</p>
+            <p className="font-semibold text-gray-900 dark:text-white">Contract de Vânzare-Cumpărare</p>
+            <p className="text-sm text-gray-500 dark:text-slate-400">PDF profesional, gata de semnat</p>
           </div>
           <div className="text-right">
-            <p className="text-2xl font-bold text-gray-900">25 lei</p>
-            <p className="text-xs text-gray-400">plată unică</p>
+            <p className="text-2xl font-bold text-gray-900 dark:text-white">25 lei</p>
+            <p className="text-xs text-gray-400 dark:text-slate-500">plată unică</p>
           </div>
         </div>
         <button type="submit" disabled={loading}
           className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-semibold py-3 rounded-xl transition-colors text-base">
           {loading ? "Se procesează..." : "Continuă spre plată →"}
         </button>
-        <p className="text-xs text-gray-400 text-center mt-3">
+        <p className="text-xs text-gray-400 dark:text-slate-500 text-center mt-3">
           Plată securizată prin Stripe · PDF disponibil instant după plată
         </p>
         <p className="text-xs text-gray-400 text-center mt-2">

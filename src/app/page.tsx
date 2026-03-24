@@ -7,36 +7,36 @@ export default function HomePage() {
       <div className="max-w-2xl w-full text-center">
 
         {/* Badge */}
-        <div className="inline-flex items-center gap-1.5 bg-green-50 border border-green-200 text-green-700 text-xs font-semibold px-3 py-1 rounded-full mb-4">
+        <div className="inline-flex items-center gap-1.5 bg-green-50 dark:bg-green-950 border border-green-200 dark:border-green-800 text-green-700 dark:text-green-400 text-xs font-semibold px-3 py-1 rounded-full mb-4">
           <span className="w-1.5 h-1.5 bg-green-500 rounded-full" />
           Actualizat 2026
         </div>
 
         {/* Hero */}
-        <h1 className="text-4xl font-bold text-gray-900 mb-3">
+        <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-3">
           Contracte fără notar,{" "}
-          <span className="text-green-600">în 5 minute.</span>
+          <span className="text-green-600 dark:text-green-400">în 5 minute.</span>
         </h1>
-        <p className="text-gray-500 text-lg mb-8">
+        <p className="text-gray-500 dark:text-slate-400 text-lg mb-8">
           Contracte legale și calculatoare financiare pentru România —{" "}
-          <span className="text-gray-700 font-medium">simplu, conform legii, fără deplasări.</span>
+          <span className="text-gray-700 dark:text-slate-200 font-medium">simplu, conform legii, fără deplasări.</span>
         </p>
 
         {/* Stats */}
         <div className="flex justify-center gap-8 mb-10">
           <div className="text-center">
-            <p className="text-2xl font-bold text-gray-900">9</p>
-            <p className="text-xs text-gray-500 mt-0.5">unelte disponibile</p>
+            <p className="text-2xl font-bold text-gray-900 dark:text-white">9</p>
+            <p className="text-xs text-gray-500 dark:text-slate-400 mt-0.5">unelte disponibile</p>
           </div>
-          <div className="w-px bg-gray-200" />
+          <div className="w-px bg-gray-200 dark:bg-slate-700" />
           <div className="text-center">
-            <p className="text-2xl font-bold text-gray-900">5</p>
-            <p className="text-xs text-gray-500 mt-0.5">tipuri de contracte</p>
+            <p className="text-2xl font-bold text-gray-900 dark:text-white">5</p>
+            <p className="text-xs text-gray-500 dark:text-slate-400 mt-0.5">tipuri de contracte</p>
           </div>
-          <div className="w-px bg-gray-200" />
+          <div className="w-px bg-gray-200 dark:bg-slate-700" />
           <div className="text-center">
-            <p className="text-2xl font-bold text-gray-900">Fără cont</p>
-            <p className="text-xs text-gray-500 mt-0.5">necesar</p>
+            <p className="text-2xl font-bold text-gray-900 dark:text-white">Fără cont</p>
+            <p className="text-xs text-gray-500 dark:text-slate-400 mt-0.5">necesar</p>
           </div>
         </div>
 
@@ -46,18 +46,18 @@ export default function HomePage() {
           {/* Featured — Generator Contracte (full width) */}
           <Link
             href="/documente"
-            className="group sm:col-span-2 bg-white rounded-2xl border-2 border-green-200 p-6 text-left hover:border-green-400 hover:shadow-md transition-all flex flex-col sm:flex-row sm:items-center gap-4"
+            className="group sm:col-span-2 bg-white dark:bg-slate-900 rounded-2xl border-2 border-green-200 dark:border-green-800 p-6 text-left hover:border-green-400 dark:hover:border-green-600 hover:shadow-md transition-all flex flex-col sm:flex-row sm:items-center gap-4"
           >
             <div className="flex items-start gap-4 flex-1">
-              <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center shrink-0">
-                <FileText className="w-6 h-6 text-green-600" />
+              <div className="w-12 h-12 bg-green-100 dark:bg-green-950 rounded-xl flex items-center justify-center shrink-0">
+                <FileText className="w-6 h-6 text-green-600 dark:text-green-400" />
               </div>
               <div>
-                <h2 className="font-bold text-gray-900 text-lg mb-1">Generator Contracte</h2>
-                <p className="text-sm text-gray-500 mb-2">
+                <h2 className="font-bold text-gray-900 dark:text-white text-lg mb-1">Generator Contracte</h2>
+                <p className="text-sm text-gray-500 dark:text-slate-400 mb-2">
                   Contracte de vânzare-cumpărare, închiriere, împrumut și procuri — conforme legislației române 2026. Fără notar, fără costuri.
                 </p>
-                <span className="text-green-600 text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
+                <span className="text-green-600 dark:text-green-400 text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
                   Alege tipul de contract <ArrowRight className="w-4 h-4" />
                 </span>
               </div>
@@ -70,19 +70,19 @@ export default function HomePage() {
           {/* Calculator Brut-Net — Popular */}
           <Link
             href="/convertor-brut-net"
-            className="group relative bg-white rounded-2xl border border-gray-200 p-6 text-left hover:border-blue-300 hover:shadow-md transition-all"
+            className="group relative bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6 text-left hover:border-blue-300 dark:hover:border-blue-600 hover:shadow-md transition-all"
           >
-            <span className="absolute top-4 right-4 bg-blue-100 text-blue-700 text-xs font-semibold px-2 py-0.5 rounded-full">
+            <span className="absolute top-4 right-4 bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-400 text-xs font-semibold px-2 py-0.5 rounded-full">
               Popular
             </span>
-            <div className="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
-              <Calculator className="w-5 h-5 text-blue-600" />
+            <div className="w-10 h-10 bg-blue-100 dark:bg-blue-950 rounded-xl flex items-center justify-center mb-4">
+              <Calculator className="w-5 h-5 text-blue-600 dark:text-blue-400" />
             </div>
-            <h2 className="font-bold text-gray-900 mb-1">Calculator Brut → Net</h2>
-            <p className="text-sm text-gray-500 mb-4">
+            <h2 className="font-bold text-gray-900 dark:text-white mb-1">Calculator Brut → Net</h2>
+            <p className="text-sm text-gray-500 dark:text-slate-400 mb-4">
               Salariu net, rețineri CAS/CASS, impozit și cost angajator pentru 2026.
             </p>
-            <span className="text-blue-600 text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
+            <span className="text-blue-600 dark:text-blue-400 text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
               Calculează gratuit <ArrowRight className="w-4 h-4" />
             </span>
           </Link>
@@ -90,16 +90,16 @@ export default function HomePage() {
           {/* Calculator Impozit Mașină */}
           <Link
             href="/impozit-masina"
-            className="group relative bg-white rounded-2xl border border-gray-200 p-6 text-left hover:border-purple-300 hover:shadow-md transition-all"
+            className="group relative bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6 text-left hover:border-purple-300 dark:hover:border-purple-600 hover:shadow-md transition-all"
           >
-            <div className="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center mb-4">
-              <Car className="w-5 h-5 text-purple-600" />
+            <div className="w-10 h-10 bg-purple-100 dark:bg-purple-950 rounded-xl flex items-center justify-center mb-4">
+              <Car className="w-5 h-5 text-purple-600 dark:text-purple-400" />
             </div>
-            <h2 className="font-bold text-gray-900 mb-1">Calculator Impozit Mașină</h2>
-            <p className="text-sm text-gray-500 mb-4">
+            <h2 className="font-bold text-gray-900 dark:text-white mb-1">Calculator Impozit Mașină</h2>
+            <p className="text-sm text-gray-500 dark:text-slate-400 mb-4">
               Taxa auto pe județ în funcție de capacitate cilindrică — autoturism, hibrid, electric.
             </p>
-            <span className="text-purple-600 text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
+            <span className="text-purple-600 dark:text-purple-400 text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
               Calculează gratuit <ArrowRight className="w-4 h-4" />
             </span>
           </Link>
@@ -107,19 +107,19 @@ export default function HomePage() {
           {/* Calculator Șomaj — Nou */}
           <Link
             href="/indemnizatie-somaj"
-            className="group relative bg-white rounded-2xl border border-gray-200 p-6 text-left hover:border-teal-300 hover:shadow-md transition-all"
+            className="group relative bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6 text-left hover:border-teal-300 dark:hover:border-teal-600 hover:shadow-md transition-all"
           >
-            <span className="absolute top-4 right-4 bg-teal-100 text-teal-700 text-xs font-semibold px-2 py-0.5 rounded-full">
+            <span className="absolute top-4 right-4 bg-teal-100 dark:bg-teal-950 text-teal-700 dark:text-teal-400 text-xs font-semibold px-2 py-0.5 rounded-full">
               Nou
             </span>
-            <div className="w-10 h-10 bg-teal-100 rounded-xl flex items-center justify-center mb-4">
-              <TrendingDown className="w-5 h-5 text-teal-600" />
+            <div className="w-10 h-10 bg-teal-100 dark:bg-teal-950 rounded-xl flex items-center justify-center mb-4">
+              <TrendingDown className="w-5 h-5 text-teal-600 dark:text-teal-400" />
             </div>
-            <h2 className="font-bold text-gray-900 mb-1">Calculator Indemnizație Șomaj</h2>
-            <p className="text-sm text-gray-500 mb-4">
+            <h2 className="font-bold text-gray-900 dark:text-white mb-1">Calculator Indemnizație Șomaj</h2>
+            <p className="text-sm text-gray-500 dark:text-slate-400 mb-4">
               Câți bani primești pe șomaj în funcție de salariu și stagiu de cotizare.
             </p>
-            <span className="text-teal-700 text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
+            <span className="text-teal-700 dark:text-teal-400 text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
               Calculează gratuit <ArrowRight className="w-4 h-4" />
             </span>
           </Link>
@@ -127,16 +127,16 @@ export default function HomePage() {
           {/* Calculator Concediu Medical */}
           <Link
             href="/concediu-medical"
-            className="group relative bg-white rounded-2xl border border-gray-200 p-6 text-left hover:border-orange-300 hover:shadow-md transition-all"
+            className="group relative bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6 text-left hover:border-orange-300 dark:hover:border-orange-600 hover:shadow-md transition-all"
           >
-            <div className="w-10 h-10 bg-orange-100 rounded-xl flex items-center justify-center mb-4">
-              <Stethoscope className="w-5 h-5 text-orange-600" />
+            <div className="w-10 h-10 bg-orange-100 dark:bg-orange-950 rounded-xl flex items-center justify-center mb-4">
+              <Stethoscope className="w-5 h-5 text-orange-600 dark:text-orange-400" />
             </div>
-            <h2 className="font-bold text-gray-900 mb-1">Calculator Concediu Medical</h2>
-            <p className="text-sm text-gray-500 mb-4">
+            <h2 className="font-bold text-gray-900 dark:text-white mb-1">Calculator Concediu Medical</h2>
+            <p className="text-sm text-gray-500 dark:text-slate-400 mb-4">
               Indemnizație CNAS zilnică și totală în funcție de veniturile anterioare.
             </p>
-            <span className="text-orange-700 text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
+            <span className="text-orange-700 dark:text-orange-400 text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
               Calculează gratuit <ArrowRight className="w-4 h-4" />
             </span>
           </Link>
@@ -144,15 +144,15 @@ export default function HomePage() {
         </div>
 
         {/* Trust bar */}
-        <div className="flex flex-wrap justify-center items-center gap-x-4 gap-y-2 mt-8 text-xs text-gray-500">
+        <div className="flex flex-wrap justify-center items-center gap-x-4 gap-y-2 mt-8 text-xs text-gray-500 dark:text-slate-400">
           <span className="flex items-center gap-1">
             <span className="text-green-500 font-bold">✓</span> Conform Codului Civil 2026
           </span>
-          <span className="text-gray-200">•</span>
+          <span className="text-gray-300 dark:text-slate-600">•</span>
           <span className="flex items-center gap-1">
             <span className="text-green-500 font-bold">✓</span> Fără cont necesar
           </span>
-          <span className="text-gray-200">•</span>
+          <span className="text-gray-300 dark:text-slate-600">•</span>
           <span className="flex items-center gap-1">
             <span className="text-green-500 font-bold">✓</span> Date nesalvate
           </span>
