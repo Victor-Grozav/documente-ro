@@ -2,9 +2,25 @@ import type { Metadata } from "next";
 import ProcesVerbalForm from "@/components/ProcesVerbalForm";
 
 export const metadata: Metadata = {
-  title: "Proces Verbal de Predare-Primire — FaraNotar.ro",
+  title: "Proces Verbal de Predare-Primire Locuință România 2026 — PDF instant",
   description:
     "Generează un proces verbal de predare-primire pentru locuință. Stare proprietate, contoare, chei. PDF instant, 10 lei.",
+  keywords:
+    "proces verbal predare primire, proces verbal locuinta, model proces verbal chirie, predare cheie apartament",
+  alternates: { canonical: "/documente/proces-verbal-predare" },
+  openGraph: {
+    title: "Proces Verbal de Predare-Primire Locuință România 2026",
+    description:
+      "Documentează starea locuinței și contoarelor la predare. PDF instant, 10 lei.",
+    url: "/documente/proces-verbal-predare",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Proces Verbal de Predare-Primire Locuință România 2026",
+    description:
+      "Documentează starea locuinței și contoarelor la predare. PDF instant, 10 lei.",
+  },
 };
 
 export default function ProcesVerbalPage() {

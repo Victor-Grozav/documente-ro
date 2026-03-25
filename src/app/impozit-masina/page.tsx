@@ -7,7 +7,16 @@ export const metadata: Metadata = {
     "Calculează impozitul anual pe mașină în România 2026, pe județ. Formula Codul Fiscal art. 470: bandă capacitate cilindrică × coeficient local. Autoturisme, motociclete, hibrid, electric.",
   keywords:
     "calculator impozit masina romania 2026, taxa auto judet, impozit auto capacitate cilindrica, impozit vehicul 2026, taxa auto bucuresti",
+  alternates: { canonical: "/impozit-masina" },
   openGraph: {
+    title: "Calculator Impozit Mașină România 2026",
+    description:
+      "Află cât plătești impozit pe mașină în funcție de județ și capacitate cilindrică. Autoturisme, motociclete, hibrid, electric.",
+    url: "/impozit-masina",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
     title: "Calculator Impozit Mașină România 2026",
     description:
       "Află cât plătești impozit pe mașină în funcție de județ și capacitate cilindrică. Autoturisme, motociclete, hibrid, electric.",

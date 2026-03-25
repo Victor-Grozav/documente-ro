@@ -5,6 +5,20 @@ export const metadata: Metadata = {
   title: "Generator Documente Legale România — FaraNotar.ro",
   description:
     "Generează contracte și documente legale pentru România. Contract de vânzare-cumpărare, închiriere, procuri și altele. PDF instant, de la 10 lei/document.",
+  alternates: { canonical: "/documente" },
+  openGraph: {
+    title: "Generator Documente Legale România — FaraNotar.ro",
+    description:
+      "Generează contracte și documente legale pentru România. Contract de vânzare-cumpărare, închiriere, procuri și altele. PDF instant, de la 10 lei/document.",
+    url: "/documente",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Generator Documente Legale România — FaraNotar.ro",
+    description:
+      "Generează contracte și documente legale pentru România. Contract de vânzare-cumpărare, închiriere, procuri și altele. PDF instant, de la 10 lei/document.",
+  },
 };
 
 export default function DocumentePage() {

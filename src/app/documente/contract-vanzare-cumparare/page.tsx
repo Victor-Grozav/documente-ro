@@ -8,6 +8,20 @@ export const metadata: Metadata = {
     "Generează un contract de vânzare-cumpărare conform legislației române. Completează formularul, plătește 25 lei și descarcă PDF-ul instant.",
   keywords:
     "contract vanzare cumparare romania, model contract vanzare, generator contract pdf romania",
+  alternates: { canonical: "/documente/contract-vanzare-cumparare" },
+  openGraph: {
+    title: "Contract de Vânzare-Cumpărare România 2026 — PDF instant",
+    description:
+      "Generează un contract de vânzare-cumpărare conform legislației române. PDF instant, fără notar, 25 lei.",
+    url: "/documente/contract-vanzare-cumparare",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contract de Vânzare-Cumpărare România 2026 — PDF instant",
+    description:
+      "Generează un contract de vânzare-cumpărare conform legislației române. PDF instant, fără notar, 25 lei.",
+  },
 };
 
 export default function ContractVanzarePage() {

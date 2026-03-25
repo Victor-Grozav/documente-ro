@@ -8,6 +8,20 @@ export const metadata: Metadata = {
     "Generează un acord de confidențialitate (NDA) conform legislației române. Completează formularul, plătește 20 lei și descarcă PDF-ul instant.",
   keywords:
     "acord confidentialitate romania, NDA romania, generator NDA pdf, model acord confidentialitate",
+  alternates: { canonical: "/documente/acord-confidentialitate" },
+  openGraph: {
+    title: "Acord de Confidențialitate (NDA) România 2026 — PDF instant",
+    description:
+      "Generează un NDA conform legislației române. PDF instant, fără notar, 20 lei.",
+    url: "/documente/acord-confidentialitate",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Acord de Confidențialitate (NDA) România 2026 — PDF instant",
+    description:
+      "Generează un NDA conform legislației române. PDF instant, fără notar, 20 lei.",
+  },
 };
 
 export default function AcordConfidentialytatePage() {

@@ -7,7 +7,16 @@ export const metadata: Metadata = {
     "Calculează indemnizația de șomaj în România 2026 per Legea 76/2002. Component fix 375 RON + procent din salariu în funcție de stagiu. Durată 6, 9 sau 12 luni.",
   keywords:
     "calculator indemnizatie somaj romania 2026, cat primesc somaj, legea 76 2002, indemnizatie somaj calcul, ajofm somaj",
+  alternates: { canonical: "/indemnizatie-somaj" },
   openGraph: {
+    title: "Calculator Indemnizație Șomaj România 2026",
+    description:
+      "Calculează câți bani primești pe șomaj în funcție de salariu și stagiu de cotizare. Component fix + variabilă, durată, deduceri, net în mână.",
+    url: "/indemnizatie-somaj",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
     title: "Calculator Indemnizație Șomaj România 2026",
     description:
       "Calculează câți bani primești pe șomaj în funcție de salariu și stagiu de cotizare. Component fix + variabilă, durată, deduceri, net în mână.",

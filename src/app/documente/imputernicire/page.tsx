@@ -8,6 +8,20 @@ export const metadata: Metadata = {
     "Generează o împuternicire sau procură conform legislației române. Completează formularul, plătește 15 lei și descarcă PDF-ul instant.",
   keywords:
     "imputernicire romania, procura simpla, generator imputernicire pdf, model procura romania",
+  alternates: { canonical: "/documente/imputernicire" },
+  openGraph: {
+    title: "Împuternicire / Procură România 2026 — PDF instant",
+    description:
+      "Generează o împuternicire sau procură conform legislației române. PDF instant, fără notar, 15 lei.",
+    url: "/documente/imputernicire",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Împuternicire / Procură România 2026 — PDF instant",
+    description:
+      "Generează o împuternicire sau procură conform legislației române. PDF instant, fără notar, 15 lei.",
+  },
 };
 
 export default function ImputernicirePage() {

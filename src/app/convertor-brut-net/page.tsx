@@ -7,7 +7,16 @@ export const metadata: Metadata = {
     "Calculează instant salariul net din brut în România 2026. Include CAS 25%, CASS 10%, impozit venit 10% și costul total al angajatorului.",
   keywords:
     "calculator salariu brut net romania 2026, convertor brut net, salariu net din brut, cas cass impozit",
+  alternates: { canonical: "/convertor-brut-net" },
   openGraph: {
+    title: "Calculator Salariu Brut-Net România 2026",
+    description:
+      "Calculează instant salariul net din brut. CAS, CASS, impozit venit — tot ce trebuie să știi.",
+    url: "/convertor-brut-net",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
     title: "Calculator Salariu Brut-Net România 2026",
     description:
       "Calculează instant salariul net din brut. CAS, CASS, impozit venit — tot ce trebuie să știi.",

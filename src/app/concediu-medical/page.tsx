@@ -7,7 +7,16 @@ export const metadata: Metadata = {
     "Calculează câți bani primești pe concediu medical în România 2026. Formula OUG 158/2005: baza de calcul, zilele plătite de angajator vs CNAS, rețineri.",
   keywords:
     "calculator concediu medical romania 2026, indemnizatie concediu medical, cnas concediu medical, oug 158 2005, cat primesc pe concediu medical",
+  alternates: { canonical: "/concediu-medical" },
   openGraph: {
+    title: "Calculator Concediu Medical România 2026",
+    description:
+      "Calculează indemnizația de concediu medical. Angajator (zilele 1–5) vs CNAS (zilele 6+), rețineri, net în mână.",
+    url: "/concediu-medical",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
     title: "Calculator Concediu Medical România 2026",
     description:
       "Calculează indemnizația de concediu medical. Angajator (zilele 1–5) vs CNAS (zilele 6+), rețineri, net în mână.",
