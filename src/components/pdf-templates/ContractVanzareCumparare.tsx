@@ -25,18 +25,18 @@ const styles = StyleSheet.create({
   page: {
     fontFamily: "Roboto",
     fontSize: 11,
-    paddingTop: 60,
-    paddingBottom: 60,
+    paddingTop: 50,
+    paddingBottom: 50,
     paddingHorizontal: 60,
     color: "#1a1a1a",
-    lineHeight: 1.6,
+    lineHeight: 1.5,
   },
   title: {
     fontSize: 16,
     fontFamily: "Roboto",
     fontWeight: "bold",
     textAlign: "center",
-    marginBottom: 6,
+    marginBottom: 4,
     textTransform: "uppercase",
     letterSpacing: 1,
   },
@@ -44,10 +44,10 @@ const styles = StyleSheet.create({
     fontSize: 10,
     textAlign: "center",
     color: "#555",
-    marginBottom: 30,
+    marginBottom: 20,
   },
   section: {
-    marginBottom: 18,
+    marginBottom: 12,
   },
   sectionTitle: {
     fontSize: 11,
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   },
   paragraph: {
     fontSize: 10,
-    marginBottom: 8,
+    marginBottom: 5,
     textAlign: "justify",
   },
   bold: {
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
   signatureSection: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginTop: 50,
+    marginTop: 24,
   },
   signatureBox: {
     width: "45%",
