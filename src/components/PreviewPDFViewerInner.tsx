@@ -6,9 +6,11 @@ import Imputernicire from "@/components/pdf-templates/Imputernicire";
 import AcordConfidentialitate from "@/components/pdf-templates/AcordConfidentialitate";
 import ContractInchiriere from "@/components/pdf-templates/ContractInchiriere";
 import ProcesVerbalPredare from "@/components/pdf-templates/ProcesVerbalPredare";
+import ContractPrestariServicii from "@/components/pdf-templates/ContractPrestariServicii";
 import {
   ContractVanzareData, ImputernicireData,
   AcordConfidentialitateData, ContractInchiriereData, ProcesVerbalData,
+  ContractPrestariServiciiData,
 } from "@/lib/types";
 
 const SAMPLE_VANZARE: ContractVanzareData = {
@@ -51,6 +53,40 @@ const SAMPLE_ACORD: AcordConfidentialitateData = {
   data: "18.03.2026", locul: "Cluj-Napoca",
 };
 
+const SAMPLE_PRESTARI: ContractPrestariServiciiData = {
+  prestatorTip: "pf",
+  prestatorNume: "Ionescu Alexandru",
+  prestatorCNP: "1850315120003",
+  prestatorCI: "CJ 123456",
+  prestatorCUI: "",
+  prestatorRegCom: "",
+  prestatorReprezentant: "",
+  prestatorAdresa: "Str. Libertății nr. 10, Cluj-Napoca, Cluj",
+  prestatorIBAN: "RO49 AAAA 1B31 0075 9384 0000",
+  beneficiarTip: "pj",
+  beneficiarNume: "SC Digital Solutions SRL",
+  beneficiarCNP: "",
+  beneficiarCI: "",
+  beneficiarCUI: "RO12345678",
+  beneficiarRegCom: "J12/123/2020",
+  beneficiarReprezentant: "Popescu Maria, Administrator",
+  beneficiarAdresa: "Str. Victoriei nr. 5, București, Sector 1",
+  descriereServicii: "Servicii de dezvoltare software: implementare aplicație web conform specificațiilor tehnice anexate, incluzând design UI/UX, backend API RESTful, integrare baze de date și testare QA.",
+  termenFinalizare: "30.06.2026",
+  locPrestare: "Online (la distanță)",
+  valoare: "8000",
+  moneda: "RON",
+  modalitataPlata: "avans + rest la finalizare",
+  avansPercent: "30",
+  termenPlata: "15",
+  penalitateIntarziere: "0.1",
+  includeConfidentialitate: true,
+  includeDrepturiPI: true,
+  drepturiPIBeneficiar: true,
+  data: "18.03.2026",
+  locul: "Cluj-Napoca",
+};
+
 const SAMPLE_PROCES_VERBAL: ProcesVerbalData = {
   locatorNume: "Popescu Ion",
   locatarNume: "Ionescu Maria",
@@ -80,7 +116,8 @@ export type PreviewDocumentType =
   | "imputernicire"
   | "acord-confidentialitate"
   | "contract-inchiriere"
-  | "proces-verbal-predare";
+  | "proces-verbal-predare"
+  | "contract-prestari-servicii";
 
 interface Props {
   documentType: PreviewDocumentType;
@@ -93,6 +130,7 @@ export default function PreviewPDFViewerInner({ documentType }: Props) {
     "acord-confidentialitate": <AcordConfidentialitate data={SAMPLE_ACORD} />,
     "contract-inchiriere": <ContractInchiriere data={SAMPLE_INCHIRIERE} />,
     "proces-verbal-predare": <ProcesVerbalPredare data={SAMPLE_PROCES_VERBAL} />,
+    "contract-prestari-servicii": <ContractPrestariServicii data={SAMPLE_PRESTARI} />,
   };
 
   return (

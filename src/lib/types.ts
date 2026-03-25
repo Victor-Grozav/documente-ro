@@ -89,6 +89,40 @@ export interface ContractVanzareData {
   locul: string;
 }
 
+export interface ContractPrestariServiciiData {
+  prestatorTip: "pf" | "pj";
+  prestatorNume: string;
+  prestatorCNP: string;
+  prestatorCI: string;
+  prestatorCUI: string;
+  prestatorRegCom: string;
+  prestatorReprezentant: string;
+  prestatorAdresa: string;
+  prestatorIBAN: string;
+  beneficiarTip: "pf" | "pj";
+  beneficiarNume: string;
+  beneficiarCNP: string;
+  beneficiarCI: string;
+  beneficiarCUI: string;
+  beneficiarRegCom: string;
+  beneficiarReprezentant: string;
+  beneficiarAdresa: string;
+  descriereServicii: string;
+  termenFinalizare: string;
+  locPrestare: string;
+  valoare: string;
+  moneda: "RON" | "EUR";
+  modalitataPlata: "integral la finalizare" | "avans + rest la finalizare" | "rate lunare" | "lunar";
+  avansPercent: string;
+  termenPlata: string;
+  penalitateIntarziere: string;
+  includeConfidentialitate: boolean;
+  includeDrepturiPI: boolean;
+  drepturiPIBeneficiar: boolean;
+  data: string;
+  locul: string;
+}
+
 export interface ProcesVerbalData {
   locatorNume: string;
   locatarNume: string;

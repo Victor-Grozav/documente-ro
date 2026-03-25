@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import { ArrowRight, Clock, Eye, X, Handshake, UserCheck, Lock, Home, ClipboardList } from "lucide-react";
+import { ArrowRight, Clock, Eye, X, Handshake, UserCheck, Lock, Home, ClipboardList, Briefcase } from "lucide-react";
 import type { PreviewDocumentType } from "@/components/PreviewPDFViewerInner";
 import type { LucideIcon } from "lucide-react";
 
@@ -26,6 +26,7 @@ const TITLURI: Record<PreviewDocumentType, string> = {
   "acord-confidentialitate": "Acord de Confidențialitate (NDA)",
   "contract-inchiriere": "Contract de Închiriere",
   "proces-verbal-predare": "Proces Verbal de Predare-Primire",
+  "contract-prestari-servicii": "Contract de Prestări Servicii",
 };
 
 interface DocConfig {
@@ -102,6 +103,26 @@ const CATEGORII: Categorie[] = [
         priceColor: "text-slate-600",
         ctaColor: "text-slate-600",
         disponibil: true,
+      },
+    ],
+  },
+  {
+    label: "Servicii & Freelancing",
+    items: [
+      {
+        slug: "contract-prestari-servicii",
+        titlu: "Contract de Prestări Servicii",
+        descriere: "Pentru freelanceri, PFA și firme. Suportă PF și PJ, clauze opționale de confidențialitate și drepturi PI.",
+        pret: "25 lei",
+        icon: Briefcase,
+        iconBg: "bg-blue-100",
+        iconColor: "text-blue-600",
+        hoverBorder: "hover:border-blue-300",
+        priceBg: "bg-blue-50",
+        priceColor: "text-blue-700",
+        ctaColor: "text-blue-600",
+        disponibil: true,
+        badge: "Nou",
       },
     ],
   },
