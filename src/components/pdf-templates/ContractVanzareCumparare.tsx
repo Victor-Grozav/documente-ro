@@ -376,7 +376,7 @@ export default function ContractVanzareCumparare({ data: rawData }: Props) {
         </View>
 
         {/* Semnături */}
-        <View style={styles.signatureSection}>
+        <View style={styles.signatureSection} wrap={false}>
           <View style={styles.signatureBox}>
             <Text style={styles.signatureLabel}>Vânzător</Text>
             <Text style={styles.signatureName}>{data.vanzatorNume}</Text>
