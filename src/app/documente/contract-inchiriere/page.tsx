@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import ContractInchiriereForm from "@/components/ContractInchiriereForm";
 import DocumentDisclaimer from "@/components/DocumentDisclaimer";
+import JsonLd from "@/components/JsonLd";
 
 export const metadata: Metadata = {
   title: "Contract de Închiriere România 2026 — PDF instant",
@@ -27,6 +28,32 @@ export const metadata: Metadata = {
 export default function ContractInchirierePage() {
   return (
     <main className="min-h-screen py-10 px-4">
+      <JsonLd data={[
+        {
+          "@context": "https://schema.org",
+          "@type": "Product",
+          "name": "Contract de Închiriere — PDF instant",
+          "description": "Contract de închiriere locuință conform art. 1777-1850 Cod Civil. Generat instant, valabil fără notar.",
+          "url": "https://faranotar.ro/documente/contract-inchiriere",
+          "brand": { "@type": "Brand", "name": "FaraNotar.ro" },
+          "offers": {
+            "@type": "Offer",
+            "price": "25.00",
+            "priceCurrency": "RON",
+            "availability": "https://schema.org/InStock",
+            "url": "https://faranotar.ro/documente/contract-inchiriere",
+          },
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Acasă", "item": "https://faranotar.ro" },
+            { "@type": "ListItem", "position": 2, "name": "Documente", "item": "https://faranotar.ro/documente" },
+            { "@type": "ListItem", "position": 3, "name": "Contract de Închiriere" },
+          ],
+        },
+      ]} />
       <div className="max-w-2xl mx-auto">
         <div className="text-center mb-8">
           <a href="/documente" className="text-blue-600 text-sm font-medium hover:underline">

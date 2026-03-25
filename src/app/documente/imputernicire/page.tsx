@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import ImputernicireForm from "@/components/ImputernicireForm";
 import DocumentDisclaimer from "@/components/DocumentDisclaimer";
+import JsonLd from "@/components/JsonLd";
 
 export const metadata: Metadata = {
   title: "Împuternicire / Procură România 2026 — PDF instant",
@@ -27,6 +28,32 @@ export const metadata: Metadata = {
 export default function ImputernicirePage() {
   return (
     <main className="min-h-screen py-10 px-4">
+      <JsonLd data={[
+        {
+          "@context": "https://schema.org",
+          "@type": "Product",
+          "name": "Împuternicire / Procură — PDF instant",
+          "description": "Împuternicire sau procură sub semnătură privată conform legislației române. Generat instant, 15 lei.",
+          "url": "https://faranotar.ro/documente/imputernicire",
+          "brand": { "@type": "Brand", "name": "FaraNotar.ro" },
+          "offers": {
+            "@type": "Offer",
+            "price": "15.00",
+            "priceCurrency": "RON",
+            "availability": "https://schema.org/InStock",
+            "url": "https://faranotar.ro/documente/imputernicire",
+          },
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Acasă", "item": "https://faranotar.ro" },
+            { "@type": "ListItem", "position": 2, "name": "Documente", "item": "https://faranotar.ro/documente" },
+            { "@type": "ListItem", "position": 3, "name": "Împuternicire / Procură" },
+          ],
+        },
+      ]} />
       <div className="max-w-2xl mx-auto">
         <div className="text-center mb-8">
           <a href="/documente" className="text-blue-600 text-sm font-medium hover:underline">

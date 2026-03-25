@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import SalaryCalculator from "@/components/SalaryCalculator";
+import JsonLd from "@/components/JsonLd";
 
 export const metadata: Metadata = {
   title: "Calculator Salariu Brut-Net România 2026 — Gratuit",
@@ -26,6 +27,46 @@ export const metadata: Metadata = {
 export default function ConvertorPage() {
   return (
     <main className="min-h-screen py-10 px-4">
+      <JsonLd data={[
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Cum se calculează salariul net din brut în România 2026?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Din salariul brut se rețin: CAS 25% (pensie), CASS 10% (sănătate) și impozit pe venit 10% calculat din brut minus CAS minus CASS. Formula: Net = Brut − CAS − CASS − Impozit venit.",
+              },
+            },
+            {
+              "@type": "Question",
+              "name": "Cât este CAS și CASS în 2026?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "CAS (contribuția la pensie) este 25% din salariul brut. CASS (contribuția la sănătate) este 10% din salariul brut. Ambele sunt reținute din salariul angajatului.",
+              },
+            },
+            {
+              "@type": "Question",
+              "name": "Cât plătește angajatorul peste salariul brut?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Angajatorul plătește CAM (contribuția asiguratorie pentru muncă) de 2,25% din salariul brut. Costul total al angajatorului este salariul brut plus 2,25%.",
+              },
+            },
+          ],
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Acasă", "item": "https://faranotar.ro" },
+            { "@type": "ListItem", "position": 2, "name": "Calculator Salariu Brut-Net" },
+          ],
+        },
+      ]} />
       {/* Header */}
       <div className="max-w-2xl mx-auto text-center mb-8">
         <a href="/" className="text-blue-600 text-sm font-medium hover:underline">
@@ -42,42 +83,6 @@ export default function ConvertorPage() {
       {/* Calculator */}
       <SalaryCalculator />
 
-      {/* SEO content */}
-      <div className="max-w-2xl mx-auto mt-12 prose prose-gray">
-        <h2 className="text-xl font-bold text-gray-800 dark:text-white mb-4">
-          Cum se calculează salariul net în România 2026?
-        </h2>
-        <div className="bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6 space-y-3 text-sm text-gray-600 dark:text-slate-400">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-            <div className="bg-gray-50 dark:bg-slate-800 rounded-lg p-3">
-              <p className="font-semibold text-gray-800 dark:text-slate-100">1. CAS (Pensie)</p>
-              <p>25% din salariul brut</p>
-              <p className="text-xs text-gray-400 dark:text-slate-500">Contribuția la pilonul 1 de pensie</p>
-            </div>
-            <div className="bg-gray-50 dark:bg-slate-800 rounded-lg p-3">
-              <p className="font-semibold text-gray-800 dark:text-slate-100">2. CASS (Sănătate)</p>
-              <p>10% din salariul brut</p>
-              <p className="text-xs text-gray-400 dark:text-slate-500">Contribuția la sănătate</p>
-            </div>
-            <div className="bg-gray-50 dark:bg-slate-800 rounded-lg p-3">
-              <p className="font-semibold text-gray-800 dark:text-slate-100">3. Impozit venit</p>
-              <p>10% din (brut - CAS - CASS)</p>
-              <p className="text-xs text-gray-400 dark:text-slate-500">Impozit pe venitul din salarii</p>
-            </div>
-            <div className="bg-gray-50 dark:bg-slate-800 rounded-lg p-3">
-              <p className="font-semibold text-gray-800 dark:text-slate-100">4. CAM (Angajator)</p>
-              <p>2.25% din brut</p>
-              <p className="text-xs text-gray-400 dark:text-slate-500">Asigurare accidente muncă</p>
-            </div>
-          </div>
-          <div className="pt-2 border-t border-gray-100 dark:border-slate-700">
-            <p className="font-semibold text-gray-800 dark:text-slate-100">Formulă finală:</p>
-            <code className="text-blue-600 dark:text-blue-400 font-mono text-xs bg-blue-50 dark:bg-blue-950 px-2 py-1 rounded">
-              Net = Brut − CAS − CASS − Impozit venit
-            </code>
-          </div>
-        </div>
-      </div>
     </main>
   );
 }

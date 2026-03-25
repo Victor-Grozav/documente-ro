@@ -230,6 +230,37 @@ export default function SalaryCalculator() {
           * Calculele sunt orientative pentru 2026. Deducerea personală nu este inclusă.
         </p>
       </div>
+
+      {/* Info box */}
+      <div className="bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6 space-y-3 text-sm text-gray-600 dark:text-slate-400">
+        <h3 className="text-sm font-semibold text-gray-500 dark:text-slate-400 uppercase tracking-wide mb-2">
+          Cum se calculează salariul net în România 2026?
+        </h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="bg-gray-50 dark:bg-slate-800 rounded-xl p-3">
+            <p className="font-semibold text-gray-800 dark:text-slate-100 mb-1">1. CAS (Pensie)</p>
+            <p className="text-xs text-gray-500 dark:text-slate-400">25% din salariul brut — contribuția la pilonul 1 de pensie.</p>
+          </div>
+          <div className="bg-gray-50 dark:bg-slate-800 rounded-xl p-3">
+            <p className="font-semibold text-gray-800 dark:text-slate-100 mb-1">2. CASS (Sănătate)</p>
+            <p className="text-xs text-gray-500 dark:text-slate-400">10% din salariul brut — contribuția la asigurările de sănătate.</p>
+          </div>
+          <div className="bg-gray-50 dark:bg-slate-800 rounded-xl p-3">
+            <p className="font-semibold text-gray-800 dark:text-slate-100 mb-1">3. Impozit venit</p>
+            <p className="text-xs text-gray-500 dark:text-slate-400">10% din (brut − CAS − CASS) — impozit pe venitul din salarii.</p>
+          </div>
+          <div className="bg-gray-50 dark:bg-slate-800 rounded-xl p-3">
+            <p className="font-semibold text-gray-800 dark:text-slate-100 mb-1">4. CAM (Angajator)</p>
+            <p className="text-xs text-gray-500 dark:text-slate-400">2.25% din brut — asigurare accidente muncă, plătită de angajator.</p>
+          </div>
+        </div>
+        <div className="pt-2 border-t border-gray-100 dark:border-slate-700">
+          <p className="font-semibold text-gray-800 dark:text-slate-100 text-xs mb-1">Formulă:</p>
+          <code className="text-blue-600 dark:text-blue-400 font-mono text-xs bg-blue-50 dark:bg-blue-950 px-2 py-1 rounded block">
+            Net = Brut − CAS − CASS − Impozit venit
+          </code>
+        </div>
+      </div>
     </div>
   );
 }

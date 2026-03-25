@@ -432,6 +432,37 @@ export default function CalculatorImpozitAuto() {
         </p>
       </div>
 
+      {/* Info box */}
+      <div className="bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6 space-y-3 text-sm text-gray-600 dark:text-slate-400">
+        <h3 className="text-sm font-semibold text-gray-500 dark:text-slate-400 uppercase tracking-wide mb-2">
+          Cum se calculează impozitul pe mașină în România 2026?
+        </h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="bg-gray-50 dark:bg-slate-800 rounded-xl p-3">
+            <p className="font-semibold text-gray-800 dark:text-slate-100 mb-1">1. Determinarea benzii</p>
+            <p className="text-xs text-gray-500 dark:text-slate-400">Capacitatea cilindrică se încadrează în una din cele 5 benzi (≤1.600, 1.601–2.000, 2.001–2.600, 2.601–3.000, peste 3.000 cm³).</p>
+          </div>
+          <div className="bg-gray-50 dark:bg-slate-800 rounded-xl p-3">
+            <p className="font-semibold text-gray-800 dark:text-slate-100 mb-1">2. Formula de calcul</p>
+            <p className="text-xs text-gray-500 dark:text-slate-400">⌈Capacitate ÷ 200⌉ × rată/200cm³ × coeficient local. Fracțiile se rotunjesc în sus.</p>
+          </div>
+          <div className="bg-gray-50 dark:bg-slate-800 rounded-xl p-3">
+            <p className="font-semibold text-gray-800 dark:text-slate-100 mb-1">3. Coeficientul local</p>
+            <p className="text-xs text-gray-500 dark:text-slate-400">Consiliile locale pot majora cu până la 50% față de minimul Codului Fiscal. București aplică cota maximă.</p>
+          </div>
+          <div className="bg-gray-50 dark:bg-slate-800 rounded-xl p-3">
+            <p className="font-semibold text-gray-800 dark:text-slate-100 mb-1">4. Termene de plată</p>
+            <p className="text-xs text-gray-500 dark:text-slate-400">Două rate egale: 31 martie și 30 septembrie. Plata integrală până la 31 martie → bonificație 10%.</p>
+          </div>
+        </div>
+        <div className="pt-2 border-t border-gray-100 dark:border-slate-700 space-y-1">
+          <p className="font-semibold text-gray-800 dark:text-slate-100 text-xs">Scutiri și reduceri:</p>
+          <p className="text-xs">• Vehicule electrice: <span className="font-medium text-green-700 dark:text-green-400">scutite integral</span> (art. 470 alin. 4)</p>
+          <p className="text-xs">• Vehicule hibrid: <span className="font-medium text-blue-700 dark:text-blue-400">reducere 50%</span></p>
+          <p className="text-xs">• Persoane cu handicap grav sau accentuat: scutite pentru un vehicul</p>
+        </div>
+      </div>
+
     </div>
   );
 }

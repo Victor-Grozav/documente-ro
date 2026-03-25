@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import CalculatorSomaj from "@/components/CalculatorSomaj";
+import JsonLd from "@/components/JsonLd";
 
 export const metadata: Metadata = {
   title: "Calculator Indemnizație Șomaj România 2026 — Câți Bani Primești",
@@ -26,6 +27,46 @@ export const metadata: Metadata = {
 export default function IndemnizatieSomajPage() {
   return (
     <main className="min-h-screen py-10 px-4">
+      <JsonLd data={[
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Cum se calculează indemnizația de șomaj în România 2026?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Indemnizația de șomaj = componentă fixă (75% × ISR = 375 RON) + componentă variabilă (3–20% din media salariului brut din ultimele 12 luni, în funcție de stagiul de cotizare). Din total se rețin CASS 10% și impozit 10%.",
+              },
+            },
+            {
+              "@type": "Question",
+              "name": "Cât timp primești șomaj în România?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Durata indemnizației de șomaj depinde de stagiul de cotizare: 6 luni pentru 1–5 ani stagiu, 9 luni pentru 5–10 ani, 12 luni pentru peste 10 ani.",
+              },
+            },
+            {
+              "@type": "Question",
+              "name": "Ce condiții trebuie să îndeplinești pentru a primi șomaj?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Trebuie să fii disponibilizat (nu să fi demisionat), să ai cel puțin 12 luni de stagiu de cotizare în ultimele 24 de luni, să fii înregistrat la AJOFM în termen de 60 de zile de la data încetării contractului de muncă.",
+              },
+            },
+          ],
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Acasă", "item": "https://faranotar.ro" },
+            { "@type": "ListItem", "position": 2, "name": "Calculator Indemnizație Șomaj" },
+          ],
+        },
+      ]} />
       <div className="max-w-2xl mx-auto text-center mb-8">
         <a href="/" className="text-blue-600 text-sm font-medium hover:underline">
           ← Acasă
@@ -40,40 +81,6 @@ export default function IndemnizatieSomajPage() {
 
       <CalculatorSomaj />
 
-      <div className="max-w-2xl mx-auto mt-12">
-        <h2 className="text-xl font-bold text-gray-800 dark:text-white mb-4">
-          Cum se calculează indemnizația de șomaj în România 2026?
-        </h2>
-        <div className="bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6 space-y-4 text-sm text-gray-600 dark:text-slate-400">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <div className="bg-gray-50 dark:bg-slate-800 rounded-lg p-3">
-              <p className="font-semibold text-gray-800 dark:text-slate-100">1. Component fix</p>
-              <p>75% × ISR = 75% × 500 RON = <strong>375 RON</strong></p>
-              <p className="text-xs text-gray-400 dark:text-slate-500 mt-1">Același pentru toți, indiferent de salariu</p>
-            </div>
-            <div className="bg-gray-50 dark:bg-slate-800 rounded-lg p-3">
-              <p className="font-semibold text-gray-800 dark:text-slate-100">2. Component variabilă</p>
-              <p>3–20% din media salariului brut din ultimele 12 luni</p>
-              <p className="text-xs text-gray-400 dark:text-slate-500 mt-1">Procentul crește cu stagiul de cotizare</p>
-            </div>
-            <div className="bg-gray-50 dark:bg-slate-800 rounded-lg p-3">
-              <p className="font-semibold text-gray-800 dark:text-slate-100">3. Durată</p>
-              <p>6 luni (1–5 ani stagiu) · 9 luni (5–10 ani) · 12 luni (10+ ani)</p>
-            </div>
-            <div className="bg-gray-50 dark:bg-slate-800 rounded-lg p-3">
-              <p className="font-semibold text-gray-800 dark:text-slate-100">4. Deduceri</p>
-              <p>CASS 10% + impozit venit 10%</p>
-              <p className="text-xs text-gray-400 dark:text-slate-500 mt-1">CAS (pensie) nu se reține</p>
-            </div>
-          </div>
-          <div className="pt-2 border-t border-gray-100 dark:border-slate-700">
-            <p className="font-semibold text-gray-800 dark:text-slate-100">Formulă:</p>
-            <code className="text-teal-600 dark:text-teal-400 font-mono text-xs bg-teal-50 dark:bg-teal-950 px-2 py-1 rounded block mt-1">
-              Indemnizație brută = 375 RON + (procent% × salariu mediu brut)
-            </code>
-          </div>
-        </div>
-      </div>
     </main>
   );
 }

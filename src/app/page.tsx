@@ -1,9 +1,45 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Calculator, FileText, ArrowRight, Stethoscope, Car, TrendingDown } from "lucide-react";
+import JsonLd from "@/components/JsonLd";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: "FaraNotar.ro — Contracte & Calculatoare pentru România",
+    description: "Documente legale și calculatoare financiare pentru români. Fără notar, fără birou, fără așteptare.",
+    url: "/",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "FaraNotar.ro — Contracte & Calculatoare pentru România",
+    description: "Documente legale și calculatoare financiare pentru români. Fără notar, fără birou, fără așteptare.",
+  },
+};
 
 export default function HomePage() {
   return (
     <main className="min-h-screen flex flex-col items-center justify-center px-4 py-16">
+      <JsonLd data={[
+        {
+          "@context": "https://schema.org",
+          "@type": "WebApplication",
+          "name": "FaraNotar.ro",
+          "url": "https://faranotar.ro",
+          "description": "Generează contracte legale PDF instant și calculatoare financiare pentru România. Fără notar, fără cont.",
+          "applicationCategory": "LegalService",
+          "operatingSystem": "Web",
+          "offers": { "@type": "Offer", "price": "0", "priceCurrency": "RON" },
+          "inLanguage": "ro",
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "FaraNotar.ro",
+          "url": "https://faranotar.ro",
+        },
+      ]} />
       <div className="max-w-2xl w-full text-center">
 
         {/* Badge */}

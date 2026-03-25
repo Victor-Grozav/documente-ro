@@ -359,6 +359,36 @@ export default function CalculatorSomaj() {
               Indemnizația încetează la reangajare, la expirarea duratei, la refuzul nejustificat al unei oferte adecvate sau la împlinirea vârstei de pensionare.
             </p>
           </div>
+          <div className="bg-gray-50 dark:bg-slate-800 rounded-xl p-3">
+            <p className="font-semibold text-gray-800 dark:text-slate-100 mb-1">Componentă fixă</p>
+            <p className="text-xs text-gray-500 dark:text-slate-400">
+              75% × ISR = 75% × 500 RON = <strong>375 RON</strong>. Aceeași pentru toți, indiferent de salariu.
+            </p>
+          </div>
+          <div className="bg-gray-50 dark:bg-slate-800 rounded-xl p-3">
+            <p className="font-semibold text-gray-800 dark:text-slate-100 mb-1">Componentă variabilă</p>
+            <p className="text-xs text-gray-500 dark:text-slate-400">
+              3–20% din media salariului brut din ultimele 12 luni. Procentul crește cu stagiul de cotizare.
+            </p>
+          </div>
+          <div className="bg-gray-50 dark:bg-slate-800 rounded-xl p-3">
+            <p className="font-semibold text-gray-800 dark:text-slate-100 mb-1">Durată</p>
+            <p className="text-xs text-gray-500 dark:text-slate-400">
+              6 luni (1–5 ani stagiu) · 9 luni (5–10 ani) · 12 luni (10+ ani).
+            </p>
+          </div>
+          <div className="bg-gray-50 dark:bg-slate-800 rounded-xl p-3">
+            <p className="font-semibold text-gray-800 dark:text-slate-100 mb-1">Deduceri</p>
+            <p className="text-xs text-gray-500 dark:text-slate-400">
+              CASS 10% + impozit venit 10%. CAS (pensia) nu se reține din indemnizația de șomaj.
+            </p>
+          </div>
+        </div>
+        <div className="pt-2 border-t border-gray-100 dark:border-slate-700">
+          <p className="font-semibold text-gray-800 dark:text-slate-100 text-xs mb-1">Formulă:</p>
+          <code className="text-teal-600 dark:text-teal-400 font-mono text-xs bg-teal-50 dark:bg-teal-950 px-2 py-1 rounded block">
+            Indemnizație brută = 375 RON + (procent% × salariu mediu brut)
+          </code>
         </div>
       </div>
 

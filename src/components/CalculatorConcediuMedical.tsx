@@ -371,6 +371,30 @@ export default function CalculatorConcediuMedical() {
               de indemnizație (excepție: urgențe și boli profesionale).
             </p>
           </div>
+          <div className="bg-gray-50 dark:bg-slate-800 rounded-xl p-3">
+            <p className="font-semibold text-gray-800 dark:text-slate-100 mb-1">Baza de calcul</p>
+            <p className="text-xs text-gray-500 dark:text-slate-400">
+              Media veniturilor brute din ultimele 6 luni, plafonată la 12 × salariul minim brut.
+            </p>
+          </div>
+          <div className="bg-gray-50 dark:bg-slate-800 rounded-xl p-3">
+            <p className="font-semibold text-gray-800 dark:text-slate-100 mb-1">Procentul de indemnizație</p>
+            <p className="text-xs text-gray-500 dark:text-slate-400">
+              75% boală obișnuită · 85% îngrijire copil bolnav · 100% accident muncă sau boli speciale.
+            </p>
+          </div>
+          <div className="bg-gray-50 dark:bg-slate-800 rounded-xl p-3 sm:col-span-2">
+            <p className="font-semibold text-gray-800 dark:text-slate-100 mb-1">Rețineri</p>
+            <p className="text-xs text-gray-500 dark:text-slate-400">
+              De la angajator: CAS 25% + CASS 10% + impozit venit 10%. De la CNAS: doar CASS 10% — scutit de CAS și impozit venit.
+            </p>
+          </div>
+        </div>
+        <div className="pt-2 border-t border-gray-100 dark:border-slate-700">
+          <p className="font-semibold text-gray-800 dark:text-slate-100 text-xs mb-1">Formulă:</p>
+          <code className="text-orange-600 dark:text-orange-400 font-mono text-xs bg-orange-50 dark:bg-orange-950 px-2 py-1 rounded block">
+            Indemnizație zilnică = (Medie brută / 30) × Procent (75–100%)
+          </code>
         </div>
       </div>
     </div>

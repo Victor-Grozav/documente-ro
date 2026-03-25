@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import CalculatorImpozitAuto from "@/components/CalculatorImpozitAuto";
+import JsonLd from "@/components/JsonLd";
 
 export const metadata: Metadata = {
   title: "Calculator Impozit Mașină România 2026 — Taxa Auto pe Județ",
@@ -26,6 +27,46 @@ export const metadata: Metadata = {
 export default function ImpozitMasinaPage() {
   return (
     <main className="min-h-screen py-10 px-4">
+      <JsonLd data={[
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Cum se calculează impozitul pe mașină în România 2026?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Impozitul se calculează conform Codului Fiscal art. 470: capacitatea cilindrică se împarte în benzi, fiecare bandă are o rată per 200 cm³, multiplicată cu un coeficient local stabilit de consiliul județean. Formula: ⌈Capacitate ÷ 200⌉ × rată/200cm³ × coeficient local.",
+              },
+            },
+            {
+              "@type": "Question",
+              "name": "Sunt scutite mașinile electrice de impozit în 2026?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Da, vehiculele electrice sunt scutite integral de impozitul auto conform art. 470 alin. 4 din Codul Fiscal. Vehiculele hibrid beneficiază de o reducere de 50%.",
+              },
+            },
+            {
+              "@type": "Question",
+              "name": "Când se plătește impozitul pe mașină?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Impozitul auto se plătește în două rate egale: 31 martie și 30 septembrie. Dacă plătești integral până la 31 martie, primești o bonificație de 10%.",
+              },
+            },
+          ],
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Acasă", "item": "https://faranotar.ro" },
+            { "@type": "ListItem", "position": 2, "name": "Calculator Impozit Mașină" },
+          ],
+        },
+      ]} />
       {/* Header */}
       <div className="max-w-2xl mx-auto text-center mb-8">
         <a href="/" className="text-blue-600 text-sm font-medium hover:underline">
@@ -42,41 +83,6 @@ export default function ImpozitMasinaPage() {
       {/* Calculator */}
       <CalculatorImpozitAuto />
 
-      {/* SEO content */}
-      <div className="max-w-2xl mx-auto mt-12">
-        <h2 className="text-xl font-bold text-gray-800 dark:text-white mb-4">
-          Cum se calculează impozitul pe mașină în România 2026?
-        </h2>
-        <div className="bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6 space-y-4 text-sm text-gray-600 dark:text-slate-400">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <div className="bg-gray-50 dark:bg-slate-800 rounded-lg p-3">
-              <p className="font-semibold text-gray-800 dark:text-slate-100">1. Determinarea benzii</p>
-              <p>Capacitatea cilindrică se încadrează într-una din cele 5 benzi (≤1.600, 1.601–2.000, 2.001–2.600, 2.601–3.000, peste 3.000 cm³)</p>
-            </div>
-            <div className="bg-gray-50 dark:bg-slate-800 rounded-lg p-3">
-              <p className="font-semibold text-gray-800 dark:text-slate-100">2. Formula de calcul</p>
-              <p>⌈Capacitate ÷ 200⌉ × rată/200cm³ × coeficient local</p>
-              <p className="text-xs text-gray-400 dark:text-slate-500 mt-1">Fracțiile se rotunjesc în sus</p>
-            </div>
-            <div className="bg-gray-50 dark:bg-slate-800 rounded-lg p-3">
-              <p className="font-semibold text-gray-800 dark:text-slate-100">3. Coeficientul local</p>
-              <p>Consiliile locale pot majora cu până la 50% față de minimul Codul Fiscal</p>
-              <p className="text-xs text-gray-400 dark:text-slate-500 mt-1">București aplică cota maximă</p>
-            </div>
-            <div className="bg-gray-50 dark:bg-slate-800 rounded-lg p-3">
-              <p className="font-semibold text-gray-800 dark:text-slate-100">4. Termene de plată</p>
-              <p>Două rate egale: 31 martie și 30 septembrie</p>
-              <p className="text-xs text-gray-400 dark:text-slate-500 mt-1">Plata integrală până la 31 martie → bonificație 10%</p>
-            </div>
-          </div>
-          <div className="pt-2 border-t border-gray-100 dark:border-slate-700 space-y-1">
-            <p className="font-semibold text-gray-800 dark:text-slate-100">Scutiri și reduceri:</p>
-            <p>• Vehicule electrice: <span className="font-medium text-green-700 dark:text-green-400">scutite integral</span> (art. 470 alin. 4)</p>
-            <p>• Vehicule hibrid: <span className="font-medium text-blue-700 dark:text-blue-400">reducere 50%</span></p>
-            <p>• Persoane cu handicap grav sau accentuat: scutite pentru un vehicul</p>
-          </div>
-        </div>
-      </div>
     </main>
   );
 }

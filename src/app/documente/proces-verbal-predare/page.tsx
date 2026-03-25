@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ProcesVerbalForm from "@/components/ProcesVerbalForm";
+import JsonLd from "@/components/JsonLd";
 
 export const metadata: Metadata = {
   title: "Proces Verbal de Predare-Primire Locuință România 2026 — PDF instant",
@@ -26,6 +27,32 @@ export const metadata: Metadata = {
 export default function ProcesVerbalPage() {
   return (
     <main className="min-h-screen py-10 px-4">
+      <JsonLd data={[
+        {
+          "@context": "https://schema.org",
+          "@type": "Product",
+          "name": "Proces Verbal de Predare-Primire Locuință — PDF instant",
+          "description": "Documentează starea locuinței și contoarelor la predare. PDF instant, 10 lei.",
+          "url": "https://faranotar.ro/documente/proces-verbal-predare",
+          "brand": { "@type": "Brand", "name": "FaraNotar.ro" },
+          "offers": {
+            "@type": "Offer",
+            "price": "10.00",
+            "priceCurrency": "RON",
+            "availability": "https://schema.org/InStock",
+            "url": "https://faranotar.ro/documente/proces-verbal-predare",
+          },
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Acasă", "item": "https://faranotar.ro" },
+            { "@type": "ListItem", "position": 2, "name": "Documente", "item": "https://faranotar.ro/documente" },
+            { "@type": "ListItem", "position": 3, "name": "Proces Verbal de Predare-Primire" },
+          ],
+        },
+      ]} />
       <div className="max-w-2xl mx-auto">
         <div className="text-center mb-8">
           <a href="/documente" className="text-blue-600 text-sm font-medium hover:underline">
