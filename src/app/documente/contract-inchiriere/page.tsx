@@ -67,6 +67,14 @@ export default function ContractInchirierePage() {
           </p>
         </div>
 
+        {/* Bonus PV */}
+        <div className="flex items-center gap-3 bg-green-50 dark:bg-green-950 border border-green-200 dark:border-green-800 rounded-2xl px-5 py-3.5 mb-4 text-sm">
+          <span className="text-lg shrink-0">🎁</span>
+          <p className="text-green-800 dark:text-green-300">
+            <span className="font-semibold">Inclus gratuit:</span> Proces Verbal de Predare-Primire precompletat cu datele din contract — primit automat după plată.
+          </p>
+        </div>
+
         <div className="mb-6">
           <DocumentDisclaimer
             valid="Contractul de închiriere este valabil sub semnătură privată conform art. 1777-1850 Cod Civil, indiferent de durată sau valoarea chiriei. Nu necesită autentificare notarială."

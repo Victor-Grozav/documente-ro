@@ -14,18 +14,18 @@ export default function ConfidentialitatePage() {
           <a href="/" className="text-blue-600 text-sm font-medium hover:underline">
             ← Acasă
           </a>
-          <h1 className="text-3xl font-bold text-gray-900 mt-4 mb-1">
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mt-4 mb-1">
             Politică de Confidențialitate
           </h1>
-          <p className="text-sm text-gray-400">
+          <p className="text-sm text-gray-400 dark:text-slate-500">
             Ultima actualizare: martie 2026 · FaraNotar.ro
           </p>
         </div>
 
-        <div className="space-y-8 text-sm text-gray-700 leading-relaxed">
+        <div className="space-y-8 text-sm text-gray-700 dark:text-slate-300 leading-relaxed">
 
           <section>
-            <h2 className="text-base font-bold text-gray-900 mb-3">1. Operatorul datelor</h2>
+            <h2 className="text-base font-bold text-gray-900 dark:text-white mb-3">1. Operatorul datelor</h2>
             <p>
               Platforma FaraNotar.ro este operată de <strong>Victor Grozav</strong>, persoană
               fizică cu domiciliul în România. Pentru orice solicitare privind datele personale,
@@ -37,14 +37,14 @@ export default function ConfidentialitatePage() {
           </section>
 
           <section>
-            <h2 className="text-base font-bold text-gray-900 mb-3">
+            <h2 className="text-base font-bold text-gray-900 dark:text-white mb-3">
               2. Ce date prelucrăm — și ce NU prelucrăm
             </h2>
-            <div className="bg-green-50 border border-green-200 rounded-xl p-4 mb-3">
-              <p className="font-semibold text-green-900 mb-2">
+            <div className="bg-green-50 dark:bg-green-950 border border-green-200 dark:border-green-800 rounded-xl p-4 mb-3">
+              <p className="font-semibold text-green-900 dark:text-green-300 mb-2">
                 Datele introduse în formulare NU ajung pe serverele noastre
               </p>
-              <p className="text-green-800">
+              <p className="text-green-800 dark:text-green-300">
                 Informațiile completate în formularele de generare documente (CNP, adrese, date
                 personale) sunt procesate exclusiv în browser-ul dumneavoastră pentru a compune
                 fișierul PDF. FaraNotar.ro nu transmite, nu stochează și nu are acces la aceste
@@ -55,7 +55,7 @@ export default function ConfidentialitatePage() {
               Singurele date prelucrate de platformă sau de partenerii săi sunt cele necesare
               pentru procesarea plății:
             </p>
-            <ul className="list-disc list-inside space-y-1 text-gray-600">
+            <ul className="list-disc list-inside space-y-1 text-gray-600 dark:text-slate-400">
               <li>Adresa de email (colectată de Stripe la plată)</li>
               <li>Date de card (procesate exclusiv de Stripe, niciodată vizibile FaraNotar.ro)</li>
               <li>Adresa IP (loguri de server standard Vercel/Next.js)</li>
@@ -64,7 +64,7 @@ export default function ConfidentialitatePage() {
           </section>
 
           <section>
-            <h2 className="text-base font-bold text-gray-900 mb-3">3. Stripe — procesator de plăți</h2>
+            <h2 className="text-base font-bold text-gray-900 dark:text-white mb-3">3. Stripe — procesator de plăți</h2>
             <p className="mb-3">
               Plățile sunt procesate prin <strong>Stripe Payments Europe, Ltd.</strong>, cu sediul
               în Irlanda, care acționează ca operator independent de date pentru informațiile
@@ -87,11 +87,11 @@ export default function ConfidentialitatePage() {
           </section>
 
           <section>
-            <h2 className="text-base font-bold text-gray-900 mb-3">4. Cookie-uri</h2>
+            <h2 className="text-base font-bold text-gray-900 dark:text-white mb-3">4. Cookie-uri</h2>
             <p className="mb-3">
               FaraNotar.ro utilizează un număr minim de cookie-uri:
             </p>
-            <ul className="space-y-2 list-disc list-inside text-gray-600">
+            <ul className="space-y-2 list-disc list-inside text-gray-600 dark:text-slate-400">
               <li>
                 <strong>Cookie-uri esențiale:</strong> necesare funcționării tehnice a site-ului
                 (sesiune, securitate)
@@ -109,10 +109,10 @@ export default function ConfidentialitatePage() {
           </section>
 
           <section>
-            <h2 className="text-base font-bold text-gray-900 mb-3">
+            <h2 className="text-base font-bold text-gray-900 dark:text-white mb-3">
               5. Temeiul legal al prelucrării
             </h2>
-            <ul className="space-y-2 list-disc list-inside text-gray-600">
+            <ul className="space-y-2 list-disc list-inside text-gray-600 dark:text-slate-400">
               <li>
                 <strong>Executarea contractului</strong> (art. 6 alin. 1 lit. b GDPR): procesarea
                 plății și livrarea documentului achiziționat
@@ -129,13 +129,13 @@ export default function ConfidentialitatePage() {
           </section>
 
           <section>
-            <h2 className="text-base font-bold text-gray-900 mb-3">
+            <h2 className="text-base font-bold text-gray-900 dark:text-white mb-3">
               6. Drepturile dumneavoastră (GDPR)
             </h2>
             <p className="mb-3">
               Conform Regulamentului (UE) 2016/679 (GDPR) și Legii nr. 190/2018, aveți dreptul la:
             </p>
-            <ul className="space-y-1.5 list-disc list-inside text-gray-600">
+            <ul className="space-y-1.5 list-disc list-inside text-gray-600 dark:text-slate-400">
               <li>Acces la datele personale pe care le deținem</li>
               <li>Rectificarea datelor inexacte</li>
               <li>Ștergerea datelor ("dreptul de a fi uitat")</li>
@@ -151,7 +151,7 @@ export default function ConfidentialitatePage() {
           </section>
 
           <section>
-            <h2 className="text-base font-bold text-gray-900 mb-3">7. Retenția datelor</h2>
+            <h2 className="text-base font-bold text-gray-900 dark:text-white mb-3">7. Retenția datelor</h2>
             <p>
               Datele de facturare (necesare pentru obligații fiscale) sunt păstrate conform
               termenelor legale din România (10 ani pentru documente contabile, conform
@@ -161,7 +161,7 @@ export default function ConfidentialitatePage() {
           </section>
 
           <section>
-            <h2 className="text-base font-bold text-gray-900 mb-3">8. Autoritatea de supraveghere</h2>
+            <h2 className="text-base font-bold text-gray-900 dark:text-white mb-3">8. Autoritatea de supraveghere</h2>
             <p>
               Aveți dreptul de a depune o plângere la{" "}
               <strong>
@@ -183,7 +183,7 @@ export default function ConfidentialitatePage() {
 
         </div>
 
-        <div className="mt-10 pt-6 border-t border-gray-200 text-xs text-gray-400 text-center">
+        <div className="mt-10 pt-6 border-t border-gray-200 dark:border-slate-700 text-xs text-gray-400 dark:text-slate-500 text-center">
           FaraNotar.ro · Politică de Confidențialitate actualizată în martie 2026
         </div>
       </div>
