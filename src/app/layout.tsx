@@ -13,6 +13,7 @@ const geist = Geist({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://faranotar.ro"),
   title: "FaraNotar.ro — Contracte & Calculatoare pentru România",
   description:
     "Generează contracte legale PDF instant — vânzare, închiriere, împrumut, procuri. Calculatoare de salariu brut-net, impozit mașină, șomaj și concediu medical. Fără notar, fără cont.",
@@ -22,8 +23,16 @@ export const metadata: Metadata = {
     title: "FaraNotar.ro — Contracte & Calculatoare pentru România",
     description:
       "Documente legale și calculatoare financiare pentru români. Fără notar, fără birou, fără așteptare.",
+    url: "https://faranotar.ro",
+    siteName: "FaraNotar.ro",
     locale: "ro_RO",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "FaraNotar.ro — Contracte & Calculatoare pentru România",
+    description:
+      "Documente legale și calculatoare financiare pentru români. Fără notar, fără birou, fără așteptare.",
   },
 };
 
