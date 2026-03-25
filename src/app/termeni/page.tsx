@@ -14,19 +14,19 @@ export default function TermeniPage() {
           <a href="/" className="text-blue-600 text-sm font-medium hover:underline">
             ← Acasă
           </a>
-          <h1 className="text-3xl font-bold text-gray-900 mt-4 mb-1">
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mt-4 mb-1">
             Termeni și Condiții de Utilizare
           </h1>
-          <p className="text-sm text-gray-400">
+          <p className="text-sm text-gray-400 dark:text-slate-500">
             Ultima actualizare: martie 2026 · FaraNotar.ro
           </p>
         </div>
 
-        <div className="space-y-8 text-sm text-gray-700 leading-relaxed">
+        <div className="space-y-8 text-sm text-gray-700 dark:text-slate-300 leading-relaxed">
 
           {/* 0 */}
           <section>
-            <h2 className="text-base font-bold text-gray-900 mb-3">
+            <h2 className="text-base font-bold text-gray-900 dark:text-white mb-3">
               1. Identitatea operatorului
             </h2>
             <p>
@@ -41,12 +41,12 @@ export default function TermeniPage() {
 
           {/* 1 */}
           <section>
-            <h2 className="text-base font-bold text-gray-900 mb-3">
+            <h2 className="text-base font-bold text-gray-900 dark:text-white mb-3">
               2. Natura serviciului
             </h2>
-            <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-3">
-              <p className="font-semibold text-amber-900 mb-1">Atenție importantă</p>
-              <p className="text-amber-800">
+            <div className="bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-xl p-4 mb-3">
+              <p className="font-semibold text-amber-900 dark:text-amber-300 mb-1">Atenție importantă</p>
+              <p className="text-amber-800 dark:text-amber-300">
                 FaraNotar.ro furnizează exclusiv <strong>modele de documente precompletate</strong>.
                 Platforma <strong>nu oferă consultanță juridică</strong>, nu reprezintă un cabinet de avocatură
                 și nu este autorizată să presteze asistență juridică în sensul Legii nr. 51/1995
@@ -62,7 +62,7 @@ export default function TermeniPage() {
 
           {/* 2 */}
           <section>
-            <h2 className="text-base font-bold text-gray-900 mb-3">
+            <h2 className="text-base font-bold text-gray-900 dark:text-white mb-3">
               3. Limitarea răspunderii
             </h2>
             <p className="mb-3">
@@ -93,7 +93,7 @@ export default function TermeniPage() {
 
           {/* 3 */}
           <section>
-            <h2 className="text-base font-bold text-gray-900 mb-3">
+            <h2 className="text-base font-bold text-gray-900 dark:text-white mb-3">
               4. Obligațiile și responsabilitățile utilizatorului
             </h2>
             <p className="mb-3">Prin utilizarea platformei, utilizatorul confirmă că:</p>
@@ -115,13 +115,13 @@ export default function TermeniPage() {
 
           {/* 4 */}
           <section>
-            <h2 className="text-base font-bold text-gray-900 mb-3">
+            <h2 className="text-base font-bold text-gray-900 dark:text-white mb-3">
               5. Când este obligatoriu notarul
             </h2>
             <p className="mb-3">
               Conform Codului Civil român, forma autentică notarială este obligatorie pentru:
             </p>
-            <ul className="space-y-1.5 list-disc list-inside text-gray-600">
+            <ul className="space-y-1.5 list-disc list-inside text-gray-600 dark:text-slate-400">
               <li>Contracte de vânzare-cumpărare a imobilelor (terenuri, apartamente, case)</li>
               <li>Contracte de donație a imobilelor sau a unor bunuri de valoare ridicată</li>
               <li>Partaje succesorale și testamente autentice</li>
@@ -129,21 +129,21 @@ export default function TermeniPage() {
               <li>Convenții matrimoniale</li>
               <li>Orice act juridic pentru care legea prevede expres forma autentică</li>
             </ul>
-            <p className="mt-3 text-gray-500">
+            <p className="mt-3 text-gray-500 dark:text-slate-400">
               FaraNotar.ro nu oferă și nu poate oferi documente valabile pentru categoriile de mai sus.
             </p>
           </section>
 
           {/* drept retragere */}
           <section>
-            <h2 className="text-base font-bold text-gray-900 mb-3">
+            <h2 className="text-base font-bold text-gray-900 dark:text-white mb-3">
               6. Dreptul de retragere — conținut digital
             </h2>
-            <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-3">
-              <p className="font-semibold text-blue-900 mb-1">
+            <div className="bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800 rounded-xl p-4 mb-3">
+              <p className="font-semibold text-blue-900 dark:text-blue-300 mb-1">
                 Renunțarea la dreptul de retragere de 14 zile
               </p>
-              <p className="text-blue-800">
+              <p className="text-blue-800 dark:text-blue-300">
                 Conform art. 16 lit. m din OG nr. 34/2014 privind drepturile consumatorilor,
                 dreptul de retragere de 14 zile <strong>nu se aplică</strong> contractelor pentru
                 furnizarea de conținut digital care nu este livrat pe un suport material, dacă
@@ -162,7 +162,7 @@ export default function TermeniPage() {
 
           {/* plata Stripe */}
           <section>
-            <h2 className="text-base font-bold text-gray-900 mb-3">
+            <h2 className="text-base font-bold text-gray-900 dark:text-white mb-3">
               7. Procesarea plăților — Stripe
             </h2>
             <p>
@@ -184,7 +184,7 @@ export default function TermeniPage() {
 
           {/* 5 */}
           <section>
-            <h2 className="text-base font-bold text-gray-900 mb-3">
+            <h2 className="text-base font-bold text-gray-900 dark:text-white mb-3">
               8. Proprietatea intelectuală
             </h2>
             <p>
@@ -197,7 +197,7 @@ export default function TermeniPage() {
 
           {/* 6 */}
           <section>
-            <h2 className="text-base font-bold text-gray-900 mb-3">
+            <h2 className="text-base font-bold text-gray-900 dark:text-white mb-3">
               9. Protecția datelor
             </h2>
             <p>
@@ -210,7 +210,7 @@ export default function TermeniPage() {
 
           {/* 7 */}
           <section>
-            <h2 className="text-base font-bold text-gray-900 mb-3">
+            <h2 className="text-base font-bold text-gray-900 dark:text-white mb-3">
               10. Modificarea termenilor
             </h2>
             <p>
@@ -222,7 +222,7 @@ export default function TermeniPage() {
 
           {/* 8 */}
           <section>
-            <h2 className="text-base font-bold text-gray-900 mb-3">
+            <h2 className="text-base font-bold text-gray-900 dark:text-white mb-3">
               11. Legea aplicabilă
             </h2>
             <p>
@@ -233,7 +233,7 @@ export default function TermeniPage() {
 
         </div>
 
-        <div className="mt-10 pt-6 border-t border-gray-200 text-xs text-gray-400 text-center">
+        <div className="mt-10 pt-6 border-t border-gray-200 dark:border-slate-700 text-xs text-gray-400 dark:text-slate-500 text-center">
           FaraNotar.ro · Termeni actualizați în martie 2026
         </div>
       </div>
