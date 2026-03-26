@@ -97,7 +97,7 @@ function SuccessContent() {
                 </span>
               </div>
               <p className="text-sm text-gray-600 dark:text-slate-300 mt-1">
-                Ai și un <span className="font-semibold">Proces Verbal de Predare-Primire</span>, precompletat cu datele din contract. Descarcă-l și completează-l cu starea locuinței și indicii contoarelor la predare.
+                Ai și un <span className="font-semibold">Proces-Verbal de Predare-Primire</span>, precompletat cu datele din contract. Descarcă-l și completează-l cu starea locuinței și indicii contoarelor la predare.
               </p>
             </div>
           </div>

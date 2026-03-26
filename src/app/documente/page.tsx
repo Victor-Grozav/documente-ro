@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import DocumentListClient from "@/components/DocumentListClient";
 
 export const metadata: Metadata = {
@@ -29,9 +30,9 @@ export default function DocumentePage() {
 
         {/* Header */}
         <div className="text-center mb-8">
-          <a href="/" className="text-blue-600 text-sm font-medium hover:underline">
+          <Link href="/" className="text-blue-600 text-sm font-medium hover:underline">
             ← Acasă
-          </a>
+          </Link>
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white mt-4 mb-2">
             Generator Documente
           </h1>
@@ -61,9 +62,9 @@ export default function DocumentePage() {
             <strong>Modele de documente, nu consultanță juridică.</strong>{" "}
             FaraNotar.ro nu verifică identitatea sau capacitatea juridică a semnatarilor și nu
             răspunde pentru modul de completare. Situațiile complexe necesită un avocat.{" "}
-            <a href="/termeni" className="underline font-medium hover:text-amber-900">
+            <Link href="/termeni" className="underline font-medium hover:text-amber-900">
               Termeni și Condiții
-            </a>
+            </Link>
           </p>
         </div>
 
@@ -72,7 +73,7 @@ export default function DocumentePage() {
         {/* Footer note */}
         <p className="text-xs text-gray-400 dark:text-slate-500 text-center mt-8">
           Notarul rămâne obligatoriu pentru imobile, succesiuni și procuri autentice. ·{" "}
-          <a href="/termeni" className="hover:underline">Termeni și Condiții</a>
+          <Link href="/termeni" className="hover:underline">Termeni și Condiții</Link>
         </p>
       </div>
     </main>

@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Termeni și Condiții — FaraNotar.ro",
   description:
     "Termenii și condițiile de utilizare ale platformei FaraNotar.ro. Limitarea răspunderii, natura serviciului și obligațiile utilizatorului.",
+  alternates: { canonical: "/termeni" },
 };
 
 export default function TermeniPage() {
@@ -11,9 +13,9 @@ export default function TermeniPage() {
     <main className="min-h-screen py-10 px-4">
       <div className="max-w-2xl mx-auto">
         <div className="mb-8">
-          <a href="/" className="text-blue-600 text-sm font-medium hover:underline">
+          <Link href="/" className="text-blue-600 text-sm font-medium hover:underline">
             ← Acasă
-          </a>
+          </Link>
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white mt-4 mb-1">
             Termeni și Condiții de Utilizare
           </h1>
@@ -223,7 +225,43 @@ export default function TermeniPage() {
           {/* 8 */}
           <section>
             <h2 className="text-base font-bold text-gray-900 dark:text-white mb-3">
-              11. Legea aplicabilă
+              11. Soluționarea alternativă a litigiilor
+            </h2>
+            <p className="mb-3">
+              În calitate de consumator, aveți dreptul de a utiliza mecanismele de soluționare
+              alternativă a litigiilor (SAL) prevăzute de Legea nr. 158/2015:
+            </p>
+            <ul className="space-y-1.5 list-disc list-inside text-gray-600 dark:text-slate-400">
+              <li>
+                <strong>ANPC</strong> — Autoritatea Națională pentru Protecția Consumatorilor,
+                sesizabilă online la{" "}
+                <a
+                  href="https://anpc.ro"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:underline"
+                >
+                  anpc.ro
+                </a>
+              </li>
+              <li>
+                <strong>Platforma SOL (UE)</strong> — Online Dispute Resolution, disponibilă la{" "}
+                <a
+                  href="https://ec.europa.eu/consumers/odr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:underline"
+                >
+                  ec.europa.eu/consumers/odr
+                </a>
+              </li>
+            </ul>
+          </section>
+
+          {/* 9 */}
+          <section>
+            <h2 className="text-base font-bold text-gray-900 dark:text-white mb-3">
+              12. Legea aplicabilă
             </h2>
             <p>
               Prezenții termeni sunt guvernați de legislația română. Orice litigiu izvorând din

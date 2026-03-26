@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   description:
     "Generează contracte legale PDF instant — vânzare, închiriere, împrumut, procuri. Calculatoare de salariu brut-net, impozit mașină, șomaj și concediu medical. Fără notar, fără cont.",
   keywords:
-    "fara notar, contracte online, documente legale romania, calculator salariu brut net, calculator pensie, contract vanzare cumparare",
+    "fara notar, contracte online, documente legale romania, calculator salariu brut net, impozit masina, contract vanzare cumparare",
   openGraph: {
     title: "FaraNotar.ro — Contracte & Calculatoare pentru România",
     description:

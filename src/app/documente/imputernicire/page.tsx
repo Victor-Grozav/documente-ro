@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import ImputernicireForm from "@/components/ImputernicireForm";
 import DocumentDisclaimer from "@/components/DocumentDisclaimer";
 import JsonLd from "@/components/JsonLd";
@@ -56,9 +57,9 @@ export default function ImputernicirePage() {
       ]} />
       <div className="max-w-2xl mx-auto">
         <div className="text-center mb-8">
-          <a href="/documente" className="text-blue-600 text-sm font-medium hover:underline">
+          <Link href="/documente" className="text-blue-600 text-sm font-medium hover:underline">
             ← Documente
-          </a>
+          </Link>
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white mt-4 mb-2">
             Împuternicire / Procură
           </h1>

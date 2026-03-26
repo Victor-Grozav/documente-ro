@@ -30,7 +30,13 @@ export default function HomePage() {
           "description": "Generează contracte legale PDF instant și calculatoare financiare pentru România. Fără notar, fără cont.",
           "applicationCategory": "LegalService",
           "operatingSystem": "Web",
-          "offers": { "@type": "Offer", "price": "0", "priceCurrency": "RON" },
+          "offers": {
+            "@type": "AggregateOffer",
+            "lowPrice": "10",
+            "highPrice": "25",
+            "priceCurrency": "RON",
+            "offerCount": "6",
+          },
           "inLanguage": "ro",
         },
         {
@@ -38,6 +44,12 @@ export default function HomePage() {
           "@type": "Organization",
           "name": "FaraNotar.ro",
           "url": "https://faranotar.ro",
+          "logo": "https://faranotar.ro/icon.svg",
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "email": "faranotar@gmail.com",
+            "contactType": "customer support",
+          },
         },
       ]} />
       <div className="max-w-2xl w-full text-center">
@@ -61,7 +73,7 @@ export default function HomePage() {
         {/* Stats */}
         <div className="flex justify-center gap-8 mb-10">
           <div className="text-center">
-            <p className="text-2xl font-bold text-gray-900 dark:text-white">9</p>
+            <p className="text-2xl font-bold text-gray-900 dark:text-white">10</p>
             <p className="text-xs text-gray-500 dark:text-slate-400 mt-0.5">unelte disponibile</p>
           </div>
           <div className="w-px bg-gray-200 dark:bg-slate-700" />
@@ -91,7 +103,7 @@ export default function HomePage() {
               <div>
                 <h2 className="font-bold text-gray-900 dark:text-white text-lg mb-1">Generator Contracte</h2>
                 <p className="text-sm text-gray-500 dark:text-slate-400 mb-2">
-                  Contracte de vânzare-cumpărare, închiriere, împrumut și procuri — conforme legislației române 2026. Fără notar, fără costuri.
+                  Contracte de vânzare-cumpărare, închiriere, prestări servicii și procuri — conforme legislației române 2026. Fără notar, fără costuri.
                 </p>
                 <span className="text-green-600 dark:text-green-400 text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
                   Alege tipul de contract <ArrowRight className="w-4 h-4" />

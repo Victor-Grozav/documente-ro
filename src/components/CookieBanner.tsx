@@ -28,20 +28,20 @@ export default function CookieBanner() {
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 p-4 sm:p-6">
-      <div className="max-w-2xl mx-auto bg-white border border-gray-200 rounded-2xl shadow-xl px-5 py-4 flex flex-col sm:flex-row sm:items-center gap-4">
+      <div className="max-w-2xl mx-auto bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-2xl shadow-xl px-5 py-4 flex flex-col sm:flex-row sm:items-center gap-4">
         <div className="flex-1 min-w-0">
-          <p className="text-sm text-gray-700">
+          <p className="text-sm text-gray-700 dark:text-slate-300">
             Folosim cookie-uri esențiale pentru funcționarea site-ului și cookie-uri Stripe
             pentru procesarea plăților.{" "}
             <Link href="/confidentialitate" className="text-blue-600 hover:underline">
-              Politică Confidențialitate
+              Politică de Confidențialitate
             </Link>
           </p>
         </div>
         <div className="flex items-center gap-2 shrink-0">
           <button
             onClick={decline}
-            className="text-sm text-gray-500 hover:text-gray-700 px-4 py-2 rounded-xl border border-gray-200 hover:border-gray-300 transition-colors"
+            className="text-sm text-gray-500 dark:text-slate-400 hover:text-gray-700 dark:hover:text-slate-200 px-4 py-2 rounded-xl border border-gray-200 dark:border-slate-600 hover:border-gray-300 dark:hover:border-slate-500 transition-colors"
           >
             Refuz
           </button>

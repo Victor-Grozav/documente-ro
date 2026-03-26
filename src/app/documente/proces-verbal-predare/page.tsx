@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import ProcesVerbalForm from "@/components/ProcesVerbalForm";
 import JsonLd from "@/components/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Proces Verbal de Predare-Primire Locuință România 2026 — PDF instant",
+  title: "Proces-Verbal de Predare-Primire Locuință România 2026 — PDF instant",
   description:
     "Generează un proces verbal de predare-primire pentru locuință. Stare proprietate, contoare, chei. PDF instant, 10 lei.",
   keywords:
     "proces verbal predare primire, proces verbal locuinta, model proces verbal chirie, predare cheie apartament",
   alternates: { canonical: "/documente/proces-verbal-predare" },
   openGraph: {
-    title: "Proces Verbal de Predare-Primire Locuință România 2026",
+    title: "Proces-Verbal de Predare-Primire Locuință România 2026",
     description:
       "Documentează starea locuinței și contoarelor la predare. PDF instant, 10 lei.",
     url: "/documente/proces-verbal-predare",
@@ -18,7 +19,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Proces Verbal de Predare-Primire Locuință România 2026",
+    title: "Proces-Verbal de Predare-Primire Locuință România 2026",
     description:
       "Documentează starea locuinței și contoarelor la predare. PDF instant, 10 lei.",
   },
@@ -31,7 +32,7 @@ export default function ProcesVerbalPage() {
         {
           "@context": "https://schema.org",
           "@type": "Product",
-          "name": "Proces Verbal de Predare-Primire Locuință — PDF instant",
+          "name": "Proces-Verbal de Predare-Primire Locuință — PDF instant",
           "description": "Documentează starea locuinței și contoarelor la predare. PDF instant, 10 lei.",
           "url": "https://faranotar.ro/documente/proces-verbal-predare",
           "brand": { "@type": "Brand", "name": "FaraNotar.ro" },
@@ -49,17 +50,17 @@ export default function ProcesVerbalPage() {
           "itemListElement": [
             { "@type": "ListItem", "position": 1, "name": "Acasă", "item": "https://faranotar.ro" },
             { "@type": "ListItem", "position": 2, "name": "Documente", "item": "https://faranotar.ro/documente" },
-            { "@type": "ListItem", "position": 3, "name": "Proces Verbal de Predare-Primire" },
+            { "@type": "ListItem", "position": 3, "name": "Proces-Verbal de Predare-Primire" },
           ],
         },
       ]} />
       <div className="max-w-2xl mx-auto">
         <div className="text-center mb-8">
-          <a href="/documente" className="text-blue-600 text-sm font-medium hover:underline">
+          <Link href="/documente" className="text-blue-600 text-sm font-medium hover:underline">
             ← Documente
-          </a>
+          </Link>
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white mt-4 mb-2">
-            Proces Verbal de Predare-Primire
+            Proces-Verbal de Predare-Primire
           </h1>
           <p className="text-gray-500 dark:text-slate-400">
             Document la predarea locuinței · PDF instant · 10 lei

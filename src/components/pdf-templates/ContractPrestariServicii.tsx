@@ -89,9 +89,9 @@ export default function ContractPrestariServicii({ data: rawData }: Props) {
       case "avans + rest la finalizare":
         return f(`Prețul se achită în două tranșe: ${avansNum}% (${avansValoare} ${data.moneda}) la semnarea prezentului contract cu titlu de avans, iar diferența de ${100 - avansNum}% (${restValoare} ${data.moneda}) la finalizarea serviciilor și acceptarea livrabilelor, în termen de ${termenPlata} zile calendaristice de la emiterea facturii.`);
       case "rate lunare":
-        return f(`Prețul se achită în rate lunare egale, în termen de ${termenPlata} zile calendaristice de la emiterea fiecărei facturi lunare.`);
+        return f(`Prețul se achită în rate lunare egale pe durata contractului, în termen de ${termenPlata} zile calendaristice de la emiterea fiecărei facturi lunare. Numărul de rate și valoarea exactă a fiecărei rate se stabilesc de comun acord prin act adițional.`);
       case "lunar":
-        return f(`Prețul se achită lunar, la sfârşitul fiecărei luni calendaristice, în termen de ${termenPlata} zile calendaristice de la emiterea facturii.`);
+        return f(`Prețul se achită lunar, la sfârșitul fiecărei luni calendaristice, în termen de ${termenPlata} zile calendaristice de la emiterea facturii.`);
       default:
         return f(`Prețul se achită integral la finalizarea serviciilor și acceptarea livrabilelor, în termen de ${termenPlata} zile calendaristice de la emiterea facturii.`);
     }
@@ -222,7 +222,10 @@ export default function ContractPrestariServicii({ data: rawData }: Props) {
             <Text style={styles.label}>Valoare totală:</Text>
             <Text style={styles.value}><Text style={styles.bold}>{data.valoare} {data.moneda}</Text></Text>
           </View>
-          <Text style={[styles.paragraph, { marginTop: 6 }]}>{getPaymentText()}</Text>
+          <Text style={[styles.paragraph, { marginTop: 4, fontSize: 9, color: "#666" }]}>
+            {f("Prețul este fără TVA dacă Prestatorul nu este plătitor de TVA. Dacă Prestatorul este înregistrat în scopuri de TVA, la prețul de mai sus se adaugă TVA la cota legală în vigoare.")}
+          </Text>
+          <Text style={[styles.paragraph, { marginTop: 4 }]}>{getPaymentText()}</Text>
           {data.penalitateIntarziere ? (
             <Text style={styles.paragraph}>
               {f("Întârzierea la plată atrage penalități de ")}
@@ -307,7 +310,7 @@ export default function ContractPrestariServicii({ data: rawData }: Props) {
             {f("Prezentul contract este guvernat de dreptul român și a fost încheiat sub semnătură privată, în două exemplare originale, câte unul pentru fiecare parte, conform art. 1270 Cod Civil. Este valabil fără autentificare notarială.")}
           </Text>
           <Text style={styles.paragraph}>
-            {f("Orice modificare se face numai prin act adițional semnat de ambele părți. Litigiile izvorând din prezentul contract vor fi soluționate pe cale amiabilă, iar în caz de neînțelegere, de instanțele judecătorești competente din România (art. 1350 Cod Civil).")}
+            {f("Orice modificare se face numai prin act adițional semnat de ambele părți. Litigiile izvorând din prezentul contract vor fi soluționate pe cale amiabilă, iar în caz de neînțelegere, de instanțele judecătorești competente din România.")}
           </Text>
         </View>
 

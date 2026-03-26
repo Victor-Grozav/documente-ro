@@ -228,9 +228,12 @@ export default function AcordConfidentialitate({ data: rawData }: Props) {
             Prezentul acord este valabil pentru o perioadă de{" "}
             <Text style={styles.bold}>{data.durataAni} {unitateTiMP}</Text>{" "}
             de la data semnării. Obligațiile de confidențialitate supraviețuiesc
-            încetării acordului și rămân în vigoare pentru o perioadă egală de{" "}
+            încetării acordului și rămân în vigoare pentru o perioadă suplimentară
+            de{" "}
             <Text style={styles.bold}>{data.durataAni} {unitateTiMP}</Text>{" "}
-            calculată de la data încetării.
+            calculată de la data încetării (durata totală de protecție:{" "}
+            <Text style={styles.bold}>{parseInt(data.durataAni) * 2} {parseInt(data.durataAni) * 2 === 1 ? "an" : "ani"}</Text>
+            {" "}de la data semnării).
           </Text>
           {data.tipNDA === "unilateral" ? (
             <Text style={styles.paragraph}>

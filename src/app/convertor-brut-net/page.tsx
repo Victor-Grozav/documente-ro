@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import SalaryCalculator from "@/components/SalaryCalculator";
 import JsonLd from "@/components/JsonLd";
 
@@ -69,9 +70,9 @@ export default function ConvertorPage() {
       ]} />
       {/* Header */}
       <div className="max-w-2xl mx-auto text-center mb-8">
-        <a href="/" className="text-blue-600 text-sm font-medium hover:underline">
+        <Link href="/" className="text-blue-600 text-sm font-medium hover:underline">
           ← Acasă
-        </a>
+        </Link>
         <h1 className="text-3xl font-bold text-gray-900 dark:text-white mt-4 mb-2">
           Calculator Salariu Brut → Net
         </h1>

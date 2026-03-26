@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Politică de Confidențialitate — FaraNotar.ro",
   description:
     "Politica de confidențialitate a platformei FaraNotar.ro. Cum sunt prelucrate datele cu caracter personal.",
+  alternates: { canonical: "/confidentialitate" },
 };
 
 export default function ConfidentialitatePage() {
@@ -11,9 +13,9 @@ export default function ConfidentialitatePage() {
     <main className="min-h-screen py-10 px-4">
       <div className="max-w-2xl mx-auto">
         <div className="mb-8">
-          <a href="/" className="text-blue-600 text-sm font-medium hover:underline">
+          <Link href="/" className="text-blue-600 text-sm font-medium hover:underline">
             ← Acasă
-          </a>
+          </Link>
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white mt-4 mb-1">
             Politică de Confidențialitate
           </h1>
@@ -87,7 +89,27 @@ export default function ConfidentialitatePage() {
           </section>
 
           <section>
-            <h2 className="text-base font-bold text-gray-900 dark:text-white mb-3">4. Cookie-uri</h2>
+            <h2 className="text-base font-bold text-gray-900 dark:text-white mb-3">4. Analiză și performanță — Vercel</h2>
+            <p className="mb-3">
+              FaraNotar.ro utilizează <strong>Vercel Analytics</strong> și <strong>Vercel Speed Insights</strong>,
+              servicii furnizate de Vercel Inc. Acestea colectează date agregate și anonimizate despre
+              vizitele pe site (pagini accesate, țară de origine, tip de dispozitiv, timp de încărcare).
+              Nu se colectează date personale identificabile. Datele sunt procesate de Vercel conform{" "}
+              <a
+                href="https://vercel.com/legal/privacy-policy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:underline"
+              >
+                Politicii de Confidențialitate Vercel
+              </a>
+              . Temeiul legal: interesul legitim (art. 6 alin. 1 lit. f GDPR) pentru îmbunătățirea
+              performanței platformei.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-base font-bold text-gray-900 dark:text-white mb-3">5. Cookie-uri</h2>
             <p className="mb-3">
               FaraNotar.ro utilizează un număr minim de cookie-uri:
             </p>
@@ -102,15 +124,14 @@ export default function ConfidentialitatePage() {
               </li>
             </ul>
             <p className="mt-3">
-              Nu utilizăm cookie-uri de analiză comportamentală (Google Analytics etc.) sau
-              cookie-uri de publicitate. Preferințele dumneavoastră privind cookie-urile pot fi
-              gestionate prin bannerul afișat la prima vizită.
+              Nu utilizăm cookie-uri de publicitate sau tracking comportamental. Preferințele
+              dumneavoastră privind cookie-urile pot fi gestionate prin bannerul afișat la prima vizită.
             </p>
           </section>
 
           <section>
             <h2 className="text-base font-bold text-gray-900 dark:text-white mb-3">
-              5. Temeiul legal al prelucrării
+              6. Temeiul legal al prelucrării
             </h2>
             <ul className="space-y-2 list-disc list-inside text-gray-600 dark:text-slate-400">
               <li>
@@ -130,7 +151,7 @@ export default function ConfidentialitatePage() {
 
           <section>
             <h2 className="text-base font-bold text-gray-900 dark:text-white mb-3">
-              6. Drepturile dumneavoastră (GDPR)
+              7. Drepturile dumneavoastră (GDPR)
             </h2>
             <p className="mb-3">
               Conform Regulamentului (UE) 2016/679 (GDPR) și Legii nr. 190/2018, aveți dreptul la:
@@ -151,7 +172,7 @@ export default function ConfidentialitatePage() {
           </section>
 
           <section>
-            <h2 className="text-base font-bold text-gray-900 dark:text-white mb-3">7. Retenția datelor</h2>
+            <h2 className="text-base font-bold text-gray-900 dark:text-white mb-3">8. Retenția datelor</h2>
             <p>
               Datele de facturare (necesare pentru obligații fiscale) sunt păstrate conform
               termenelor legale din România (10 ani pentru documente contabile, conform
@@ -161,7 +182,7 @@ export default function ConfidentialitatePage() {
           </section>
 
           <section>
-            <h2 className="text-base font-bold text-gray-900 dark:text-white mb-3">8. Autoritatea de supraveghere</h2>
+            <h2 className="text-base font-bold text-gray-900 dark:text-white mb-3">9. Autoritatea de supraveghere</h2>
             <p>
               Aveți dreptul de a depune o plângere la{" "}
               <strong>

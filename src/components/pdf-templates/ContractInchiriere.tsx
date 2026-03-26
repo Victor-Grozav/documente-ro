@@ -222,7 +222,7 @@ export default function ContractInchiriere({ data: rawData }: Props) {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>V. Obligațiile Locatorului</Text>
           <Text style={styles.paragraph}>
-            {f("Locatorul se obligă: să predea proprietatea în stare corespunzătoare folosinței convenite; să asigure folosința liniștită și utilă a proprietății pe toată durata contractului; să efectueze reparațiile capitale (structurale și majore) necesare, conform art. 1788 Cod Civil; să nu împiedice sau să tulbure folosința normală a proprietății.")}
+            {f("Locatorul se obligă: să predea proprietatea în stare corespunzătoare folosinței convenite; să asigure folosința liniștită și utilă a proprietății pe toată durata contractului; să efectueze reparațiile capitale (structurale și majore) necesare, conform art. 1786 alin. 1 lit. b Cod Civil; să nu împiedice sau să tulbure folosința normală a proprietății.")}
           </Text>
         </View>
 
@@ -241,7 +241,7 @@ export default function ContractInchiriere({ data: rawData }: Props) {
             {f("Oricare dintre părți poate rezilia prezentul contract înainte de termen, cu un preaviz scris de minimum 30 de zile transmis celeilalte părți.")}
           </Text>
           <Text style={styles.paragraph}>
-            {f("Rezilierea de drept (fără preaviz) intervine în cazul: neachitării chiriei timp de 2 luni consecutive; utilizării proprietății contrar destinației sau fără acordul Locatorului; producerii de degradări grave ale proprietății; subînchirierii fără acord scris.")}
+            {f("Rezilierea de drept (pact comisoriu, art. 1553 Cod Civil) intervine în cazul: neachitării chiriei timp de 2 luni consecutive; utilizării proprietății contrar destinației sau fără acordul Locatorului; producerii de degradări grave ale proprietății; subînchirierii fără acord scris.")}
           </Text>
           <Text style={styles.paragraph}>
             {f("La data rezilierii, Locatarul este obligat să elibereze proprietatea și să o predea Locatorului pe baza unui proces-verbal de predare-primire.")}
@@ -255,7 +255,7 @@ export default function ContractInchiriere({ data: rawData }: Props) {
             {f("Locatorul are obligația legală de a înregistra prezentul contract la organul fiscal competent (ANAF) în termen de 30 de zile de la data semnării și de a declara veniturile din chirii, conform art. 120 din Codul Fiscal.")}
           </Text>
           <Text style={styles.paragraph}>
-            {f("La expirarea duratei contractului, dacă Locatarul continuă să folosească proprietatea fără obiecție din partea Locatorului timp de 30 de zile, contractul se consideră reînnoit pe perioadă nedeterminată, în condițiile art. 1828 din Codul Civil (tacita reconducțiune).")}
+            {f("La expirarea duratei contractului, dacă Locatarul continuă să dețină bunul și să își îndeplinească obligațiile fără ca Locatorul să se opună, contractul se consideră reînnoit pe perioadă nedeterminată, în condițiile art. 1828 din Codul Civil (tacita reconducțiune).")}
           </Text>
           <Text style={styles.paragraph}>
             {f("Prezentul contract este guvernat de dispozițiile art. 1777-1850 din Codul Civil român. Este încheiat sub semnătură privată, în două exemplare originale, câte unul pentru fiecare parte. Orice modificare se face prin act adițional semnat de ambele părți. Litigiile vor fi soluționate de instanțele competente din România.")}

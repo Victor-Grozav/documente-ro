@@ -185,7 +185,8 @@ export default function ContractVanzareCumparare({ data: rawData }: Props) {
   const pretNumar = parseFloat(data.pret) || 0;
   const pretInt = Math.floor(pretNumar);
   const pretLitere = numarInLitere(pretInt);
-  const pretDe = pretInt >= 20 ? " de" : ""; // "de" particle for numerals >= 20
+  // "de" particle only for exact multiples of 10 (20, 30, 100, 1000 etc.), NOT for compound numerals (21, 25, 125 etc.)
+  const pretDe = (pretInt >= 20 && pretInt % 10 === 0) ? " de" : "";
   // RON: singular "leu" for 1, plural "lei" for 2+; EUR/USD: invariable code
   const monedaLitere = data.moneda === "RON" ? (pretInt === 1 ? "leu" : "lei") : data.moneda;
   const modalitateDisplay = MODALITATE_PLATA_DISPLAY[data.modalitataPlata] ?? `prin ${data.modalitataPlata}`;
@@ -343,7 +344,7 @@ export default function ContractVanzareCumparare({ data: rawData }: Props) {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>VI. Obligațiile Părților</Text>
           <Text style={styles.paragraph}>
-            <Text style={styles.bold}>{f("Vânzătorul")}</Text>{f(" se obligă să predea bunul la locația și în condițiile stabilite prin prezentul contract și să îl garanteze pe Cumpărător contra evicțiunii și viciilor ascunse, conform dispozițiilor Codului Civil român. Cumpărătorul este obligat să denunțe viciile ascunse în termen de 6 luni de la descoperire, termen rezonabil în sensul art. 1713 Cod Civil. Riscul pieirii fortuite a bunului trece la Cumpărător la momentul predării efective (art. 1274 și art. 1755 Cod Civil).")}
+            <Text style={styles.bold}>{f("Vânzătorul")}</Text>{f(" se obligă să predea bunul la locația și în condițiile stabilite prin prezentul contract și să îl garanteze pe Cumpărător contra evicțiunii și viciilor ascunse, conform dispozițiilor Codului Civil român. Cumpărătorul este obligat să denunțe viciile ascunse într-un termen rezonabil de la data descoperirii, conform art. 1709 Cod Civil. Riscul pieirii fortuite a bunului trece la Cumpărător la momentul predării efective (art. 1274 Cod Civil).")}
           </Text>
           <Text style={styles.paragraph}>
             <Text style={styles.bold}>Cumpărătorul</Text> se

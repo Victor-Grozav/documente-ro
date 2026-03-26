@@ -166,9 +166,9 @@ export default function Imputernicire({ data: rawData }: Props) {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>V. Clauze Finale</Text>
           <Text style={styles.paragraph}>
-            Prezenta împuternicire constituie un mandat special, acordat cu titlu
-            gratuit, pentru actele și operațiunile expres indicate la Art. III,
-            conform art. 2010 și art. 2016 din Codul Civil român.
+            Prezenta împuternicire constituie un mandat special pentru actele și
+            operațiunile expres indicate la Art. III, conform art. 2010 și
+            art. 2016 din Codul Civil român.
           </Text>
           <Text style={styles.paragraph}>
             {f("Mandatarul este obligat să acționeze în limitele împuternicirii și exclusiv în interesul Mandantului, să dea socoteală de îndeplinirea mandatului și să remită Mandantului tot ceea ce a primit în executarea mandatului (art. 2019 Cod Civil).")}

@@ -105,12 +105,14 @@ const EMPTY_ROWS = 10;
 export default function ProcesVerbalPredare({ data: rawData }: Props) {
   const data = fixData(rawData);
   return (
-    <Document title="Proces Verbal de Predare-Primire" author="FaraNotar.ro" creator="FaraNotar.ro">
+    <Document title="Proces-Verbal de Predare-Primire" author="FaraNotar.ro" creator="FaraNotar.ro">
       <Page size="A4" style={styles.page}>
-        <Text style={styles.title}>Proces Verbal de Predare-Primire</Text>
-        <Text style={styles.subtitle}>
-          Anexă la Contractul de Închiriere din {data.dataContract} · {data.proprietateAdresa}
-        </Text>
+        <Text style={styles.title}>Proces-Verbal de Predare-Primire</Text>
+        {data.dataContract && (
+          <Text style={styles.subtitle}>
+            Anexă la Contractul de Închiriere din {data.dataContract} · {data.proprietateAdresa}
+          </Text>
+        )}
         <Text style={styles.subtitle}>
           Încheiat astăzi, {data.data}, în {data.locul}
         </Text>
@@ -132,7 +134,7 @@ export default function ProcesVerbalPredare({ data: rawData }: Props) {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>II. Obiectul</Text>
           <Text style={styles.paragraph}>
-            Prezentul proces verbal atestă predarea de către Locator și preluarea
+            Prezentul proces-verbal atestă predarea de către Locator și preluarea
             de către Locatar a proprietății situate la adresa:{" "}
             <Text style={styles.bold}>{data.proprietateAdresa}</Text>, în baza
             Contractului de închiriere încheiat la data de{" "}
@@ -223,7 +225,7 @@ export default function ProcesVerbalPredare({ data: rawData }: Props) {
         {/* VII. Mențiune exemplare */}
         <View style={styles.section}>
           <Text style={styles.paragraph}>
-            Prezentul proces verbal face parte integrantă din contractul de închiriere
+            Prezentul proces-verbal face parte integrantă din contractul de închiriere
             încheiat la data de <Text style={styles.bold}>{data.dataContract}</Text> și
             s-a întocmit în două exemplare originale, câte unul pentru fiecare parte.
           </Text>

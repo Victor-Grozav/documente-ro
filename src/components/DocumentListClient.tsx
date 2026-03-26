@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { ArrowRight, Clock, Eye, X, Handshake, UserCheck, Lock, Home, ClipboardList, Briefcase } from "lucide-react";
@@ -25,7 +25,7 @@ const TITLURI: Record<PreviewDocumentType, string> = {
   "imputernicire": "Împuternicire / Procură",
   "acord-confidentialitate": "Acord de Confidențialitate (NDA)",
   "contract-inchiriere": "Contract de Închiriere",
-  "proces-verbal-predare": "Proces Verbal de Predare-Primire",
+  "proces-verbal-predare": "Proces-Verbal de Predare-Primire",
   "contract-prestari-servicii": "Contract de Prestări Servicii",
 };
 
@@ -91,7 +91,7 @@ const CATEGORII: Categorie[] = [
       },
       {
         slug: "proces-verbal-predare",
-        titlu: "Proces Verbal de Predare-Primire",
+        titlu: "Proces-Verbal de Predare-Primire",
         descriere: "Document la predarea locuinței — stare proprietate, contoare, chei.",
         pret: "10 lei",
         gratuitCu: "contract-inchiriere",
@@ -163,6 +163,30 @@ const CATEGORII: Categorie[] = [
 
 export default function DocumentListClient() {
   const [preview, setPreview] = useState<PreviewDocumentType | null>(null);
+  const modalRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!preview) return;
+    const modal = modalRef.current;
+    if (!modal) return;
+    const focusable = modal.querySelectorAll<HTMLElement>(
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    );
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    first?.focus();
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape") { setPreview(null); return; }
+      if (e.key !== "Tab") return;
+      if (e.shiftKey) {
+        if (document.activeElement === first) { e.preventDefault(); last?.focus(); }
+      } else {
+        if (document.activeElement === last) { e.preventDefault(); first?.focus(); }
+      }
+    }
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [preview]);
 
   return (
     <>
@@ -211,9 +235,9 @@ export default function DocumentListClient() {
                       <button
                         onClick={() => setPreview(doc.slug)}
                         className="p-2 text-gray-300 dark:text-slate-600 hover:text-gray-500 dark:hover:text-slate-300 hover:bg-gray-50 dark:hover:bg-slate-800 rounded-lg transition-colors"
-                        title="Previzualizează documentul"
+                        aria-label={`Previzualizează ${doc.titlu}`}
                       >
-                        <Eye className="w-4 h-4" />
+                        <Eye className="w-4 h-4" aria-hidden="true" />
                       </button>
                       <Link
                         href={`/documente/${doc.slug}`}
@@ -257,6 +281,10 @@ export default function DocumentListClient() {
           onClick={() => setPreview(null)}
         >
           <div
+            ref={modalRef}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="modal-title"
             className="bg-white dark:bg-slate-900 rounded-2xl w-full max-w-3xl flex flex-col shadow-2xl"
             style={{ height: "88vh" }}
             onClick={(e) => e.stopPropagation()}
@@ -264,7 +292,7 @@ export default function DocumentListClient() {
             <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100 dark:border-slate-800 shrink-0">
               <div>
                 <p className="text-xs text-gray-400 dark:text-slate-500 uppercase tracking-wide font-medium mb-0.5">Model document</p>
-                <h2 className="font-bold text-gray-900 dark:text-white text-sm">{TITLURI[preview]}</h2>
+                <h2 id="modal-title" className="font-bold text-gray-900 dark:text-white text-sm">{TITLURI[preview]}</h2>
               </div>
               <button
                 onClick={() => setPreview(null)}

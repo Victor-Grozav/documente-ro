@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import ContractInchiriereForm from "@/components/ContractInchiriereForm";
 import DocumentDisclaimer from "@/components/DocumentDisclaimer";
 import JsonLd from "@/components/JsonLd";
@@ -56,9 +57,9 @@ export default function ContractInchirierePage() {
       ]} />
       <div className="max-w-2xl mx-auto">
         <div className="text-center mb-8">
-          <a href="/documente" className="text-blue-600 text-sm font-medium hover:underline">
+          <Link href="/documente" className="text-blue-600 text-sm font-medium hover:underline">
             ← Documente
-          </a>
+          </Link>
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white mt-4 mb-2">
             Contract de Închiriere
           </h1>
@@ -71,7 +72,7 @@ export default function ContractInchirierePage() {
         <div className="flex items-center gap-3 bg-green-50 dark:bg-green-950 border border-green-200 dark:border-green-800 rounded-2xl px-5 py-3.5 mb-4 text-sm">
           <span className="text-lg shrink-0">🎁</span>
           <p className="text-green-800 dark:text-green-300">
-            <span className="font-semibold">Inclus gratuit:</span> Proces Verbal de Predare-Primire precompletat cu datele din contract — primit automat după plată.
+            <span className="font-semibold">Inclus gratuit:</span> Proces-Verbal de Predare-Primire precompletat cu datele din contract — primit automat după plată.
           </p>
         </div>
 

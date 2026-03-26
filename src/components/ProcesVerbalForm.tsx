@@ -157,7 +157,7 @@ export default function ProcesVerbalForm() {
       <div className="bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <p className="font-semibold text-gray-900 dark:text-white">Proces Verbal de Predare-Primire</p>
+            <p className="font-semibold text-gray-900 dark:text-white">Proces-Verbal de Predare-Primire</p>
             <p className="text-sm text-gray-500 dark:text-slate-400">PDF cu spații pentru contoare și bunuri</p>
           </div>
           <div className="text-right">
