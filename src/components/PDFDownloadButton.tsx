@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { DocumentProps } from "@react-pdf/renderer";
+import type { DocumentProps } from "@react-pdf/renderer";
 import React from "react";
 
 const PDFDownloadButtonInner = dynamic(
