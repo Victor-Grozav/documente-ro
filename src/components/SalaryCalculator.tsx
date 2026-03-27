@@ -75,11 +75,13 @@ export default function SalaryCalculator() {
     <div className="w-full max-w-2xl mx-auto">
       {/* Input section */}
       <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-gray-200 dark:border-slate-700 p-6 mb-4">
-        <label className="block text-sm font-medium text-gray-600 dark:text-slate-400 mb-1">
+        <label htmlFor="salariu-brut" className="block text-sm font-medium text-gray-600 dark:text-slate-400 mb-1">
           Salariu brut lunar
         </label>
         <div className="flex items-center gap-3 mb-4">
           <input
+            id="salariu-brut"
+            name="salariu-brut"
             type="text"
             inputMode="numeric"
             value={inputValue}
@@ -90,12 +92,15 @@ export default function SalaryCalculator() {
           <span className="text-xl font-semibold text-gray-400 dark:text-slate-500 shrink-0">RON</span>
         </div>
         <input
+          id="slider-brut"
+          name="slider-brut"
           type="range"
           min={1000}
           max={50000}
           step={100}
           value={brut}
           onChange={handleSlider}
+          aria-label="Ajustează salariul brut"
           className="w-full accent-blue-500"
         />
         <div className="flex justify-between text-xs text-gray-400 dark:text-slate-500 mt-1">
