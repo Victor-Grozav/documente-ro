@@ -19,6 +19,12 @@ export const metadata: Metadata = {
     "Generează contracte legale PDF instant — vânzare, închiriere, împrumut, procuri. Calculatoare de salariu brut-net, impozit mașină, șomaj și concediu medical. Fără notar, fără cont.",
   keywords:
     "fara notar, contracte online, documente legale romania, calculator salariu brut net, impozit masina, contract vanzare cumparare",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+  },
   openGraph: {
     title: "FaraNotar.ro — Contracte & Calculatoare pentru România",
     description:
@@ -27,12 +33,21 @@ export const metadata: Metadata = {
     siteName: "FaraNotar.ro",
     locale: "ro_RO",
     type: "website",
+    images: [
+      {
+        url: "https://faranotar.ro/icon.svg",
+        width: 512,
+        height: 512,
+        alt: "FaraNotar.ro",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "FaraNotar.ro — Contracte & Calculatoare pentru România",
     description:
       "Documente legale și calculatoare financiare pentru români. Fără notar, fără birou, fără așteptare.",
+    images: ["https://faranotar.ro/icon.svg"],
   },
 };
 
