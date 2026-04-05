@@ -123,6 +123,49 @@ export interface ContractPrestariServiciiData {
   locul: string;
 }
 
+export interface CerereConceduData {
+  angajatorNume: string;
+  angajatNume: string;
+  angajatFunctia: string;
+  departament: string;
+  tipConcediu: "odihnă" | "fără plată" | "studii";
+  dataInceput: string;
+  dataSfarsit: string;
+  nrZile: string;
+  observatii: string;
+  data: string;
+  locul: string;
+}
+
+export interface CerereDemisieData {
+  angajatNume: string;
+  angajatFunctia: string;
+  angajatorNume: string;
+  preavizZile: string;
+  dataUltimaZi: string;
+  motivDemisie: string;
+  data: string;
+  locul: string;
+}
+
+export interface AdeverintaSalariatData {
+  angajatorNume: string;
+  angajatorCUI: string;
+  angajatorAdresa: string;
+  angajatorReprezentant: string;
+  angajatNume: string;
+  angajatCNP: string;
+  angajatFunctia: string;
+  departament: string;
+  dataAngajarii: string;
+  includeSalariu: boolean;
+  salariu: string;
+  scopAdeverinta: string;
+  numarAdeverinta: string;
+  data: string;
+  locul: string;
+}
+
 export interface ProcesVerbalData {
   locatorNume: string;
   locatarNume: string;

@@ -10,6 +10,8 @@ Font.register({
   ],
 });
 
+Font.registerHyphenationCallback((word) => [word]);
+
 /**
  * Inserts Zero-Width Non-Joiner (U+200C) between 'f' and 'i'/'l' to prevent
  * OpenType GSUB ligature substitution in fontkit (used by @react-pdf/renderer).

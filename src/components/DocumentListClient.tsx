@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import { ArrowRight, Clock, Eye, X, Handshake, UserCheck, Lock, Home, ClipboardList, Briefcase } from "lucide-react";
+import { ArrowRight, Clock, Eye, X, Handshake, UserCheck, Lock, Home, ClipboardList, Briefcase, CalendarDays, LogOut, FileText } from "lucide-react";
 import type { PreviewDocumentType } from "@/components/PreviewPDFViewerInner";
 import type { LucideIcon } from "lucide-react";
 
@@ -27,6 +27,9 @@ const TITLURI: Record<PreviewDocumentType, string> = {
   "contract-inchiriere": "Contract de Închiriere",
   "proces-verbal-predare": "Proces-Verbal de Predare-Primire",
   "contract-prestari-servicii": "Contract de Prestări Servicii",
+  "cerere-concediu": "Cerere de Concediu de Odihnă",
+  "cerere-demisie": "Cerere de Demisie",
+  "adeverinta-salariat": "Adeverință de Salariat",
 };
 
 interface DocConfig {
@@ -121,6 +124,56 @@ const CATEGORII: Categorie[] = [
         priceBg: "bg-blue-50",
         priceColor: "text-blue-700",
         ctaColor: "text-blue-600",
+        disponibil: true,
+        badge: "Nou",
+      },
+    ],
+  },
+  {
+    label: "HR & Angajați",
+    items: [
+      {
+        slug: "cerere-concediu",
+        titlu: "Cerere de Concediu de Odihnă",
+        descriere: "Model completat automat cu perioadă, număr de zile și rubrică de aprobare angajator.",
+        pret: "10 lei",
+        icon: CalendarDays,
+        iconBg: "bg-teal-100",
+        iconColor: "text-teal-600",
+        hoverBorder: "hover:border-teal-300",
+        priceBg: "bg-teal-50",
+        priceColor: "text-teal-700",
+        ctaColor: "text-teal-600",
+        disponibil: true,
+        badge: "Nou",
+      },
+      {
+        slug: "cerere-demisie",
+        titlu: "Cerere de Demisie",
+        descriere: "Notificare demisie conform Codului Muncii, cu perioadă de preaviz și confirmare primire.",
+        pret: "15 lei",
+        icon: LogOut,
+        iconBg: "bg-amber-100",
+        iconColor: "text-amber-600",
+        hoverBorder: "hover:border-amber-300",
+        priceBg: "bg-amber-50",
+        priceColor: "text-amber-700",
+        ctaColor: "text-amber-600",
+        disponibil: true,
+        badge: "Nou",
+      },
+      {
+        slug: "adeverinta-salariat",
+        titlu: "Adeverință de Salariat",
+        descriere: "Pentru bancă, viză sau chirie. Include funcția, data angajării și opțional salariul.",
+        pret: "10 lei",
+        icon: FileText,
+        iconBg: "bg-cyan-100",
+        iconColor: "text-cyan-600",
+        hoverBorder: "hover:border-cyan-300",
+        priceBg: "bg-cyan-50",
+        priceColor: "text-cyan-700",
+        ctaColor: "text-cyan-600",
         disponibil: true,
         badge: "Nou",
       },

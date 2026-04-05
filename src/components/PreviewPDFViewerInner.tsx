@@ -7,10 +7,13 @@ import AcordConfidentialitate from "@/components/pdf-templates/AcordConfidential
 import ContractInchiriere from "@/components/pdf-templates/ContractInchiriere";
 import ProcesVerbalPredare from "@/components/pdf-templates/ProcesVerbalPredare";
 import ContractPrestariServicii from "@/components/pdf-templates/ContractPrestariServicii";
+import CerereConcediu from "@/components/pdf-templates/CerereConcediu";
+import CerereDemisie from "@/components/pdf-templates/CerereDemisie";
+import AdeverintaSalariat from "@/components/pdf-templates/AdeverintaSalariat";
 import {
   ContractVanzareData, ImputernicireData,
   AcordConfidentialitateData, ContractInchiriereData, ProcesVerbalData,
-  ContractPrestariServiciiData,
+  ContractPrestariServiciiData, CerereConceduData, CerereDemisieData, AdeverintaSalariatData,
 } from "@/lib/types";
 
 const SAMPLE_VANZARE: ContractVanzareData = {
@@ -97,6 +100,49 @@ const SAMPLE_PROCES_VERBAL: ProcesVerbalData = {
   locul: "Cluj-Napoca",
 };
 
+const SAMPLE_CERERE_CONCEDIU: CerereConceduData = {
+  angajatorNume: "SC Exemplu SRL",
+  angajatNume: "Popescu Ion",
+  angajatFunctia: "Programator",
+  departament: "IT",
+  tipConcediu: "odihnă",
+  dataInceput: "14.07.2026",
+  dataSfarsit: "25.07.2026",
+  nrZile: "10",
+  observatii: "",
+  data: "05.04.2026",
+  locul: "Cluj-Napoca",
+};
+
+const SAMPLE_CERERE_DEMISIE: CerereDemisieData = {
+  angajatNume: "Ionescu Maria",
+  angajatFunctia: "Contabil",
+  angajatorNume: "SC Exemplu SRL",
+  preavizZile: "20",
+  dataUltimaZi: "30.04.2026",
+  motivDemisie: "Motive personale.",
+  data: "05.04.2026",
+  locul: "București",
+};
+
+const SAMPLE_ADEVERINTA: AdeverintaSalariatData = {
+  angajatorNume: "SC Exemplu Tech SRL",
+  angajatorCUI: "RO12345678",
+  angajatorAdresa: "Str. Inovației nr. 1, Cluj-Napoca, Cluj",
+  angajatorReprezentant: "Popescu Ion, Director General",
+  angajatNume: "Ionescu Maria",
+  angajatCNP: "2920520400005",
+  angajatFunctia: "Contabil",
+  departament: "Financiar",
+  dataAngajarii: "01.03.2023",
+  includeSalariu: true,
+  salariu: "4500",
+  scopAdeverinta: "bancă",
+  numarAdeverinta: "42/2026",
+  data: "05.04.2026",
+  locul: "Cluj-Napoca",
+};
+
 const SAMPLE_INCHIRIERE: ContractInchiriereData = {
   locatorNume: "Popescu Ion", locatorCNP: "1850315120003",
   locatorCI: "AB 123456", locatorAdresa: "Str. Libertății nr. 10, Cluj-Napoca, Cluj",
@@ -117,7 +163,10 @@ export type PreviewDocumentType =
   | "acord-confidentialitate"
   | "contract-inchiriere"
   | "proces-verbal-predare"
-  | "contract-prestari-servicii";
+  | "contract-prestari-servicii"
+  | "cerere-concediu"
+  | "cerere-demisie"
+  | "adeverinta-salariat";
 
 interface Props {
   documentType: PreviewDocumentType;
@@ -131,6 +180,9 @@ export default function PreviewPDFViewerInner({ documentType }: Props) {
     "contract-inchiriere": <ContractInchiriere data={SAMPLE_INCHIRIERE} />,
     "proces-verbal-predare": <ProcesVerbalPredare data={SAMPLE_PROCES_VERBAL} />,
     "contract-prestari-servicii": <ContractPrestariServicii data={SAMPLE_PRESTARI} />,
+    "cerere-concediu": <CerereConcediu data={SAMPLE_CERERE_CONCEDIU} />,
+    "cerere-demisie": <CerereDemisie data={SAMPLE_CERERE_DEMISIE} />,
+    "adeverinta-salariat": <AdeverintaSalariat data={SAMPLE_ADEVERINTA} />,
   };
 
   return (

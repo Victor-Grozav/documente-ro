@@ -75,7 +75,7 @@ export default function Image() {
         {/* Pills */}
         <div style={{ display: "flex", gap: "14px" }}>
           {[
-            "✓  5 tipuri de contracte",
+            "✓  9 documente disponibile",
             "✓  4 calculatoare gratuite",
             "✓  PDF instant",
           ].map((tag) => (

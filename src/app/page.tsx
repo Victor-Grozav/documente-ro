@@ -35,7 +35,7 @@ export default function HomePage() {
             "lowPrice": "10",
             "highPrice": "25",
             "priceCurrency": "RON",
-            "offerCount": "6",
+            "offerCount": "9",
           },
           "inLanguage": "ro",
         },
@@ -78,8 +78,8 @@ export default function HomePage() {
           </div>
           <div className="w-px bg-gray-200 dark:bg-slate-700" />
           <div className="text-center">
-            <p className="text-2xl font-bold text-gray-900 dark:text-white">5</p>
-            <p className="text-xs text-gray-500 dark:text-slate-400 mt-0.5">tipuri de contracte</p>
+            <p className="text-2xl font-bold text-gray-900 dark:text-white">9</p>
+            <p className="text-xs text-gray-500 dark:text-slate-400 mt-0.5">documente disponibile</p>
           </div>
           <div className="w-px bg-gray-200 dark:bg-slate-700" />
           <div className="text-center">

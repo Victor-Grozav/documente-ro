@@ -26,6 +26,18 @@ const PRODUSE: Record<string, { name: string; price: number }> = {
     name: "Contract de Prestari Servicii",
     price: 2500, // 25 RON in bani
   },
+  "cerere-concediu": {
+    name: "Cerere de Concediu de Odihna",
+    price: 1000, // 10 RON in bani
+  },
+  "cerere-demisie": {
+    name: "Cerere de Demisie",
+    price: 1500, // 15 RON in bani
+  },
+  "adeverinta-salariat": {
+    name: "Adeverinta de Salariat",
+    price: 1000, // 10 RON in bani
+  },
 };
 
 export async function POST(req: NextRequest) {
