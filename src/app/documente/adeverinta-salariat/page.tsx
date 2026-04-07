@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import AdeverintaSalariatForm from "@/components/AdeverintaSalariatForm";
 import JsonLd from "@/components/JsonLd";
+import SplitPageLayout from "@/components/SplitPageLayout";
 
 export const metadata: Metadata = {
   title: "Adeverință de Salariat Model 2026 — PDF instant | FaraNotar.ro",
@@ -52,7 +53,7 @@ export default function AdeverintaSalariatPage() {
           ],
         },
       ]} />
-      <div className="max-w-2xl mx-auto">
+      <SplitPageLayout documentType="adeverinta-salariat">
         <div className="text-center mb-8">
           <Link href="/documente" className="text-blue-600 text-sm font-medium hover:underline">
             ← Documente
@@ -76,7 +77,7 @@ export default function AdeverintaSalariatPage() {
         </div>
 
         <AdeverintaSalariatForm />
-      </div>
+      </SplitPageLayout>
     </main>
   );
 }

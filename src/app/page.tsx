@@ -52,49 +52,54 @@ export default function HomePage() {
           },
         },
       ]} />
-      <div className="max-w-2xl w-full text-center">
+      <div className="max-w-5xl w-full">
 
-        {/* Badge */}
-        <div className="inline-flex items-center gap-1.5 bg-green-50 dark:bg-green-950 border border-green-200 dark:border-green-800 text-green-700 dark:text-green-400 text-xs font-semibold px-3 py-1 rounded-full mb-4">
-          <span className="w-1.5 h-1.5 bg-green-500 rounded-full" />
-          Actualizat 2026
+        {/* Hero — kept narrow for readability */}
+        <div className="max-w-2xl mx-auto text-center">
+
+          {/* Badge */}
+          <div className="inline-flex items-center gap-1.5 bg-green-50 dark:bg-green-950 border border-green-200 dark:border-green-800 text-green-700 dark:text-green-400 text-xs font-semibold px-3 py-1 rounded-full mb-4">
+            <span className="w-1.5 h-1.5 bg-green-500 rounded-full" />
+            Actualizat 2026
+          </div>
+
+          {/* Hero */}
+          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-3">
+            Contracte fără notar,{" "}
+            <span className="text-green-600 dark:text-green-400">în 5 minute.</span>
+          </h1>
+          <p className="text-gray-500 dark:text-slate-400 text-lg mb-8">
+            Contracte legale și calculatoare financiare pentru România —{" "}
+            <span className="text-gray-700 dark:text-slate-200 font-medium">simplu, conform legii, fără deplasări.</span>
+          </p>
+
+          {/* Stats */}
+          <div className="flex justify-center gap-8 mb-10">
+            <div className="text-center">
+              <p className="text-2xl font-bold text-gray-900 dark:text-white">17</p>
+              <p className="text-xs text-gray-500 dark:text-slate-400 mt-0.5">unelte disponibile</p>
+            </div>
+            <div className="w-px bg-gray-200 dark:bg-slate-700" />
+            <div className="text-center">
+              <p className="text-2xl font-bold text-gray-900 dark:text-white">9</p>
+              <p className="text-xs text-gray-500 dark:text-slate-400 mt-0.5">documente disponibile</p>
+            </div>
+            <div className="w-px bg-gray-200 dark:bg-slate-700" />
+            <div className="text-center">
+              <p className="text-2xl font-bold text-gray-900 dark:text-white">Fără cont</p>
+              <p className="text-xs text-gray-500 dark:text-slate-400 mt-0.5">necesar</p>
+            </div>
+          </div>
+
         </div>
 
-        {/* Hero */}
-        <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-3">
-          Contracte fără notar,{" "}
-          <span className="text-green-600 dark:text-green-400">în 5 minute.</span>
-        </h1>
-        <p className="text-gray-500 dark:text-slate-400 text-lg mb-8">
-          Contracte legale și calculatoare financiare pentru România —{" "}
-          <span className="text-gray-700 dark:text-slate-200 font-medium">simplu, conform legii, fără deplasări.</span>
-        </p>
-
-        {/* Stats */}
-        <div className="flex justify-center gap-8 mb-10">
-          <div className="text-center">
-            <p className="text-2xl font-bold text-gray-900 dark:text-white">17</p>
-            <p className="text-xs text-gray-500 dark:text-slate-400 mt-0.5">unelte disponibile</p>
-          </div>
-          <div className="w-px bg-gray-200 dark:bg-slate-700" />
-          <div className="text-center">
-            <p className="text-2xl font-bold text-gray-900 dark:text-white">9</p>
-            <p className="text-xs text-gray-500 dark:text-slate-400 mt-0.5">documente disponibile</p>
-          </div>
-          <div className="w-px bg-gray-200 dark:bg-slate-700" />
-          <div className="text-center">
-            <p className="text-2xl font-bold text-gray-900 dark:text-white">Fără cont</p>
-            <p className="text-xs text-gray-500 dark:text-slate-400 mt-0.5">necesar</p>
-          </div>
-        </div>
-
-        {/* Grid */}
-        <div className="grid gap-4 sm:grid-cols-2">
+        {/* Bento Grid */}
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
 
           {/* Featured — Generator Contracte (full width) */}
           <Link
             href="/documente"
-            className="group sm:col-span-2 bg-white dark:bg-slate-900 rounded-2xl border-2 border-green-200 dark:border-green-800 p-6 text-left hover:border-green-400 dark:hover:border-green-600 hover:shadow-md transition-all flex flex-col sm:flex-row sm:items-center gap-4"
+            className="group sm:col-span-2 lg:col-span-3 bg-white dark:bg-slate-900 rounded-2xl border-2 border-green-200 dark:border-green-800 p-6 text-left hover:border-green-400 dark:hover:border-green-600 hover:shadow-md hover:-translate-y-0.5 transition-all flex flex-col sm:flex-row sm:items-center gap-4"
           >
             <div className="flex items-start gap-4 flex-1">
               <div className="w-12 h-12 bg-green-100 dark:bg-green-950 rounded-xl flex items-center justify-center shrink-0">
@@ -115,30 +120,40 @@ export default function HomePage() {
             </span>
           </Link>
 
-          {/* Calculator Brut-Net — Popular */}
+          {/* Calculator Brut-Net — Popular (2 cols on desktop) */}
           <Link
             href="/convertor-brut-net"
-            className="group relative bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6 text-left hover:border-blue-300 dark:hover:border-blue-600 hover:shadow-md transition-all"
+            className="group relative bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6 text-left hover:border-blue-300 dark:hover:border-blue-600 hover:shadow-md hover:-translate-y-0.5 transition-all lg:col-span-2 flex flex-col lg:flex-row lg:items-center lg:gap-6 overflow-hidden"
           >
-            <span className="absolute top-4 right-4 bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-400 text-xs font-semibold px-2 py-0.5 rounded-full">
+            <span className="absolute top-4 right-4 lg:hidden bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-400 text-xs font-semibold px-2 py-0.5 rounded-full">
               Popular
             </span>
-            <div className="w-10 h-10 bg-blue-100 dark:bg-blue-950 rounded-xl flex items-center justify-center mb-4">
-              <Calculator className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+            <div className="flex flex-col flex-1">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 bg-blue-100 dark:bg-blue-950 rounded-xl flex items-center justify-center shrink-0">
+                  <Calculator className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                </div>
+                <span className="hidden lg:inline bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-400 text-xs font-semibold px-2 py-0.5 rounded-full">
+                  Popular
+                </span>
+              </div>
+              <h2 className="font-bold text-gray-900 dark:text-white mb-1">Calculator Brut → Net</h2>
+              <p className="text-sm text-gray-500 dark:text-slate-400 mb-4">
+                Salariu net, rețineri CAS/CASS, impozit și cost angajator pentru 2026.
+              </p>
+              <span className="text-blue-600 dark:text-blue-400 text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
+                Calculează gratuit <ArrowRight className="w-4 h-4" />
+              </span>
             </div>
-            <h2 className="font-bold text-gray-900 dark:text-white mb-1">Calculator Brut → Net</h2>
-            <p className="text-sm text-gray-500 dark:text-slate-400 mb-4">
-              Salariu net, rețineri CAS/CASS, impozit și cost angajator pentru 2026.
-            </p>
-            <span className="text-blue-600 dark:text-blue-400 text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
-              Calculează gratuit <ArrowRight className="w-4 h-4" />
-            </span>
+            <div className="hidden lg:flex items-center justify-center shrink-0 w-32 h-24 pointer-events-none select-none">
+              <span className="text-[90px] font-black text-blue-100 dark:text-blue-900 leading-none">%</span>
+            </div>
           </Link>
 
           {/* Calculator Impozit Mașină */}
           <Link
             href="/impozit-masina"
-            className="group relative bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6 text-left hover:border-purple-300 dark:hover:border-purple-600 hover:shadow-md transition-all"
+            className="group relative bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6 text-left hover:border-purple-300 dark:hover:border-purple-600 hover:shadow-md hover:-translate-y-0.5 transition-all"
           >
             <div className="w-10 h-10 bg-purple-100 dark:bg-purple-950 rounded-xl flex items-center justify-center mb-4">
               <Car className="w-5 h-5 text-purple-600 dark:text-purple-400" />
@@ -155,7 +170,7 @@ export default function HomePage() {
           {/* Calculator Șomaj — Nou */}
           <Link
             href="/indemnizatie-somaj"
-            className="group relative bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6 text-left hover:border-teal-300 dark:hover:border-teal-600 hover:shadow-md transition-all"
+            className="group relative bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6 text-left hover:border-teal-300 dark:hover:border-teal-600 hover:shadow-md hover:-translate-y-0.5 transition-all"
           >
             <span className="absolute top-4 right-4 bg-teal-100 dark:bg-teal-950 text-teal-700 dark:text-teal-400 text-xs font-semibold px-2 py-0.5 rounded-full">
               Nou
@@ -175,7 +190,7 @@ export default function HomePage() {
           {/* Calculator Concediu Medical */}
           <Link
             href="/concediu-medical"
-            className="group relative bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6 text-left hover:border-orange-300 dark:hover:border-orange-600 hover:shadow-md transition-all"
+            className="group relative bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6 text-left hover:border-orange-300 dark:hover:border-orange-600 hover:shadow-md hover:-translate-y-0.5 transition-all"
           >
             <div className="w-10 h-10 bg-orange-100 dark:bg-orange-950 rounded-xl flex items-center justify-center mb-4">
               <Stethoscope className="w-5 h-5 text-orange-600 dark:text-orange-400" />
@@ -192,7 +207,7 @@ export default function HomePage() {
           {/* Calculator Dividende 2026 — Nou */}
           <Link
             href="/calculator-dividende-2026"
-            className="group relative bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6 text-left hover:border-emerald-300 dark:hover:border-emerald-600 hover:shadow-md transition-all"
+            className="group relative bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6 text-left hover:border-emerald-300 dark:hover:border-emerald-600 hover:shadow-md hover:-translate-y-0.5 transition-all"
           >
             <span className="absolute top-4 right-4 bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400 text-xs font-semibold px-2 py-0.5 rounded-full">
               Nou
@@ -212,7 +227,7 @@ export default function HomePage() {
           {/* Calculator Impozit Chirii — Nou */}
           <Link
             href="/calculator-impozit-chirii"
-            className="group relative bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6 text-left hover:border-indigo-300 dark:hover:border-indigo-600 hover:shadow-md transition-all"
+            className="group relative bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6 text-left hover:border-indigo-300 dark:hover:border-indigo-600 hover:shadow-md hover:-translate-y-0.5 transition-all"
           >
             <span className="absolute top-4 right-4 bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-400 text-xs font-semibold px-2 py-0.5 rounded-full">
               Nou
@@ -232,7 +247,7 @@ export default function HomePage() {
           {/* Calculator Cost Angajator — Nou */}
           <Link
             href="/calculator-cost-angajator"
-            className="group relative bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6 text-left hover:border-sky-300 dark:hover:border-sky-600 hover:shadow-md transition-all"
+            className="group relative bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6 text-left hover:border-sky-300 dark:hover:border-sky-600 hover:shadow-md hover:-translate-y-0.5 transition-all"
           >
             <span className="absolute top-4 right-4 bg-sky-100 dark:bg-sky-950 text-sky-700 dark:text-sky-400 text-xs font-semibold px-2 py-0.5 rounded-full">
               Nou
@@ -252,7 +267,7 @@ export default function HomePage() {
           {/* Calculator Dobândă Penalizatoare — Nou */}
           <Link
             href="/calculator-dobanda-penalizatoare"
-            className="group relative bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6 text-left hover:border-red-300 dark:hover:border-red-600 hover:shadow-md transition-all"
+            className="group relative bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6 text-left hover:border-red-300 dark:hover:border-red-600 hover:shadow-md hover:-translate-y-0.5 transition-all"
           >
             <span className="absolute top-4 right-4 bg-red-100 dark:bg-red-950 text-red-700 dark:text-red-400 text-xs font-semibold px-2 py-0.5 rounded-full">
               Nou

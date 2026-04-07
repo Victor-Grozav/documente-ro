@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ContractVanzareData } from "@/lib/types";
+import { useReportFormData } from "./SplitPageLayout";
 import { validateCNP, validateCI, validatePret } from "@/lib/validation";
 
 const today = new Date().toLocaleDateString("ro-RO");
@@ -111,6 +112,8 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 
 export default function ContractVanzareForm() {
   const [formData, setFormData] = useState<ContractVanzareData>(defaultData);
+  const reportData = useReportFormData();
+  useEffect(() => { reportData(formData); }, [formData, reportData]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [errors, setErrors] = useState<Record<string, string>>({});

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import CerereConceduForm from "@/components/CerereConceduForm";
 import JsonLd from "@/components/JsonLd";
+import SplitPageLayout from "@/components/SplitPageLayout";
 
 export const metadata: Metadata = {
   title: "Cerere Concediu de Odihnă Model 2026 — PDF instant | FaraNotar.ro",
@@ -52,7 +53,7 @@ export default function CerereConceduPage() {
           ],
         },
       ]} />
-      <div className="max-w-2xl mx-auto">
+      <SplitPageLayout documentType="cerere-concediu">
         <div className="text-center mb-8">
           <Link href="/documente" className="text-blue-600 text-sm font-medium hover:underline">
             ← Documente
@@ -75,7 +76,7 @@ export default function CerereConceduPage() {
         </div>
 
         <CerereConceduForm />
-      </div>
+      </SplitPageLayout>
     </main>
   );
 }

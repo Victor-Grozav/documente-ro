@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import ProcesVerbalForm from "@/components/ProcesVerbalForm";
 import JsonLd from "@/components/JsonLd";
+import SplitPageLayout from "@/components/SplitPageLayout";
 
 export const metadata: Metadata = {
   title: "Proces-Verbal de Predare-Primire Locuință România 2026 — PDF instant",
@@ -54,7 +55,7 @@ export default function ProcesVerbalPage() {
           ],
         },
       ]} />
-      <div className="max-w-2xl mx-auto">
+      <SplitPageLayout documentType="proces-verbal-predare">
         <div className="text-center mb-8">
           <Link href="/documente" className="text-blue-600 text-sm font-medium hover:underline">
             ← Documente
@@ -77,7 +78,7 @@ export default function ProcesVerbalPage() {
         </div>
 
         <ProcesVerbalForm />
-      </div>
+      </SplitPageLayout>
     </main>
   );
 }

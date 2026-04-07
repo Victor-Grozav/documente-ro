@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AdeverintaSalariatData } from "@/lib/types";
+import { useReportFormData } from "./SplitPageLayout";
 
 const today = new Date().toLocaleDateString("ro-RO");
 
@@ -97,6 +98,8 @@ const SCOPURI = [
 
 export default function AdeverintaSalariatForm() {
   const [formData, setFormData] = useState<AdeverintaSalariatData>(defaultData);
+  const reportData = useReportFormData();
+  useEffect(() => { reportData(formData); }, [formData, reportData]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 

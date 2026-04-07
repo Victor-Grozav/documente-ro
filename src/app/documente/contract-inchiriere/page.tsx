@@ -3,6 +3,7 @@ import Link from "next/link";
 import ContractInchiriereForm from "@/components/ContractInchiriereForm";
 import DocumentDisclaimer from "@/components/DocumentDisclaimer";
 import JsonLd from "@/components/JsonLd";
+import SplitPageLayout from "@/components/SplitPageLayout";
 
 export const metadata: Metadata = {
   title: "Contract de Închiriere România 2026 — PDF instant",
@@ -55,7 +56,7 @@ export default function ContractInchirierePage() {
           ],
         },
       ]} />
-      <div className="max-w-2xl mx-auto">
+      <SplitPageLayout documentType="contract-inchiriere">
         <div className="text-center mb-8">
           <Link href="/documente" className="text-blue-600 text-sm font-medium hover:underline">
             ← Documente
@@ -84,7 +85,7 @@ export default function ContractInchirierePage() {
         </div>
 
         <ContractInchiriereForm />
-      </div>
+      </SplitPageLayout>
     </main>
   );
 }

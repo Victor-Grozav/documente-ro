@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ContractPrestariServiciiData } from "@/lib/types";
+import { useReportFormData } from "./SplitPageLayout";
 import { validateCNP, validateCI, validatePret, validateDate } from "@/lib/validation";
 
 const today = new Date().toLocaleDateString("ro-RO");
@@ -185,6 +186,8 @@ function TipSelector({
 
 export default function ContractPrestariServiciiForm() {
   const [formData, setFormData] = useState<ContractPrestariServiciiData>(defaultData);
+  const reportData = useReportFormData();
+  useEffect(() => { reportData(formData); }, [formData, reportData]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [errors, setErrors] = useState<Record<string, string>>({});

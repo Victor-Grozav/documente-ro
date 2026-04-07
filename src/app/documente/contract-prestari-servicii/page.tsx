@@ -3,6 +3,7 @@ import Link from "next/link";
 import ContractPrestariServiciiForm from "@/components/ContractPrestariServiciiForm";
 import DocumentDisclaimer from "@/components/DocumentDisclaimer";
 import JsonLd from "@/components/JsonLd";
+import SplitPageLayout from "@/components/SplitPageLayout";
 
 export const metadata: Metadata = {
   title: "Contract de Prestări Servicii România 2026 — PDF instant",
@@ -55,7 +56,7 @@ export default function ContractPrestariServiciiPage() {
           ],
         },
       ]} />
-      <div className="max-w-2xl mx-auto">
+      <SplitPageLayout documentType="contract-prestari-servicii">
         <div className="text-center mb-8">
           <Link href="/documente" className="text-blue-600 text-sm font-medium hover:underline">
             ← Documente
@@ -76,7 +77,7 @@ export default function ContractPrestariServiciiPage() {
         </div>
 
         <ContractPrestariServiciiForm />
-      </div>
+      </SplitPageLayout>
     </main>
   );
 }
