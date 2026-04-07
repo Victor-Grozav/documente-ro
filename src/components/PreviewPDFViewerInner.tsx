@@ -1,6 +1,7 @@
 "use client";
 
-import { PDFViewer } from "@react-pdf/renderer";
+import { usePDF } from "@react-pdf/renderer";
+import { useMemo, useEffect } from "react";
 import ContractVanzareCumparare from "@/components/pdf-templates/ContractVanzareCumparare";
 import Imputernicire from "@/components/pdf-templates/Imputernicire";
 import AcordConfidentialitate from "@/components/pdf-templates/AcordConfidentialitate";
@@ -170,24 +171,49 @@ export type PreviewDocumentType =
 
 interface Props {
   documentType: PreviewDocumentType;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  liveData?: Record<string, any> | null;
 }
 
-export default function PreviewPDFViewerInner({ documentType }: Props) {
-  const docMap = {
-    "contract-vanzare-cumparare": <ContractVanzareCumparare data={SAMPLE_VANZARE} />,
-    "imputernicire": <Imputernicire data={SAMPLE_IMPUTERNICIRE} />,
-    "acord-confidentialitate": <AcordConfidentialitate data={SAMPLE_ACORD} />,
-    "contract-inchiriere": <ContractInchiriere data={SAMPLE_INCHIRIERE} />,
-    "proces-verbal-predare": <ProcesVerbalPredare data={SAMPLE_PROCES_VERBAL} />,
-    "contract-prestari-servicii": <ContractPrestariServicii data={SAMPLE_PRESTARI} />,
-    "cerere-concediu": <CerereConcediu data={SAMPLE_CERERE_CONCEDIU} />,
-    "cerere-demisie": <CerereDemisie data={SAMPLE_CERERE_DEMISIE} />,
-    "adeverinta-salariat": <AdeverintaSalariat data={SAMPLE_ADEVERINTA} />,
-  };
+export default function PreviewPDFViewerInner({ documentType, liveData }: Props) {
+  const docElement = useMemo(() => {
+    const d = liveData ?? null;
+    switch (documentType) {
+      case "contract-vanzare-cumparare": return <ContractVanzareCumparare data={(d ?? SAMPLE_VANZARE) as ContractVanzareData} />;
+      case "imputernicire": return <Imputernicire data={(d ?? SAMPLE_IMPUTERNICIRE) as ImputernicireData} />;
+      case "acord-confidentialitate": return <AcordConfidentialitate data={(d ?? SAMPLE_ACORD) as AcordConfidentialitateData} />;
+      case "contract-inchiriere": return <ContractInchiriere data={(d ?? SAMPLE_INCHIRIERE) as ContractInchiriereData} />;
+      case "proces-verbal-predare": return <ProcesVerbalPredare data={(d ?? SAMPLE_PROCES_VERBAL) as ProcesVerbalData} />;
+      case "contract-prestari-servicii": return <ContractPrestariServicii data={(d ?? SAMPLE_PRESTARI) as ContractPrestariServiciiData} />;
+      case "cerere-concediu": return <CerereConcediu data={(d ?? SAMPLE_CERERE_CONCEDIU) as CerereConceduData} />;
+      case "cerere-demisie": return <CerereDemisie data={(d ?? SAMPLE_CERERE_DEMISIE) as CerereDemisieData} />;
+      case "adeverinta-salariat": return <AdeverintaSalariat data={(d ?? SAMPLE_ADEVERINTA) as AdeverintaSalariatData} />;
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [documentType, liveData]);
+
+  const [instance, updateInstance] = usePDF();
+
+  useEffect(() => {
+    updateInstance(docElement);
+  }, [docElement]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  if (!instance.url) {
+    return (
+      <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", background: "white" }}>
+        <div style={{ textAlign: "center" }}>
+          <div className="w-8 h-8 border-4 border-blue-100 border-t-blue-500 rounded-full animate-spin mx-auto mb-3" />
+          <p className="text-xs text-gray-400">Se generează previzualizarea...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <PDFViewer style={{ width: "100%", height: "100%", border: "none" }}>
-      {docMap[documentType]}
-    </PDFViewer>
+    <iframe
+      src={`${instance.url}#toolbar=0`}
+      style={{ width: "100%", height: "100%", border: "none" }}
+      title="Preview document"
+    />
   );
 }
