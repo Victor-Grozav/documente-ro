@@ -303,30 +303,32 @@ export default function ContractPrestariServicii({ data: rawData }: Props) {
           </Text>
         </View>
 
-        {/* Clauze Finale */}
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>{sn()}. Clauze Finale</Text>
-          <Text style={styles.paragraph}>
-            {f("Prezentul contract este guvernat de dreptul român și a fost încheiat sub semnătură privată, în două exemplare originale, câte unul pentru fiecare parte, conform art. 1270 Cod Civil. Este valabil fără autentificare notarială.")}
-          </Text>
-          <Text style={styles.paragraph}>
-            {f("Orice modificare se face numai prin act adițional semnat de ambele părți. Litigiile izvorând din prezentul contract vor fi soluționate pe cale amiabilă, iar în caz de neînțelegere, de instanțele judecătorești competente din România.")}
-          </Text>
-        </View>
-
-        {/* Semnături */}
-        <View style={styles.signatureSection} wrap={false}>
-          <View style={styles.signatureBox}>
-            <Text style={styles.signatureLabel}>Prestator</Text>
-            <Text style={styles.signatureName}>{data.prestatorNume}</Text>
-            <View style={styles.signatureLine} />
-            <Text style={styles.signatureHint}>Semnătură</Text>
+        {/* Clauze Finale + Semnături — wrap=false garantează că nu ajung separate pe pagini diferite */}
+        <View wrap={false}>
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>{sn()}. Clauze Finale</Text>
+            <Text style={styles.paragraph}>
+              {f("Prezentul contract este guvernat de dreptul român și a fost încheiat sub semnătură privată, în două exemplare originale, câte unul pentru fiecare parte, conform art. 1270 Cod Civil. Este valabil fără autentificare notarială.")}
+            </Text>
+            <Text style={styles.paragraph}>
+              {f("Orice modificare se face numai prin act adițional semnat de ambele părți. Litigiile izvorând din prezentul contract vor fi soluționate pe cale amiabilă, iar în caz de neînțelegere, de instanțele judecătorești competente din România.")}
+            </Text>
           </View>
-          <View style={styles.signatureBox}>
-            <Text style={styles.signatureLabel}>Beneficiar</Text>
-            <Text style={styles.signatureName}>{data.beneficiarNume}</Text>
-            <View style={styles.signatureLine} />
-            <Text style={styles.signatureHint}>Semnătură</Text>
+
+          {/* Semnături */}
+          <View style={styles.signatureSection}>
+            <View style={styles.signatureBox}>
+              <Text style={styles.signatureLabel}>Prestator</Text>
+              <Text style={styles.signatureName}>{data.prestatorNume}</Text>
+              <View style={styles.signatureLine} />
+              <Text style={styles.signatureHint}>Semnătură</Text>
+            </View>
+            <View style={styles.signatureBox}>
+              <Text style={styles.signatureLabel}>Beneficiar</Text>
+              <Text style={styles.signatureName}>{data.beneficiarNume}</Text>
+              <View style={styles.signatureLine} />
+              <Text style={styles.signatureHint}>Semnătură</Text>
+            </View>
           </View>
         </View>
 

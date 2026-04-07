@@ -36,7 +36,7 @@ export default function CerereDemiesiePage() {
           "brand": { "@type": "Brand", "name": "FaraNotar.ro" },
           "offers": {
             "@type": "Offer",
-            "price": "10.00",
+            "price": "15.00",
             "priceCurrency": "RON",
             "availability": "https://schema.org/InStock",
             "url": "https://faranotar.ro/documente/cerere-demisie",

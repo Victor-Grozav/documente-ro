@@ -80,6 +80,20 @@ export default function IndemnizatieSomajPage() {
         </p>
       </div>
 
+      {/* Info box */}
+      <div className="max-w-2xl mx-auto mb-8">
+        <div className="bg-blue-50 dark:bg-blue-950 border border-blue-100 dark:border-blue-800 rounded-2xl px-6 py-5">
+          <p className="text-sm text-blue-900 dark:text-blue-300 leading-relaxed">
+            <span className="font-semibold">Cum funcționează calculatorul?</span>{" "}
+            Introdu salariul mediu brut din ultimele 12 luni și stagiul de cotizare (anii lucrați cu contribuții la șomaj).
+            Conform <strong>Legii 76/2002</strong>, indemnizația are două componente: o sumă fixă de
+            <strong> 75% din salariul minim brut</strong> (375 RON în 2026) și o parte variabilă
+            între 3% și 10% din media salariului brut, în funcție de stagiu.
+            Indemnizația se acordă pentru maximum 6–12 luni, în funcție de stagiul de cotizare.
+          </p>
+        </div>
+      </div>
+
       <CalculatorSomaj />
 
     </main>

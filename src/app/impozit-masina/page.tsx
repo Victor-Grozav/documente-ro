@@ -81,6 +81,19 @@ export default function ImpozitMasinaPage() {
         </p>
       </div>
 
+      {/* Info box */}
+      <div className="max-w-2xl mx-auto mb-8">
+        <div className="bg-blue-50 dark:bg-blue-950 border border-blue-100 dark:border-blue-800 rounded-2xl px-6 py-5">
+          <p className="text-sm text-blue-900 dark:text-blue-300 leading-relaxed">
+            <span className="font-semibold">Cum funcționează calculatorul?</span>{" "}
+            Selectează județul, capacitatea cilindrică și tipul vehiculului (autoturism, autoutilitară etc.).
+            Calculatorul aplică formula din <strong>Codul Fiscal art. 470</strong>: o sumă fixă pe
+            500 cm³ sau fracțiune, înmulțită cu coeficientul județului tău. Taxa se plătește anual
+            la DITL (Direcția de Impozite și Taxe Locale) și are două scadențe: 31 martie și 30 septembrie.
+          </p>
+        </div>
+      </div>
+
       {/* Calculator */}
       <CalculatorImpozitAuto />
 

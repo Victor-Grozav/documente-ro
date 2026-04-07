@@ -81,6 +81,20 @@ export default function ConvertorPage() {
         </p>
       </div>
 
+      {/* Info box */}
+      <div className="max-w-2xl mx-auto mb-8">
+        <div className="bg-blue-50 dark:bg-blue-950 border border-blue-100 dark:border-blue-800 rounded-2xl px-6 py-5">
+          <p className="text-sm text-blue-900 dark:text-blue-300 leading-relaxed">
+            <span className="font-semibold">Cum funcționează calculatorul?</span>{" "}
+            Introdu salariul brut și calculatorul determină automat reținerile conform legislației 2026:
+            <strong> CAS 25%</strong> (contribuție la pensie), <strong>CASS 10%</strong> (contribuție la sănătate)
+            și <strong>impozit pe venit 10%</strong> aplicat la venitul rămas. Rezultatul îți arată
+            salariul net în mână și costul total suportat de angajator (brut + CAM 2,25%).
+            Util la negocierea salariului sau la verificarea fluturașului de salariu.
+          </p>
+        </div>
+      </div>
+
       {/* Calculator */}
       <SalaryCalculator />
 

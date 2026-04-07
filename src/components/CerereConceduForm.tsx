@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { CerereConceduData } from "@/lib/types";
 
 const today = new Date().toLocaleDateString("ro-RO");
@@ -82,14 +82,43 @@ function Section({ title, children }: { title: string; children: React.ReactNode
   );
 }
 
+function countWorkingDays(start: string, end: string): number {
+  const [sd, sm, sy] = start.split(".");
+  const [ed, em, ey] = end.split(".");
+  const startDate = new Date(`${sy}-${sm}-${sd}`);
+  const endDate = new Date(`${ey}-${em}-${ed}`);
+  if (isNaN(startDate.getTime()) || isNaN(endDate.getTime()) || endDate < startDate) return 0;
+  let count = 0;
+  const cur = new Date(startDate);
+  while (cur <= endDate) {
+    const day = cur.getDay();
+    if (day !== 0 && day !== 6) count++;
+    cur.setDate(cur.getDate() + 1);
+  }
+  return count;
+}
+
 export default function CerereConceduForm() {
   const [formData, setFormData] = useState<CerereConceduData>(defaultData);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [autoCalculat, setAutoCalculat] = useState(false);
 
   const handleChange = (name: keyof CerereConceduData, value: string) => {
+    if (name === "nrZile") setAutoCalculat(false);
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
+
+  useEffect(() => {
+    const { dataInceput, dataSfarsit } = formData;
+    if (!dataInceput || !dataSfarsit) return;
+    const zile = countWorkingDays(dataInceput, dataSfarsit);
+    if (zile > 0) {
+      setFormData((prev) => ({ ...prev, nrZile: String(zile) }));
+      setAutoCalculat(true);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [formData.dataInceput, formData.dataSfarsit]);
 
   const validate = () => {
     if (!formData.angajatorNume.trim()) return "Numele angajatorului este obligatoriu.";
@@ -159,7 +188,22 @@ export default function CerereConceduForm() {
         </div>
         <DateField label="Data de început" name="dataInceput" value={formData.dataInceput} onChange={handleChange} required />
         <DateField label="Data de sfârșit" name="dataSfarsit" value={formData.dataSfarsit} onChange={handleChange} required />
-        <Field label="Număr de zile" name="nrZile" value={formData.nrZile} onChange={handleChange} placeholder="ex: 10" required />
+        <div>
+          <label className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">
+            Număr de zile <span className="text-red-400">*</span>
+          </label>
+          <input
+            type="number" min="1" value={formData.nrZile}
+            onChange={(e) => handleChange("nrZile", e.target.value)}
+            placeholder="ex: 10"
+            className="w-full border border-gray-200 dark:border-slate-600 rounded-lg px-3 py-2 text-sm text-gray-900 dark:text-white focus:outline-none focus:ring-1 focus:border-blue-400 focus:ring-blue-400 bg-white dark:bg-slate-800 placeholder:text-gray-400 dark:placeholder:text-slate-500"
+          />
+          {autoCalculat && (
+            <p className="text-xs text-amber-600 dark:text-amber-400 mt-1.5 leading-snug">
+              Calculat automat (zile L–V). Scade sărbătorile legale din această perioadă dacă este cazul.
+            </p>
+          )}
+        </div>
         <div className="sm:col-span-2">
           <label className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">
             Observații <span className="text-gray-400 dark:text-slate-500 font-normal">(opțional)</span>

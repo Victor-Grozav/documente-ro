@@ -246,38 +246,40 @@ export default function AcordConfidentialitate({ data: rawData }: Props) {
           )}
         </View>
 
-        {/* Clauze finale */}
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>VI. Clauze Finale</Text>
-          <Text style={styles.paragraph}>
-            {f("Încălcarea prezentului acord dă dreptul părții lezate la despăgubiri pentru prejudiciile directe și previzibile cauzate, inclusiv beneficiul nerealizat (lucrum cessans), conform art. 1530 Cod Civil. Prezentul acord este guvernat de legislația română. Litigiile vor fi soluționate de instanțele competente din România.")}
-          </Text>
-          {data.penalitate && (
+        {/* Clauze finale + Semnături — wrap=false garantează că nu ajung separate pe pagini diferite */}
+        <View wrap={false}>
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>VI. Clauze Finale</Text>
             <Text style={styles.paragraph}>
-              În cazul încălcării obligațiilor de confidențialitate, partea în
-              culpă datorează celeilalte părți o penalitate de{" "}
-              <Text style={styles.bold}>{data.penalitate} RON</Text>,
-              indiferent de prejudiciul efectiv suferit.
+              {f("Încălcarea prezentului acord dă dreptul părții lezate la despăgubiri pentru prejudiciile directe și previzibile cauzate, inclusiv beneficiul nerealizat (lucrum cessans), conform art. 1530 Cod Civil. Prezentul acord este guvernat de legislația română. Litigiile vor fi soluționate de instanțele competente din România.")}
             </Text>
-          )}
-          <Text style={styles.paragraph}>
-            {f("Prezentul act este încheiat sub semnătură privată, în două exemplare originale, câte unul pentru fiecare parte.")}
-          </Text>
-        </View>
-
-        {/* Semnături */}
-        <View style={styles.signatureSection}>
-          <View style={styles.signatureBox}>
-            <Text style={styles.signatureLabel}>Partea 1</Text>
-            <Text style={styles.signatureName}>{data.parte1Nume}</Text>
-            <View style={styles.signatureLine} />
-            <Text style={styles.signatureHint}>Semnătură / Ștampilă</Text>
+            {data.penalitate && (
+              <Text style={styles.paragraph}>
+                În cazul încălcării obligațiilor de confidențialitate, partea în
+                culpă datorează celeilalte părți o penalitate de{" "}
+                <Text style={styles.bold}>{data.penalitate} RON</Text>,
+                indiferent de prejudiciul efectiv suferit.
+              </Text>
+            )}
+            <Text style={styles.paragraph}>
+              {f("Prezentul act este încheiat sub semnătură privată, în două exemplare originale, câte unul pentru fiecare parte.")}
+            </Text>
           </View>
-          <View style={styles.signatureBox}>
-            <Text style={styles.signatureLabel}>Partea 2</Text>
-            <Text style={styles.signatureName}>{data.parte2Nume}</Text>
-            <View style={styles.signatureLine} />
-            <Text style={styles.signatureHint}>Semnătură / Ștampilă</Text>
+
+          {/* Semnături */}
+          <View style={styles.signatureSection}>
+            <View style={styles.signatureBox}>
+              <Text style={styles.signatureLabel}>Partea 1</Text>
+              <Text style={styles.signatureName}>{data.parte1Nume}</Text>
+              <View style={styles.signatureLine} />
+              <Text style={styles.signatureHint}>Semnătură / Ștampilă</Text>
+            </View>
+            <View style={styles.signatureBox}>
+              <Text style={styles.signatureLabel}>Partea 2</Text>
+              <Text style={styles.signatureName}>{data.parte2Nume}</Text>
+              <View style={styles.signatureLine} />
+              <Text style={styles.signatureHint}>Semnătură / Ștampilă</Text>
+            </View>
           </View>
         </View>
 

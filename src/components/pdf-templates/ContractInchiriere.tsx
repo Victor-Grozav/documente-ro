@@ -248,33 +248,35 @@ export default function ContractInchiriere({ data: rawData }: Props) {
           </Text>
         </View>
 
-        {/* Clauze finale */}
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>VIII. Clauze Finale</Text>
-          <Text style={styles.paragraph}>
-            {f("Locatorul are obligația legală de a înregistra prezentul contract la organul fiscal competent (ANAF) în termen de 30 de zile de la data semnării și de a declara veniturile din chirii, conform art. 120 din Codul Fiscal.")}
-          </Text>
-          <Text style={styles.paragraph}>
-            {f("La expirarea duratei contractului, dacă Locatarul continuă să dețină bunul și să își îndeplinească obligațiile fără ca Locatorul să se opună, contractul se consideră reînnoit pe perioadă nedeterminată, în condițiile art. 1828 din Codul Civil (tacita reconducțiune).")}
-          </Text>
-          <Text style={styles.paragraph}>
-            {f("Prezentul contract este guvernat de dispozițiile art. 1777-1850 din Codul Civil român. Este încheiat sub semnătură privată, în două exemplare originale, câte unul pentru fiecare parte. Orice modificare se face prin act adițional semnat de ambele părți. Litigiile vor fi soluționate de instanțele competente din România.")}
-          </Text>
-        </View>
-
-        {/* Semnături */}
-        <View style={styles.signatureSection}>
-          <View style={styles.signatureBox}>
-            <Text style={styles.signatureLabel}>Locator (Proprietar)</Text>
-            <Text style={styles.signatureName}>{data.locatorNume}</Text>
-            <View style={styles.signatureLine} />
-            <Text style={styles.signatureHint}>Semnătură</Text>
+        {/* Clauze finale + Semnături — wrap=false garantează că nu ajung separate pe pagini diferite */}
+        <View wrap={false}>
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>VIII. Clauze Finale</Text>
+            <Text style={styles.paragraph}>
+              {f("Locatorul are obligația legală de a înregistra prezentul contract la organul fiscal competent (ANAF) în termen de 30 de zile de la data semnării și de a declara veniturile din chirii, conform art. 120 din Codul Fiscal.")}
+            </Text>
+            <Text style={styles.paragraph}>
+              {f("La expirarea duratei contractului, dacă Locatarul continuă să dețină bunul și să își îndeplinească obligațiile fără ca Locatorul să se opună, contractul se consideră reînnoit pe perioadă nedeterminată, în condițiile art. 1828 din Codul Civil (tacita reconducțiune).")}
+            </Text>
+            <Text style={styles.paragraph}>
+              {f("Prezentul contract este guvernat de dispozițiile art. 1777-1850 din Codul Civil român. Este încheiat sub semnătură privată, în două exemplare originale, câte unul pentru fiecare parte. Orice modificare se face prin act adițional semnat de ambele părți. Litigiile vor fi soluționate de instanțele competente din România.")}
+            </Text>
           </View>
-          <View style={styles.signatureBox}>
-            <Text style={styles.signatureLabel}>Locatar (Chiriaș)</Text>
-            <Text style={styles.signatureName}>{data.locatarNume}</Text>
-            <View style={styles.signatureLine} />
-            <Text style={styles.signatureHint}>Semnătură</Text>
+
+          {/* Semnături */}
+          <View style={styles.signatureSection}>
+            <View style={styles.signatureBox}>
+              <Text style={styles.signatureLabel}>Locator (Proprietar)</Text>
+              <Text style={styles.signatureName}>{data.locatorNume}</Text>
+              <View style={styles.signatureLine} />
+              <Text style={styles.signatureHint}>Semnătură</Text>
+            </View>
+            <View style={styles.signatureBox}>
+              <Text style={styles.signatureLabel}>Locatar (Chiriaș)</Text>
+              <Text style={styles.signatureName}>{data.locatarNume}</Text>
+              <View style={styles.signatureLine} />
+              <Text style={styles.signatureHint}>Semnătură</Text>
+            </View>
           </View>
         </View>
 

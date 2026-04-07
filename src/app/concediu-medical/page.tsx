@@ -81,6 +81,21 @@ export default function ConcediuMedicalPage() {
         </p>
       </div>
 
+      {/* Info box */}
+      <div className="max-w-2xl mx-auto mb-8">
+        <div className="bg-blue-50 dark:bg-blue-950 border border-blue-100 dark:border-blue-800 rounded-2xl px-6 py-5">
+          <p className="text-sm text-blue-900 dark:text-blue-300 leading-relaxed">
+            <span className="font-semibold">Cum funcționează calculatorul?</span>{" "}
+            Introdu media veniturilor brute din ultimele 6 luni, numărul de zile de concediu medical
+            și tipul certificatului. Conform <strong>OUG 158/2005</strong>, indemnizația zilnică
+            = (media veniturilor ÷ 30) × procentul de indemnizație (75% boală obișnuită, 85% îngrijire
+            copil bolnav, 100% accident de muncă). <strong>Primele 5 zile</strong> le plătește angajatorul,
+            din <strong>ziua a 6-a</strong> plătește CNAS. Calculatorul arată separat reținerile și
+            suma netă pentru fiecare sursă de plată.
+          </p>
+        </div>
+      </div>
+
       {/* Calculator */}
       <CalculatorConcediuMedical />
 

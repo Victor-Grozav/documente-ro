@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { CerereDemisieData } from "@/lib/types";
 
 const today = new Date().toLocaleDateString("ro-RO");
@@ -79,14 +79,45 @@ function Section({ title, children }: { title: string; children: React.ReactNode
   );
 }
 
+function addWorkingDays(startRo: string, days: number): string {
+  const [d, m, y] = startRo.split(".");
+  const date = new Date(`${y}-${m}-${d}`);
+  if (isNaN(date.getTime()) || days <= 0) return "";
+  let added = 0;
+  while (added < days) {
+    date.setDate(date.getDate() + 1);
+    const day = date.getDay();
+    if (day !== 0 && day !== 6) added++;
+  }
+  const dd = String(date.getDate()).padStart(2, "0");
+  const mm = String(date.getMonth() + 1).padStart(2, "0");
+  const yy = date.getFullYear();
+  return `${dd}.${mm}.${yy}`;
+}
+
 export default function CerereDemisieForm() {
   const [formData, setFormData] = useState<CerereDemisieData>(defaultData);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [autoCalculat, setAutoCalculat] = useState(false);
 
   const handleChange = (name: keyof CerereDemisieData, value: string) => {
+    if (name === "dataUltimaZi") setAutoCalculat(false);
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
+
+  useEffect(() => {
+    const { data, preavizZile } = formData;
+    if (!data || !preavizZile) return;
+    const zile = Number(preavizZile);
+    if (isNaN(zile) || zile <= 0) return;
+    const rezultat = addWorkingDays(data, zile);
+    if (rezultat) {
+      setFormData((prev) => ({ ...prev, dataUltimaZi: rezultat }));
+      setAutoCalculat(true);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [formData.data, formData.preavizZile]);
 
   const validate = () => {
     if (!formData.angajatNume.trim()) return "Numele angajatului este obligatoriu.";
@@ -141,7 +172,14 @@ export default function CerereDemisieForm() {
           placeholder="ex: 20"
           required
         />
-        <DateField label="Data ultimei zile de muncă" name="dataUltimaZi" value={formData.dataUltimaZi} onChange={handleChange} required />
+        <div>
+          <DateField label="Data ultimei zile de muncă" name="dataUltimaZi" value={formData.dataUltimaZi} onChange={handleChange} required />
+          {autoCalculat && (
+            <p className="text-xs text-amber-600 dark:text-amber-400 mt-1.5 leading-snug">
+              Calculat automat: data cererii + {formData.preavizZile} zile lucrătoare (L–V). Verifică dacă perioada include sărbători legale.
+            </p>
+          )}
+        </div>
         <div className="sm:col-span-2">
           <label className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">
             Motivul demisiei <span className="text-gray-400 dark:text-slate-500 font-normal">(opțional)</span>

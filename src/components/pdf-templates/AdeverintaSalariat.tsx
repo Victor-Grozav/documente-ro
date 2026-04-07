@@ -6,17 +6,17 @@ const styles = StyleSheet.create({
   page: {
     fontFamily: "Roboto",
     fontSize: 11,
-    paddingTop: 60,
-    paddingBottom: 60,
+    paddingTop: 45,
+    paddingBottom: 45,
     paddingHorizontal: 60,
     color: "#1a1a1a",
-    lineHeight: 1.6,
+    lineHeight: 1.5,
   },
   headerBox: {
     borderWidth: 1,
     borderColor: "#ccc",
-    padding: 12,
-    marginBottom: 24,
+    padding: 10,
+    marginBottom: 16,
     borderRadius: 2,
   },
   companyName: {
@@ -49,22 +49,22 @@ const styles = StyleSheet.create({
     fontSize: 10,
     textAlign: "center",
     color: "#555",
-    marginBottom: 30,
+    marginBottom: 16,
   },
   bold: { fontFamily: "Roboto", fontWeight: "bold" },
-  paragraph: { fontSize: 11, marginBottom: 10, textAlign: "justify" },
-  section: { marginBottom: 16 },
+  paragraph: { fontSize: 11, marginBottom: 8, textAlign: "justify" },
+  section: { marginBottom: 10 },
   scopLine: {
     fontSize: 11,
-    marginTop: 16,
-    marginBottom: 20,
+    marginTop: 8,
+    marginBottom: 12,
     textAlign: "justify",
     color: "#333",
   },
   signatureSection: {
     flexDirection: "row",
     justifyContent: "flex-end",
-    marginTop: 40,
+    marginTop: 20,
   },
   signatureBox: { width: "50%", alignItems: "center" },
   signatureLabel: {
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     textTransform: "uppercase",
   },
   signatureName: { fontSize: 10, marginBottom: 4 },
-  signatureLine: { borderTopWidth: 1, borderTopColor: "#333", width: "100%", marginTop: 50 },
+  signatureLine: { borderTopWidth: 1, borderTopColor: "#333", width: "100%", marginTop: 30 },
   signatureHint: { fontSize: 8, color: "#888", marginTop: 4, textAlign: "center" },
   stampBox: {
     marginTop: 8,
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     borderColor: "#ccc",
     borderStyle: "dashed",
     width: 100,
-    height: 70,
+    height: 60,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -157,48 +157,50 @@ export default function AdeverintaSalariat({ data: rawData }: Props) {
           </Text>
         </View>
 
-        {/* Summary */}
-        <View style={[styles.section, { borderTopWidth: 1, borderTopColor: "#ddd", paddingTop: 12 }]}>
-          <View style={styles.row}>
-            <Text style={styles.label}>Angajat:</Text>
-            <Text style={styles.value}>{data.angajatNume}</Text>
-          </View>
-          {data.angajatCNP ? (
+        {/* Summary + Semnătură — wrap=false garantează că nu ajung separate pe pagini diferite */}
+        <View wrap={false}>
+          <View style={[styles.section, { borderTopWidth: 1, borderTopColor: "#ddd", paddingTop: 12 }]}>
             <View style={styles.row}>
-              <Text style={styles.label}>CNP:</Text>
-              <Text style={styles.value}>{data.angajatCNP}</Text>
+              <Text style={styles.label}>Angajat:</Text>
+              <Text style={styles.value}>{data.angajatNume}</Text>
             </View>
-          ) : null}
-          <View style={styles.row}>
-            <Text style={styles.label}>Funcția:</Text>
-            <Text style={styles.value}>{data.angajatFunctia}{data.departament ? ` - ${data.departament}` : ""}</Text>
-          </View>
-          <View style={styles.row}>
-            <Text style={styles.label}>Angajat din:</Text>
-            <Text style={styles.value}>{data.dataAngajarii}</Text>
-          </View>
-          {data.includeSalariu && data.salariu ? (
+            {data.angajatCNP ? (
+              <View style={styles.row}>
+                <Text style={styles.label}>CNP:</Text>
+                <Text style={styles.value}>{data.angajatCNP}</Text>
+              </View>
+            ) : null}
             <View style={styles.row}>
-              <Text style={styles.label}>Salariu net:</Text>
-              <Text style={styles.value}>{data.salariu} RON/lună</Text>
+              <Text style={styles.label}>Funcția:</Text>
+              <Text style={styles.value}>{data.angajatFunctia}{data.departament ? ` - ${data.departament}` : ""}</Text>
             </View>
-          ) : null}
-          <View style={styles.row}>
-            <Text style={styles.label}>Scop:</Text>
-            <Text style={styles.value}>{data.scopAdeverinta}</Text>
+            <View style={styles.row}>
+              <Text style={styles.label}>Angajat din:</Text>
+              <Text style={styles.value}>{data.dataAngajarii}</Text>
+            </View>
+            {data.includeSalariu && data.salariu ? (
+              <View style={styles.row}>
+                <Text style={styles.label}>Salariu net:</Text>
+                <Text style={styles.value}>{data.salariu} RON/lună</Text>
+              </View>
+            ) : null}
+            <View style={styles.row}>
+              <Text style={styles.label}>Scop:</Text>
+              <Text style={styles.value}>{data.scopAdeverinta}</Text>
+            </View>
           </View>
-        </View>
 
-        {/* Signature */}
-        <View style={styles.signatureSection} wrap={false}>
-          <View style={styles.signatureBox}>
-            <Text style={styles.signatureLabel}>Reprezentant Legal</Text>
-            <Text style={styles.signatureName}>{data.angajatorReprezentant}</Text>
-            <Text style={styles.signatureName}>{data.angajatorNume}</Text>
-            <View style={styles.signatureLine} />
-            <Text style={styles.signatureHint}>Semnătură + Ștampilă</Text>
-            <View style={styles.stampBox}>
-              <Text style={styles.stampHint}>Ștampilă{"\n"}societate</Text>
+          {/* Semnătură */}
+          <View style={styles.signatureSection}>
+            <View style={styles.signatureBox}>
+              <Text style={styles.signatureLabel}>Reprezentant Legal</Text>
+              <Text style={styles.signatureName}>{data.angajatorReprezentant}</Text>
+              <Text style={styles.signatureName}>{data.angajatorNume}</Text>
+              <View style={styles.signatureLine} />
+              <Text style={styles.signatureHint}>Semnătură + Ștampilă</Text>
+              <View style={styles.stampBox}>
+                <Text style={styles.stampHint}>Ștampilă{"\n"}societate</Text>
+              </View>
             </View>
           </View>
         </View>

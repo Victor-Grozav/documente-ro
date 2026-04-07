@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Calculator, FileText, ArrowRight, Stethoscope, Car, TrendingDown } from "lucide-react";
+import { Calculator, FileText, ArrowRight, Stethoscope, Car, TrendingDown, PiggyBank, Home, Briefcase, Percent } from "lucide-react";
 import JsonLd from "@/components/JsonLd";
 
 export const metadata: Metadata = {
@@ -73,7 +73,7 @@ export default function HomePage() {
         {/* Stats */}
         <div className="flex justify-center gap-8 mb-10">
           <div className="text-center">
-            <p className="text-2xl font-bold text-gray-900 dark:text-white">10</p>
+            <p className="text-2xl font-bold text-gray-900 dark:text-white">17</p>
             <p className="text-xs text-gray-500 dark:text-slate-400 mt-0.5">unelte disponibile</p>
           </div>
           <div className="w-px bg-gray-200 dark:bg-slate-700" />
@@ -185,6 +185,86 @@ export default function HomePage() {
               Indemnizație CNAS zilnică și totală în funcție de veniturile anterioare.
             </p>
             <span className="text-orange-700 dark:text-orange-400 text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
+              Calculează gratuit <ArrowRight className="w-4 h-4" />
+            </span>
+          </Link>
+
+          {/* Calculator Dividende 2026 — Nou */}
+          <Link
+            href="/calculator-dividende-2026"
+            className="group relative bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6 text-left hover:border-emerald-300 dark:hover:border-emerald-600 hover:shadow-md transition-all"
+          >
+            <span className="absolute top-4 right-4 bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400 text-xs font-semibold px-2 py-0.5 rounded-full">
+              Nou
+            </span>
+            <div className="w-10 h-10 bg-emerald-100 dark:bg-emerald-950 rounded-xl flex items-center justify-center mb-4">
+              <PiggyBank className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+            </div>
+            <h2 className="font-bold text-gray-900 dark:text-white mb-1">Calculator Dividende 2026</h2>
+            <p className="text-sm text-gray-500 dark:text-slate-400 mb-4">
+              Impozit 8% + CASS după praguri. Cât rămâne net din dividendele distribuite.
+            </p>
+            <span className="text-emerald-700 dark:text-emerald-400 text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
+              Calculează gratuit <ArrowRight className="w-4 h-4" />
+            </span>
+          </Link>
+
+          {/* Calculator Impozit Chirii — Nou */}
+          <Link
+            href="/calculator-impozit-chirii"
+            className="group relative bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6 text-left hover:border-indigo-300 dark:hover:border-indigo-600 hover:shadow-md transition-all"
+          >
+            <span className="absolute top-4 right-4 bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-400 text-xs font-semibold px-2 py-0.5 rounded-full">
+              Nou
+            </span>
+            <div className="w-10 h-10 bg-indigo-100 dark:bg-indigo-950 rounded-xl flex items-center justify-center mb-4">
+              <Home className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
+            </div>
+            <h2 className="font-bold text-gray-900 dark:text-white mb-1">Calculator Impozit Chirii</h2>
+            <p className="text-sm text-gray-500 dark:text-slate-400 mb-4">
+              Impozit net pe chirii 2026 — deducere 20%, CASS și obligații ANAF.
+            </p>
+            <span className="text-indigo-700 dark:text-indigo-400 text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
+              Calculează gratuit <ArrowRight className="w-4 h-4" />
+            </span>
+          </Link>
+
+          {/* Calculator Cost Angajator — Nou */}
+          <Link
+            href="/calculator-cost-angajator"
+            className="group relative bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6 text-left hover:border-sky-300 dark:hover:border-sky-600 hover:shadow-md transition-all"
+          >
+            <span className="absolute top-4 right-4 bg-sky-100 dark:bg-sky-950 text-sky-700 dark:text-sky-400 text-xs font-semibold px-2 py-0.5 rounded-full">
+              Nou
+            </span>
+            <div className="w-10 h-10 bg-sky-100 dark:bg-sky-950 rounded-xl flex items-center justify-center mb-4">
+              <Briefcase className="w-5 h-5 text-sky-600 dark:text-sky-400" />
+            </div>
+            <h2 className="font-bold text-gray-900 dark:text-white mb-1">Calculator Cost Angajator</h2>
+            <p className="text-sm text-gray-500 dark:text-slate-400 mb-4">
+              Cost total angajare (CAM, tichete, beneficii) vs. salariul net al angajatului.
+            </p>
+            <span className="text-sky-700 dark:text-sky-400 text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
+              Calculează gratuit <ArrowRight className="w-4 h-4" />
+            </span>
+          </Link>
+
+          {/* Calculator Dobândă Penalizatoare — Nou */}
+          <Link
+            href="/calculator-dobanda-penalizatoare"
+            className="group relative bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6 text-left hover:border-red-300 dark:hover:border-red-600 hover:shadow-md transition-all"
+          >
+            <span className="absolute top-4 right-4 bg-red-100 dark:bg-red-950 text-red-700 dark:text-red-400 text-xs font-semibold px-2 py-0.5 rounded-full">
+              Nou
+            </span>
+            <div className="w-10 h-10 bg-red-100 dark:bg-red-950 rounded-xl flex items-center justify-center mb-4">
+              <Percent className="w-5 h-5 text-red-600 dark:text-red-400" />
+            </div>
+            <h2 className="font-bold text-gray-900 dark:text-white mb-1">Calculator Dobândă Penalizatoare</h2>
+            <p className="text-sm text-gray-500 dark:text-slate-400 mb-4">
+              Dobânda legală pentru întârzieri la plată — Legea 72/2013, BNR live.
+            </p>
+            <span className="text-red-700 dark:text-red-400 text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
               Calculează gratuit <ArrowRight className="w-4 h-4" />
             </span>
           </Link>

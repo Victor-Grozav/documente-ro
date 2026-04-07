@@ -40,17 +40,17 @@ const styles = StyleSheet.create({
   row: { flexDirection: "row", marginBottom: 5 },
   label: { width: 180, fontFamily: "Roboto", fontWeight: "bold", fontSize: 10, color: "#444" },
   value: { flex: 1, fontSize: 10 },
-  signatureSection: { flexDirection: "row", justifyContent: "flex-end", marginTop: 40 },
+  signatureSection: { flexDirection: "row", justifyContent: "flex-end", marginTop: 20 },
   signatureBox: { width: "45%", alignItems: "center" },
   signatureLabel: { fontSize: 10, fontFamily: "Roboto", fontWeight: "bold", marginBottom: 4, textTransform: "uppercase" },
-  signatureName: { fontSize: 10, marginBottom: 30 },
-  signatureLine: { borderTopWidth: 1, borderTopColor: "#333", width: "100%", marginTop: 40 },
+  signatureName: { fontSize: 10, marginBottom: 8 },
+  signatureLine: { borderTopWidth: 1, borderTopColor: "#333", width: "100%", marginTop: 24 },
   signatureHint: { fontSize: 8, color: "#888", marginTop: 4 },
-  approvalSection: { marginTop: 40, borderTopWidth: 1, borderTopColor: "#ddd", paddingTop: 16 },
-  approvalTitle: { fontSize: 10, fontFamily: "Roboto", fontWeight: "bold", textTransform: "uppercase", marginBottom: 12, color: "#666" },
+  approvalSection: { marginTop: 20, borderTopWidth: 1, borderTopColor: "#ddd", paddingTop: 12 },
+  approvalTitle: { fontSize: 10, fontFamily: "Roboto", fontWeight: "bold", textTransform: "uppercase", marginBottom: 10, color: "#666" },
   approvalRow: { flexDirection: "row", justifyContent: "space-between" },
   approvalBox: { width: "45%" },
-  approvalLabel: { fontSize: 9, color: "#888", marginBottom: 20 },
+  approvalLabel: { fontSize: 9, color: "#888", marginBottom: 10 },
   approvalLine: { borderTopWidth: 1, borderTopColor: "#aaa", width: "100%" },
   approvalHint: { fontSize: 8, color: "#aaa", marginTop: 3 },
   footer: {
@@ -100,8 +100,8 @@ export default function CerereConcediu({ data: rawData }: Props) {
             Subsemnatul/a <Text style={styles.bold}>{data.angajatNume}</Text>,
             angajat/ă în funcția de <Text style={styles.bold}>{data.angajatFunctia}</Text>
             {data.departament ? (
-              <Text> în cadrul departamentului <Text style={styles.bold}>{data.departament}</Text></Text>
-            ) : null},
+              <Text> în cadrul departamentului <Text style={styles.bold}>{data.departament}</Text>,{" "}</Text>
+            ) : <Text>,{" "}</Text>}
             {fl("prin prezenta solicit aprobarea efectuării unui")} <Text style={styles.bold}>{tipLabel}</Text> {fl("în perioada")} <Text style={styles.bold}>{data.dataInceput} - {data.dataSfarsit}</Text>,
             {fl(" respectiv")} <Text style={styles.bold}>{data.nrZile} {Number(data.nrZile) === 1 ? fl("zi lucrătoare") : fl("zile lucrătoare")}</Text>.
           </Text>
@@ -117,53 +117,55 @@ export default function CerereConcediu({ data: rawData }: Props) {
           </Text>
         </View>
 
-        {/* Summary box */}
-        <View style={[styles.section, { borderTopWidth: 1, borderTopColor: "#ddd", paddingTop: 12 }]}>
-          <View style={styles.row}>
-            <Text style={styles.label}>Angajat:</Text>
-            <Text style={styles.value}>{data.angajatNume}</Text>
-          </View>
-          <View style={styles.row}>
-            <Text style={styles.label}>Funcția:</Text>
-            <Text style={styles.value}>{data.angajatFunctia}{data.departament ? ` - ${data.departament}` : ""}</Text>
-          </View>
-          <View style={styles.row}>
-            <Text style={styles.label}>Tip concediu:</Text>
-            <Text style={styles.value}>{tipLabel}</Text>
-          </View>
-          <View style={styles.row}>
-            <Text style={styles.label}>Perioadă:</Text>
-            <Text style={styles.value}>{data.dataInceput} - {data.dataSfarsit}</Text>
-          </View>
-          <View style={styles.row}>
-            <Text style={styles.label}>Număr zile:</Text>
-            <Text style={styles.value}>{data.nrZile} {Number(data.nrZile) === 1 ? fl("zi lucrătoare") : fl("zile lucrătoare")}</Text>
-          </View>
-        </View>
-
-        {/* Signature - applicant */}
-        <View style={styles.signatureSection} wrap={false}>
-          <View style={styles.signatureBox}>
-            <Text style={styles.signatureLabel}>Solicitant</Text>
-            <Text style={styles.signatureName}>{data.angajatNume}</Text>
-            <View style={styles.signatureLine} />
-            <Text style={styles.signatureHint}>Semnătură</Text>
-          </View>
-        </View>
-
-        {/* Approval section */}
-        <View style={styles.approvalSection} wrap={false}>
-          <Text style={styles.approvalTitle}>{fl("Rubrică pentru aprobare (completată de angajator)")}</Text>
-          <View style={styles.approvalRow}>
-            <View style={styles.approvalBox}>
-              <Text style={styles.approvalLabel}>Aprobat [ ] / Respins [ ]</Text>
-              <View style={styles.approvalLine} />
-              <Text style={styles.approvalHint}>Semnătura responsabilului HR / Manager</Text>
+        {/* Summary + Semnătură + Aprobare — wrap=false garantează că nu ajung separate pe pagini diferite */}
+        <View wrap={false}>
+          <View style={[styles.section, { borderTopWidth: 1, borderTopColor: "#ddd", paddingTop: 12 }]}>
+            <View style={styles.row}>
+              <Text style={styles.label}>Angajat:</Text>
+              <Text style={styles.value}>{data.angajatNume}</Text>
             </View>
-            <View style={styles.approvalBox}>
-              <Text style={styles.approvalLabel}>Data aprobării: ________________</Text>
-              <View style={styles.approvalLine} />
-              <Text style={styles.approvalHint}>Ștampilă societate</Text>
+            <View style={styles.row}>
+              <Text style={styles.label}>Funcția:</Text>
+              <Text style={styles.value}>{data.angajatFunctia}{data.departament ? ` - ${data.departament}` : ""}</Text>
+            </View>
+            <View style={styles.row}>
+              <Text style={styles.label}>Tip concediu:</Text>
+              <Text style={styles.value}>{tipLabel}</Text>
+            </View>
+            <View style={styles.row}>
+              <Text style={styles.label}>Perioadă:</Text>
+              <Text style={styles.value}>{data.dataInceput} - {data.dataSfarsit}</Text>
+            </View>
+            <View style={styles.row}>
+              <Text style={styles.label}>Număr zile:</Text>
+              <Text style={styles.value}>{data.nrZile} {Number(data.nrZile) === 1 ? fl("zi lucrătoare") : fl("zile lucrătoare")}</Text>
+            </View>
+          </View>
+
+          {/* Semnătură solicitant */}
+          <View style={styles.signatureSection}>
+            <View style={styles.signatureBox}>
+              <Text style={styles.signatureLabel}>Solicitant</Text>
+              <Text style={styles.signatureName}>{data.angajatNume}</Text>
+              <View style={styles.signatureLine} />
+              <Text style={styles.signatureHint}>Semnătură</Text>
+            </View>
+          </View>
+
+          {/* Rubrică aprobare angajator */}
+          <View style={styles.approvalSection}>
+            <Text style={styles.approvalTitle}>{fl("Rubrică pentru aprobare (completată de angajator)")}</Text>
+            <View style={styles.approvalRow}>
+              <View style={styles.approvalBox}>
+                <Text style={styles.approvalLabel}>Aprobat [ ] / Respins [ ]</Text>
+                <View style={styles.approvalLine} />
+                <Text style={styles.approvalHint}>Semnătura responsabilului HR / Manager</Text>
+              </View>
+              <View style={styles.approvalBox}>
+                <Text style={styles.approvalLabel}>Data aprobării: ________________</Text>
+                <View style={styles.approvalLine} />
+                <Text style={styles.approvalHint}>Ștampilă societate</Text>
+              </View>
             </View>
           </View>
         </View>

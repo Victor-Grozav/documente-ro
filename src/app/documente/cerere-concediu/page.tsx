@@ -36,7 +36,7 @@ export default function CerereConceduPage() {
           "brand": { "@type": "Brand", "name": "FaraNotar.ro" },
           "offers": {
             "@type": "Offer",
-            "price": "8.00",
+            "price": "10.00",
             "priceCurrency": "RON",
             "availability": "https://schema.org/InStock",
             "url": "https://faranotar.ro/documente/cerere-concediu",

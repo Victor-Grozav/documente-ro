@@ -6,18 +6,18 @@ const styles = StyleSheet.create({
   page: {
     fontFamily: "Roboto",
     fontSize: 11,
-    paddingTop: 60,
-    paddingBottom: 60,
+    paddingTop: 45,
+    paddingBottom: 45,
     paddingHorizontal: 60,
     color: "#1a1a1a",
-    lineHeight: 1.6,
+    lineHeight: 1.5,
   },
   title: {
     fontSize: 16,
     fontFamily: "Roboto",
     fontWeight: "bold",
     textAlign: "center",
-    marginBottom: 6,
+    marginBottom: 4,
     textTransform: "uppercase",
     letterSpacing: 1,
   },
@@ -25,39 +25,39 @@ const styles = StyleSheet.create({
     fontSize: 10,
     textAlign: "center",
     color: "#555",
-    marginBottom: 30,
+    marginBottom: 16,
   },
-  toBlock: { marginBottom: 24 },
+  toBlock: { marginBottom: 16 },
   toLine: { fontSize: 11, marginBottom: 3 },
   bold: { fontFamily: "Roboto", fontWeight: "bold" },
-  paragraph: { fontSize: 11, marginBottom: 10, textAlign: "justify" },
-  section: { marginBottom: 16 },
+  paragraph: { fontSize: 11, marginBottom: 8, textAlign: "justify" },
+  section: { marginBottom: 10 },
   row: { flexDirection: "row", marginBottom: 5 },
   label: { width: 180, fontFamily: "Roboto", fontWeight: "bold", fontSize: 10, color: "#444" },
   value: { flex: 1, fontSize: 10 },
-  signatureSection: { flexDirection: "row", justifyContent: "flex-end", marginTop: 40 },
+  signatureSection: { flexDirection: "row", justifyContent: "flex-end", marginTop: 20 },
   signatureBox: { width: "45%", alignItems: "center" },
   signatureLabel: { fontSize: 10, fontFamily: "Roboto", fontWeight: "bold", marginBottom: 4, textTransform: "uppercase" },
-  signatureName: { fontSize: 10, marginBottom: 30 },
-  signatureLine: { borderTopWidth: 1, borderTopColor: "#333", width: "100%", marginTop: 40 },
+  signatureName: { fontSize: 10, marginBottom: 8 },
+  signatureLine: { borderTopWidth: 1, borderTopColor: "#333", width: "100%", marginTop: 24 },
   signatureHint: { fontSize: 8, color: "#888", marginTop: 4 },
   confirmSection: {
-    marginTop: 40,
+    marginTop: 20,
     borderTopWidth: 1,
     borderTopColor: "#ddd",
-    paddingTop: 16,
+    paddingTop: 12,
   },
   confirmTitle: {
     fontSize: 10,
     fontFamily: "Roboto",
     fontWeight: "bold",
     textTransform: "uppercase",
-    marginBottom: 12,
+    marginBottom: 10,
     color: "#666",
   },
   confirmRow: { flexDirection: "row", justifyContent: "space-between" },
   confirmBox: { width: "45%" },
-  confirmLine: { borderTopWidth: 1, borderTopColor: "#aaa", width: "100%", marginTop: 36 },
+  confirmLine: { borderTopWidth: 1, borderTopColor: "#aaa", width: "100%", marginTop: 24 },
   confirmHint: { fontSize: 8, color: "#aaa", marginTop: 3 },
   footer: {
     position: "absolute",
@@ -98,10 +98,11 @@ export default function CerereDemisie({ data: rawData }: Props) {
         {/* Body */}
         <View style={styles.section}>
           <Text style={styles.paragraph}>
-            Subsemnatul/a <Text style={styles.bold}>{data.angajatNume}</Text>,
-            angajat/ă în funcția de <Text style={styles.bold}>{data.angajatFunctia}</Text> în
-            cadrul <Text style={styles.bold}>{data.angajatorNume}</Text>, prin prezenta
-            {fl("îmi depun")} <Text style={styles.bold}>demisia</Text> {fl("din funcția deținută, în conformitate cu prevederile art. 81 alin. (1) din Legea nr. 53/2003 - Codul Muncii, cu modificările și completările ulterioare.")}
+            {"Subsemnatul/a "}<Text style={styles.bold}>{data.angajatNume}</Text>
+            {", angajat/ă în funcția de "}<Text style={styles.bold}>{data.angajatFunctia}</Text>
+            {" în cadrul "}<Text style={styles.bold}>{data.angajatorNume}</Text>
+            {", prin prezenta "}{fl("îmi depun")}{" "}<Text style={styles.bold}>{"demisia"}</Text>
+            {" "}{fl("din funcția deținută, în conformitate cu prevederile art. 81 alin. (1) din Legea nr. 53/2003 - Codul Muncii, cu modificările și completările ulterioare.")}
           </Text>
 
           <Text style={styles.paragraph}>
@@ -126,57 +127,59 @@ export default function CerereDemisie({ data: rawData }: Props) {
           </Text>
         </View>
 
-        {/* Summary */}
-        <View style={[styles.section, { borderTopWidth: 1, borderTopColor: "#ddd", paddingTop: 12 }]}>
-          <View style={styles.row}>
-            <Text style={styles.label}>Angajat:</Text>
-            <Text style={styles.value}>{data.angajatNume}</Text>
-          </View>
-          <View style={styles.row}>
-            <Text style={styles.label}>Funcția:</Text>
-            <Text style={styles.value}>{data.angajatFunctia}</Text>
-          </View>
-          <View style={styles.row}>
-            <Text style={styles.label}>Angajator:</Text>
-            <Text style={styles.value}>{data.angajatorNume}</Text>
-          </View>
-          <View style={styles.row}>
-            <Text style={styles.label}>Preaviz:</Text>
-            <Text style={styles.value}>{data.preavizZile} zile lucrătoare</Text>
-          </View>
-          <View style={styles.row}>
-            <Text style={styles.label}>Ultima zi de muncă:</Text>
-            <Text style={styles.value}>{data.dataUltimaZi}</Text>
-          </View>
-        </View>
-
-        {/* Signature */}
-        <View style={styles.signatureSection} wrap={false}>
-          <View style={styles.signatureBox}>
-            <Text style={styles.signatureLabel}>Angajat</Text>
-            <Text style={styles.signatureName}>{data.angajatNume}</Text>
-            <View style={styles.signatureLine} />
-            <Text style={styles.signatureHint}>Semnătură</Text>
-          </View>
-        </View>
-
-        {/* Confirmation section */}
-        <View style={styles.confirmSection} wrap={false}>
-          <Text style={styles.confirmTitle}>{fl("Confirmare primire (completată de angajator)")}</Text>
-          <View style={styles.confirmRow}>
-            <View style={styles.confirmBox}>
-              <Text style={{ fontSize: 9, color: "#888", marginBottom: 4 }}>
-                Primit în data de: ________________
-              </Text>
-              <View style={styles.confirmLine} />
-              <Text style={styles.confirmHint}>Semnătură reprezentant / HR</Text>
+        {/* Summary + Semnătură + Confirmare — wrap=false garantează că nu ajung separate pe pagini diferite */}
+        <View wrap={false}>
+          <View style={[styles.section, { borderTopWidth: 1, borderTopColor: "#ddd", paddingTop: 12 }]}>
+            <View style={styles.row}>
+              <Text style={styles.label}>Angajat:</Text>
+              <Text style={styles.value}>{data.angajatNume}</Text>
             </View>
-            <View style={styles.confirmBox}>
-              <Text style={{ fontSize: 9, color: "#888", marginBottom: 4 }}>
-                Nr. înregistrare: ________________
-              </Text>
-              <View style={styles.confirmLine} />
-              <Text style={styles.confirmHint}>Ștampilă societate</Text>
+            <View style={styles.row}>
+              <Text style={styles.label}>Funcția:</Text>
+              <Text style={styles.value}>{data.angajatFunctia}</Text>
+            </View>
+            <View style={styles.row}>
+              <Text style={styles.label}>Angajator:</Text>
+              <Text style={styles.value}>{data.angajatorNume}</Text>
+            </View>
+            <View style={styles.row}>
+              <Text style={styles.label}>Preaviz:</Text>
+              <Text style={styles.value}>{data.preavizZile} zile lucrătoare</Text>
+            </View>
+            <View style={styles.row}>
+              <Text style={styles.label}>Ultima zi de muncă:</Text>
+              <Text style={styles.value}>{data.dataUltimaZi}</Text>
+            </View>
+          </View>
+
+          {/* Semnătură angajat */}
+          <View style={styles.signatureSection}>
+            <View style={styles.signatureBox}>
+              <Text style={styles.signatureLabel}>Angajat</Text>
+              <Text style={styles.signatureName}>{data.angajatNume}</Text>
+              <View style={styles.signatureLine} />
+              <Text style={styles.signatureHint}>Semnătură</Text>
+            </View>
+          </View>
+
+          {/* Confirmare primire angajator */}
+          <View style={styles.confirmSection}>
+            <Text style={styles.confirmTitle}>{fl("Confirmare primire (completată de angajator)")}</Text>
+            <View style={styles.confirmRow}>
+              <View style={styles.confirmBox}>
+                <Text style={{ fontSize: 9, color: "#888", marginBottom: 4 }}>
+                  Primit în data de: ________________
+                </Text>
+                <View style={styles.confirmLine} />
+                <Text style={styles.confirmHint}>Semnătură reprezentant / HR</Text>
+              </View>
+              <View style={styles.confirmBox}>
+                <Text style={{ fontSize: 9, color: "#888", marginBottom: 4 }}>
+                  Nr. înregistrare: ________________
+                </Text>
+                <View style={styles.confirmLine} />
+                <Text style={styles.confirmHint}>Ștampilă societate</Text>
+              </View>
             </View>
           </View>
         </View>

@@ -162,35 +162,37 @@ export default function Imputernicire({ data: rawData }: Props) {
           </Text>
         </View>
 
-        {/* Clauze finale */}
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>V. Clauze Finale</Text>
-          <Text style={styles.paragraph}>
-            Prezenta împuternicire constituie un mandat special pentru actele și
-            operațiunile expres indicate la Art. III, conform art. 2010 și
-            art. 2016 din Codul Civil român.
-          </Text>
-          <Text style={styles.paragraph}>
-            {f("Mandatarul este obligat să acționeze în limitele împuternicirii și exclusiv în interesul Mandantului, să dea socoteală de îndeplinirea mandatului și să remită Mandantului tot ceea ce a primit în executarea mandatului (art. 2019 Cod Civil).")}
-          </Text>
-          <Text style={styles.paragraph}>
-            {f("Prezentul act este încheiat sub semnătură privată, în două exemplare originale, câte unul pentru fiecare parte. Mandantul își rezervă dreptul de a revoca prezenta împuternicire oricând, prin notificare scrisă către Mandatar (art. 2031 Cod Civil).")}
-          </Text>
-        </View>
-
-        {/* Semnături */}
-        <View style={styles.signatureSection}>
-          <View style={styles.signatureBox}>
-            <Text style={styles.signatureLabel}>Mandant</Text>
-            <Text style={styles.signatureName}>{data.mandantNume}</Text>
-            <View style={styles.signatureLine} />
-            <Text style={styles.signatureHint}>Semnătură</Text>
+        {/* Clauze finale + Semnături — wrap=false garantează că nu ajung separate pe pagini diferite */}
+        <View wrap={false}>
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>V. Clauze Finale</Text>
+            <Text style={styles.paragraph}>
+              Prezenta împuternicire constituie un mandat special pentru actele și
+              operațiunile expres indicate la Art. III, conform art. 2010 și
+              art. 2016 din Codul Civil român.
+            </Text>
+            <Text style={styles.paragraph}>
+              {f("Mandatarul este obligat să acționeze în limitele împuternicirii și exclusiv în interesul Mandantului, să dea socoteală de îndeplinirea mandatului și să remită Mandantului tot ceea ce a primit în executarea mandatului (art. 2019 Cod Civil).")}
+            </Text>
+            <Text style={styles.paragraph}>
+              {f("Prezentul act este încheiat sub semnătură privată, în două exemplare originale, câte unul pentru fiecare parte. Mandantul își rezervă dreptul de a revoca prezenta împuternicire oricând, prin notificare scrisă către Mandatar (art. 2031 Cod Civil).")}
+            </Text>
           </View>
-          <View style={styles.signatureBox}>
-            <Text style={styles.signatureLabel}>Mandatar</Text>
-            <Text style={styles.signatureName}>{data.mandatarNume}</Text>
-            <View style={styles.signatureLine} />
-            <Text style={styles.signatureHint}>Semnătură</Text>
+
+          {/* Semnături */}
+          <View style={styles.signatureSection}>
+            <View style={styles.signatureBox}>
+              <Text style={styles.signatureLabel}>Mandant</Text>
+              <Text style={styles.signatureName}>{data.mandantNume}</Text>
+              <View style={styles.signatureLine} />
+              <Text style={styles.signatureHint}>Semnătură</Text>
+            </View>
+            <View style={styles.signatureBox}>
+              <Text style={styles.signatureLabel}>Mandatar</Text>
+              <Text style={styles.signatureName}>{data.mandatarNume}</Text>
+              <View style={styles.signatureLine} />
+              <Text style={styles.signatureHint}>Semnătură</Text>
+            </View>
           </View>
         </View>
 

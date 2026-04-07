@@ -1,0 +1,8 @@
+{
+  "crons": [
+    {
+      "path": "/api/dobanda-bnr",
+      "schedule": "0 8 1 * *"
+    }
+  ]
+}

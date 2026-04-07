@@ -222,28 +222,30 @@ export default function ProcesVerbalPredare({ data: rawData }: Props) {
           </Text>
         </View>
 
-        {/* VII. Mențiune exemplare */}
-        <View style={styles.section}>
-          <Text style={styles.paragraph}>
-            Prezentul proces-verbal face parte integrantă din contractul de închiriere
-            încheiat la data de <Text style={styles.bold}>{data.dataContract}</Text> și
-            s-a întocmit în două exemplare originale, câte unul pentru fiecare parte.
-          </Text>
-        </View>
-
-        {/* VIII. Semnături */}
-        <View style={styles.signatureSection}>
-          <View style={styles.signatureBox}>
-            <Text style={styles.signatureLabel}>Locator</Text>
-            <Text style={styles.signatureName}>{data.locatorNume}</Text>
-            <View style={styles.signatureLine} />
-            <Text style={styles.signatureHint}>Semnătură</Text>
+        {/* VII. Mențiune exemplare + VIII. Semnături — wrap=false garantează că nu ajung separate pe pagini diferite */}
+        <View wrap={false}>
+          <View style={styles.section}>
+            <Text style={styles.paragraph}>
+              Prezentul proces-verbal face parte integrantă din contractul de închiriere
+              încheiat la data de <Text style={styles.bold}>{data.dataContract}</Text> și
+              s-a întocmit în două exemplare originale, câte unul pentru fiecare parte.
+            </Text>
           </View>
-          <View style={styles.signatureBox}>
-            <Text style={styles.signatureLabel}>Locatar</Text>
-            <Text style={styles.signatureName}>{data.locatarNume}</Text>
-            <View style={styles.signatureLine} />
-            <Text style={styles.signatureHint}>Semnătură</Text>
+
+          {/* Semnături */}
+          <View style={styles.signatureSection}>
+            <View style={styles.signatureBox}>
+              <Text style={styles.signatureLabel}>Locator</Text>
+              <Text style={styles.signatureName}>{data.locatorNume}</Text>
+              <View style={styles.signatureLine} />
+              <Text style={styles.signatureHint}>Semnătură</Text>
+            </View>
+            <View style={styles.signatureBox}>
+              <Text style={styles.signatureLabel}>Locatar</Text>
+              <Text style={styles.signatureName}>{data.locatarNume}</Text>
+              <View style={styles.signatureLine} />
+              <Text style={styles.signatureHint}>Semnătură</Text>
+            </View>
           </View>
         </View>
 
