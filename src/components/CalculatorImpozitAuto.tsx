@@ -142,7 +142,11 @@ export default function CalculatorImpozitAuto() {
   const stepCC = tipVehicul === "autoturism" ? 50 : 25;
 
   return (
-    <div className="w-full max-w-2xl mx-auto space-y-4">
+    <div className="w-full max-w-2xl mx-auto lg:max-w-4xl">
+      <div className="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-start">
+
+      {/* ── LEFT — inputs ── */}
+      <div className="space-y-4">
 
       {/* Județ */}
       <div className="bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6">
@@ -298,6 +302,11 @@ export default function CalculatorImpozitAuto() {
         </div>
       )}
 
+      </div>{/* end left */}
+
+      {/* ── RIGHT — results ── */}
+      <div className="space-y-4 mt-4 lg:mt-0">
+
       {/* Rezultat principal */}
       <div className={`rounded-2xl p-6 text-white text-center shadow-md ${
         r.scutit ? "bg-green-600" : r.hibrid ? "bg-blue-600" : "bg-purple-700"
@@ -382,6 +391,12 @@ export default function CalculatorImpozitAuto() {
         </div>
       )}
 
+      </div>{/* end right */}
+      </div>{/* end grid */}
+
+      {/* ── FULL WIDTH — tabel & info ── */}
+      <div className="space-y-4 mt-4 lg:mt-8">
+
       {/* Tabel benzi */}
       <div className="bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6">
         <h3 className="text-sm font-semibold text-gray-500 dark:text-slate-400 uppercase tracking-wide mb-4">
@@ -463,6 +478,7 @@ export default function CalculatorImpozitAuto() {
         </div>
       </div>
 
+      </div>{/* end full width */}
     </div>
   );
 }

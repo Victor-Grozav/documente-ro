@@ -114,8 +114,11 @@ export default function CalculatorDobandaPenalizatoare() {
   const isValid = dataPlata >= dataScadenta;
 
   return (
-    <div className="w-full max-w-2xl mx-auto">
+    <div className="w-full max-w-2xl mx-auto lg:max-w-4xl">
+      <div className="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-start">
 
+      {/* ── LEFT — input ── */}
+      <div>
       {/* Input sumă */}
       <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-gray-200 dark:border-slate-700 p-6 mb-4">
         <div className="flex items-center justify-between mb-4">
@@ -246,6 +249,10 @@ export default function CalculatorDobandaPenalizatoare() {
         </div>
       </div>
 
+      </div>{/* end left */}
+
+      {/* ── RIGHT — results ── */}
+      <div className="mt-4 lg:mt-0">
       {/* Result principal */}
       {!isValid ? (
         <div className="bg-red-50 dark:bg-red-950 border border-red-200 dark:border-red-800 rounded-2xl p-5 mb-4 text-center">
@@ -313,6 +320,11 @@ export default function CalculatorDobandaPenalizatoare() {
         </>
       )}
 
+      </div>{/* end right */}
+      </div>{/* end grid */}
+
+      {/* ── FULL WIDTH — info ── */}
+      <div className="mt-4 lg:mt-8">
       {/* Info box */}
       <div className="bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6 space-y-3 text-sm text-gray-600 dark:text-slate-400">
         <h3 className="text-sm font-semibold text-gray-500 dark:text-slate-400 uppercase tracking-wide mb-2">
@@ -348,6 +360,7 @@ export default function CalculatorDobandaPenalizatoare() {
           * Rata BNR folosită în calcul: <strong>{dobandaBNR}%/an</strong>{bnrSource === "fallback" ? " (valoare manuală — verificați bnr.ro)" : " (preluată automat de pe bnr.ro)"}. Calcul orientativ — consultați un avocat pentru acțiuni în instanță.
         </p>
       </div>
+      </div>{/* end full width */}
     </div>
   );
 }

@@ -147,8 +147,11 @@ export default function CalculatorCostAngajator() {
   };
 
   return (
-    <div className="w-full max-w-2xl mx-auto">
+    <div className="w-full max-w-2xl mx-auto lg:max-w-4xl">
+      <div className="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-start">
 
+      {/* ── LEFT — inputs ── */}
+      <div>
       {/* Input salariu brut */}
       <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-gray-200 dark:border-slate-700 p-6 mb-4">
         <label htmlFor="salariu-brut-angajator" className="block text-sm font-medium text-gray-600 dark:text-slate-400 mb-1">
@@ -316,6 +319,10 @@ export default function CalculatorCostAngajator() {
         </div>
       </div>
 
+      </div>{/* end left */}
+
+      {/* ── RIGHT — results ── */}
+      <div className="mt-4 lg:mt-0">
       {/* Result principal */}
       <div className="bg-blue-600 rounded-2xl p-6 mb-4 text-white text-center shadow-md">
         <p className="text-blue-200 text-sm font-medium mb-1">Cost total angajator / lună</p>
@@ -390,6 +397,9 @@ export default function CalculatorCostAngajator() {
           * Calcul orientativ 2026. CAM = 2.25%, CAS = 25%, CASS = 10%, Impozit = 10%. Fără deducere personală.
         </p>
       </div>
+
+      </div>{/* end right */}
+      </div>{/* end grid */}
     </div>
   );
 }

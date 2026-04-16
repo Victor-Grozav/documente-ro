@@ -91,8 +91,11 @@ export default function CalculatorDividende() {
   const netPercent = brutAnual > 0 ? Math.round((result.net / brutAnual) * 100) : 0;
 
   return (
-    <div className="w-full max-w-2xl mx-auto">
+    <div className="w-full max-w-2xl mx-auto lg:max-w-4xl">
+      <div className="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-start">
 
+      {/* ── LEFT — input ── */}
+      <div>
       {/* Input */}
       <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-gray-200 dark:border-slate-700 p-6 mb-4">
         <label htmlFor="dividende-brute" className="block text-sm font-medium text-gray-600 dark:text-slate-400 mb-1">
@@ -144,6 +147,10 @@ export default function CalculatorDividende() {
         </div>
       </div>
 
+      </div>{/* end left */}
+
+      {/* ── RIGHT — results ── */}
+      <div className="mt-4 lg:mt-0">
       {/* Result principal */}
       <div className="bg-blue-600 rounded-2xl p-6 mb-4 text-white text-center shadow-md">
         <p className="text-blue-200 text-sm font-medium mb-1">Dividende nete (după taxe)</p>
@@ -231,6 +238,11 @@ export default function CalculatorDividende() {
         </div>
       )}
 
+      </div>{/* end right */}
+      </div>{/* end grid */}
+
+      {/* ── FULL WIDTH — info ── */}
+      <div className="mt-4 lg:mt-8">
       {/* Info box */}
       <div className="bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6 space-y-3 text-sm text-gray-600 dark:text-slate-400">
         <h3 className="text-sm font-semibold text-gray-500 dark:text-slate-400 uppercase tracking-wide mb-2">
@@ -271,6 +283,7 @@ export default function CalculatorDividende() {
           * Calcul orientativ 2026. Salariu minim de referință: 4.050 RON. Consultați un contabil pentru situații specifice.
         </p>
       </div>
+      </div>{/* end full width */}
     </div>
   );
 }

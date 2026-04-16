@@ -26,14 +26,14 @@ export default function DocumentePage() {
   return (
     <main className="min-h-screen py-10 px-4">
 
-      <div className="max-w-2xl mx-auto">
+      <div className="max-w-2xl mx-auto lg:max-w-5xl">
 
         {/* Header */}
-        <div className="text-center mb-8">
+        <div className="text-center mb-8 lg:mb-10">
           <Link href="/" className="text-blue-600 text-sm font-medium hover:underline">
             ← Acasă
           </Link>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mt-4 mb-2">
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mt-4 mb-2 lg:text-4xl">
             Generator Documente
           </h1>
           <p className="text-gray-500 dark:text-slate-400 mb-6">
@@ -56,7 +56,7 @@ export default function DocumentePage() {
         </div>
 
         {/* Disclaimer banner */}
-        <div className="flex items-start gap-3 bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-2xl px-5 py-4 mb-6 text-sm text-amber-800 dark:text-amber-300">
+        <div className="flex items-start gap-3 bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-2xl px-5 py-4 mb-8 text-sm text-amber-800 dark:text-amber-300 lg:mb-10">
           <span className="text-lg shrink-0">⚠️</span>
           <p>
             <strong>Modele de documente, nu consultanță juridică.</strong>{" "}

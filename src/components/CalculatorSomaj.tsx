@@ -86,312 +86,305 @@ export default function CalculatorSomaj() {
   const r = calculeaza(salariu, stagiu);
 
   return (
-    <div className="w-full max-w-2xl mx-auto space-y-4">
+    <div className="w-full max-w-2xl mx-auto lg:max-w-4xl">
 
-      {/* Salariu brut mediu */}
-      <div className="bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6">
-        <label className="block text-sm font-medium text-gray-600 dark:text-slate-400 mb-1">
-          Salariu brut mediu lunar (ultimele 12 luni)
-        </label>
-        <div className="flex items-center gap-3 mb-4">
-          <input
-            type="text"
-            inputMode="numeric"
-            value={salariuInput}
-            onChange={(e) => {
-              const raw = e.target.value.replace(/\D/g, "");
-              setSalariuInput(raw);
-              const n = parseInt(raw, 10);
-              if (!isNaN(n) && n >= 0 && n <= 200000) setSalariu(n);
-            }}
-            className="min-w-0 flex-1 text-3xl font-bold text-gray-900 dark:text-white border-b-2 border-teal-500 pb-1 bg-transparent outline-none"
-            placeholder="0"
-          />
-          <span className="text-xl font-semibold text-gray-400 dark:text-slate-500 shrink-0">RON</span>
-        </div>
-        <input
-          type="range"
-          min={1000}
-          max={30000}
-          step={100}
-          value={Math.min(salariu, 30000)}
-          onChange={(e) => {
-            const v = parseInt(e.target.value, 10);
-            setSalariu(v);
-            setSalariuInput(String(v));
-          }}
-          className="w-full accent-teal-500"
-        />
-        <div className="flex justify-between text-xs text-gray-400 dark:text-slate-500 mt-1">
-          <span>1.000 RON</span>
-          <span className="text-gray-500 dark:text-slate-400 font-medium hidden sm:inline">
-            Salariu minim: 4.050 RON
-          </span>
-          <span>30.000 RON</span>
-        </div>
-      </div>
+      <div className="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-start">
 
-      {/* Stagiu de cotizare */}
-      <div className="bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6">
-        <label className="block text-sm font-medium text-gray-600 dark:text-slate-400 mb-1">
-          Stagiu total de cotizare
-        </label>
-        <div className="flex items-center gap-3 mb-4">
-          <input
-            type="text"
-            inputMode="numeric"
-            value={stagiuInput}
-            onChange={(e) => {
-              const raw = e.target.value.replace(/\D/g, "");
-              setStagiuInput(raw);
-              const n = parseInt(raw, 10);
-              if (!isNaN(n) && n >= 0 && n <= 50) setStagiu(n);
-            }}
-            className="min-w-0 flex-1 text-3xl font-bold text-gray-900 dark:text-white border-b-2 border-teal-500 pb-1 bg-transparent outline-none"
-            placeholder="0"
-          />
-          <span className="text-xl font-semibold text-gray-400 dark:text-slate-500 shrink-0">
-            {stagiu === 1 ? "an" : "ani"}
-          </span>
-        </div>
-        <input
-          type="range"
-          min={0}
-          max={40}
-          step={1}
-          value={stagiu}
-          onChange={(e) => {
-            const v = parseInt(e.target.value, 10);
-            setStagiu(v);
-            setStagiuInput(String(v));
-          }}
-          className="w-full accent-teal-500"
-        />
-        <div className="flex justify-between text-xs text-gray-400 dark:text-slate-500 mt-1">
-          <span>0 ani</span>
-          <span>40 ani</span>
-        </div>
-        {stagiu < 1 && (
-          <p className="text-xs text-red-500 dark:text-red-400 bg-red-50 dark:bg-red-950 rounded-lg px-3 py-2 mt-3">
-            Stagiu insuficient. Sunt necesare minimum 12 luni de cotizare în ultimele 24 de luni pentru a beneficia de indemnizație de șomaj.
-          </p>
-        )}
-        {stagiu >= 1 && (
-          <div className="mt-3 flex items-center gap-2 text-xs">
-            <span className="bg-teal-100 dark:bg-teal-950 text-teal-700 dark:text-teal-400 font-semibold px-2 py-1 rounded-lg">
-              {r.transa.label}
-            </span>
-            <span className="text-gray-400 dark:text-slate-600">·</span>
-            <span className="text-gray-500 dark:text-slate-400">
-              Component variabilă: {Math.round(r.procent * 100)}% din salariu · Durată: {r.durataLuni} luni
-            </span>
+        {/* ── LEFT COLUMN — inputs ── */}
+        <div className="space-y-4">
+
+          {/* Salariu brut mediu */}
+          <div className="bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6">
+            <label className="block text-sm font-medium text-gray-600 dark:text-slate-400 mb-1">
+              Salariu brut mediu lunar (ultimele 12 luni)
+            </label>
+            <div className="flex items-center gap-3 mb-4">
+              <input
+                type="text"
+                inputMode="numeric"
+                value={salariuInput}
+                onChange={(e) => {
+                  const raw = e.target.value.replace(/\D/g, "");
+                  setSalariuInput(raw);
+                  const n = parseInt(raw, 10);
+                  if (!isNaN(n) && n >= 0 && n <= 200000) setSalariu(n);
+                }}
+                className="min-w-0 flex-1 text-3xl font-bold text-gray-900 dark:text-white border-b-2 border-teal-500 pb-1 bg-transparent outline-none"
+                placeholder="0"
+              />
+              <span className="text-xl font-semibold text-gray-400 dark:text-slate-500 shrink-0">RON</span>
+            </div>
+            <input
+              type="range"
+              min={1000}
+              max={30000}
+              step={100}
+              value={Math.min(salariu, 30000)}
+              onChange={(e) => {
+                const v = parseInt(e.target.value, 10);
+                setSalariu(v);
+                setSalariuInput(String(v));
+              }}
+              className="w-full accent-teal-500"
+            />
+            <div className="flex justify-between text-xs text-gray-400 dark:text-slate-500 mt-1">
+              <span>1.000 RON</span>
+              <span className="text-gray-500 dark:text-slate-400 font-medium hidden sm:inline">
+                Salariu minim: 4.050 RON
+              </span>
+              <span>30.000 RON</span>
+            </div>
           </div>
-        )}
+
+          {/* Stagiu de cotizare */}
+          <div className="bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6">
+            <label className="block text-sm font-medium text-gray-600 dark:text-slate-400 mb-1">
+              Stagiu total de cotizare
+            </label>
+            <div className="flex items-center gap-3 mb-4">
+              <input
+                type="text"
+                inputMode="numeric"
+                value={stagiuInput}
+                onChange={(e) => {
+                  const raw = e.target.value.replace(/\D/g, "");
+                  setStagiuInput(raw);
+                  const n = parseInt(raw, 10);
+                  if (!isNaN(n) && n >= 0 && n <= 50) setStagiu(n);
+                }}
+                className="min-w-0 flex-1 text-3xl font-bold text-gray-900 dark:text-white border-b-2 border-teal-500 pb-1 bg-transparent outline-none"
+                placeholder="0"
+              />
+              <span className="text-xl font-semibold text-gray-400 dark:text-slate-500 shrink-0">
+                {stagiu === 1 ? "an" : "ani"}
+              </span>
+            </div>
+            <input
+              type="range"
+              min={0}
+              max={40}
+              step={1}
+              value={stagiu}
+              onChange={(e) => {
+                const v = parseInt(e.target.value, 10);
+                setStagiu(v);
+                setStagiuInput(String(v));
+              }}
+              className="w-full accent-teal-500"
+            />
+            <div className="flex justify-between text-xs text-gray-400 dark:text-slate-500 mt-1">
+              <span>0 ani</span>
+              <span>40 ani</span>
+            </div>
+            {stagiu < 1 && (
+              <p className="text-xs text-red-500 dark:text-red-400 bg-red-50 dark:bg-red-950 rounded-lg px-3 py-2 mt-3">
+                Stagiu insuficient. Sunt necesare minimum 12 luni de cotizare în ultimele 24 de luni pentru a beneficia de indemnizație de șomaj.
+              </p>
+            )}
+            {stagiu >= 1 && (
+              <div className="mt-3 flex items-center gap-2 text-xs">
+                <span className="bg-teal-100 dark:bg-teal-950 text-teal-700 dark:text-teal-400 font-semibold px-2 py-1 rounded-lg">
+                  {r.transa.label}
+                </span>
+                <span className="text-gray-400 dark:text-slate-600">·</span>
+                <span className="text-gray-500 dark:text-slate-400">
+                  Component variabilă: {Math.round(r.procent * 100)}% din salariu · Durată: {r.durataLuni} luni
+                </span>
+              </div>
+            )}
+          </div>
+
+        </div>
+
+        {/* ── RIGHT COLUMN — results ── */}
+        <div className="space-y-4 mt-4 lg:mt-0">
+
+          {/* Rezultat principal */}
+          {r.eligibil ? (
+            <div className="bg-teal-600 rounded-2xl p-6 text-white text-center shadow-md">
+              <p className="text-teal-200 text-sm font-medium mb-1">
+                Indemnizație lunară netă estimată
+              </p>
+              <p className="text-4xl sm:text-5xl font-bold tracking-tight">
+                {fmt(r.netLunar)}
+              </p>
+              <p className="text-teal-200 text-sm mt-2">
+                {fmt(r.brutLunar)} brut · timp de {r.durataLuni} luni
+              </p>
+              <p className="text-teal-100 text-base font-semibold mt-3">
+                Total net: {fmt(r.netTotal)}
+              </p>
+            </div>
+          ) : (
+            <div className="bg-gray-100 dark:bg-slate-800 rounded-2xl p-6 text-center">
+              <p className="text-gray-400 dark:text-slate-500 text-sm font-medium mb-1">Neeligibil</p>
+              <p className="text-2xl font-bold text-gray-500 dark:text-slate-400">0 RON</p>
+              <p className="text-gray-400 dark:text-slate-500 text-sm mt-2">
+                Introduceți un stagiu de cotizare de minimum 1 an.
+              </p>
+            </div>
+          )}
+
+          {/* Detaliu calcul */}
+          {r.eligibil && (
+            <div className="bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6 space-y-3">
+              <h3 className="text-sm font-semibold text-gray-500 dark:text-slate-400 uppercase tracking-wide">
+                Detaliu calcul
+              </h3>
+
+              {/* Componentele brute */}
+              <div className="space-y-2 pb-3 border-b border-gray-100 dark:border-slate-800">
+                <div className="flex justify-between text-sm">
+                  <span className="text-gray-600 dark:text-slate-400">
+                    Component fix (75% × ISR 500 RON)
+                  </span>
+                  <span className="font-medium dark:text-slate-200">{fmt(r.componentFix)}</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-gray-600 dark:text-slate-400">
+                    Component variabilă ({Math.round(r.procent * 100)}% × {fmt(salariu)})
+                  </span>
+                  <span className="font-medium dark:text-slate-200">{fmt(r.componentVariabila)}</span>
+                </div>
+                <div className="flex justify-between text-sm font-semibold border-t border-gray-100 dark:border-slate-700 pt-2">
+                  <span className="text-gray-800 dark:text-slate-100">Total brut lunar</span>
+                  <span className="text-gray-800 dark:text-slate-100">{fmt(r.brutLunar)}</span>
+                </div>
+              </div>
+
+              {/* Deduceri */}
+              <div className="space-y-2 pb-3 border-b border-gray-100 dark:border-slate-800">
+                <div className="flex justify-between text-sm">
+                  <span className="text-gray-600 dark:text-slate-400">CASS — 10%</span>
+                  <span className="font-medium text-red-500">−{fmt(r.cass)}</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-gray-600 dark:text-slate-400">Impozit venit — 10% din (brut − CASS)</span>
+                  <span className="font-medium text-red-500">−{fmt(r.impozit)}</span>
+                </div>
+                <div className="flex justify-between text-sm text-gray-400 dark:text-slate-500">
+                  <span>CAS (pensie)</span>
+                  <span>scutit</span>
+                </div>
+              </div>
+
+              {/* Total lunar și pe perioadă */}
+              <div className="flex justify-between items-center py-3 bg-teal-50 dark:bg-teal-950 rounded-xl px-4">
+                <span className="font-bold text-gray-800 dark:text-white">Net lunar</span>
+                <span className="font-bold text-teal-700 dark:text-teal-400 text-lg">{fmt(r.netLunar)}</span>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div className="bg-gray-50 dark:bg-slate-800 rounded-xl p-3 text-center">
+                  <p className="text-xs text-gray-400 dark:text-slate-500">Durată acordare</p>
+                  <p className="text-xl font-bold text-gray-800 dark:text-white mt-1">{r.durataLuni} luni</p>
+                  <p className="text-xs text-gray-400 dark:text-slate-500 mt-0.5">stagiu {r.transa.label}</p>
+                </div>
+                <div className="bg-teal-50 dark:bg-teal-950 rounded-xl p-3 text-center">
+                  <p className="text-xs text-gray-400 dark:text-slate-500">Total net pe toată perioada</p>
+                  <p className="text-xl font-bold text-teal-700 dark:text-teal-400 mt-1">{fmt(r.netTotal)}</p>
+                  <p className="text-xs text-gray-400 dark:text-slate-500 mt-0.5">{r.durataLuni} × {fmt(r.netLunar)}</p>
+                </div>
+              </div>
+
+              <p className="text-xs text-gray-400 dark:text-slate-500 pt-1">
+                * Calcul orientativ 2026 per Legea 76/2002. ISR = 500 RON. Deduceri: CASS 10% + impozit venit 10%.
+                CAS nu se reține din indemnizația de șomaj. Valoarea reală poate diferi în funcție de venitul lunar
+                exact din fiecare din ultimele 12 luni.
+              </p>
+            </div>
+          )}
+
+        </div>
       </div>
 
-      {/* Rezultat principal */}
-      {r.eligibil ? (
-        <div className="bg-teal-600 rounded-2xl p-6 text-white text-center shadow-md">
-          <p className="text-teal-200 text-sm font-medium mb-1">
-            Indemnizație lunară netă estimată
-          </p>
-          <p className="text-4xl sm:text-5xl font-bold tracking-tight">
-            {fmt(r.netLunar)}
-          </p>
-          <p className="text-teal-200 text-sm mt-2">
-            {fmt(r.brutLunar)} brut · timp de {r.durataLuni} luni
-          </p>
-          <p className="text-teal-100 text-base font-semibold mt-3">
-            Total net: {fmt(r.netTotal)}
-          </p>
-        </div>
-      ) : (
-        <div className="bg-gray-100 dark:bg-slate-800 rounded-2xl p-6 text-center">
-          <p className="text-gray-400 dark:text-slate-500 text-sm font-medium mb-1">Neeligibil</p>
-          <p className="text-2xl font-bold text-gray-500 dark:text-slate-400">0 RON</p>
-          <p className="text-gray-400 dark:text-slate-500 text-sm mt-2">
-            Introduceți un stagiu de cotizare de minimum 1 an.
-          </p>
-        </div>
-      )}
+      {/* ── FULL WIDTH — tabel & info ── */}
+      <div className="space-y-4 mt-4 lg:mt-8">
 
-      {/* Detaliu calcul */}
-      {r.eligibil && (
-        <div className="bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6 space-y-3">
-          <h3 className="text-sm font-semibold text-gray-500 dark:text-slate-400 uppercase tracking-wide">
-            Detaliu calcul
+        {/* Tabel stagiu → procent → durată */}
+        <div className="bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6">
+          <h3 className="text-sm font-semibold text-gray-500 dark:text-slate-400 uppercase tracking-wide mb-4">
+            Stagiu de cotizare → indemnizație și durată
           </h3>
-
-          {/* Componentele brute */}
-          <div className="space-y-2 pb-3 border-b border-gray-100 dark:border-slate-800">
-            <div className="flex justify-between text-sm">
-              <span className="text-gray-600 dark:text-slate-400">
-                Component fix (75% × ISR 500 RON)
-              </span>
-              <span className="font-medium dark:text-slate-200">{fmt(r.componentFix)}</span>
-            </div>
-            <div className="flex justify-between text-sm">
-              <span className="text-gray-600 dark:text-slate-400">
-                Component variabilă ({Math.round(r.procent * 100)}% × {fmt(salariu)})
-              </span>
-              <span className="font-medium dark:text-slate-200">{fmt(r.componentVariabila)}</span>
-            </div>
-            <div className="flex justify-between text-sm font-semibold border-t border-gray-100 dark:border-slate-700 pt-2">
-              <span className="text-gray-800 dark:text-slate-100">Total brut lunar</span>
-              <span className="text-gray-800 dark:text-slate-100">{fmt(r.brutLunar)}</span>
-            </div>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-gray-200 dark:border-slate-700">
+                  <th className="text-left text-gray-500 dark:text-slate-400 font-medium py-2 pr-4">Stagiu</th>
+                  <th className="text-right text-gray-500 dark:text-slate-400 font-medium py-2 pr-4">Procent variabilă</th>
+                  <th className="text-right text-gray-500 dark:text-slate-400 font-medium py-2 pr-4">Durată</th>
+                  <th className="text-right text-gray-500 dark:text-slate-400 font-medium py-2">Net lunar (ex. 5.000 RON)</th>
+                </tr>
+              </thead>
+              <tbody>
+                {TRANSE_PROCENT.map((t, i) => {
+                  const exemplu = calculeaza(5000, t.minAni);
+                  const activa = r.eligibil && r.transa.minAni === t.minAni;
+                  return (
+                    <tr key={i} className={`border-b border-gray-100 dark:border-slate-800 ${activa ? "bg-teal-50 dark:bg-teal-950" : ""}`}>
+                      <td className={`py-2 pr-4 ${activa ? "font-semibold text-teal-800 dark:text-teal-300" : "text-gray-700 dark:text-slate-300"}`}>
+                        {t.label}
+                      </td>
+                      <td className={`py-2 pr-4 text-right ${activa ? "font-bold text-teal-700 dark:text-teal-300" : "text-gray-700 dark:text-slate-300"}`}>
+                        {Math.round(t.procent * 100)}%
+                      </td>
+                      <td className={`py-2 pr-4 text-right ${activa ? "font-semibold text-teal-700 dark:text-teal-300" : "text-gray-500 dark:text-slate-400"}`}>
+                        {getDurataLuni(t.minAni)} luni
+                      </td>
+                      <td className={`py-2 text-right ${activa ? "font-semibold text-teal-700 dark:text-teal-300" : "text-gray-500 dark:text-slate-400"}`}>
+                        {fmt(exemplu.netLunar)}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
           </div>
-
-          {/* Deduceri */}
-          <div className="space-y-2 pb-3 border-b border-gray-100 dark:border-slate-800">
-            <div className="flex justify-between text-sm">
-              <span className="text-gray-600 dark:text-slate-400">CASS — 10%</span>
-              <span className="font-medium text-red-500">−{fmt(r.cass)}</span>
-            </div>
-            <div className="flex justify-between text-sm">
-              <span className="text-gray-600 dark:text-slate-400">Impozit venit — 10% din (brut − CASS)</span>
-              <span className="font-medium text-red-500">−{fmt(r.impozit)}</span>
-            </div>
-            <div className="flex justify-between text-sm text-gray-400 dark:text-slate-500">
-              <span>CAS (pensie)</span>
-              <span>scutit</span>
-            </div>
-          </div>
-
-          {/* Total lunar și pe perioadă */}
-          <div className="flex justify-between items-center py-3 bg-teal-50 dark:bg-teal-950 rounded-xl px-4">
-            <span className="font-bold text-gray-800 dark:text-white">Net lunar</span>
-            <span className="font-bold text-teal-700 dark:text-teal-400 text-lg">{fmt(r.netLunar)}</span>
-          </div>
-
-          <div className="grid grid-cols-2 gap-3">
-            <div className="bg-gray-50 dark:bg-slate-800 rounded-xl p-3 text-center">
-              <p className="text-xs text-gray-400 dark:text-slate-500">Durată acordare</p>
-              <p className="text-xl font-bold text-gray-800 dark:text-white mt-1">{r.durataLuni} luni</p>
-              <p className="text-xs text-gray-400 dark:text-slate-500 mt-0.5">stagiu {r.transa.label}</p>
-            </div>
-            <div className="bg-teal-50 dark:bg-teal-950 rounded-xl p-3 text-center">
-              <p className="text-xs text-gray-400 dark:text-slate-500">Total net pe toată perioada</p>
-              <p className="text-xl font-bold text-teal-700 dark:text-teal-400 mt-1">{fmt(r.netTotal)}</p>
-              <p className="text-xs text-gray-400 dark:text-slate-500 mt-0.5">{r.durataLuni} × {fmt(r.netLunar)}</p>
-            </div>
-          </div>
-
-          <p className="text-xs text-gray-400 dark:text-slate-500 pt-1">
-            * Calcul orientativ 2026 per Legea 76/2002. ISR = 500 RON. Deduceri: CASS 10% + impozit venit 10%.
-            CAS nu se reține din indemnizația de șomaj. Valoarea reală poate diferi în funcție de venitul lunar
-            exact din fiecare din ultimele 12 luni.
+          <p className="text-xs text-gray-400 dark:text-slate-500 mt-3">
+            Exemplul folosește salariu brut mediu 5.000 RON. Componenta fixă (375 RON) este inclusă în toate rândurile.
           </p>
         </div>
-      )}
 
-      {/* Tabel stagiu → procent → durată */}
-      <div className="bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6">
-        <h3 className="text-sm font-semibold text-gray-500 dark:text-slate-400 uppercase tracking-wide mb-4">
-          Stagiu de cotizare → indemnizație și durată
-        </h3>
-        <div className="overflow-x-auto">
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="border-b border-gray-200 dark:border-slate-700">
-                <th className="text-left text-gray-500 dark:text-slate-400 font-medium py-2 pr-4">Stagiu</th>
-                <th className="text-right text-gray-500 dark:text-slate-400 font-medium py-2 pr-4">Procent variabilă</th>
-                <th className="text-right text-gray-500 dark:text-slate-400 font-medium py-2 pr-4">Durată</th>
-                <th className="text-right text-gray-500 dark:text-slate-400 font-medium py-2">Net lunar (ex. 5.000 RON)</th>
-              </tr>
-            </thead>
-            <tbody>
-              {TRANSE_PROCENT.map((t, i) => {
-                const exemplu = calculeaza(5000, t.minAni);
-                const activa = r.eligibil && r.transa.minAni === t.minAni;
-                return (
-                  <tr key={i} className={`border-b border-gray-100 dark:border-slate-800 ${activa ? "bg-teal-50 dark:bg-teal-950" : ""}`}>
-                    <td className={`py-2 pr-4 ${activa ? "font-semibold text-teal-800 dark:text-teal-300" : "text-gray-700 dark:text-slate-300"}`}>
-                      {t.label}
-                    </td>
-                    <td className={`py-2 pr-4 text-right ${activa ? "font-bold text-teal-700 dark:text-teal-300" : "text-gray-700 dark:text-slate-300"}`}>
-                      {Math.round(t.procent * 100)}%
-                    </td>
-                    <td className={`py-2 pr-4 text-right ${activa ? "font-semibold text-teal-700 dark:text-teal-300" : "text-gray-500 dark:text-slate-400"}`}>
-                      {getDurataLuni(t.minAni)} luni
-                    </td>
-                    <td className={`py-2 text-right ${activa ? "font-semibold text-teal-700 dark:text-teal-300" : "text-gray-500 dark:text-slate-400"}`}>
-                      {fmt(exemplu.netLunar)}
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+        {/* Info box */}
+        <div className="bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6 space-y-3 text-sm text-gray-600 dark:text-slate-400">
+          <h3 className="text-sm font-semibold text-gray-500 dark:text-slate-400 uppercase tracking-wide mb-2">
+            Ce trebuie să știi despre indemnizația de șomaj
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            <div className="bg-teal-50 dark:bg-teal-950 rounded-xl p-3">
+              <p className="font-semibold text-gray-800 dark:text-slate-100 mb-1">Condiție de eligibilitate</p>
+              <p className="text-xs text-gray-500 dark:text-slate-400">
+                Minimum 12 luni de cotizare în ultimele 24 de luni. Aplicați în cel mult 60 de zile de la data pierderii locului de muncă.
+              </p>
+            </div>
+            <div className="bg-gray-50 dark:bg-slate-800 rounded-xl p-3">
+              <p className="font-semibold text-gray-800 dark:text-slate-100 mb-1">Unde se depune dosarul</p>
+              <p className="text-xs text-gray-500 dark:text-slate-400">
+                La AJOFM (Agenția Județeană pentru Ocuparea Forței de Muncă) din județul în care aveți domiciliul.
+              </p>
+            </div>
+            <div className="bg-orange-50 dark:bg-orange-950 rounded-xl p-3">
+              <p className="font-semibold text-gray-800 dark:text-slate-100 mb-1">Obligații în perioada de șomaj</p>
+              <p className="text-xs text-gray-500 dark:text-slate-400">
+                Prezentare lunară la AJOFM, disponibilitate pentru oferte de muncă, participare la programe de formare dacă sunt solicitate.
+              </p>
+            </div>
+            <div className="bg-red-50 dark:bg-red-950 rounded-xl p-3">
+              <p className="font-semibold text-gray-800 dark:text-slate-100 mb-1">Suspendare / Încetare</p>
+              <p className="text-xs text-gray-500 dark:text-slate-400">
+                Indemnizația încetează la reangajare, la expirarea duratei, la refuzul nejustificat al unei oferte adecvate sau la împlinirea vârstei de pensionare.
+              </p>
+            </div>
+          </div>
+          <div className="pt-2 border-t border-gray-100 dark:border-slate-700">
+            <p className="font-semibold text-gray-800 dark:text-slate-100 text-xs mb-1">Formulă:</p>
+            <code className="text-teal-600 dark:text-teal-400 font-mono text-xs bg-teal-50 dark:bg-teal-950 px-2 py-1 rounded block">
+              Indemnizație brută = 375 RON + (procent% × salariu mediu brut)
+            </code>
+          </div>
         </div>
-        <p className="text-xs text-gray-400 dark:text-slate-500 mt-3">
-          Exemplul folosește salariu brut mediu 5.000 RON. Componenta fixă (375 RON) este inclusă în toate rândurile.
-        </p>
+
       </div>
-
-      {/* Info box */}
-      <div className="bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6 space-y-3 text-sm text-gray-600 dark:text-slate-400">
-        <h3 className="text-sm font-semibold text-gray-500 dark:text-slate-400 uppercase tracking-wide mb-2">
-          Ce trebuie să știi despre indemnizația de șomaj
-        </h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <div className="bg-teal-50 dark:bg-teal-950 rounded-xl p-3">
-            <p className="font-semibold text-gray-800 dark:text-slate-100 mb-1">Condiție de eligibilitate</p>
-            <p className="text-xs text-gray-500 dark:text-slate-400">
-              Minimum 12 luni de cotizare în ultimele 24 de luni. Aplicați în cel mult 60 de zile de la data pierderii locului de muncă.
-            </p>
-          </div>
-          <div className="bg-gray-50 dark:bg-slate-800 rounded-xl p-3">
-            <p className="font-semibold text-gray-800 dark:text-slate-100 mb-1">Unde se depune dosarul</p>
-            <p className="text-xs text-gray-500 dark:text-slate-400">
-              La AJOFM (Agenția Județeană pentru Ocuparea Forței de Muncă) din județul în care aveți domiciliul.
-            </p>
-          </div>
-          <div className="bg-orange-50 dark:bg-orange-950 rounded-xl p-3">
-            <p className="font-semibold text-gray-800 dark:text-slate-100 mb-1">Obligații în perioada de șomaj</p>
-            <p className="text-xs text-gray-500 dark:text-slate-400">
-              Prezentare lunară la AJOFM, disponibilitate pentru oferte de muncă, participare la programe de formare dacă sunt solicitate.
-            </p>
-          </div>
-          <div className="bg-red-50 dark:bg-red-950 rounded-xl p-3">
-            <p className="font-semibold text-gray-800 dark:text-slate-100 mb-1">Suspendare / Încetare</p>
-            <p className="text-xs text-gray-500 dark:text-slate-400">
-              Indemnizația încetează la reangajare, la expirarea duratei, la refuzul nejustificat al unei oferte adecvate sau la împlinirea vârstei de pensionare.
-            </p>
-          </div>
-          <div className="bg-gray-50 dark:bg-slate-800 rounded-xl p-3">
-            <p className="font-semibold text-gray-800 dark:text-slate-100 mb-1">Componentă fixă</p>
-            <p className="text-xs text-gray-500 dark:text-slate-400">
-              75% × ISR = 75% × 500 RON = <strong>375 RON</strong>. Aceeași pentru toți, indiferent de salariu.
-            </p>
-          </div>
-          <div className="bg-gray-50 dark:bg-slate-800 rounded-xl p-3">
-            <p className="font-semibold text-gray-800 dark:text-slate-100 mb-1">Componentă variabilă</p>
-            <p className="text-xs text-gray-500 dark:text-slate-400">
-              3–20% din media salariului brut din ultimele 12 luni. Procentul crește cu stagiul de cotizare.
-            </p>
-          </div>
-          <div className="bg-gray-50 dark:bg-slate-800 rounded-xl p-3">
-            <p className="font-semibold text-gray-800 dark:text-slate-100 mb-1">Durată</p>
-            <p className="text-xs text-gray-500 dark:text-slate-400">
-              6 luni (1–5 ani stagiu) · 9 luni (5–10 ani) · 12 luni (10+ ani).
-            </p>
-          </div>
-          <div className="bg-gray-50 dark:bg-slate-800 rounded-xl p-3">
-            <p className="font-semibold text-gray-800 dark:text-slate-100 mb-1">Deduceri</p>
-            <p className="text-xs text-gray-500 dark:text-slate-400">
-              CASS 10% + impozit venit 10%. CAS (pensia) nu se reține din indemnizația de șomaj.
-            </p>
-          </div>
-        </div>
-        <div className="pt-2 border-t border-gray-100 dark:border-slate-700">
-          <p className="font-semibold text-gray-800 dark:text-slate-100 text-xs mb-1">Formulă:</p>
-          <code className="text-teal-600 dark:text-teal-400 font-mono text-xs bg-teal-50 dark:bg-teal-950 px-2 py-1 rounded block">
-            Indemnizație brută = 375 RON + (procent% × salariu mediu brut)
-          </code>
-        </div>
-      </div>
-
     </div>
   );
 }

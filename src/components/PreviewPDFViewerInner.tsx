@@ -1,7 +1,7 @@
 "use client";
 
 import { usePDF } from "@react-pdf/renderer";
-import { useMemo, useEffect } from "react";
+import { useMemo, useEffect, useState } from "react";
 import ContractVanzareCumparare from "@/components/pdf-templates/ContractVanzareCumparare";
 import Imputernicire from "@/components/pdf-templates/Imputernicire";
 import AcordConfidentialitate from "@/components/pdf-templates/AcordConfidentialitate";
@@ -193,27 +193,44 @@ export default function PreviewPDFViewerInner({ documentType, liveData }: Props)
   }, [documentType, liveData]);
 
   const [instance, updateInstance] = usePDF();
+  // loadedUrl tracks which blob URL the iframe has fully painted (via onLoad).
+  // showOverlay is true while usePDF is rendering (instance.loading), while there's
+  // no URL yet, or while the iframe hasn't fired onLoad for the current URL.
+  // loadedUrl is set 600ms *after* onLoad fires — enough time for the PDF plugin
+  // to visually paint the first page (onLoad fires when the document loads, not when it paints).
+  const [loadedUrl, setLoadedUrl] = useState<string | null>(null);
+  const showOverlay = !instance.url || instance.url !== loadedUrl;
 
   useEffect(() => {
     updateInstance(docElement);
   }, [docElement]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  if (!instance.url) {
-    return (
-      <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", background: "white" }}>
+  return (
+    <div style={{ width: "100%", height: "100%", position: "relative" }}>
+      {instance.url && (
+        <iframe
+          src={`${instance.url}#toolbar=0`}
+          style={{ width: "100%", height: "100%", border: "none" }}
+          title="Preview document"
+          onLoad={() => { const url = instance.url; setTimeout(() => setLoadedUrl(url), 600); }}
+        />
+      )}
+      {/* White overlay — stays until iframe has fully painted the PDF */}
+      <div
+        style={{
+          position: "absolute", inset: 0,
+          display: "flex", alignItems: "center", justifyContent: "center",
+          background: "white",
+          opacity: showOverlay ? 1 : 0,
+          pointerEvents: showOverlay ? "auto" : "none",
+          transition: "opacity 0.3s",
+        }}
+      >
         <div style={{ textAlign: "center" }}>
           <div className="w-8 h-8 border-4 border-blue-100 border-t-blue-500 rounded-full animate-spin mx-auto mb-3" />
           <p className="text-xs text-gray-400">Se generează previzualizarea...</p>
         </div>
       </div>
-    );
-  }
-
-  return (
-    <iframe
-      src={`${instance.url}#toolbar=0`}
-      style={{ width: "100%", height: "100%", border: "none" }}
-      title="Preview document"
-    />
+    </div>
   );
 }

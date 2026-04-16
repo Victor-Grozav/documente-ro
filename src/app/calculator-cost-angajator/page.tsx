@@ -69,7 +69,7 @@ export default function CalculatorCostAngajatorPage() {
         },
       ]} />
 
-      <div className="max-w-2xl mx-auto text-center mb-8">
+      <div className="max-w-2xl mx-auto lg:max-w-4xl text-center mb-8">
         <Link href="/" className="text-blue-600 text-sm font-medium hover:underline">
           ← Acasă
         </Link>
@@ -82,7 +82,7 @@ export default function CalculatorCostAngajatorPage() {
       </div>
 
       {/* Info box */}
-      <div className="max-w-2xl mx-auto mb-8">
+      <div className="max-w-2xl mx-auto lg:max-w-4xl mb-8">
         <div className="bg-blue-50 dark:bg-blue-950 border border-blue-100 dark:border-blue-800 rounded-2xl px-6 py-5">
           <p className="text-sm text-blue-900 dark:text-blue-300 leading-relaxed">
             <span className="font-semibold">Cum funcționează calculatorul?</span>{" "}

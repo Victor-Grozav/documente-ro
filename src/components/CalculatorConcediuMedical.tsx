@@ -113,7 +113,11 @@ export default function CalculatorConcediuMedical() {
   const r = calculeaza(salariu, zile, tip);
 
   return (
-    <div className="w-full max-w-2xl mx-auto space-y-4">
+    <div className="w-full max-w-2xl mx-auto lg:max-w-4xl">
+      <div className="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-start">
+
+      {/* ── LEFT COLUMN — inputs ── */}
+      <div className="space-y-4">
 
       {/* Salariu */}
       <div className="bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6">
@@ -238,6 +242,11 @@ export default function CalculatorConcediuMedical() {
         </div>
       </div>
 
+      </div>{/* end left column */}
+
+      {/* ── RIGHT COLUMN — results ── */}
+      <div className="space-y-4 mt-4 lg:mt-0">
+
       {/* Rezultat principal */}
       <div className="bg-green-600 rounded-2xl p-6 text-white text-center shadow-md">
         <p className="text-green-200 text-sm font-medium mb-1">
@@ -337,7 +346,11 @@ export default function CalculatorConcediuMedical() {
         </p>
       </div>
 
-      {/* Explicații */}
+      </div>{/* end right column */}
+      </div>{/* end grid */}
+
+      {/* ── FULL WIDTH — explicații ── */}
+      <div className="mt-4 lg:mt-8">
       <div className="bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6 space-y-3 text-sm text-gray-600 dark:text-slate-400">
         <h3 className="text-sm font-semibold text-gray-500 dark:text-slate-400 uppercase tracking-wide mb-2">
           Cum funcționează concediul medical în România?
@@ -397,6 +410,7 @@ export default function CalculatorConcediuMedical() {
           </code>
         </div>
       </div>
+      </div>{/* end full width */}
     </div>
   );
 }

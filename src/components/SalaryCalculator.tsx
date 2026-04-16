@@ -72,176 +72,186 @@ export default function SalaryCalculator() {
   const impozitPercent = Math.round((result.impozit / result.brut) * 100);
 
   return (
-    <div className="w-full max-w-2xl mx-auto">
-      {/* Input section */}
-      <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-gray-200 dark:border-slate-700 p-6 mb-4">
-        <label htmlFor="salariu-brut" className="block text-sm font-medium text-gray-600 dark:text-slate-400 mb-1">
-          Salariu brut lunar
-        </label>
-        <div className="flex items-center gap-3 mb-4">
-          <input
-            id="salariu-brut"
-            name="salariu-brut"
-            type="text"
-            inputMode="numeric"
-            value={inputValue}
-            onChange={handleInput}
-            className="min-w-0 flex-1 text-3xl font-bold text-gray-900 dark:text-white border-b-2 border-blue-500 pb-1 bg-transparent outline-none focus:border-blue-600"
-            placeholder="0"
-          />
-          <span className="text-xl font-semibold text-gray-400 dark:text-slate-500 shrink-0">RON</span>
-        </div>
-        <input
-          id="slider-brut"
-          name="slider-brut"
-          type="range"
-          min={1000}
-          max={50000}
-          step={100}
-          value={brut}
-          onChange={handleSlider}
-          aria-label="Ajustează salariul brut"
-          className="w-full accent-blue-500"
-        />
-        <div className="flex justify-between text-xs text-gray-400 dark:text-slate-500 mt-1">
-          <span>1.000 RON</span>
-          <span className="text-gray-500 dark:text-slate-400 font-medium hidden sm:inline">Salariu minim: 4.050 RON</span>
-          <span>50.000 RON</span>
-        </div>
-      </div>
+    <div className="w-full max-w-2xl mx-auto lg:max-w-4xl">
 
-      {/* Toggle lunar/anual */}
-      <div className="flex bg-gray-100 dark:bg-slate-800 rounded-xl p-1 mb-4 w-fit mx-auto">
-        <button
-          onClick={() => setView("lunar")}
-          className={`px-5 py-2 rounded-lg text-sm font-medium transition-all ${
-            view === "lunar"
-              ? "bg-white dark:bg-slate-700 text-blue-600 dark:text-blue-400 shadow-sm"
-              : "text-gray-500 dark:text-slate-400 hover:text-gray-700 dark:hover:text-slate-200"
-          }`}
-        >
-          Lunar
-        </button>
-        <button
-          onClick={() => setView("anual")}
-          className={`px-5 py-2 rounded-lg text-sm font-medium transition-all ${
-            view === "anual"
-              ? "bg-white dark:bg-slate-700 text-blue-600 dark:text-blue-400 shadow-sm"
-              : "text-gray-500 dark:text-slate-400 hover:text-gray-700 dark:hover:text-slate-200"
-          }`}
-        >
-          Anual
-        </button>
-      </div>
+      {/* Desktop: two-column grid. Mobile: stacks naturally (no lg: classes applied) */}
+      <div className="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-start">
 
-      {/* Result principal */}
-      <div className="bg-blue-600 rounded-2xl p-6 mb-4 text-white text-center shadow-md">
-        <p className="text-blue-200 text-sm font-medium mb-1">Salariu net {view}</p>
-        <p className="text-4xl sm:text-5xl font-bold tracking-tight">
-          {formatRON(result.net * mult)}
-        </p>
-        <p className="text-blue-200 text-sm mt-2">
-          {netPercent}% din brut • Rețineri: {formatRON((result.brut - result.net) * mult)}
-        </p>
-      </div>
-
-      {/* Breakdown */}
-      <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-gray-200 dark:border-slate-700 p-6 mb-4 space-y-4">
-        <h3 className="text-sm font-semibold text-gray-500 dark:text-slate-400 uppercase tracking-wide">
-          Detaliu calcul {view}
-        </h3>
-
-        {/* Brut */}
-        <div className="flex justify-between items-center py-2 border-b border-gray-50 dark:border-slate-800">
-          <span className="font-medium text-gray-700 dark:text-slate-300">Salariu brut</span>
-          <span className="font-bold text-gray-900 dark:text-white">{formatRON(result.brut * mult)}</span>
-        </div>
-
-        {/* CAS */}
-        <div className="space-y-1">
-          <div className="flex justify-between items-center">
-            <div>
-              <span className="text-sm font-medium text-gray-700 dark:text-slate-300">CAS </span>
-              <span className="text-xs text-gray-400 dark:text-slate-500">(pensie, 25%)</span>
+        {/* ── LEFT COLUMN — inputs ── */}
+        <div>
+          {/* Input section */}
+          <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-gray-200 dark:border-slate-700 p-6 mb-4">
+            <label htmlFor="salariu-brut" className="block text-sm font-medium text-gray-600 dark:text-slate-400 mb-1">
+              Salariu brut lunar
+            </label>
+            <div className="flex items-center gap-3 mb-4">
+              <input
+                id="salariu-brut"
+                name="salariu-brut"
+                type="text"
+                inputMode="numeric"
+                value={inputValue}
+                onChange={handleInput}
+                className="min-w-0 flex-1 text-3xl font-bold text-gray-900 dark:text-white border-b-2 border-blue-500 pb-1 bg-transparent outline-none focus:border-blue-600"
+                placeholder="0"
+              />
+              <span className="text-xl font-semibold text-gray-400 dark:text-slate-500 shrink-0">RON</span>
             </div>
-            <span className="text-sm font-semibold text-red-500">
-              -{formatRON(result.cas * mult)}
-            </span>
-          </div>
-          <PercentBar percent={casPercent} color="bg-red-300" />
-        </div>
-
-        {/* CASS */}
-        <div className="space-y-1">
-          <div className="flex justify-between items-center">
-            <div>
-              <span className="text-sm font-medium text-gray-700 dark:text-slate-300">CASS </span>
-              <span className="text-xs text-gray-400 dark:text-slate-500">(sănătate, 10%)</span>
+            <input
+              id="slider-brut"
+              name="slider-brut"
+              type="range"
+              min={1000}
+              max={50000}
+              step={100}
+              value={brut}
+              onChange={handleSlider}
+              aria-label="Ajustează salariul brut"
+              className="w-full accent-blue-500"
+            />
+            <div className="flex justify-between text-xs text-gray-400 dark:text-slate-500 mt-1">
+              <span>1.000 RON</span>
+              <span className="text-gray-500 dark:text-slate-400 font-medium hidden sm:inline">Salariu minim: 4.050 RON</span>
+              <span>50.000 RON</span>
             </div>
-            <span className="text-sm font-semibold text-orange-500">
-              -{formatRON(result.cass * mult)}
-            </span>
           </div>
-          <PercentBar percent={cassPercent} color="bg-orange-300" />
-        </div>
 
-        {/* Impozit */}
-        <div className="space-y-1">
-          <div className="flex justify-between items-start">
-            <div>
-              <span className="text-sm font-medium text-gray-700 dark:text-slate-300">Impozit venit</span>
-              <br />
-              <span className="text-xs text-gray-400 dark:text-slate-500">10% din {formatRON(result.venitImpozabil)}</span>
+          {/* Toggle lunar/anual */}
+          <div className="flex bg-gray-100 dark:bg-slate-800 rounded-xl p-1 mb-4 w-fit mx-auto lg:mx-0">
+            <button
+              onClick={() => setView("lunar")}
+              className={`px-5 py-2 rounded-lg text-sm font-medium transition-all ${
+                view === "lunar"
+                  ? "bg-white dark:bg-slate-700 text-blue-600 dark:text-blue-400 shadow-sm"
+                  : "text-gray-500 dark:text-slate-400 hover:text-gray-700 dark:hover:text-slate-200"
+              }`}
+            >
+              Lunar
+            </button>
+            <button
+              onClick={() => setView("anual")}
+              className={`px-5 py-2 rounded-lg text-sm font-medium transition-all ${
+                view === "anual"
+                  ? "bg-white dark:bg-slate-700 text-blue-600 dark:text-blue-400 shadow-sm"
+                  : "text-gray-500 dark:text-slate-400 hover:text-gray-700 dark:hover:text-slate-200"
+              }`}
+            >
+              Anual
+            </button>
+          </div>
+
+          {/* Desktop-only: quick stats summary in the left column */}
+          <div className="hidden lg:grid grid-cols-2 gap-3">
+            <div className="bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-4 text-center">
+              <p className="text-xs text-gray-400 dark:text-slate-500 uppercase tracking-wide mb-1">Net / Brut</p>
+              <p className="text-2xl font-bold text-blue-600 dark:text-blue-400">{netPercent}%</p>
             </div>
-            <span className="text-sm font-semibold text-yellow-600 shrink-0 ml-2">
-              -{formatRON(result.impozit * mult)}
-            </span>
+            <div className="bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-4 text-center">
+              <p className="text-xs text-gray-400 dark:text-slate-500 uppercase tracking-wide mb-1">Rețineri totale</p>
+              <p className="text-2xl font-bold text-red-500">{100 - netPercent}%</p>
+            </div>
           </div>
-          <PercentBar percent={impozitPercent} color="bg-yellow-300" />
         </div>
 
-        {/* Net final */}
-        <div className="flex justify-between items-center py-3 bg-blue-50 dark:bg-blue-950 rounded-xl px-4 mt-2">
-          <span className="font-bold text-gray-800 dark:text-white">Salariu net</span>
-          <span className="font-bold text-blue-600 dark:text-blue-400 text-lg">
-            {formatRON(result.net * mult)}
-          </span>
+        {/* ── RIGHT COLUMN — results ── */}
+        <div className="space-y-4 mt-4 lg:mt-0">
+
+          {/* Result principal */}
+          <div className="bg-blue-600 rounded-2xl p-6 text-white text-center shadow-md">
+            <p className="text-blue-200 text-sm font-medium mb-1">Salariu net {view}</p>
+            <p className="text-4xl sm:text-5xl font-bold tracking-tight">
+              {formatRON(result.net * mult)}
+            </p>
+            <p className="text-blue-200 text-sm mt-2">
+              {netPercent}% din brut • Rețineri: {formatRON((result.brut - result.net) * mult)}
+            </p>
+          </div>
+
+          {/* Breakdown */}
+          <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-gray-200 dark:border-slate-700 p-6 space-y-4">
+            <h3 className="text-sm font-semibold text-gray-500 dark:text-slate-400 uppercase tracking-wide">
+              Detaliu calcul {view}
+            </h3>
+
+            <div className="flex justify-between items-center py-2 border-b border-gray-50 dark:border-slate-800">
+              <span className="font-medium text-gray-700 dark:text-slate-300">Salariu brut</span>
+              <span className="font-bold text-gray-900 dark:text-white">{formatRON(result.brut * mult)}</span>
+            </div>
+
+            <div className="space-y-1">
+              <div className="flex justify-between items-center">
+                <div>
+                  <span className="text-sm font-medium text-gray-700 dark:text-slate-300">CAS </span>
+                  <span className="text-xs text-gray-400 dark:text-slate-500">(pensie, 25%)</span>
+                </div>
+                <span className="text-sm font-semibold text-red-500">-{formatRON(result.cas * mult)}</span>
+              </div>
+              <PercentBar percent={casPercent} color="bg-red-300" />
+            </div>
+
+            <div className="space-y-1">
+              <div className="flex justify-between items-center">
+                <div>
+                  <span className="text-sm font-medium text-gray-700 dark:text-slate-300">CASS </span>
+                  <span className="text-xs text-gray-400 dark:text-slate-500">(sănătate, 10%)</span>
+                </div>
+                <span className="text-sm font-semibold text-orange-500">-{formatRON(result.cass * mult)}</span>
+              </div>
+              <PercentBar percent={cassPercent} color="bg-orange-300" />
+            </div>
+
+            <div className="space-y-1">
+              <div className="flex justify-between items-start">
+                <div>
+                  <span className="text-sm font-medium text-gray-700 dark:text-slate-300">Impozit venit</span>
+                  <br />
+                  <span className="text-xs text-gray-400 dark:text-slate-500">10% din {formatRON(result.venitImpozabil)}</span>
+                </div>
+                <span className="text-sm font-semibold text-yellow-600 shrink-0 ml-2">-{formatRON(result.impozit * mult)}</span>
+              </div>
+              <PercentBar percent={impozitPercent} color="bg-yellow-300" />
+            </div>
+
+            <div className="flex justify-between items-center py-3 bg-blue-50 dark:bg-blue-950 rounded-xl px-4 mt-2">
+              <span className="font-bold text-gray-800 dark:text-white">Salariu net</span>
+              <span className="font-bold text-blue-600 dark:text-blue-400 text-lg">{formatRON(result.net * mult)}</span>
+            </div>
+          </div>
+
+          {/* Cost angajator */}
+          <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-gray-200 dark:border-slate-700 p-6">
+            <h3 className="text-sm font-semibold text-gray-500 dark:text-slate-400 uppercase tracking-wide mb-4">
+              Cost total angajator
+            </h3>
+            <div className="flex justify-between items-center mb-2">
+              <span className="text-sm text-gray-600 dark:text-slate-400">Salariu brut</span>
+              <span className="text-sm font-medium dark:text-slate-200">{formatRON(result.brut * mult)}</span>
+            </div>
+            <div className="flex justify-between items-center mb-3">
+              <div>
+                <span className="text-sm text-gray-600 dark:text-slate-400">CAM </span>
+                <span className="text-xs text-gray-400 dark:text-slate-500">(asigurare muncă, 2.25%)</span>
+              </div>
+              <span className="text-sm font-medium text-red-500">+{formatRON(result.cam * mult)}</span>
+            </div>
+            <div className="flex justify-between items-center py-3 bg-gray-50 dark:bg-slate-800 rounded-xl px-4">
+              <span className="font-bold text-gray-800 dark:text-white">Cost total</span>
+              <span className="font-bold text-gray-900 dark:text-white text-lg">{formatRON(result.costAngajator * mult)}</span>
+            </div>
+            <p className="text-xs text-gray-400 dark:text-slate-500 mt-3">
+              * Calculele sunt orientative pentru 2026. Deducerea personală nu este inclusă.
+            </p>
+          </div>
+
         </div>
       </div>
 
-      {/* Cost angajator */}
-      <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-gray-200 dark:border-slate-700 p-6">
-        <h3 className="text-sm font-semibold text-gray-500 dark:text-slate-400 uppercase tracking-wide mb-4">
-          Cost total angajator
-        </h3>
-        <div className="flex justify-between items-center mb-2">
-          <span className="text-sm text-gray-600 dark:text-slate-400">Salariu brut</span>
-          <span className="text-sm font-medium dark:text-slate-200">{formatRON(result.brut * mult)}</span>
-        </div>
-        <div className="flex justify-between items-center mb-3">
-          <div>
-            <span className="text-sm text-gray-600 dark:text-slate-400">CAM </span>
-            <span className="text-xs text-gray-400 dark:text-slate-500">(asigurare muncă, 2.25%)</span>
-          </div>
-          <span className="text-sm font-medium text-red-500">+{formatRON(result.cam * mult)}</span>
-        </div>
-        <div className="flex justify-between items-center py-3 bg-gray-50 dark:bg-slate-800 rounded-xl px-4">
-          <span className="font-bold text-gray-800 dark:text-white">Cost total</span>
-          <span className="font-bold text-gray-900 dark:text-white text-lg">
-            {formatRON(result.costAngajator * mult)}
-          </span>
-        </div>
-        <p className="text-xs text-gray-400 dark:text-slate-500 mt-3">
-          * Calculele sunt orientative pentru 2026. Deducerea personală nu este inclusă.
-        </p>
-      </div>
-
-      {/* Info box */}
-      <div className="bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6 space-y-3 text-sm text-gray-600 dark:text-slate-400">
+      {/* Info / FAQ — full width below both columns */}
+      <div className="bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 p-6 space-y-3 text-sm text-gray-600 dark:text-slate-400 mt-4 lg:mt-8">
         <h3 className="text-sm font-semibold text-gray-500 dark:text-slate-400 uppercase tracking-wide mb-2">
           Cum se calculează salariul net în România 2026?
         </h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           <div className="bg-gray-50 dark:bg-slate-800 rounded-xl p-3">
             <p className="font-semibold text-gray-800 dark:text-slate-100 mb-1">1. CAS (Pensie)</p>
             <p className="text-xs text-gray-500 dark:text-slate-400">25% din salariul brut — contribuția la pilonul 1 de pensie.</p>

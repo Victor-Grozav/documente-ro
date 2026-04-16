@@ -51,12 +51,14 @@ interface DocConfig {
 
 interface Categorie {
   label: string;
+  accentBg: string;
   items: DocConfig[];
 }
 
 const CATEGORII: Categorie[] = [
   {
     label: "Vânzare & Cumpărare",
+    accentBg: "bg-green-400",
     items: [
       {
         slug: "contract-vanzare-cumparare",
@@ -77,6 +79,7 @@ const CATEGORII: Categorie[] = [
   },
   {
     label: "Proprietăți",
+    accentBg: "bg-orange-400",
     items: [
       {
         slug: "contract-inchiriere",
@@ -111,6 +114,7 @@ const CATEGORII: Categorie[] = [
   },
   {
     label: "Servicii & Freelancing",
+    accentBg: "bg-blue-400",
     items: [
       {
         slug: "contract-prestari-servicii",
@@ -131,6 +135,7 @@ const CATEGORII: Categorie[] = [
   },
   {
     label: "HR & Angajați",
+    accentBg: "bg-teal-400",
     items: [
       {
         slug: "cerere-concediu",
@@ -181,6 +186,7 @@ const CATEGORII: Categorie[] = [
   },
   {
     label: "Business & Protecție",
+    accentBg: "bg-violet-400",
     items: [
       {
         slug: "acord-confidentialitate",
@@ -218,6 +224,16 @@ export default function DocumentListClient() {
   const [preview, setPreview] = useState<PreviewDocumentType | null>(null);
   const modalRef = useRef<HTMLDivElement>(null);
 
+  // Lock body scroll while modal is open
+  useEffect(() => {
+    if (preview) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => { document.body.style.overflow = ""; };
+  }, [preview]);
+
   useEffect(() => {
     if (!preview) return;
     const modal = modalRef.current;
@@ -243,88 +259,138 @@ export default function DocumentListClient() {
 
   return (
     <>
-      <div className="space-y-6">
-        {CATEGORII.map((cat) => (
-          <div key={cat.label}>
-            <p className="text-xs font-semibold text-gray-400 dark:text-slate-500 uppercase tracking-widest mb-3 px-1">
-              {cat.label}
-            </p>
-            <div className="space-y-3">
-              {cat.items.map((doc) =>
-                doc.disponibil ? (
-                  <div
-                    key={doc.slug}
-                    className={`group/card bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 ${doc.hoverBorder} hover:shadow-md transition-all flex flex-col sm:flex-row sm:items-center`}
-                  >
-                    <Link
-                      href={`/documente/${doc.slug}`}
-                      className="flex items-start gap-4 p-5 flex-1 min-w-0"
-                    >
-                      <div className={`w-10 h-10 ${doc.iconBg} rounded-xl flex items-center justify-center shrink-0 mt-0.5`}>
-                        <doc.icon className={`w-5 h-5 ${doc.iconColor}`} />
-                      </div>
-                      <div className="min-w-0">
-                        <div className="flex items-center gap-2 flex-wrap">
-                          <p className="font-semibold text-gray-900 dark:text-white">{doc.titlu}</p>
-                          {doc.badge && (
-                            <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${doc.priceBg} ${doc.priceColor}`}>
-                              {doc.badge}
-                            </span>
-                          )}
-                        </div>
-                        <p className="text-sm text-gray-500 dark:text-slate-400 mt-0.5">{doc.descriere}</p>
-                        {doc.gratuitCu && (
-                          <p className="text-xs text-green-600 dark:text-green-400 font-medium mt-1">
-                            Gratuit cu Contract de Închiriere
-                          </p>
-                        )}
-                      </div>
-                    </Link>
+      <div className="space-y-6 lg:space-y-10">
+        {CATEGORII.map((cat) => {
+          const isMulti = cat.items.length > 1;
+          const gridClass = cat.items.length === 3
+            ? "lg:grid lg:grid-cols-3 lg:gap-5 lg:space-y-0"
+            : cat.items.length === 2
+            ? "lg:grid lg:grid-cols-2 lg:gap-5 lg:space-y-0"
+            : "";
+          return (
+            <div key={cat.label}>
+              {/* Category header — accent bar + label + separator on desktop */}
+              <div className="flex items-center gap-3 mb-3 px-1 lg:mb-5 lg:px-0">
+                <span className={`hidden lg:block w-1.5 h-5 rounded-full shrink-0 ${cat.accentBg}`} />
+                <p className="text-xs font-semibold text-gray-400 dark:text-slate-500 uppercase tracking-widest">
+                  {cat.label}
+                </p>
+                <div className="hidden lg:block flex-1 h-px bg-gray-100 dark:bg-slate-800" />
+              </div>
 
-                    <div className="flex items-center gap-2 px-5 pb-4 sm:pb-0 sm:pr-4 shrink-0">
-                      <span className={`text-sm font-bold px-3 py-1 rounded-full ${doc.priceBg} ${doc.priceColor}`}>
-                        {doc.gratuitCu ? "10 lei / gratuit" : doc.pret}
-                      </span>
-                      <button
-                        onClick={() => setPreview(doc.slug)}
-                        className="p-2 text-gray-300 dark:text-slate-600 hover:text-gray-500 dark:hover:text-slate-300 hover:bg-gray-50 dark:hover:bg-slate-800 rounded-lg transition-colors"
-                        aria-label={`Previzualizează ${doc.titlu}`}
-                      >
-                        <Eye className="w-4 h-4" aria-hidden="true" />
-                      </button>
+              <div className={`space-y-3 ${gridClass}`}>
+                {cat.items.map((doc) =>
+                  doc.disponibil ? (
+                    <div
+                      key={doc.slug}
+                      className={[
+                        "group/card bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-slate-700 transition-all",
+                        doc.hoverBorder,
+                        "hover:shadow-md",
+                        // Mobile: vertical → horizontal at sm
+                        "flex flex-col sm:flex-row sm:items-center",
+                        // Desktop: vertical card in grid (multi) vs enhanced horizontal (single)
+                        isMulti
+                          ? "lg:flex-col lg:h-full lg:hover:-translate-y-0.5 lg:hover:shadow-lg"
+                          : "lg:flex-row lg:items-center lg:hover:shadow-lg",
+                      ].join(" ")}
+                    >
+                      {/* Content / link area */}
                       <Link
                         href={`/documente/${doc.slug}`}
-                        className={`flex items-center gap-1 text-sm font-medium ${doc.ctaColor} whitespace-nowrap`}
+                        className={[
+                          "flex items-start gap-4 p-5 flex-1 min-w-0",
+                          isMulti
+                            ? "lg:flex-col lg:gap-4 lg:p-6 lg:pb-4 lg:flex-none"
+                            : "lg:p-6",
+                        ].join(" ")}
                       >
-                        Generează PDF
-                        <ArrowRight className="w-4 h-4 group-hover/card:translate-x-1 transition-transform" />
+                        <div className={[
+                          "rounded-xl flex items-center justify-center shrink-0 mt-0.5",
+                          doc.iconBg,
+                          isMulti
+                            ? "w-10 h-10 lg:w-12 lg:h-12 lg:mt-0"
+                            : "w-10 h-10 lg:w-14 lg:h-14 lg:mt-0",
+                        ].join(" ")}>
+                          <doc.icon className={[
+                            doc.iconColor,
+                            isMulti ? "w-5 h-5 lg:w-6 lg:h-6" : "w-5 h-5 lg:w-7 lg:h-7",
+                          ].join(" ")} />
+                        </div>
+                        <div className="min-w-0">
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <p className={[
+                              "font-semibold text-gray-900 dark:text-white",
+                              !isMulti ? "lg:text-lg" : "",
+                            ].join(" ")}>
+                              {doc.titlu}
+                            </p>
+                            {doc.badge && (
+                              <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${doc.priceBg} ${doc.priceColor}`}>
+                                {doc.badge}
+                              </span>
+                            )}
+                          </div>
+                          <p className="text-sm text-gray-500 dark:text-slate-400 mt-0.5">{doc.descriere}</p>
+                          {doc.gratuitCu && (
+                            <p className="text-xs text-green-600 dark:text-green-400 font-medium mt-1">
+                              Gratuit cu Contract de Închiriere
+                            </p>
+                          )}
+                        </div>
                       </Link>
-                    </div>
-                  </div>
-                ) : (
-                  <div
-                    key={doc.slug}
-                    className="flex items-center justify-between bg-white dark:bg-slate-900 rounded-2xl border border-dashed border-gray-200 dark:border-slate-700 p-5 opacity-50"
-                  >
-                    <div className="flex items-start gap-4">
-                      <div className="w-10 h-10 bg-gray-100 dark:bg-slate-800 rounded-xl flex items-center justify-center shrink-0">
-                        <doc.icon className="w-5 h-5 text-gray-400 dark:text-slate-500" />
+
+                      {/* Price + actions */}
+                      <div className={[
+                        "flex items-center gap-2 px-5 pb-4 sm:pb-0 sm:pr-4 shrink-0",
+                        isMulti
+                          ? "lg:px-6 lg:py-4 lg:pb-5 lg:mt-auto lg:border-t lg:border-gray-100 dark:lg:border-slate-800 lg:w-full lg:justify-between lg:shrink-0"
+                          : "lg:pr-6",
+                      ].join(" ")}>
+                        <span className={`text-sm font-bold px-3 py-1 rounded-full ${doc.priceBg} ${doc.priceColor}`}>
+                          {doc.gratuitCu ? "10 lei / gratuit" : doc.pret}
+                        </span>
+                        <button
+                          onClick={() => setPreview(doc.slug)}
+                          className="p-2 text-gray-300 dark:text-slate-600 hover:text-gray-500 dark:hover:text-slate-300 hover:bg-gray-50 dark:hover:bg-slate-800 rounded-lg transition-colors"
+                          aria-label={`Previzualizează ${doc.titlu}`}
+                        >
+                          <Eye className="w-4 h-4" aria-hidden="true" />
+                        </button>
+                        <Link
+                          href={`/documente/${doc.slug}`}
+                          className={`flex items-center gap-1 text-sm font-medium ${doc.ctaColor} whitespace-nowrap`}
+                        >
+                          Generează PDF
+                          <ArrowRight className="w-4 h-4 group-hover/card:translate-x-1 transition-transform" />
+                        </Link>
                       </div>
-                      <div>
-                        <p className="font-semibold text-gray-700 dark:text-slate-300">{doc.titlu}</p>
-                        <p className="text-sm text-gray-400 dark:text-slate-500 mt-0.5">{doc.descriere}</p>
+                    </div>
+                  ) : (
+                    <div
+                      key={doc.slug}
+                      className="flex items-center justify-between bg-white dark:bg-slate-900 rounded-2xl border border-dashed border-gray-200 dark:border-slate-700 p-5 opacity-50"
+                    >
+                      <div className="flex items-start gap-4">
+                        <div className="w-10 h-10 bg-gray-100 dark:bg-slate-800 rounded-xl flex items-center justify-center shrink-0">
+                          <doc.icon className="w-5 h-5 text-gray-400 dark:text-slate-500" />
+                        </div>
+                        <div>
+                          <p className="font-semibold text-gray-700 dark:text-slate-300">{doc.titlu}</p>
+                          <p className="text-sm text-gray-400 dark:text-slate-500 mt-0.5">{doc.descriere}</p>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2 shrink-0 ml-4">
+                        <Clock className="w-4 h-4 text-gray-300 dark:text-slate-600" />
+                        <span className="text-sm text-gray-400 dark:text-slate-500">În curând</span>
                       </div>
                     </div>
-                    <div className="flex items-center gap-2 shrink-0 ml-4">
-                      <Clock className="w-4 h-4 text-gray-300 dark:text-slate-600" />
-                      <span className="text-sm text-gray-400 dark:text-slate-500">În curând</span>
-                    </div>
-                  </div>
-                )
-              )}
+                  )
+                )}
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       {/* Preview Modal */}
